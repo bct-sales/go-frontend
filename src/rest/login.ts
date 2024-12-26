@@ -1,5 +1,7 @@
+import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
+import { extractDetailFromException } from './errors';
 
 
 
@@ -18,7 +20,7 @@ const LoginResponse = z.object({
 type LoginResponse = z.infer<typeof LoginResponse>;
 
 
-export async function login( data: LoginParameters ): Promise<boolean>
+export async function login( data: LoginParameters ): Promise<Role | undefined>
 {
     const payload = {
         grant_type: 'password',
@@ -35,29 +37,20 @@ export async function login( data: LoginParameters ): Promise<boolean>
         const response = await axios.post<unknown>( url, payload, { headers } );
         const data = LoginResponse.parse(response.data);
 
-        console.log(data);
-
-        return true;
-        // const accessToken = data.access_token;
-        // const role = data.role;
-        // const userId = data.user_id;
-
-        // return success({ role, accessToken, userId });
+        return data.role;
     }
     catch ( error: unknown )
     {
-        // const detail = extractDetailFromException(error);
+        const detail = extractDetailFromException(error);
 
-        // if ( detail !== null )
-        // {
-        //     return failure<string>(detail);
-        // }
-        // else
-        // {
-        //     console.error(error);
-        //     return failure<string>('Unknown error');
-        // }
-        console.error(error);
-        return false;
+        if ( detail !== null )
+        {
+            return undefined;
+        }
+        else
+        {
+            console.error(error);
+            return undefined;
+        }
     }
 }
