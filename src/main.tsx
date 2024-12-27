@@ -17,6 +17,10 @@ if ( root )
                 {
                     path: "/login",
                     element: <pages.LoginPage />
+                },
+                {
+                    path: "/admin",
+                    element: <pages.AdminDashboard />
                 }
             ]
         },
