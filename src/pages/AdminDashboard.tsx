@@ -29,7 +29,7 @@ export default function AdminDashboard()
 
     return (
         <>
-            <AppShell navbar={{width: 300, breakpoint: 'sm', collapsed: {mobile: true}}}>
+            <AppShell navbar={{width: 300, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 60}}>
                 <AppShell.Header>
                     Administration Dashboard
                 </AppShell.Header>
