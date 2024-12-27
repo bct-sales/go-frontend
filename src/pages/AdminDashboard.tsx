@@ -1,12 +1,14 @@
-import { AppShell, Button } from "@mantine/core";
-import { IconUsersGroup } from "@tabler/icons-react";
-import { Route, Routes } from "react-router-dom";
+import { ActionIcon, AppShell } from "@mantine/core";
+import { IconShirt, IconUsersGroup } from "@tabler/icons-react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import UsersSubpage from "./admin/UsersSubpage";
+import ItemsSubpage from "./admin/ItemsSubpage";
+import React from "react";
 
 
 export default function AdminDashboard()
 {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -15,14 +17,33 @@ export default function AdminDashboard()
                     Administration Dashboard
                 </AppShell.Header>
                 <AppShell.Navbar>
-                    <Button><IconUsersGroup /></Button>
+                    {renderNavbarLink("Users", "users", <IconUsersGroup />)}
+                    {renderNavbarLink("Items", "items", <IconShirt />)}
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
                         <Route path="/users" element={<UsersSubpage />} />
+                        <Route path="/items" element={<ItemsSubpage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
         </>
     );
+
+
+    function renderNavbarLink(label : string, to : string, Icon : React.ReactNode) : React.ReactNode
+    {
+        return (
+            <ActionIcon onClick={followLink(to)} title={label}>
+                {Icon}
+            </ActionIcon>
+        );
+    }
+
+    function followLink(url : string) : () => void
+    {
+        return () => {
+            navigate(`/admin/${url}`);
+        }
+    }
 }
