@@ -13,19 +13,13 @@ if ( root )
 {
     const router = createBrowserRouter([
         {
-            path: '/',
-            element: <App />,
-            children: [
-                {
-                    path: "/login",
-                    element: <pages.LoginPage />
-                },
-                {
-                    path: "/admin",
-                    element: <pages.AdminDashboard />
-                }
-            ]
+            path: '/login',
+            element: <pages.LoginPage />,
         },
+        {
+            path: '/admin',
+            element: <pages.AdminDashboard />,
+        }
     ]);
 
     ReactDOM.createRoot(root).render(
