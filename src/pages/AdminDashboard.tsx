@@ -1,31 +1,12 @@
-import UserTable from "@/components/UserTable";
-import { listUsers, User } from "@/rest/list-users";
 import { AppShell, Button } from "@mantine/core";
 import { IconUsersGroup } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import UsersSubpage from "./admin/UsersSubpage";
 
 
 export default function AdminDashboard()
 {
     // const navigate = useNavigate();
-
-    const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {
-        void (async () => {
-            const users = await listUsers();
-
-            if (users !== undefined)
-            {
-                setUsers(users);
-            }
-            else
-            {
-                console.log(`Failed to list users`);
-                // TODO handle error
-            }
-        })();
-    }, [])
 
     return (
         <>
@@ -37,7 +18,9 @@ export default function AdminDashboard()
                     <Button><IconUsersGroup /></Button>
                 </AppShell.Navbar>
                 <AppShell.Main>
-                    <UserTable users={users} />
+                    <Routes>
+                        <Route path="/users" element={<UsersSubpage />} />
+                    </Routes>
                 </AppShell.Main>
             </AppShell>
         </>
