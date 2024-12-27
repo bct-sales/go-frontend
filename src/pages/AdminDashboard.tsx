@@ -1,6 +1,6 @@
 import UserTable from "@/components/UserTable";
 import { listUsers, User } from "@/rest/list-users";
-import { Center } from "@mantine/core";
+import { AppShell, Button } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 
@@ -28,10 +28,17 @@ export default function AdminDashboard()
 
     return (
         <>
-            <Center mih='50vh'>
-                <p>Admin Dashboard</p>
-                <UserTable users={users} />
-            </Center>
+            <AppShell navbar={{width: 300, breakpoint: 'sm', collapsed: {mobile: true}}}>
+                <AppShell.Header>
+                    Administration Dashboard
+                </AppShell.Header>
+                <AppShell.Navbar>
+                    <Button>Click me</Button>
+                </AppShell.Navbar>
+                <AppShell.Main>
+                    <UserTable users={users} />
+                </AppShell.Main>
+            </AppShell>
         </>
     );
 }

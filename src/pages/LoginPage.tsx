@@ -84,11 +84,22 @@ export default function LoginPage()
                 password: formFields.password,
             };
 
-            const result = await rest.login(authenticationParameters);
+            const role = await rest.login(authenticationParameters);
 
-            if ( result )
+            if ( role )
             {
-                console.log('Login successful');
+                switch ( role )
+                {
+                    case 'admin':
+                        navigate('/admin');
+                        break;
+                    case 'seller':
+                        navigate('/seller');
+                        break;
+                    case 'cashier':
+                        navigate('/cashier');
+                        break;
+                }
             }
             else
             {
