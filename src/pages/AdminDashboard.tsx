@@ -1,6 +1,7 @@
 import UserTable from "@/components/UserTable";
 import { listUsers, User } from "@/rest/list-users";
 import { AppShell, Button } from "@mantine/core";
+import { IconUsersGroup } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 
@@ -33,7 +34,7 @@ export default function AdminDashboard()
                     Administration Dashboard
                 </AppShell.Header>
                 <AppShell.Navbar>
-                    <Button>Click me</Button>
+                    <Button><IconUsersGroup /></Button>
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <UserTable users={users} />
