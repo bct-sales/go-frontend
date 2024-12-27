@@ -1,4 +1,5 @@
 import { Table } from "@mantine/core";
+import classes from './UserTable.module.css'
 
 interface Props
 {
@@ -24,15 +25,17 @@ export default function UserTable(props : Props) : React.ReactNode
     const { users } = props;
 
     return (
-        <Table>
+        <Table className={classes.userTable}>
             <Table.Thead>
                 <Table.Tr>
                     <Table.Th>Id</Table.Th>
                     <Table.Th>Role</Table.Th>
                     <Table.Th>Created At</Table.Th>
                 </Table.Tr>
-                {users.map(renderUser)}
             </Table.Thead>
+            <Table.Tbody>
+                {users.map(renderUser)}
+            </Table.Tbody>
         </Table>
     );
 
@@ -42,14 +45,14 @@ export default function UserTable(props : Props) : React.ReactNode
         const createdAt = `${user.created_at.year}-${user.created_at.month}-${user.created_at.day} ${user.created_at.hour}:${user.created_at.minute}:${user.created_at.second}`;
 
         return (
-            <Table.Tr key={user.id}>
-                <Table.Td>
+            <Table.Tr key={user.id} className={classes.userRow}>
+                <Table.Td className={classes.userData}>
                     {user.id}
                 </Table.Td>
-                <Table.Td>
+                <Table.Td className={classes.userData}>
                     {user.role}
                 </Table.Td>
-                <Table.Td>
+                <Table.Td className={classes.userData}>
                     {createdAt}
                 </Table.Td>
             </Table.Tr>

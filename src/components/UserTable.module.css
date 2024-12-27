@@ -1,0 +1,20 @@
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.userRow {
+    &:nth-child(odd) {
+        background-color: #333;
+    }
+
+    &:nth-child(even) {
+        background-color: #444;
+    }
+
+    border-bottom: 1px solid #AAA;
+
+    & .userData {
+        padding: 5px;
+    }
+}
