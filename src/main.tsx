@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client'
 import * as pages from '@/pages';
 import App from './App';
+import { MantineProvider } from '@mantine/core';
 
 const root = document.getElementById('root');
 
@@ -29,7 +30,9 @@ if ( root )
 
     ReactDOM.createRoot(root).render(
         <React.StrictMode>
-            <RouterProvider router={router} />
+            <MantineProvider defaultColorScheme="dark">
+                <RouterProvider router={router} />
+            </MantineProvider>
         </React.StrictMode>,
     );
 }

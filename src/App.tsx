@@ -5,9 +5,7 @@ import { Outlet } from 'react-router-dom';
 function App() {
     return (
         <>
-            <MantineProvider defaultColorScheme="dark">
-                <Outlet />
-            </MantineProvider>
+            <Outlet />
         </>
     )
 }
