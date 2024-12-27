@@ -20,32 +20,34 @@ export default defineConfig(({ command } ) => {
             tsconfigPaths()
         ],
         define: buildSpecificationDefinitions(),
+        ...proxySettings(),
     };
 
 
-    function devBuildDefinitions() : Definitions
+    function proxySettings() : object
     {
-        return {
-            ROOT_URL: JSON.stringify('http://localhost:8000/api/v1'),
-        };
-    }
-
-    function prodBuildDefinitions() : Definitions
-    {
-        return {
-            ROOT_URL: JSON.stringify('/api/v1'),
-        };
+        if ( isDevBuild )
+        {
+            return {
+                server: {
+                    proxy: {
+                        '/api/v1': {
+                            target: 'http://localhost:8000'
+                        }
+                    }
+                }
+            };
+        }
+        else
+        {
+            return {};
+        }
     }
 
     function buildSpecificationDefinitions() : Definitions
     {
-        if ( isDevBuild )
-        {
-            return devBuildDefinitions();
-        }
-        else
-        {
-            return prodBuildDefinitions();
-        }
+        return {
+            ROOT_URL: JSON.stringify('/api/v1'),
+        };
     }
 })
