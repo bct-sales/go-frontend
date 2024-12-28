@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { extractDetailFromException } from './errors';
+import { paths } from './paths';
 
 
 export async function logout(): Promise<void>
 {
-    const url = `${ROOT_URL}/logout`;
+    const url = paths.logout;
 
     try
     {

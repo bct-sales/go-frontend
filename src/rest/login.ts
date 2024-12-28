@@ -2,6 +2,7 @@ import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
 import { extractDetailFromException } from './errors';
+import { paths } from './paths';
 
 
 
@@ -30,7 +31,7 @@ export async function login( data: LoginParameters ): Promise<Role | undefined>
     const headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     };
-    const url = `${ROOT_URL}/login`;
+    const url = paths.login;
 
     try
     {
