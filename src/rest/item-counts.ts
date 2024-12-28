@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { z } from 'zod';
 import { extractDetailFromException } from './errors';
+import { paths } from './paths';
 
 
 const ItemCountByCategory = z.object({
@@ -20,7 +21,7 @@ export type ItemCountsByCategoryResponse = z.infer<typeof ItemCountsByCategoryRe
 
 export async function getItemCountsPerCategory(): Promise<ItemCountsByCategoryResponse | undefined>
 {
-    const url = `${ROOT_URL}/category-counts`;
+    const url = paths.categoryCounts;
 
     try
     {

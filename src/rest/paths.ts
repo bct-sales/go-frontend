@@ -5,6 +5,10 @@ class RestPaths
     get login() { return `${this.root}/login`; }
 
     get logout() { return `${this.root}/logout`; }
+
+    get users() { return `${this.root}/users`; }
+
+    get categoryCounts() { return `${this.root}/category-counts`; }
 }
 
 export const paths = new RestPaths(ROOT_URL);

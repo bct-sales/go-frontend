@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { z } from 'zod';
 import { extractDetailFromException } from './errors';
-
+import { paths } from './paths';
 
 
 const User = z.object({
@@ -30,7 +30,7 @@ type ListUsersResponse = z.infer<typeof ListUsersResponse>;
 
 export async function listUsers(): Promise<User[] | undefined>
 {
-    const url = `${ROOT_URL}/users`;
+    const url = paths.users;
 
     try
     {
