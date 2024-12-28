@@ -1,5 +1,5 @@
 import { ActionIcon, AppShell } from "@mantine/core";
-import { IconGraph, IconShirt, IconUsersGroup } from "@tabler/icons-react";
+import { IconGraph, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import UsersSubpage from "./admin/UsersSubpage";
 import ItemsSubpage from "./admin/ItemsSubpage";
@@ -22,6 +22,7 @@ export default function AdminDashboard()
                     {renderNavbarLink("Overview", "/admin", <IconGraph />)}
                     {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
                     {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
+                    {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
