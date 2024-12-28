@@ -25,13 +25,6 @@ export default function LoginPage()
         }
     });
 
-    // React.useEffect(() => {
-    //     if ( auth.isAuthenticated() )
-    //     {
-    //         navigate('/');
-    //     }
-    // });
-
     return (
         <>
             <Center mih='50vh'>
