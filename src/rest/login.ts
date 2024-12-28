@@ -14,11 +14,11 @@ const LoginParameters = z.object({
 export type LoginParameters = z.infer<typeof LoginParameters>;
 
 
-const LoginResponse = z.object({
+const LoginSuccessResponse = z.object({
     role: z.union([z.literal('seller'), z.literal('admin'), z.literal('cashier')]),
 }).strict();
 
-type LoginResponse = z.infer<typeof LoginResponse>;
+type LoginSuccessResponse = z.infer<typeof LoginSuccessResponse>;
 
 
 export async function login( data: LoginParameters ): Promise<Role | undefined>
@@ -36,7 +36,7 @@ export async function login( data: LoginParameters ): Promise<Role | undefined>
     try
     {
         const response = await axios.post<unknown>( url, payload, { headers } );
-        const data = LoginResponse.parse(response.data);
+        const data = LoginSuccessResponse.parse(response.data);
 
         return data.role;
     }
