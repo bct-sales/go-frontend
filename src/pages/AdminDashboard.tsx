@@ -1,6 +1,6 @@
 import { ActionIcon, AppShell } from "@mantine/core";
 import { IconGraph, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import UsersSubpage from "./admin/UsersSubpage";
 import ItemsSubpage from "./admin/ItemsSubpage";
 import React from "react";
@@ -9,6 +9,7 @@ import OverviewSubpage from "./admin/OverviewSubpage";
 
 export default function AdminDashboard()
 {
+    const location = useLocation();
     const navigate = useNavigate();
 
     return (
@@ -18,9 +19,9 @@ export default function AdminDashboard()
                     Administration Dashboard
                 </AppShell.Header>
                 <AppShell.Navbar>
-                    {renderNavbarLink("Overview", "", <IconGraph />)}
-                    {renderNavbarLink("Users", "/users", <IconUsersGroup />)}
-                    {renderNavbarLink("Items", "/items", <IconShirt />)}
+                    {renderNavbarLink("Overview", "/admin", <IconGraph />)}
+                    {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
+                    {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
@@ -36,8 +37,10 @@ export default function AdminDashboard()
 
     function renderNavbarLink(label : string, to : string, Icon : React.ReactNode) : React.ReactNode
     {
+        const isActive = to === location.pathname;
+
         return (
-            <ActionIcon onClick={followLink(to)} title={label}>
+            <ActionIcon onClick={followLink(to)} title={label} size="xl" variant={isActive ? 'filled' : 'light'}>
                 {Icon}
             </ActionIcon>
         );
@@ -46,7 +49,7 @@ export default function AdminDashboard()
     function followLink(url : string) : () => void
     {
         return () => {
-            navigate(`/admin${url}`);
+            navigate(url);
         }
     }
 }
