@@ -1,4 +1,4 @@
-import { ActionIcon, AppShell } from "@mantine/core";
+import { ActionIcon, AppShell, AppShellSection, Flex, Stack } from "@mantine/core";
 import { IconGraph, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import UsersSubpage from "./admin/UsersSubpage";
@@ -14,15 +14,17 @@ export default function AdminDashboard()
 
     return (
         <>
-            <AppShell navbar={{width: 300, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 60}}>
+            <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 60}}>
                 <AppShell.Header>
                     Administration Dashboard
                 </AppShell.Header>
                 <AppShell.Navbar>
-                    {renderNavbarLink("Overview", "/admin", <IconGraph />)}
-                    {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
-                    {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
-                    {renderNavbarLink("Logout", "/logout", <IconLogout />)}
+                    <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
+                        {renderNavbarLink("Overview", "/admin", <IconGraph />)}
+                        {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
+                        {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
+                        {renderNavbarLink("Logout", "/logout", <IconLogout />)}
+                    </Flex>
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
@@ -41,7 +43,7 @@ export default function AdminDashboard()
         const isActive = to === location.pathname;
 
         return (
-            <ActionIcon onClick={followLink(to)} title={label} size="xl" variant={isActive ? 'filled' : 'light'}>
+            <ActionIcon onClick={followLink(to)} title={label} size={64} variant={isActive ? 'filled' : 'light'}>
                 {Icon}
             </ActionIcon>
         );
