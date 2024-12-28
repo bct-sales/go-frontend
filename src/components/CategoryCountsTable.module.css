@@ -1,0 +1,19 @@
+.headerRow {
+    font-weight: bold;
+    background-color: #111;
+}
+
+.totalRow {
+    font-weight: bold;
+    background-color: #111;
+}
+
+.categoryCountRow {
+    &:nth-child(odd) {
+        background-color: #333;
+    }
+
+    &:nth-child(even) {
+        background-color: #222;
+    }
+}

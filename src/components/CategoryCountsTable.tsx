@@ -1,5 +1,6 @@
 import { ItemCountByCategory } from "@/rest/item-counts";
 import { Table } from "@mantine/core";
+import classes from './CategoryCountsTable.module.css'
 
 
 interface Props
@@ -14,7 +15,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
     return (
         <Table>
             <Table.Thead>
-                <Table.Tr>
+                <Table.Tr className={classes.headerRow}>
                     <Table.Th>Category Id</Table.Th>
                     <Table.Th>Category Name</Table.Th>
                     <Table.Th>Count</Table.Th>
@@ -30,7 +31,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
     function renderCategoryCount(itemCount : ItemCountByCategory) : React.ReactNode
     {
         return (
-            <Table.Tr key={itemCount.category_id}>
+            <Table.Tr key={itemCount.category_id} className={classes.categoryCountRow}>
                 <Table.Td>{itemCount.category_id}</Table.Td>
                 <Table.Td>{itemCount.category_name}</Table.Td>
                 <Table.Td>{itemCount.count}</Table.Td>
@@ -43,7 +44,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
         const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
 
         return (
-            <Table.Tr>
+            <Table.Tr className={classes.totalRow}>
                 <Table.Td></Table.Td>
                 <Table.Td>Total</Table.Td>
                 <Table.Td>{total}</Table.Td>
