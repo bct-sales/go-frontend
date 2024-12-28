@@ -47,6 +47,7 @@ export default function OverviewSubpage() : React.ReactNode
                 </Table.Thead>
                 <Table.Tbody>
                     {categoryCounts.map(renderCategoryCount)}
+                    {renderTotalCountRow()}
                 </Table.Tbody>
             </Table>
         );
@@ -61,5 +62,25 @@ export default function OverviewSubpage() : React.ReactNode
                 <Table.Td>{itemCount.count}</Table.Td>
             </Table.Tr>
         );
+    }
+
+    function renderTotalCountRow() : React.ReactNode
+    {
+        if ( categoryCounts )
+        {
+            const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
+
+            return (
+                <Table.Tr>
+                    <Table.Td></Table.Td>
+                    <Table.Td>Total</Table.Td>
+                    <Table.Td>{total}</Table.Td>
+                </Table.Tr>
+            );
+        }
+        else
+        {
+            return <></>;
+        }
     }
 }
