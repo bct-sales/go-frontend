@@ -21,7 +21,7 @@ export default function UsersSubpage()
                 // TODO handle error
             }
         })();
-    }, [])
+    }, []);
 
     return (
         <>
