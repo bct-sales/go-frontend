@@ -1,5 +1,5 @@
+import CategoryCountsTable from "@/components/CategoryCountsTable";
 import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-counts";
-import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 export default function OverviewSubpage() : React.ReactNode
@@ -37,50 +37,7 @@ export default function OverviewSubpage() : React.ReactNode
         }
 
         return (
-            <Table>
-                <Table.Thead>
-                    <Table.Tr>
-                        <Table.Th>Category Id</Table.Th>
-                        <Table.Th>Category Name</Table.Th>
-                        <Table.Th>Count</Table.Th>
-                    </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                    {categoryCounts.map(renderCategoryCount)}
-                    {renderTotalCountRow()}
-                </Table.Tbody>
-            </Table>
+            <CategoryCountsTable categoryCounts={categoryCounts} />
         );
-    }
-
-    function renderCategoryCount(itemCount : ItemCountByCategory) : React.ReactNode
-    {
-        return (
-            <Table.Tr key={itemCount.category_id}>
-                <Table.Td>{itemCount.category_id}</Table.Td>
-                <Table.Td>{itemCount.category_name}</Table.Td>
-                <Table.Td>{itemCount.count}</Table.Td>
-            </Table.Tr>
-        );
-    }
-
-    function renderTotalCountRow() : React.ReactNode
-    {
-        if ( categoryCounts )
-        {
-            const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
-
-            return (
-                <Table.Tr>
-                    <Table.Td></Table.Td>
-                    <Table.Td>Total</Table.Td>
-                    <Table.Td>{total}</Table.Td>
-                </Table.Tr>
-            );
-        }
-        else
-        {
-            return <></>;
-        }
     }
 }
