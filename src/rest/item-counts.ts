@@ -4,12 +4,14 @@ import { extractDetailFromException } from './errors';
 
 
 
-const ItemCountsResponse = z.record(z.number());
+const ItemCountsResponse = z.object({
+    counts: z.record(z.number())
+});
 
 type ItemCountsResponse = z.infer<typeof ItemCountsResponse>;
 
 
-export async function listUsers(): Promise<ItemCountsResponse | undefined>
+export async function getItemCountsPerCategory(): Promise<ItemCountsResponse | undefined>
 {
     const url = `${ROOT_URL}/category-counts`;
 
