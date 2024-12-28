@@ -3,22 +3,29 @@ import { z } from 'zod';
 import { extractDetailFromException } from './errors';
 
 
+const ItemCountByCategory = z.object({
+    category_id: z.number().int().nonnegative(),
+    category_name: z.string().nonempty(),
+    count: z.number().int().nonnegative(),
+})
 
-const ItemCountsResponse = z.object({
-    counts: z.record(z.number())
+export type ItemCountByCategory = z.infer<typeof ItemCountByCategory>;
+
+const ItemCountsByCategoryResponse = z.object({
+    counts: z.array(ItemCountByCategory),
 });
 
-type ItemCountsResponse = z.infer<typeof ItemCountsResponse>;
+export type ItemCountsByCategoryResponse = z.infer<typeof ItemCountsByCategoryResponse>;
 
 
-export async function getItemCountsPerCategory(): Promise<ItemCountsResponse | undefined>
+export async function getItemCountsPerCategory(): Promise<ItemCountsByCategoryResponse | undefined>
 {
     const url = `${ROOT_URL}/category-counts`;
 
     try
     {
         const response = await axios.get<unknown>(url);
-        const data = ItemCountsResponse.parse(response.data);
+        const data = ItemCountsByCategoryResponse.parse(response.data);
 
         return data;
     }

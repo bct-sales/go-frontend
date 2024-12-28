@@ -1,10 +1,10 @@
-import { getItemCountsPerCategory } from "@/rest/item-counts";
+import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-counts";
 import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 export default function OverviewSubpage() : React.ReactNode
 {
-    const [categoryCounts, setCategoryCounts] = useState<Record<string, number> | undefined>(undefined);
+    const [categoryCounts, setCategoryCounts] = useState<ItemCountByCategory[] | undefined>(undefined);
 
     useEffect(() => {
         void (async () => {
@@ -36,29 +36,29 @@ export default function OverviewSubpage() : React.ReactNode
             return <div>Loading...</div>;
         }
 
-        const categoryCountsArray = Object.entries(categoryCounts);
-
         return (
             <Table>
                 <Table.Thead>
                     <Table.Tr>
-                        <Table.Th>Category</Table.Th>
+                        <Table.Th>Category Id</Table.Th>
+                        <Table.Th>Category Name</Table.Th>
                         <Table.Th>Count</Table.Th>
                     </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                    {categoryCountsArray.map(([category, count]) => renderCategoryCount(category, count))}
+                    {categoryCounts.map(renderCategoryCount)}
                 </Table.Tbody>
             </Table>
         );
     }
 
-    function renderCategoryCount(category : string, count : number) : React.ReactNode
+    function renderCategoryCount(itemCount : ItemCountByCategory) : React.ReactNode
     {
         return (
-            <Table.Tr key={category}>
-                <Table.Td>{category}</Table.Td>
-                <Table.Td>{count}</Table.Td>
+            <Table.Tr key={itemCount.category_id}>
+                <Table.Td>{itemCount.category_id}</Table.Td>
+                <Table.Td>{itemCount.category_name}</Table.Td>
+                <Table.Td>{itemCount.count}</Table.Td>
             </Table.Tr>
         );
     }
