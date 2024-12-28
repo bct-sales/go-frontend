@@ -16,7 +16,7 @@ export default function OverviewSubpage() : React.ReactNode
             }
             else
             {
-                console.log(`Failed to list users`);
+                console.log(`Failed to get category counts`);
                 // TODO handle error
             }
         })();
