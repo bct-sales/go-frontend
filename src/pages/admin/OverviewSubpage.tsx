@@ -2,6 +2,7 @@ import CategoryCountsTable from "@/components/CategoryCountsTable";
 import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-counts";
 import { useEffect, useState } from "react";
 
+
 export default function OverviewSubpage() : React.ReactNode
 {
     const [categoryCounts, setCategoryCounts] = useState<ItemCountByCategory[] | undefined>(undefined);
