@@ -1,5 +1,5 @@
 import * as rest from '@/rest/login';
-import { Box, Button, Center, Group, Modal, PasswordInput, Text, TextInput, Title } from "@mantine/core";
+import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -98,29 +98,6 @@ export default function LoginPage()
             {
                 console.log('Login failed');
             }
-
-            // if ( result.success )
-            // {
-            //     const { userId, role, accessToken } = result.value;
-
-            //     if ( !auth.isAuthenticated() )
-            //     {
-            //         auth.login({ role, accessToken, userId });
-
-            //         navigate("/");
-            //     }
-            //     else
-            //     {
-            //         console.error('Bug detected: user should not be able to reach login page while authenticated');
-            //         setMessage('You have encountered a bug');
-            //         openMessageBox();
-            //     }
-            // }
-            // else
-            // {
-            //     setMessage(result.error);
-            //     openMessageBox();
-            // }
         })();
     }
 }
