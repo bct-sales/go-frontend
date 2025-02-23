@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client'
 import * as pages from '@/pages';
 import App from './App';
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 const root = document.getElementById('root');
 
@@ -29,6 +30,7 @@ if ( root )
     ReactDOM.createRoot(root).render(
         <React.StrictMode>
             <MantineProvider defaultColorScheme="dark">
+                <Notifications />
                 <RouterProvider router={router} />
             </MantineProvider>
         </React.StrictMode>,
