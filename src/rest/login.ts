@@ -3,6 +3,7 @@ import axios from 'axios';
 import { z } from 'zod';
 import { createErrorExtractor } from './errors';
 import { paths } from './paths';
+import { failure, Result, success } from '@/result';
 
 
 
@@ -15,7 +16,11 @@ export type LoginParameters = z.infer<typeof LoginParameters>;
 
 
 const LoginSuccessResponse = z.object({
-    role: z.union([z.literal('seller'), z.literal('admin'), z.literal('cashier')]),
+    role: z.union([
+        z.literal('seller'),
+        z.literal('admin'),
+        z.literal('cashier')
+    ]),
 }).strict();
 
 type LoginSuccessResponse = z.infer<typeof LoginSuccessResponse>;
@@ -44,7 +49,14 @@ type LoginFailureResponse = z.infer<typeof LoginFailureResponse>;
 
 const extractError = createErrorExtractor(LoginFailureResponse, { type: "unknown" });
 
-export async function login( data: LoginParameters ): Promise<Role | undefined>
+export enum LoginError {
+    InvalidId,
+    UnknownUser,
+    WrongPassword,
+    Unknown
+}
+
+export async function login( data: LoginParameters ): Promise<Result<Role, LoginError>>
 {
     const payload = {
         grant_type: 'password',
@@ -61,7 +73,7 @@ export async function login( data: LoginParameters ): Promise<Role | undefined>
         const response = await axios.post<unknown>( url, payload, { headers } );
         const data = LoginSuccessResponse.parse(response.data);
 
-        return data.role;
+        return success(data.role);
     }
     catch ( error: unknown )
     {
@@ -70,17 +82,13 @@ export async function login( data: LoginParameters ): Promise<Role | undefined>
         switch ( errorData.type )
         {
             case "invalid_id":
-                console.error("Invalid ID", errorData.details);
-                return undefined;
+                return failure(LoginError.InvalidId);
             case "unknown_user":
-                console.error("Unknown user", errorData.details);
-                return undefined;
+                return failure(LoginError.UnknownUser);
             case "wrong_password":
-                console.error("Invalid password", errorData.details);
-                return undefined;
+                return failure(LoginError.WrongPassword);
             default:
-                console.error(`Unknown error: ${errorData}`, error);
-                return undefined;
+                return failure(LoginError.Unknown);
         }
     }
 }
