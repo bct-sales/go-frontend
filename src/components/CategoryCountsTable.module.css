@@ -17,3 +17,11 @@
         background-color: #222;
     }
 }
+
+.categoryName {
+    text-align: left;
+}
+
+.total {
+    text-align: right;
+}

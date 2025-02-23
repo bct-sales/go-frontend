@@ -33,7 +33,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
         return (
             <Table.Tr key={itemCount.category_id} className={classes.categoryCountRow}>
                 <Table.Td>{itemCount.category_id}</Table.Td>
-                <Table.Td>{itemCount.category_name}</Table.Td>
+                <Table.Td className={classes.categoryName}>{itemCount.category_name}</Table.Td>
                 <Table.Td>{itemCount.count}</Table.Td>
             </Table.Tr>
         );
@@ -46,7 +46,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
         return (
             <Table.Tr className={classes.totalRow}>
                 <Table.Td></Table.Td>
-                <Table.Td>Total</Table.Td>
+                <Table.Td className={classes.total}>Total</Table.Td>
                 <Table.Td>{total}</Table.Td>
             </Table.Tr>
         );
