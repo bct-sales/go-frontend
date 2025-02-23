@@ -77,10 +77,12 @@ export default function LoginPage()
                 password: formFields.password,
             };
 
-            const role = await rest.login(authenticationParameters);
+            const result = await rest.login(authenticationParameters);
 
-            if ( role )
+            if ( result.success )
             {
+                const role = result.value
+
                 switch ( role )
                 {
                     case 'admin':
@@ -96,7 +98,17 @@ export default function LoginPage()
             }
             else
             {
-                console.log('Login failed');
+                switch ( result.error )
+                {
+                    case rest.LoginError.InvalidId:
+                        break;
+                    case rest.LoginError.UnknownUser:
+                        break;
+                    case rest.LoginError.WrongPassword:
+                        break;
+                    case rest.LoginError.Unknown:
+                        break;
+                }
             }
         })();
     }
