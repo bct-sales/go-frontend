@@ -62,8 +62,7 @@ export default function LoginPage()
 
     function isValidLogin(login: string): boolean
     {
-        return true;
-        // return /^\d+$/.test(login);
+        return /^\d+$/.test(login);
     }
 
     function isValidPassword(password: string): boolean
