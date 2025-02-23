@@ -42,7 +42,7 @@ export default function UserTable(props : Props) : React.ReactNode
 
     function renderUser(user : User) : React.ReactNode
     {
-        const createdAt = `${user.created_at.year}-${user.created_at.month}-${user.created_at.day} ${user.created_at.hour}:${user.created_at.minute}:${user.created_at.second}`;
+        const createdAt = `${user.created_at.year}-${pad(2, user.created_at.month)}-${pad(2, user.created_at.day)} ${pad(2, user.created_at.hour)}:${pad(2, user.created_at.minute)}:${pad(2, user.created_at.second)}`;
 
         return (
             <Table.Tr key={user.id} className={classes.userRow}>
@@ -57,5 +57,11 @@ export default function UserTable(props : Props) : React.ReactNode
                 </Table.Td>
             </Table.Tr>
         );
+
+
+        function pad(length : number, n : number)
+        {
+            return n.toString().padEnd(length, '0');
+        }
     }
 }
