@@ -89,13 +89,13 @@ export default function LoginPage()
                 {
                     case 'admin':
                         navigate('/admin');
-                        break;
+                        return;
                     case 'seller':
                         navigate('/seller');
-                        break;
+                        return;
                     case 'cashier':
                         navigate('/cashier');
-                        break;
+                        return;
                 }
             }
             else
@@ -104,16 +104,16 @@ export default function LoginPage()
                 {
                     case rest.LoginError.InvalidId:
                         notifications.show({title: 'Invalid ID', message: 'Invalid ID', color: 'red'});
-                        break;
+                        return;
                     case rest.LoginError.UnknownUser:
                         notifications.show({title: 'Unknown user', message: 'User does not exist', color: 'red'});
-                        break;
+                        return;
                     case rest.LoginError.WrongPassword:
                         notifications.show({title: 'Invalid password', message: 'Wrong password', color: 'red'});
-                        break;
+                        return;
                     case rest.LoginError.Unknown:
                         notifications.show({title: 'Unexpected error!', message: 'Please report this to the site administrator', color: 'red'});
-                        break;
+                        return;
                 }
             }
         })();
