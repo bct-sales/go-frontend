@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client'
 import * as pages from '@/pages';
