@@ -1,7 +1,7 @@
 import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
-import { extractDetailFromException } from './errors';
+import { createErrorExtractor } from './errors';
 import { paths } from './paths';
 
 
@@ -20,6 +20,29 @@ const LoginSuccessResponse = z.object({
 
 type LoginSuccessResponse = z.infer<typeof LoginSuccessResponse>;
 
+const LoginFailureResponse = z.discriminatedUnion("type",
+    [
+        z.object({
+            type: z.literal("invalid_id"),
+            details: z.string(),
+        }),
+        z.object({
+            type: z.literal("unknown_user"),
+            details: z.string(),
+        }),
+        z.object({
+            type: z.literal("wrong_password"),
+            details: z.string(),
+        }),
+        z.object({
+            type: z.literal("unknown")
+        })
+    ]
+);
+
+type LoginFailureResponse = z.infer<typeof LoginFailureResponse>;
+
+const extractError = createErrorExtractor(LoginFailureResponse, { type: "unknown" });
 
 export async function login( data: LoginParameters ): Promise<Role | undefined>
 {
@@ -42,16 +65,22 @@ export async function login( data: LoginParameters ): Promise<Role | undefined>
     }
     catch ( error: unknown )
     {
-        const detail = extractDetailFromException(error);
+        const errorData = extractError(error);
 
-        if ( detail !== null )
+        switch ( errorData.type )
         {
-            return undefined;
-        }
-        else
-        {
-            console.error(error);
-            return undefined;
+            case "invalid_id":
+                console.error("Invalid ID", errorData.details);
+                return undefined;
+            case "unknown_user":
+                console.error("Unknown user", errorData.details);
+                return undefined;
+            case "wrong_password":
+                console.error("Invalid password", errorData.details);
+                return undefined;
+            default:
+                console.error(`Unknown error: ${errorData}`, error);
+                return undefined;
         }
     }
 }
