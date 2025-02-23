@@ -1,6 +1,7 @@
 import * as rest from '@/rest/login';
 import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { notifications } from '@mantine/notifications';
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -61,7 +62,8 @@ export default function LoginPage()
 
     function isValidLogin(login: string): boolean
     {
-        return /^\d+$/.test(login);
+        return true;
+        // return /^\d+$/.test(login);
     }
 
     function isValidPassword(password: string): boolean
@@ -101,12 +103,16 @@ export default function LoginPage()
                 switch ( result.error )
                 {
                     case rest.LoginError.InvalidId:
+                        notifications.show({title: 'Invalid ID', message: 'Invalid ID', color: 'red'});
                         break;
                     case rest.LoginError.UnknownUser:
+                        notifications.show({title: 'Unknown user', message: 'User does not exist', color: 'red'});
                         break;
                     case rest.LoginError.WrongPassword:
+                        notifications.show({title: 'Invalid password', message: 'Wrong password', color: 'red'});
                         break;
                     case rest.LoginError.Unknown:
+                        notifications.show({title: 'Unexpected error!', message: 'Please report this to the site administrator', color: 'red'});
                         break;
                 }
             }
