@@ -24,7 +24,11 @@ if ( root )
         {
             path: '/admin/*',
             element: <pages.AdminDashboard />,
-        }
+        },
+        {
+            path: '/seller/*',
+            element: <pages.SellerDashboard />,
+        },
     ]);
 
     ReactDOM.createRoot(root).render(
