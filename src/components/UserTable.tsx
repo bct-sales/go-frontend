@@ -10,6 +10,7 @@ interface User
 {
     id: number;
     role: 'seller' | 'admin' | 'cashier';
+    password: string;
     created_at: {
         year: number;
         month: number;
@@ -31,6 +32,7 @@ export default function UserTable(props : Props) : React.ReactNode
                     <Table.Th>Id</Table.Th>
                     <Table.Th>Role</Table.Th>
                     <Table.Th>Created At</Table.Th>
+                    <Table.Th>Password</Table.Th>
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -54,6 +56,9 @@ export default function UserTable(props : Props) : React.ReactNode
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {createdAt}
+                </Table.Td>
+                <Table.Td className={classes.userData}>
+                    {user.password}
                 </Table.Td>
             </Table.Tr>
         );
