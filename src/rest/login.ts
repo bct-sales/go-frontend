@@ -1,7 +1,7 @@
 import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
-import { createErrorExtractor } from './errors';
+import { createErrorExtractor, InvalidIdError, invalidIdErrorTag, NoSuchUserError, noSuchUserErrorTag, UnknownError, unknownErrorTag, WrongPasswordError, wrongPasswordErrorTag } from './errors';
 import { paths } from './paths';
 import { failure, Result, success } from '@/result';
 
@@ -27,27 +27,16 @@ type LoginSuccessResponse = z.infer<typeof LoginSuccessResponse>;
 
 const LoginFailureResponse = z.discriminatedUnion("type",
     [
-        z.object({
-            type: z.literal("invalid_id"),
-            details: z.string(),
-        }),
-        z.object({
-            type: z.literal("unknown_user"),
-            details: z.string(),
-        }),
-        z.object({
-            type: z.literal("wrong_password"),
-            details: z.string(),
-        }),
-        z.object({
-            type: z.literal("unknown")
-        })
+        InvalidIdError,
+        NoSuchUserError,
+        WrongPasswordError,
+        UnknownError,
     ]
 );
 
 type LoginFailureResponse = z.infer<typeof LoginFailureResponse>;
 
-const extractError = createErrorExtractor(LoginFailureResponse, { type: "unknown" });
+const extractError = createErrorExtractor(LoginFailureResponse, (message: string) => ({ type: "unknown", details: message }));
 
 export enum LoginError {
     InvalidId,
@@ -81,13 +70,13 @@ export async function login( data: LoginParameters ): Promise<Result<Role, Login
 
         switch ( errorData.type )
         {
-            case "invalid_id":
+            case invalidIdErrorTag:
                 return failure(LoginError.InvalidId);
-            case "unknown_user":
+            case noSuchUserErrorTag:
                 return failure(LoginError.UnknownUser);
-            case "wrong_password":
+            case wrongPasswordErrorTag:
                 return failure(LoginError.WrongPassword);
-            default:
+            case unknownErrorTag:
                 return failure(LoginError.Unknown);
         }
     }

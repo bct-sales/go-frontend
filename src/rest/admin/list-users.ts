@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { extractDetailFromException } from './errors';
-import { paths } from './paths';
+import { extractDetailFromException } from '../errors';
+import { paths } from '../paths';
 
 
 const User = z.object({

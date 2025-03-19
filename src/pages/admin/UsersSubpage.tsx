@@ -1,5 +1,5 @@
 import UserTable from "@/components/UserTable";
-import { listUsers, User } from "@/rest/list-users";
+import { listUsers, User } from "@/rest/admin/list-users";
 import { useEffect, useState } from "react";
 
 
