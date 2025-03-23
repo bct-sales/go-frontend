@@ -9,11 +9,11 @@ export default function UsersSubpage()
 
     useEffect(() => {
         void (async () => {
-            const users = await listUsers();
+            const response = await listUsers();
 
-            if (users !== undefined)
+            if (response.success)
             {
-                setUsers(users);
+                setUsers(response.value);
             }
             else
             {

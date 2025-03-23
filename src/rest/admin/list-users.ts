@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { createErrorExtractor, extractDetailFromException, ForbiddenError, forbiddenErrorTag, UnknownError, unknownErrorTag } from '../errors';
 import { paths } from '../paths';
 import { Timestamp } from '../datetime';
+import { failure, Result, success } from '@/result';
 
 
 const User = z.object({
@@ -32,8 +33,13 @@ type FailureResponse = z.infer<typeof FailureResponse>;
 
 const extractError = createErrorExtractor<FailureResponse>(FailureResponse, (message : string) => ({ type: "unknown", details: message }));
 
+export enum Error
+{
+    Forbidden,
+    Unknown
+}
 
-export async function listUsers(): Promise<User[] | undefined>
+export async function listUsers(): Promise<Result<User[], Error>>
 {
     const url = paths.users;
 
@@ -42,7 +48,7 @@ export async function listUsers(): Promise<User[] | undefined>
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return data.users;
+        return success(data.users);
     }
     catch ( error: unknown )
     {
@@ -50,13 +56,13 @@ export async function listUsers(): Promise<User[] | undefined>
 
         switch ( detail.type )
         {
-            case unknownErrorTag:
+            case "forbidden":
                 console.error(detail.details);
-                return undefined;
+                return failure(Error.Forbidden);
 
-            case forbiddenErrorTag:
+            case "unknown":
                 console.error(detail.details);
-                return undefined;
+                return failure(Error.Unknown);
         }
     }
 }
