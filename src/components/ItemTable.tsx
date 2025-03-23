@@ -1,5 +1,6 @@
 import { Table } from "@mantine/core";
 import classes from './ItemTable.module.css'
+import Price from "./Price";
 
 interface Props
 {
@@ -66,7 +67,7 @@ export default function ItemTable(props : Props) : React.ReactNode
                     {addedAt}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.priceInCents / 100}
+                    <Price priceInCents={item.priceInCents} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.categoryId}
