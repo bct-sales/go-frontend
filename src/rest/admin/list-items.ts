@@ -1,39 +1,63 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { extractDetailFromException } from '../errors';
+import { createErrorExtractor, ForbiddenError, UnknownError } from '../errors';
 import { paths } from '../paths';
 
 
 const Item = z.object({
-
+	itemId: z.number(),
+	addedAt: z.object({
+        year: z.number(),
+        month: z.number(),
+        day: z.number(),
+        hour: z.number(),
+        minute: z.number(),
+        second: z.number(),
+    }),
+	description: z.string(),
+	priceInCents: z.number(),
+	categoryId: z.number(),
+	sellerId: z.number(),
+	donation: z.boolean(),
+	charity: z.boolean(),
 });
 
 export type Item = z.infer<typeof Item>;
 
 
-const ListItemsResponse = z.object({
+const ListItemsSuccessResponse = z.object({
     items: z.array(Item),
 })
 
-type ListItemsResponse = z.infer<typeof ListItemsResponse>;
+type ListItemsSuccessResponse = z.infer<typeof ListItemsSuccessResponse>;
 
+const ListItemsFailureResponse = z.discriminatedUnion("type",
+    [
+        ForbiddenError,
+        UnknownError,
+    ]
+);
 
+type ListItemsFailureResponse = z.infer<typeof ListItemsFailureResponse>;
+
+const extractError = createErrorExtractor(ListItemsFailureResponse, (message : string) => ({ type: "unknown", details: message }));
 
 
 export async function listItems(): Promise<Item[] | undefined>
 {
-    const url = paths.users;
+    const url = paths.items;
 
     try
     {
         const response = await axios.get<unknown>(url);
-        const data = ListItemsResponse.parse(response.data);
+        const data = ListItemsSuccessResponse.parse(response.data);
 
         return data.items;
     }
     catch ( error: unknown )
     {
-        const detail = extractDetailFromException(error);
+        console.log(error);
+        const detail = extractError(error);
 
         if ( detail !== null )
         {

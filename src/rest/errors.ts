@@ -41,36 +41,37 @@ export const Error = z.object({
 export type Error = z.infer<typeof Error>;
 
 export const unknownErrorTag = "unknown";
+export const noSuchUserErrorTag = 'unknown_user';
+export const invalidIdErrorTag = 'invalid_id';
+export const wrongPasswordErrorTag = 'wrong_password';
+export const forbiddenErrorTag = 'forbidden';
 
 export const UnknownError = Error.extend({
     type: z.literal(unknownErrorTag),
 });
-
-type UnknownError = z.infer<typeof UnknownError>;
-
-export const noSuchUserErrorTag = 'unknown_user';
 
 export const NoSuchUserError =
     Error.extend({
         type: z.literal(noSuchUserErrorTag),
     });
 
-export type NoSuchUserError = z.infer<typeof NoSuchUserError>;
-
-export const invalidIdErrorTag = 'invalid_id';
-
 export const InvalidIdError =
     Error.extend({
         type: z.literal(invalidIdErrorTag),
     });
-
-export type InvalidIdError = z.infer<typeof InvalidIdError>;
-
-export const wrongPasswordErrorTag = 'wrong_password';
 
 export const WrongPasswordError =
     Error.extend({
         type: z.literal(wrongPasswordErrorTag),
     });
 
+export const ForbiddenError =
+    Error.extend({
+        type: z.literal(wrongPasswordErrorTag),
+    });
+
+export type UnknownError = z.infer<typeof UnknownError>;
+export type NoSuchUserError = z.infer<typeof NoSuchUserError>;
+export type InvalidIdError = z.infer<typeof InvalidIdError>;
 export type WrongPasswordError = z.infer<typeof WrongPasswordError>;
+export type ForbiddenError = z.infer<typeof ForbiddenError>;
