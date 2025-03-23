@@ -67,7 +67,7 @@ export const WrongPasswordError =
 
 export const ForbiddenError =
     Error.extend({
-        type: z.literal(wrongPasswordErrorTag),
+        type: z.literal(forbiddenErrorTag),
     });
 
 export type UnknownError = z.infer<typeof UnknownError>;
