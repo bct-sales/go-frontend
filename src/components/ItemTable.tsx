@@ -1,6 +1,7 @@
 import { Table } from "@mantine/core";
 import classes from './ItemTable.module.css'
 import Price from "./Price";
+import DateTime from "./DateTime";
 
 interface Props
 {
@@ -53,8 +54,6 @@ export default function ItemTable(props : Props) : React.ReactNode
 
     function renderItem(item : Item) : React.ReactNode
     {
-        const addedAt = `${item.addedAt.year}-${pad(2, item.addedAt.month)}-${pad(2, item.addedAt.day)} ${pad(2, item.addedAt.hour)}:${pad(2, item.addedAt.minute)}:${pad(2, item.addedAt.second)}`;
-
         return (
             <Table.Tr key={item.itemId} className={classes.itemRow}>
                 <Table.Td className={classes.itemData}>
@@ -64,7 +63,7 @@ export default function ItemTable(props : Props) : React.ReactNode
                     {item.description}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {addedAt}
+                    <DateTime dateTime={item.addedAt} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     <Price priceInCents={item.priceInCents} />
@@ -83,11 +82,5 @@ export default function ItemTable(props : Props) : React.ReactNode
                 </Table.Td>
             </Table.Tr>
         );
-
-
-        function pad(length : number, n : number)
-        {
-            return n.toString().padEnd(length, '0');
-        }
     }
 }
