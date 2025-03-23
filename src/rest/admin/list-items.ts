@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { createErrorExtractor, ForbiddenError, UnknownError } from '../errors';
 import { paths } from '../paths';
 import { Timestamp as DateTime } from '../datetime';
+import { failure, Result, success } from '@/result';
 
 
 const Item = z.object({
@@ -19,48 +20,54 @@ const Item = z.object({
 export type Item = z.infer<typeof Item>;
 
 
-const ListItemsSuccessResponse = z.object({
+const SuccessResponse = z.object({
     items: z.array(Item),
 })
 
-type ListItemsSuccessResponse = z.infer<typeof ListItemsSuccessResponse>;
+type SuccessResponse = z.infer<typeof SuccessResponse>;
 
-const ListItemsFailureResponse = z.discriminatedUnion("type",
+const FailureResponse = z.discriminatedUnion("type",
     [
         ForbiddenError,
         UnknownError,
     ]
 );
 
-type ListItemsFailureResponse = z.infer<typeof ListItemsFailureResponse>;
+type FailureResponse = z.infer<typeof FailureResponse>;
 
-const extractError = createErrorExtractor(ListItemsFailureResponse, (message : string) => ({ type: "unknown", details: message }));
+const extractError = createErrorExtractor<FailureResponse>(FailureResponse, (message : string) => ({ type: "unknown", details: message }));
 
+export enum Error
+{
+    Forbidden,
+    Unknown
+}
 
-export async function listItems(): Promise<Item[] | undefined>
+export async function listItems(): Promise<Result<Item[], Error>>
 {
     const url = paths.items;
 
     try
     {
         const response = await axios.get<unknown>(url);
-        const data = ListItemsSuccessResponse.parse(response.data);
+        const data = SuccessResponse.parse(response.data);
 
-        return data.items;
+        return success(data.items);
     }
     catch ( error: unknown )
     {
         console.log(error);
         const detail = extractError(error);
 
-        if ( detail !== null )
+        switch (detail.type)
         {
-            return undefined;
-        }
-        else
-        {
-            console.error(error);
-            return undefined;
+            case 'forbidden':
+                console.error(detail.details);
+                return failure(Error.Forbidden);
+
+            case 'unknown':
+                console.error(detail.details);
+                return failure(Error.Unknown);
         }
     }
 }
