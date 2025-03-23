@@ -2,20 +2,14 @@ import axios from 'axios';
 import { z } from 'zod';
 import { extractDetailFromException } from '../errors';
 import { paths } from '../paths';
+import { Timestamp } from '../timestamp';
 
 
 const User = z.object({
     id: z.number(),
     password: z.string(),
     role: z.union([z.literal('seller'), z.literal('admin'), z.literal('cashier')]),
-    created_at: z.object({
-        year: z.number(),
-        month: z.number(),
-        day: z.number(),
-        hour: z.number(),
-        minute: z.number(),
-        second: z.number(),
-    }),
+    created_at: Timestamp,
 });
 
 export type User = z.infer<typeof User>;
