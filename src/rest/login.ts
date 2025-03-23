@@ -36,7 +36,7 @@ const LoginFailureResponse = z.discriminatedUnion("type",
 
 type LoginFailureResponse = z.infer<typeof LoginFailureResponse>;
 
-const extractError = createErrorExtractor(LoginFailureResponse, (message: string) => ({ type: "unknown", details: message }));
+const extractError = createErrorExtractor<LoginFailureResponse>(LoginFailureResponse, (message: string) => ({ type: "unknown", details: message }));
 
 export enum LoginError {
     InvalidId,
