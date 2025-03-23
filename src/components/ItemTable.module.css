@@ -1,0 +1,20 @@
+.itemTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.itemRow {
+    &:nth-child(odd) {
+        background-color: #333;
+    }
+
+    &:nth-child(even) {
+        background-color: #444;
+    }
+
+    border-bottom: #AAA 1px solid;
+
+    & .userData {
+        padding: 5px 2em;
+    }
+}
