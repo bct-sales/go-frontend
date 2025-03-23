@@ -23,6 +23,6 @@ export default function DateTime(props: Props): React.ReactNode
 
     function pad(n : number)
     {
-        return n.toString().padEnd(2, '0');
+        return n.toString().padStart(2, '0');
     }
 }
