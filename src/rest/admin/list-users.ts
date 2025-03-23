@@ -2,7 +2,7 @@ import axios from 'axios';
 import { z } from 'zod';
 import { extractDetailFromException } from '../errors';
 import { paths } from '../paths';
-import { Timestamp } from '../timestamp';
+import { Timestamp } from '../datetime';
 
 
 const User = z.object({

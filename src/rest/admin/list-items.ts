@@ -2,12 +2,12 @@ import axios from 'axios';
 import { z } from 'zod';
 import { createErrorExtractor, ForbiddenError, UnknownError } from '../errors';
 import { paths } from '../paths';
-import { Timestamp } from '../timestamp';
+import { Timestamp as DateTime } from '../datetime';
 
 
 const Item = z.object({
 	itemId: z.number(),
-	addedAt: Timestamp,
+	addedAt: DateTime,
 	description: z.string(),
 	priceInCents: z.number(),
 	categoryId: z.number(),
