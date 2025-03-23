@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { extractDetailFromException } from '../errors';
+import { createErrorExtractor, extractDetailFromException, ForbiddenError, forbiddenErrorTag, UnknownError, unknownErrorTag } from '../errors';
 import { paths } from '../paths';
 import { Timestamp } from '../datetime';
 
@@ -15,11 +15,22 @@ const User = z.object({
 export type User = z.infer<typeof User>;
 
 
-const ListUsersResponse = z.object({
+const SuccessResponse = z.object({
     users: z.array(User),
 })
 
-type ListUsersResponse = z.infer<typeof ListUsersResponse>;
+type SuccessResponse = z.infer<typeof SuccessResponse>;
+
+const FailureResponse = z.discriminatedUnion("type",
+    [
+        ForbiddenError,
+        UnknownError,
+    ]
+);
+
+type FailureResponse = z.infer<typeof FailureResponse>;
+
+const extractError = createErrorExtractor<FailureResponse>(FailureResponse, (message : string) => ({ type: "unknown", details: message }));
 
 
 export async function listUsers(): Promise<User[] | undefined>
@@ -29,22 +40,23 @@ export async function listUsers(): Promise<User[] | undefined>
     try
     {
         const response = await axios.get<unknown>(url);
-        const data = ListUsersResponse.parse(response.data);
+        const data = SuccessResponse.parse(response.data);
 
         return data.users;
     }
     catch ( error: unknown )
     {
-        const detail = extractDetailFromException(error);
+        const detail = extractError(error);
 
-        if ( detail !== null )
+        switch ( detail.type )
         {
-            return undefined;
-        }
-        else
-        {
-            console.error(error);
-            return undefined;
+            case unknownErrorTag:
+                console.error(detail.details);
+                return undefined;
+
+            case forbiddenErrorTag:
+                console.error(detail.details);
+                return undefined;
         }
     }
 }
