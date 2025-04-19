@@ -10,7 +10,7 @@ class RestPaths
 
     get items() { return `${this.root}/items`; }
 
-    get categoryCounts() { return `${this.root}/category-counts`; }
+    get categoryCounts() { return `${this.root}/categories`; }
 }
 
 export const paths = new RestPaths(ROOT_URL);
