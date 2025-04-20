@@ -2,41 +2,16 @@ import React from 'react'
 import './index.css'
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client'
-import * as pages from '@/pages';
-import { MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
+import App from './App';
 
 const root = document.getElementById('root');
 
 if ( root )
 {
-    const router = createBrowserRouter([
-        {
-            path: '/login',
-            element: <pages.LoginPage />,
-        },
-        {
-            path: '/logout',
-            element: <pages.LogoutPage />,
-        },
-        {
-            path: '/admin/*',
-            element: <pages.AdminDashboard />,
-        },
-        {
-            path: '/seller/*',
-            element: <pages.SellerDashboard />,
-        },
-    ]);
-
     ReactDOM.createRoot(root).render(
         <React.StrictMode>
-            <MantineProvider defaultColorScheme="dark">
-                <Notifications />
-                <RouterProvider router={router} />
-            </MantineProvider>
+            <App />
         </React.StrictMode>,
     );
 }
