@@ -20,14 +20,14 @@ interface User
         minute: number;
         second: number;
     };
-    last_activity: {
+    last_activity?: {
         year: number;
         month: number;
         day: number;
         hour: number;
         minute: number;
         second: number;
-    } | undefined;
+    };
     item_count: number;
 }
 
@@ -59,7 +59,9 @@ export default function UserTable(props: Props): React.ReactNode
         return (
             <Table.Tr key={user.id} className={classes.userRow}>
                 <Table.Td className={classes.userData}>
-                    {user.id}
+                    <a href={determineUserUrl(user)} className={classes.userLink}>
+                        {user.id}
+                    </a>
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {user.role}
@@ -78,6 +80,12 @@ export default function UserTable(props: Props): React.ReactNode
                 </Table.Td>
             </Table.Tr>
         );
+    }
+
+
+    function determineUserUrl(user: User): string
+    {
+        return `/admin/users/${user.id}`;
     }
 
     function renderLastActivity(lastActivity: User['last_activity']): React.ReactNode
