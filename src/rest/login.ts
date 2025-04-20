@@ -6,7 +6,6 @@ import { paths } from './paths';
 import { convertExceptionToFailure, RestResult } from './result';
 
 
-
 const LoginParameters = z.object({
     userId: z.number(),
     password: z.string(),
