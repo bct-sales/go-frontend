@@ -28,6 +28,7 @@ interface User
         minute: number;
         second: number;
     } | undefined;
+    item_count: number;
 }
 
 export default function UserTable(props: Props): React.ReactNode
@@ -40,6 +41,7 @@ export default function UserTable(props: Props): React.ReactNode
                 <Table.Tr>
                     <Table.Th>Id</Table.Th>
                     <Table.Th>Role</Table.Th>
+                    <Table.Th>Item Count</Table.Th>
                     <Table.Th>Created At</Table.Th>
                     <Table.Th>Last Activity</Table.Th>
                     <Table.Th>Password</Table.Th>
@@ -61,6 +63,9 @@ export default function UserTable(props: Props): React.ReactNode
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {user.role}
+                </Table.Td>
+                <Table.Td className={classes.userData}>
+                    {user.item_count}
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     <DateTime dateTime={user.created_at} />
