@@ -6,14 +6,14 @@ export type Authenticated =
 {
     status: 'authenticated';
     logout: () => void;
-    username: string;
+    username: number;
     role: Role;
 }
 
 export type Unauthenticated =
 {
     status: 'unauthenticated';
-    login: (username: string, role: Role) => void;
+    login: (username: number, role: Role) => void;
 }
 
 export type AuthenticationStatus = Authenticated | Unauthenticated;
@@ -34,7 +34,7 @@ export function createUnauthenticatedStatus(setStatus: (status: AuthenticationSt
         login
     };
 
-    function login(username: string, role: Role)
+    function login(username: number, role: Role)
     {
         setStatus({
             status: 'authenticated',

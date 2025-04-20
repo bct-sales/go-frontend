@@ -1,3 +1,4 @@
+import { AuthenticationContext } from '@/authentication';
 import * as rest from '@/rest/login';
 import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -14,6 +15,7 @@ interface FormFields
 
 export default function LoginPage()
 {
+    const authentication = React.useContext(AuthenticationContext);
     const navigate = useNavigate();
     const form = useForm<FormFields>({
         initialValues: {
@@ -25,6 +27,17 @@ export default function LoginPage()
             password: password => (isValidPassword(password) ? null : "Enter a password"),
         }
     });
+
+    if ( authentication.status === 'authenticated' )
+    {
+        return (
+            <Center mih='50vh'>
+                <Box maw={500} mx="auto" w='40%'>
+                    <h1>Bug!</h1>
+                </Box>
+            </Center>
+        );
+    }
 
     return (
         <>
@@ -73,16 +86,23 @@ export default function LoginPage()
     function onSubmit(formFields: FormFields)
     {
         void (async () => {
-            const authenticationParameters: rest.LoginParameters = {
-                userId: parseInt(formFields.userId),
-                password: formFields.password,
-            };
+            const userId = parseInt(formFields.userId);
+            const password = formFields.password;
+            const authenticationParameters: rest.LoginParameters = { userId, password };
 
             const result = await rest.login(authenticationParameters);
 
             if ( result.success )
             {
                 const role = result.value
+
+                if ( authentication.status === 'authenticated' )
+                {
+                    console.error("Bug! User is already authenticated!");
+                    return;
+                }
+
+                authentication.login(userId, role);
 
                 switch ( role )
                 {
