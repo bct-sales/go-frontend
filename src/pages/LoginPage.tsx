@@ -99,18 +99,18 @@ export default function LoginPage()
             }
             else
             {
-                switch ( result.error )
+                switch ( result.error.type )
                 {
-                    case rest.LoginError.InvalidId:
+                    case "invalid_id":
                         notifications.show({title: 'Invalid ID', message: 'Invalid ID', color: 'red'});
                         return;
-                    case rest.LoginError.UnknownUser:
+                    case "no_such_user":
                         notifications.show({title: 'Unknown user', message: 'User does not exist', color: 'red'});
                         return;
-                    case rest.LoginError.WrongPassword:
+                    case "wrong_password":
                         notifications.show({title: 'Invalid password', message: 'Wrong password', color: 'red'});
                         return;
-                    case rest.LoginError.Unknown:
+                    default:
                         notifications.show({title: 'Unexpected error!', message: 'Please report this to the site administrator', color: 'red'});
                         return;
                 }

@@ -11,9 +11,9 @@ export default function OverviewSubpage() : React.ReactNode
         void (async () => {
             const data = await getItemCountsPerCategory();
 
-            if (data !== undefined)
+            if (data.success)
             {
-                setCategoryCounts(data.counts);
+                setCategoryCounts(data.value.counts);
             }
             else
             {

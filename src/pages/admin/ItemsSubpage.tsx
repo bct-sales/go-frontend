@@ -13,12 +13,11 @@ export default function ItemsSubpage() : React.ReactNode
 
             if (response.success)
             {
-                setItems(response.value);
+                setItems(response.value.items);
             }
             else
             {
-                console.log(`Failed to list items`);
-                // TODO handle error
+                console.error(response.error.details);
             }
         })();
     }, []);
