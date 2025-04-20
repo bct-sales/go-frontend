@@ -1,9 +1,9 @@
+import { convertExceptionToFailure, RestResult } from '@/rest/result';
+import { success } from '@/result';
 import axios from 'axios';
 import { z } from 'zod';
-import { createErrorExtractor, extractDetailFromException, ForbiddenError, forbiddenErrorTag, UnknownError, unknownErrorTag } from '../errors';
-import { paths } from '../paths';
 import { Timestamp } from '../datetime';
-import { failure, Result, success } from '@/result';
+import { paths } from '../paths';
 
 
 const User = z.object({
@@ -22,24 +22,7 @@ const SuccessResponse = z.object({
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
 
-const FailureResponse = z.discriminatedUnion("type",
-    [
-        ForbiddenError,
-        UnknownError,
-    ]
-);
-
-type FailureResponse = z.infer<typeof FailureResponse>;
-
-const extractError = createErrorExtractor<FailureResponse>(FailureResponse, (message : string) => ({ type: "unknown", details: message }));
-
-export enum Error
-{
-    Forbidden,
-    Unknown
-}
-
-export async function listUsers(): Promise<Result<User[], Error>>
+export async function listUsers(): Promise<RestResult<User[]>>
 {
     const url = paths.users;
 
@@ -50,19 +33,8 @@ export async function listUsers(): Promise<Result<User[], Error>>
 
         return success(data.users);
     }
-    catch ( error: unknown )
+    catch ( exception: unknown )
     {
-        const detail = extractError(error);
-
-        switch ( detail.type )
-        {
-            case "forbidden":
-                console.error(detail.details);
-                return failure(Error.Forbidden);
-
-            case "unknown":
-                console.error(detail.details);
-                return failure(Error.Unknown);
-        }
+        return convertExceptionToFailure(exception);
     }
 }

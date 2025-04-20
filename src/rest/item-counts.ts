@@ -1,7 +1,8 @@
+import { success } from '@/result';
 import axios from 'axios';
 import { z } from 'zod';
-import { extractDetailFromException } from './errors';
 import { paths } from './paths';
+import { convertExceptionToFailure, RestResult } from './result';
 
 
 const ItemCountByCategory = z.object({
@@ -19,7 +20,7 @@ const ItemCountsByCategoryResponse = z.object({
 export type ItemCountsByCategoryResponse = z.infer<typeof ItemCountsByCategoryResponse>;
 
 
-export async function getItemCountsPerCategory(): Promise<ItemCountsByCategoryResponse | undefined>
+export async function getItemCountsPerCategory(): Promise<RestResult<ItemCountsByCategoryResponse>>
 {
     const url = paths.categoryCounts;
 
@@ -28,20 +29,10 @@ export async function getItemCountsPerCategory(): Promise<ItemCountsByCategoryRe
         const response = await axios.get<unknown>(url);
         const data = ItemCountsByCategoryResponse.parse(response.data);
 
-        return data;
+        return success(data);
     }
     catch ( error: unknown )
     {
-        const detail = extractDetailFromException(error);
-
-        if ( detail !== null )
-        {
-            return undefined;
-        }
-        else
-        {
-            console.error(error);
-            return undefined;
-        }
+        return convertExceptionToFailure(error);
     }
 }

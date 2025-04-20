@@ -1,9 +1,9 @@
+import { success } from '@/result';
 import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
-import { createErrorExtractor, InvalidIdError, invalidIdErrorTag, NoSuchUserError, noSuchUserErrorTag, UnknownError, unknownErrorTag, WrongPasswordError, wrongPasswordErrorTag } from './errors';
 import { paths } from './paths';
-import { failure, Result, success } from '@/result';
+import { convertExceptionToFailure, RestResult } from './result';
 
 
 
@@ -25,27 +25,8 @@ const LoginSuccessResponse = z.object({
 
 type LoginSuccessResponse = z.infer<typeof LoginSuccessResponse>;
 
-const LoginFailureResponse = z.discriminatedUnion("type",
-    [
-        InvalidIdError,
-        NoSuchUserError,
-        WrongPasswordError,
-        UnknownError,
-    ]
-);
 
-type LoginFailureResponse = z.infer<typeof LoginFailureResponse>;
-
-const extractError = createErrorExtractor<LoginFailureResponse>(LoginFailureResponse, (message: string) => ({ type: "unknown", details: message }));
-
-export enum LoginError {
-    InvalidId,
-    UnknownUser,
-    WrongPassword,
-    Unknown
-}
-
-export async function login( data: LoginParameters ): Promise<Result<Role, LoginError>>
+export async function login( data: LoginParameters ): Promise<RestResult<Role>>
 {
     const payload = {
         grant_type: 'password',
@@ -64,20 +45,8 @@ export async function login( data: LoginParameters ): Promise<Result<Role, Login
 
         return success(data.role);
     }
-    catch ( error: unknown )
+    catch ( exception: unknown )
     {
-        const errorData = extractError(error);
-
-        switch ( errorData.type )
-        {
-            case invalidIdErrorTag:
-                return failure(LoginError.InvalidId);
-            case noSuchUserErrorTag:
-                return failure(LoginError.UnknownUser);
-            case wrongPasswordErrorTag:
-                return failure(LoginError.WrongPassword);
-            case unknownErrorTag:
-                return failure(LoginError.Unknown);
-        }
+        return convertExceptionToFailure(exception);
     }
 }

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { createErrorExtractor, ForbiddenError, UnknownError } from '../errors';
-import { paths } from '../paths';
-import { Timestamp as DateTime } from '../datetime';
-import { failure, Result, success } from '@/result';
+import { convertExceptionToFailure, RestResult } from '@/rest/result';
+import { paths } from '@/rest/paths';
+import { Timestamp as DateTime } from '@/rest/datetime';
+import { success } from '@/result';
 
 
 const Item = z.object({
@@ -26,24 +26,8 @@ const SuccessResponse = z.object({
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
 
-const FailureResponse = z.discriminatedUnion("type",
-    [
-        ForbiddenError,
-        UnknownError,
-    ]
-);
 
-type FailureResponse = z.infer<typeof FailureResponse>;
-
-const extractError = createErrorExtractor<FailureResponse>(FailureResponse, (message : string) => ({ type: "unknown", details: message }));
-
-export enum Error
-{
-    Forbidden,
-    Unknown
-}
-
-export async function listItems(): Promise<Result<Item[], Error>>
+export async function listItems(): Promise<RestResult<SuccessResponse>>
 {
     const url = paths.items;
 
@@ -52,22 +36,11 @@ export async function listItems(): Promise<Result<Item[], Error>>
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success(data.items);
+        return success({ items: data.items });
     }
-    catch ( error: unknown )
+    catch ( exception: unknown )
     {
-        console.log(error);
-        const detail = extractError(error);
-
-        switch (detail.type)
-        {
-            case 'forbidden':
-                console.error(detail.details);
-                return failure(Error.Forbidden);
-
-            case 'unknown':
-                console.error(detail.details);
-                return failure(Error.Unknown);
-        }
+        console.error(exception);
+        return convertExceptionToFailure(exception);
     }
 }

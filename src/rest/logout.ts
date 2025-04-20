@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { extractDetailFromException } from './errors';
 import { paths } from './paths';
+import { identifyErrorInException } from './result';
 
 
 export async function logout(): Promise<void>
@@ -11,18 +11,10 @@ export async function logout(): Promise<void>
     {
         await axios.post<unknown>(url);
     }
-    catch ( error: unknown )
+    catch ( exception: unknown )
     {
-        const detail = extractDetailFromException(error);
+        const error = identifyErrorInException(exception);
 
-        if ( detail !== null )
-        {
-            return undefined;
-        }
-        else
-        {
-            console.error(error);
-            return undefined;
-        }
+        console.error("Failed to logout: ", error);
     }
 }
