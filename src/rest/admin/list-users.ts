@@ -11,6 +11,7 @@ const User = z.object({
     password: z.string(),
     role: z.union([z.literal('seller'), z.literal('admin'), z.literal('cashier')]),
     created_at: Timestamp,
+    last_activity: z.optional(Timestamp),
 });
 
 export type User = z.infer<typeof User>;
