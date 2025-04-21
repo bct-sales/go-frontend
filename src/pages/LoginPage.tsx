@@ -1,4 +1,4 @@
-import { AuthenticationContext } from '@/authentication';
+import { useAuthentication } from '@/authentication';
 import * as rest from '@/rest/login';
 import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -15,7 +15,7 @@ interface FormFields
 
 export default function LoginPage()
 {
-    const authentication = React.useContext(AuthenticationContext);
+    const authentication = useAuthentication();
     const navigate = useNavigate();
     const form = useForm<FormFields>({
         initialValues: {

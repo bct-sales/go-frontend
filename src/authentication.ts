@@ -53,3 +53,9 @@ export function createUnauthenticatedStatus(setStatus: (status: AuthenticationSt
         });
     }
 }
+
+
+export function useAuthentication(): AuthenticationStatus
+{
+    return React.useContext(AuthenticationContext);
+}
