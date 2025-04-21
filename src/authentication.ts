@@ -48,10 +48,6 @@ export function createAuthenticationStatusFromAuthenticationData(authenticationD
         };
     }
 
-    return {
-        status: 'unauthenticated',
-        login
-    };
 
     function login(username: number, role: Role)
     {
