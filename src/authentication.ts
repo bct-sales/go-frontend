@@ -2,6 +2,8 @@ import React from "react";
 import { Role } from "./role";
 
 
+export type AuthenticationData = { username: number, role: Role } | null;
+
 export type Authenticated =
 {
     status: 'authenticated';
@@ -21,14 +23,31 @@ export type AuthenticationStatus = Authenticated | Unauthenticated;
 
 export const dummyAuthentication: AuthenticationStatus = {
     status: 'unauthenticated',
-    login: () => { throw new Error("Not implemented"); }
+    login: () => { throw new Error("Bug: this should never be reached"); }
 }
 
 export const AuthenticationContext = React.createContext<AuthenticationStatus>(dummyAuthentication);
 
 
-export function createUnauthenticatedStatus(setStatus: (status: AuthenticationStatus) => void): AuthenticationStatus
+export function createAuthenticationStatusFromAuthenticationData(authenticationData: AuthenticationData, setAuthenticationData: (data: AuthenticationData) => void): AuthenticationStatus
 {
+    if (authenticationData !== null)
+    {
+        return {
+            status: 'authenticated',
+            username: authenticationData.username,
+            role: authenticationData.role,
+            logout,
+        };
+    }
+    else
+    {
+        return {
+            status: 'unauthenticated',
+            login,
+        };
+    }
+
     return {
         status: 'unauthenticated',
         login
@@ -36,21 +55,13 @@ export function createUnauthenticatedStatus(setStatus: (status: AuthenticationSt
 
     function login(username: number, role: Role)
     {
-        setStatus({
-            status: 'authenticated',
-            username,
-            role,
-            logout,
-        });
+        setAuthenticationData({ username, role });
     }
 
 
     function logout()
     {
-        setStatus({
-            status: 'unauthenticated',
-            login,
-        });
+        setAuthenticationData(null);
     }
 }
 
