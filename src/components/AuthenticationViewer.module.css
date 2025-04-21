@@ -1,0 +1,19 @@
+.container {
+    display: inline-block;
+    padding: 10px;
+    background-color: #448;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.role {
+    font-size: 0.8rem;
+    color: #666;
+    font-variant: small-caps;
+}

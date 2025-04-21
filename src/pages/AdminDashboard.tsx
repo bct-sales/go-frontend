@@ -1,22 +1,38 @@
-import { ActionIcon, AppShell, AppShellSection, Flex, Stack } from "@mantine/core";
+import { useAuthentication } from "@/authentication";
+import AuthenticationViewer from "@/components/AuthenticationViewer";
+import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconGraph, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import UsersSubpage from "./admin/UsersSubpage";
-import ItemsSubpage from "./admin/ItemsSubpage";
 import React from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import ItemsSubpage from "./admin/ItemsSubpage";
 import OverviewSubpage from "./admin/OverviewSubpage";
+import UsersSubpage from "./admin/UsersSubpage";
+import classes from './AdminDashboard.module.css';
 
 
 export default function AdminDashboard()
 {
+    const authentication = useAuthentication();
     const location = useLocation();
     const navigate = useNavigate();
 
+    if ( authentication.status !== 'authenticated' || authentication.role !== 'admin' )
+    {
+        return (
+            <Stack justify="center" align="center" style={{height: '100vh'}}>
+                <h1>Bug!</h1>
+            </Stack>
+        );
+    }
+
     return (
         <>
-            <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 60}}>
+            <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
                 <AppShell.Header>
-                    Administration Dashboard
+                    <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>
+                        <Text className={classes.header}>Administration Dashboard</Text>
+                        <AuthenticationViewer username={authentication.username} role={authentication.role} />
+                    </Flex>
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
