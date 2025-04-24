@@ -1,13 +1,8 @@
+import { DateTime } from "@/datetime";
+
 interface Props
 {
-    dateTime: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
+    dateTime: DateTime;
 }
 
 export default function DateTimeViewer(props: Props): React.ReactNode
