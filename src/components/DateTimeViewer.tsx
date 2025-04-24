@@ -10,7 +10,7 @@ interface Props
     };
 }
 
-export default function DateTime(props: Props): React.ReactNode
+export default function DateTimeViewer(props: Props): React.ReactNode
 {
     const { dateTime } = props;
 

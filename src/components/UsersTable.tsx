@@ -1,6 +1,6 @@
 import { Table } from "@mantine/core";
 import classes from './UsersTable.module.css'
-import DateTime from "./DateTimeViewer";
+import DateTimeViewer from "./DateTimeViewer";
 import { NavLink } from "react-router-dom";
 
 interface Props
@@ -71,7 +71,7 @@ export default function UsersTable(props: Props): React.ReactNode
                     {user.item_count}
                 </Table.Td>
                 <Table.Td className={classes.userData}>
-                    <DateTime dateTime={user.created_at} />
+                    <DateTimeViewer dateTime={user.created_at} />
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {renderLastActivity(user.last_activity)}
@@ -100,7 +100,7 @@ export default function UsersTable(props: Props): React.ReactNode
         else
         {
             return (
-                <DateTime dateTime={lastActivity} />
+                <DateTimeViewer dateTime={lastActivity} />
             );
         }
     }

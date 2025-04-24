@@ -1,7 +1,7 @@
 import { Table } from "@mantine/core";
 import classes from './ItemTable.module.css'
 import Price from "./Price";
-import DateTime from "./DateTimeViewer";
+import DateTimeViewer from "./DateTimeViewer";
 
 interface Props
 {
@@ -63,7 +63,7 @@ export default function ItemTable(props : Props) : React.ReactNode
                     {item.description}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <DateTime dateTime={item.added_at} />
+                    <DateTimeViewer dateTime={item.added_at} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     <Price priceInCents={item.price_in_cents} />

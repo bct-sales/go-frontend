@@ -1,5 +1,5 @@
 import { Table } from "@mantine/core";
-import DateTime from "./DateTimeViewer";
+import DateTimeViewer from "./DateTimeViewer";
 
 interface Props
 {
@@ -39,7 +39,7 @@ export default function UserTable(props: Props): React.ReactNode
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Creation Time</Table.Th>
-                    <Table.Td><DateTime dateTime={props.created_at} /></Table.Td>
+                    <Table.Td><DateTimeViewer dateTime={props.created_at} /></Table.Td>
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Last Activity</Table.Th>
@@ -61,7 +61,7 @@ export default function UserTable(props: Props): React.ReactNode
         else
         {
             return (
-                <DateTime dateTime={lastActivity} />
+                <DateTimeViewer dateTime={lastActivity} />
             );
         }
     }
