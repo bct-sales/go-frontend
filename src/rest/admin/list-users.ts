@@ -2,17 +2,17 @@ import { convertExceptionToFailure, RestResult } from '@/rest/result';
 import { success } from '@/result';
 import axios from 'axios';
 import { z } from 'zod';
-import { Timestamp } from '../datetime';
 import { paths } from '../paths';
+import { DateTime } from '@/datetime';
 
 
 const User = z.object({
     id: z.number(),
     password: z.string(),
     role: z.union([z.literal('seller'), z.literal('admin'), z.literal('cashier')]),
-    created_at: Timestamp,
-    last_activity: z.optional(Timestamp),
-    item_count: z.number(),
+    createdAt: DateTime,
+    lastActivity: z.optional(DateTime),
+    itemCount: z.number(),
 });
 
 export type User = z.infer<typeof User>;
