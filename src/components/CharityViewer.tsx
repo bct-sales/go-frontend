@@ -1,4 +1,4 @@
-import { IconGiftFilled } from "@tabler/icons-react";
+import { IconHeartFilled } from "@tabler/icons-react";
 
 interface Props
 {
@@ -13,7 +13,7 @@ export default function CharityViewer(props: Props): React.ReactNode
     if ( value )
     {
         return (
-            <IconGiftFilled />
+            <IconHeartFilled />
         );
     }
     else
