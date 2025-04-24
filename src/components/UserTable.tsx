@@ -1,6 +1,7 @@
 import { Table } from "@mantine/core";
 import classes from './UserTable.module.css'
 import DateTime from "./DateTime";
+import { NavLink } from "react-router-dom";
 
 interface Props
 {
@@ -59,9 +60,9 @@ export default function UserTable(props: Props): React.ReactNode
         return (
             <Table.Tr key={user.id} className={classes.userRow}>
                 <Table.Td className={classes.userData}>
-                    <a href={determineUserUrl(user)} className={classes.userLink}>
+                    <NavLink to={determineUserUrl(user)} className={classes.userLink}>
                         {user.id}
-                    </a>
+                    </NavLink>
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {user.role}
