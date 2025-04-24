@@ -46,14 +46,14 @@ const SellerUserInformation = BasicUserInformation.extend({
     items: z.array(ItemInformation),
 })
 
-type SellerUserInformation = z.infer<typeof SellerUserInformation>;
+export type SellerUserInformation = z.infer<typeof SellerUserInformation>;
 
 
 const AdminUserInformation = BasicUserInformation.extend({
     role: z.literal('admin'),
 })
 
-type AdminUserInformation = z.infer<typeof AdminUserInformation>;
+export type AdminUserInformation = z.infer<typeof AdminUserInformation>;
 
 
 const CashierUserInformation = BasicUserInformation.extend({
@@ -61,12 +61,12 @@ const CashierUserInformation = BasicUserInformation.extend({
     sales: z.array(SaleInformation),
 })
 
-type CashierUserInformation = z.infer<typeof CashierUserInformation>;
+export type CashierUserInformation = z.infer<typeof CashierUserInformation>;
 
 
 const UserInformation = z.discriminatedUnion('role', [SellerUserInformation, AdminUserInformation, CashierUserInformation])
 
-type UserInformation = z.infer<typeof UserInformation>;
+export type UserInformation = z.infer<typeof UserInformation>;
 
 
 const SuccessResponse = UserInformation;
