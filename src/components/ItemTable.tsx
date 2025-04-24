@@ -4,6 +4,9 @@ import Price from "./Price";
 import DateTimeViewer from "./DateTimeViewer";
 import { DateTime } from "@/datetime";
 import { NavLink } from "react-router-dom";
+import UserIdViewer from "./UserIdViewer";
+import CharityViewer from "./CharityViewer";
+import DonationViewer from "./DonationViewer";
 
 interface Props
 {
@@ -67,20 +70,15 @@ export default function ItemTable(props : Props) : React.ReactNode
                     {item.categoryId}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <NavLink to={determineUserUrl(item.sellerId)}>{item.sellerId}</NavLink>
+                    <UserIdViewer userId={item.sellerId} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.donation}
+                    <DonationViewer value={item.donation} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.charity}
+                    <CharityViewer value={item.charity} />
                 </Table.Td>
             </Table.Tr>
         );
-
-        function determineUserUrl(userId: number): string
-        {
-            return `/admin/users/${userId}`;
-        }
     }
 }
