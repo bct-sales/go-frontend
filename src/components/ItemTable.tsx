@@ -2,6 +2,7 @@ import { Table } from "@mantine/core";
 import classes from './ItemTable.module.css'
 import Price from "./Price";
 import DateTimeViewer from "./DateTimeViewer";
+import { DateTime } from "@/datetime";
 
 interface Props
 {
@@ -11,14 +12,7 @@ interface Props
 interface Item
 {
     item_id: number;
-    added_at: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
+    added_at: DateTime;
     description: string;
     price_in_cents: number,
     category_id: number;

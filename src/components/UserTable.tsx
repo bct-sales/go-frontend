@@ -1,27 +1,14 @@
 import { Table } from "@mantine/core";
 import DateTimeViewer from "./DateTimeViewer";
+import { DateTime } from "@/datetime";
 
 interface Props
 {
     user_id: number;
     role: 'seller' | 'admin' | 'cashier';
     password: string;
-    created_at: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
-    last_activity?: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
+    created_at: DateTime;
+    last_activity?: DateTime;
 }
 
 export default function UserTable(props: Props): React.ReactNode

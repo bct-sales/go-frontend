@@ -2,6 +2,7 @@ import { Table } from "@mantine/core";
 import classes from './UsersTable.module.css'
 import DateTimeViewer from "./DateTimeViewer";
 import { NavLink } from "react-router-dom";
+import { DateTime } from "@/datetime";
 
 interface Props
 {
@@ -13,22 +14,8 @@ interface User
     id: number;
     role: 'seller' | 'admin' | 'cashier';
     password: string;
-    created_at: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
-    last_activity?: {
-        year: number;
-        month: number;
-        day: number;
-        hour: number;
-        minute: number;
-        second: number;
-    };
+    created_at: DateTime;
+    last_activity?: DateTime;
     item_count: number;
 }
 
