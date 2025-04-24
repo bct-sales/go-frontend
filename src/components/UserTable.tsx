@@ -1,5 +1,5 @@
 import { Table } from "@mantine/core";
-import DateTime from "./DateTime";
+import DateTime from "./DateTimeViewer";
 
 interface Props
 {

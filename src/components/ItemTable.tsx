@@ -1,7 +1,7 @@
 import { Table } from "@mantine/core";
 import classes from './ItemTable.module.css'
 import Price from "./Price";
-import DateTime from "./DateTime";
+import DateTime from "./DateTimeViewer";
 
 interface Props
 {
