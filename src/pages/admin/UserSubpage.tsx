@@ -1,7 +1,7 @@
-import DateTime from "@/components/DateTime";
 import ItemTable from "@/components/ItemTable";
-import { getUserInformation, SuccessResponse } from "@/rest/admin/user-information";
-import { Loader, Stack, Table } from "@mantine/core";
+import UserTable from "@/components/UserTable";
+import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/admin/user-information";
+import { Loader, Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -49,48 +49,45 @@ export default function UserSubpage()
     {
         const userInformation = state.value;
 
-        return (
-            <>
-                <Stack>
-                    <Table variant="vertical">
-                        <Table.Tbody>
-                            <Table.Tr>
-                                <Table.Th>User ID</Table.Th>
-                                <Table.Td>{userInformation.user_id}</Table.Td>
-                            </Table.Tr>
-                            <Table.Tr>
-                                <Table.Th>Password</Table.Th>
-                                <Table.Td>{userInformation.password}</Table.Td>
-                            </Table.Tr>
-                            <Table.Tr>
-                                <Table.Th>Creation Time</Table.Th>
-                                <Table.Td><DateTime dateTime={userInformation.created_at} /></Table.Td>
-                            </Table.Tr>
-                            <Table.Tr>
-                                <Table.Th>Last Activity</Table.Th>
-                                <Table.Td>{renderLastActivity(userInformation.last_activity)}</Table.Td>
-                            </Table.Tr>
-                        </Table.Tbody>
-                    </Table>
-                </Stack>
-            </>
-        );
-
-
-        function renderLastActivity(lastActivity: SuccessResponse['last_activity']): React.ReactNode
+        switch (userInformation.role)
         {
-            if (lastActivity === undefined)
-            {
+            case 'admin':
+                return renderAdmin(userInformation);
+            case 'cashier':
+                return renderCashier(userInformation);
+            case 'seller':
+                return renderSeller(userInformation);
+            default:
                 return (
-                    <span>NA</span>
+                    <span>Unknown role</span>
                 );
-            }
-            else
-            {
-                return (
-                    <DateTime dateTime={lastActivity} />
-                );
-            }
         }
+    }
+
+
+    function renderAdmin(userInformation: AdminUserInformation): React.ReactNode
+    {
+        return (
+            <UserTable {...userInformation} />
+        );
+    }
+
+    function renderSeller(userInformation: SellerUserInformation): React.ReactNode
+    {
+        return (
+            <Stack>
+                <UserTable {...userInformation} />
+                <ItemTable items={userInformation.items} />
+            </Stack>
+        );
+    }
+
+    function renderCashier(userInformation: CashierUserInformation): React.ReactNode
+    {
+        return (
+            <Stack>
+                <UserTable {...userInformation} />
+            </Stack>
+        );
     }
 }
