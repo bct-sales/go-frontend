@@ -1,5 +1,5 @@
 import { Table } from "@mantine/core";
-import classes from './UserTable.module.css'
+import classes from './UsersTable.module.css'
 import DateTime from "./DateTime";
 import { NavLink } from "react-router-dom";
 
