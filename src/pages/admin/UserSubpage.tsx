@@ -1,6 +1,7 @@
 import DateTime from "@/components/DateTime";
+import ItemTable from "@/components/ItemTable";
 import { getUserInformation, SuccessResponse } from "@/rest/admin/user-information";
-import { Loader, Table } from "@mantine/core";
+import { Loader, Stack, Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -50,26 +51,28 @@ export default function UserSubpage()
 
         return (
             <>
-                <Table variant="vertical">
-                    <Table.Tbody>
-                        <Table.Tr>
-                            <Table.Th>User ID</Table.Th>
-                            <Table.Td>{userInformation.user_id}</Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th>Password</Table.Th>
-                            <Table.Td>{userInformation.password}</Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th>Creation Time</Table.Th>
-                            <Table.Td><DateTime dateTime={userInformation.created_at} /></Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th>Last Activity</Table.Th>
-                            <Table.Td>{renderLastActivity(userInformation.last_activity)}</Table.Td>
-                        </Table.Tr>
-                    </Table.Tbody>
-                </Table>
+                <Stack>
+                    <Table variant="vertical">
+                        <Table.Tbody>
+                            <Table.Tr>
+                                <Table.Th>User ID</Table.Th>
+                                <Table.Td>{userInformation.user_id}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th>Password</Table.Th>
+                                <Table.Td>{userInformation.password}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th>Creation Time</Table.Th>
+                                <Table.Td><DateTime dateTime={userInformation.created_at} /></Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th>Last Activity</Table.Th>
+                                <Table.Td>{renderLastActivity(userInformation.last_activity)}</Table.Td>
+                            </Table.Tr>
+                        </Table.Tbody>
+                    </Table>
+                </Stack>
             </>
         );
 
