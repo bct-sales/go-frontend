@@ -1,4 +1,4 @@
-import UserTable from "@/components/UsersTable";
+import UsersTable from "@/components/UsersTable";
 import { listUsers, User } from "@/rest/admin/list-users";
 import { useEffect, useState } from "react";
 
@@ -25,7 +25,7 @@ export default function UsersSubpage()
 
     return (
         <>
-            <UserTable users={users} />
+            <UsersTable users={users} />
         </>
     );
 }

@@ -32,7 +32,7 @@ interface User
     item_count: number;
 }
 
-export default function UserTable(props: Props): React.ReactNode
+export default function UsersTable(props: Props): React.ReactNode
 {
     const { users } = props;
 
