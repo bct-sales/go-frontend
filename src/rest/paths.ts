@@ -8,6 +8,8 @@ class RestPaths
 
     get users() { return `${this.root}/users`; }
 
+    user(userId: number) { return `${this.root}/users/${userId}`; }
+
     get items() { return `${this.root}/items`; }
 
     get categoryCounts() { return `${this.root}/categories`; }
