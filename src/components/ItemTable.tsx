@@ -10,8 +10,8 @@ interface Props
 
 interface Item
 {
-    itemId: number;
-    addedAt: {
+    item_id: number;
+    added_at: {
         year: number;
         month: number;
         day: number;
@@ -20,9 +20,9 @@ interface Item
         second: number;
     };
     description: string;
-    priceInCents: number,
-    categoryId: number;
-    sellerId: number;
+    price_in_cents: number,
+    category_id: number;
+    seller_id: number;
     donation: boolean;
     charity: boolean;
 }
@@ -55,24 +55,24 @@ export default function ItemTable(props : Props) : React.ReactNode
     function renderItem(item : Item) : React.ReactNode
     {
         return (
-            <Table.Tr key={item.itemId} className={classes.itemRow}>
+            <Table.Tr key={item.item_id} className={classes.itemRow}>
                 <Table.Td className={classes.itemData}>
-                    {item.itemId}
+                    {item.item_id}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.description}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <DateTime dateTime={item.addedAt} />
+                    <DateTime dateTime={item.added_at} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <Price priceInCents={item.priceInCents} />
+                    <Price priceInCents={item.price_in_cents} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.categoryId}
+                    {item.category_id}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.sellerId}
+                    {item.seller_id}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.donation}
