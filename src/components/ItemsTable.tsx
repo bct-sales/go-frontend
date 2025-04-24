@@ -1,12 +1,11 @@
-import { Table } from "@mantine/core";
-import classes from './ItemTable.module.css'
-import Price from "./Price";
-import DateTimeViewer from "./DateTimeViewer";
 import { DateTime } from "@/datetime";
-import { NavLink } from "react-router-dom";
-import UserIdViewer from "./UserIdViewer";
+import { Table } from "@mantine/core";
 import CharityViewer from "./CharityViewer";
+import DateTimeViewer from "./DateTimeViewer";
 import DonationViewer from "./DonationViewer";
+import classes from './ItemsTable.module.css';
+import Price from "./Price";
+import UserIdViewer from "./UserIdViewer";
 
 interface Props
 {
@@ -25,7 +24,7 @@ interface Item
     charity: boolean;
 }
 
-export default function ItemTable(props : Props) : React.ReactNode
+export default function ItemsTable(props : Props) : React.ReactNode
 {
     const { items } = props;
 

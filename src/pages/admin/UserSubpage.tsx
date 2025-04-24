@@ -1,4 +1,4 @@
-import ItemTable from "@/components/ItemTable";
+import ItemsTable from "@/components/ItemsTable";
 import UserTable from "@/components/UserTable";
 import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/admin/user-information";
 import { Loader, Stack } from "@mantine/core";
@@ -77,7 +77,7 @@ export default function UserSubpage()
         return (
             <Stack>
                 <UserTable {...userInformation} />
-                <ItemTable items={userInformation.items} />
+                <ItemsTable items={userInformation.items} />
             </Stack>
         );
     }

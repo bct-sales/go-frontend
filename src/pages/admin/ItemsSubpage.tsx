@@ -1,4 +1,4 @@
-import ItemTable from "@/components/ItemTable";
+import ItemsTable from "@/components/ItemsTable";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { useEffect, useState } from "react";
 
@@ -24,7 +24,7 @@ export default function ItemsSubpage() : React.ReactNode
 
     return (
         <>
-            <ItemTable items={items} />
+            <ItemsTable items={items} />
         </>
     );
 }
