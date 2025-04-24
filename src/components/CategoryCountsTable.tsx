@@ -31,9 +31,9 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
     function renderCategoryCount(itemCount : ItemCountByCategory) : React.ReactNode
     {
         return (
-            <Table.Tr key={itemCount.category_id} className={classes.categoryCountRow}>
-                <Table.Td>{itemCount.category_id}</Table.Td>
-                <Table.Td className={classes.categoryName}>{itemCount.category_name}</Table.Td>
+            <Table.Tr key={itemCount.categoryId} className={classes.categoryCountRow}>
+                <Table.Td>{itemCount.categoryId}</Table.Td>
+                <Table.Td className={classes.categoryName}>{itemCount.categoryName}</Table.Td>
                 <Table.Td>{itemCount.count}</Table.Td>
             </Table.Tr>
         );

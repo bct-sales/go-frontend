@@ -4,11 +4,11 @@ import { DateTime } from "@/datetime";
 
 interface Props
 {
-    user_id: number;
+    userId: number;
     role: 'seller' | 'admin' | 'cashier';
     password: string;
-    created_at: DateTime;
-    last_activity?: DateTime;
+    createdAt: DateTime;
+    lastActivity?: DateTime;
 }
 
 export default function UserTable(props: Props): React.ReactNode
@@ -18,7 +18,7 @@ export default function UserTable(props: Props): React.ReactNode
             <Table.Tbody>
                 <Table.Tr>
                     <Table.Th>User ID</Table.Th>
-                    <Table.Td>{props.user_id}</Table.Td>
+                    <Table.Td>{props.userId}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Password</Table.Th>
@@ -26,11 +26,11 @@ export default function UserTable(props: Props): React.ReactNode
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Creation Time</Table.Th>
-                    <Table.Td><DateTimeViewer dateTime={props.created_at} /></Table.Td>
+                    <Table.Td><DateTimeViewer dateTime={props.createdAt} /></Table.Td>
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Last Activity</Table.Th>
-                    <Table.Td>{renderLastActivity(props.last_activity)}</Table.Td>
+                    <Table.Td>{renderLastActivity(props.lastActivity)}</Table.Td>
                 </Table.Tr>
             </Table.Tbody>
         </Table>

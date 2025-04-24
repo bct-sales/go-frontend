@@ -3,6 +3,7 @@ import classes from './UsersTable.module.css'
 import DateTimeViewer from "./DateTimeViewer";
 import { NavLink } from "react-router-dom";
 import { DateTime } from "@/datetime";
+import UserIdViewer from "./UserIdViewer";
 
 interface Props
 {
@@ -14,9 +15,9 @@ interface User
     id: number;
     role: 'seller' | 'admin' | 'cashier';
     password: string;
-    created_at: DateTime;
-    last_activity?: DateTime;
-    item_count: number;
+    createdAt: DateTime;
+    lastActivity?: DateTime;
+    itemCount: number;
 }
 
 export default function UsersTable(props: Props): React.ReactNode
@@ -47,21 +48,19 @@ export default function UsersTable(props: Props): React.ReactNode
         return (
             <Table.Tr key={user.id} className={classes.userRow}>
                 <Table.Td className={classes.userData}>
-                    <NavLink to={determineUserUrl(user)} className={classes.userLink}>
-                        {user.id}
-                    </NavLink>
+                    <UserIdViewer userId={user.id} />
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {user.role}
                 </Table.Td>
                 <Table.Td className={classes.userData}>
-                    {user.item_count}
+                    {user.itemCount}
                 </Table.Td>
                 <Table.Td className={classes.userData}>
-                    <DateTimeViewer dateTime={user.created_at} />
+                    <DateTimeViewer dateTime={user.createdAt} />
                 </Table.Td>
                 <Table.Td className={classes.userData}>
-                    {renderLastActivity(user.last_activity)}
+                    {renderLastActivity(user.lastActivity)}
                 </Table.Td>
                 <Table.Td className={classes.userData}>
                     {user.password}
@@ -71,12 +70,7 @@ export default function UsersTable(props: Props): React.ReactNode
     }
 
 
-    function determineUserUrl(user: User): string
-    {
-        return `/admin/users/${user.id}`;
-    }
-
-    function renderLastActivity(lastActivity: User['last_activity']): React.ReactNode
+    function renderLastActivity(lastActivity: User['lastActivity']): React.ReactNode
     {
         if (lastActivity === undefined)
         {

@@ -7,16 +7,16 @@ import { success } from '@/result';
 
 
 const ItemInformation = z.object({
-    item_id: z.number(),
-    added_at: DateTime,
-    seller_id: z.number(),
+    itemId: z.number(),
+    addedAt: DateTime,
+    sellerId: z.number(),
     description: z.string(),
-    price_in_cents: z.number().positive(),
-    category_id: z.number(),
+    priceInCents: z.number().positive(),
+    categoryId: z.number(),
     charity: z.boolean(),
     donation: z.boolean(),
     frozen: z.boolean(),
-    sale_count: z.number().nonnegative(),
+    saleCount: z.number().nonnegative(),
 });
 
 type ItemInformation = z.infer<typeof ItemInformation>;
@@ -31,11 +31,11 @@ type SaleInformation = z.infer<typeof SaleInformation>;
 
 
 const BasicUserInformation = z.object({
-    user_id: z.number(),
+    userId: z.number(),
     role: z.enum(['admin', 'seller', 'cashier']),
     password: z.string(),
-    created_at: DateTime,
-    last_activity: z.optional(DateTime),
+    createdAt: DateTime,
+    lastActivity: z.optional(DateTime),
 })
 
 type BasicUserInformation = z.infer<typeof BasicUserInformation>;

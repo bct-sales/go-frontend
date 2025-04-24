@@ -6,8 +6,8 @@ import { convertExceptionToFailure, RestResult } from './result';
 
 
 const ItemCountByCategory = z.object({
-    category_id: z.number().int().nonnegative(),
-    category_name: z.string().nonempty(),
+    categoryId: z.number().int().nonnegative(),
+    categoryName: z.string().nonempty(),
     count: z.number().int().nonnegative(),
 })
 

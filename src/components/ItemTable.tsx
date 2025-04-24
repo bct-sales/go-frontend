@@ -3,6 +3,7 @@ import classes from './ItemTable.module.css'
 import Price from "./Price";
 import DateTimeViewer from "./DateTimeViewer";
 import { DateTime } from "@/datetime";
+import { NavLink } from "react-router-dom";
 
 interface Props
 {
@@ -11,12 +12,12 @@ interface Props
 
 interface Item
 {
-    item_id: number;
-    added_at: DateTime;
+    itemId: number;
+    addedAt: DateTime;
     description: string;
-    price_in_cents: number,
-    category_id: number;
-    seller_id: number;
+    priceInCents: number,
+    categoryId: number;
+    sellerId: number;
     donation: boolean;
     charity: boolean;
 }
@@ -49,24 +50,24 @@ export default function ItemTable(props : Props) : React.ReactNode
     function renderItem(item : Item) : React.ReactNode
     {
         return (
-            <Table.Tr key={item.item_id} className={classes.itemRow}>
+            <Table.Tr key={item.itemId} className={classes.itemRow}>
                 <Table.Td className={classes.itemData}>
-                    {item.item_id}
+                    {item.itemId}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.description}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <DateTimeViewer dateTime={item.added_at} />
+                    <DateTimeViewer dateTime={item.addedAt} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    <Price priceInCents={item.price_in_cents} />
+                    <Price priceInCents={item.priceInCents} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.category_id}
+                    {item.categoryId}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.seller_id}
+                    <NavLink to={determineUserUrl(item.sellerId)}>{item.sellerId}</NavLink>
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.donation}
@@ -76,5 +77,10 @@ export default function ItemTable(props : Props) : React.ReactNode
                 </Table.Td>
             </Table.Tr>
         );
+
+        function determineUserUrl(userId: number): string
+        {
+            return `/admin/users/${userId}`;
+        }
     }
 }

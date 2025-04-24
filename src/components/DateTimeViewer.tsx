@@ -9,6 +9,13 @@ export default function DateTimeViewer(props: Props): React.ReactNode
 {
     const { dateTime } = props;
 
+    if (dateTime === undefined)
+    {
+        return (
+            <span>NA</span>
+        );
+    }
+
     return (
         <span>
             {dateTime.year}-{pad(dateTime.month)}-{pad(dateTime.day)} {pad(dateTime.hour)}:{pad(dateTime.minute)}:{pad(dateTime.second)}
