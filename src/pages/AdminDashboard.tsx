@@ -8,6 +8,7 @@ import ItemsSubpage from "./admin/ItemsSubpage";
 import OverviewSubpage from "./admin/OverviewSubpage";
 import UsersSubpage from "./admin/UsersSubpage";
 import classes from './AdminDashboard.module.css';
+import UserSubpage from "./admin/UserSubpage";
 
 
 export default function AdminDashboard()
@@ -20,7 +21,7 @@ export default function AdminDashboard()
     {
         return (
             <Stack justify="center" align="center" style={{height: '100vh'}}>
-                <h1>Bug!</h1>
+                <h1>Lost authentication data!</h1>
             </Stack>
         );
     }
@@ -45,6 +46,7 @@ export default function AdminDashboard()
                 <AppShell.Main>
                     <Routes>
                         <Route path="/" element={<OverviewSubpage />} />
+                        <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersSubpage />} />
                         <Route path="/items" element={<ItemsSubpage />} />
                     </Routes>
@@ -54,7 +56,7 @@ export default function AdminDashboard()
     );
 
 
-    function renderNavbarLink(label : string, to : string, Icon : React.ReactNode) : React.ReactNode
+    function renderNavbarLink(label: string, to: string, Icon: React.ReactNode): React.ReactNode
     {
         const isActive = to === location.pathname;
 
