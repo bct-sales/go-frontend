@@ -25,7 +25,6 @@ export default function SellerDashboard()
                 <AppShell.Main>
                     <Routes>
                         <Route path="/" element={<OverviewSubpage />} />
-                        <Route path="/items" element={<ItemsSubpage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
