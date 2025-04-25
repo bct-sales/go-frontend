@@ -2,7 +2,6 @@ import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { IconGraph, IconLogout } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import ItemsSubpage from "./seller/ItemsSubpage";
 import OverviewSubpage from "./seller/OverviewSubpage";
 
 
