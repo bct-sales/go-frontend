@@ -11,13 +11,13 @@ import { useParams } from "react-router-dom";
 export default function UserSubpage()
 {
     const { userId } = useParams<{ userId: string }>();
-    const [state, setState] = useState<RestStatus<SuccessResponse>>({ status: 'loading' });
+    const [status, setStatus] = useState<RestStatus<SuccessResponse>>({ status: 'loading' });
 
     useEffect(() => {
             void (async () => {
                 if ( !userId || !/\d+/.test(userId) )
                 {
-                    setState({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
+                    setStatus({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
                     return;
                 }
 
@@ -25,20 +25,20 @@ export default function UserSubpage()
 
                 if (response.success)
                 {
-                    setState({ status: 'success', value: response.value });
+                    setStatus({ status: 'success', value: response.value });
                 }
                 else
                 {
-                    setState({ status: 'error', tag: response.error.type, details: response.error.details });
+                    setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
                 }
             })();
         }, [userId]);
 
-    switch (state.status)
+    switch (status.status)
     {
         case 'error':
             return (
-                <div>Error: {state.tag} - {state.details}</div>
+                <div>Error: {status.tag} - {status.details}</div>
             );
 
         case 'loading':
@@ -47,7 +47,7 @@ export default function UserSubpage()
             );
 
         case 'success':
-            return renderPage(state.value);
+            return renderPage(status.value);
     }
 
 
