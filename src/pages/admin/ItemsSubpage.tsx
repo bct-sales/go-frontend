@@ -51,7 +51,7 @@ export default function ItemsSubpage() : React.ReactNode
     function renderLoading(): React.ReactNode
     {
         return (
-            <Loading />
+            <Loading message="Loading items" />
         );
     }
 }
