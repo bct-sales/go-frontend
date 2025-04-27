@@ -1,27 +1,23 @@
 import ItemsTable from "@/components/ItemsTable";
+import Loading from "@/components/Loading";
 import UserTable from "@/components/UserTable";
 import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/admin/user-information";
+import { RestStatus } from "@/rest/status";
 import { Loader, Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
-type State =
-  | { status: 'loading' }
-  | { status: 'error', details: string }
-  | { status: 'success', value: SuccessResponse };
-
-
 export default function UserSubpage()
 {
     const { userId } = useParams<{ userId: string }>();
-    const [state, setState] = useState<State>({ status: 'loading' });
+    const [state, setState] = useState<RestStatus<SuccessResponse>>({ status: 'loading' });
 
     useEffect(() => {
             void (async () => {
                 if ( !userId || !/\d+/.test(userId) )
                 {
-                    setState({ status: 'error', details: 'Invalid user ID' });
+                    setState({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
                     return;
                 }
 
@@ -33,22 +29,30 @@ export default function UserSubpage()
                 }
                 else
                 {
-                    console.error(response.error);
-                    setState({ status: 'error', details: response.error.details });
+                    setState({ status: 'error', tag: response.error.type, details: response.error.details });
                 }
             })();
         }, [userId]);
 
-    if (state.status === 'loading')
+    switch (state.status)
     {
-        return (
-            <Loader variant="dots" />
-        );
-    }
-    else if (state.status === 'success')
-    {
-        const userInformation = state.value;
+        case 'error':
+            return (
+                <div>Error: {state.tag} - {state.details}</div>
+            );
 
+        case 'loading':
+            return (
+                <Loading message="Loading user information..." />
+            );
+
+        case 'success':
+            return renderPage(state.value);
+    }
+
+
+    function renderPage(userInformation: SuccessResponse): React.ReactNode
+    {
         switch (userInformation.role)
         {
             case 'admin':
@@ -57,13 +61,8 @@ export default function UserSubpage()
                 return renderCashier(userInformation);
             case 'seller':
                 return renderSeller(userInformation);
-            default:
-                return (
-                    <span>Unknown role</span>
-                );
         }
     }
-
 
     function renderAdmin(userInformation: AdminUserInformation): React.ReactNode
     {
