@@ -1,11 +1,13 @@
 import CategoryCountsTable from "@/components/CategoryCountsTable";
+import Loading from "@/components/Loading";
 import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-counts";
+import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 
 
 export default function CategoriesSubpage() : React.ReactNode
 {
-    const [categoryCounts, setCategoryCounts] = useState<ItemCountByCategory[] | undefined>(undefined);
+    const [status, setStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });
 
     useEffect(() => {
         void (async () => {
@@ -13,30 +15,32 @@ export default function CategoriesSubpage() : React.ReactNode
 
             if (data.success)
             {
-                setCategoryCounts(data.value.counts);
+                setStatus({ status: 'success', value: data.value.counts });
             }
             else
             {
-                console.log(`Failed to get category counts`);
-                // TODO handle error
+                setStatus({ status: 'error', tag: data.error.type, details: data.error.details });
             }
         })();
     }, []);
 
-    return (
-        <>
-            {renderCategoryCounts()}
-        </>
-    );
-
-
-    function renderCategoryCounts() : React.ReactNode
+    switch (status.status)
     {
-        if (categoryCounts === undefined)
-        {
-            return <div>Loading...</div>;
-        }
+        case 'success':
+            return renderPage(status.value);
 
+        case 'loading':
+            return (
+                <Loading message="Loading category counts..." />
+            );
+
+        case 'error':
+            return <div>Error: {status.tag} - {status.details}</div>;
+    }
+
+
+    function renderPage(categoryCounts: ItemCountByCategory[]) : React.ReactNode
+    {
         return (
             <CategoryCountsTable categoryCounts={categoryCounts} />
         );
