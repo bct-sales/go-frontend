@@ -1,4 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
+import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
 import React, { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export default function ItemsSubpage() : React.ReactNode
     switch (itemsStatus.status)
     {
         case "loading":
-            return <div>Loading...</div>;
+            return renderLoading();
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
@@ -34,16 +35,23 @@ export default function ItemsSubpage() : React.ReactNode
                 </div>
             );
         case "success":
-            return renderItems(itemsStatus.value);
+            return renderPage(itemsStatus.value);
     }
 
 
-    function renderItems(items: Item[]): React.ReactNode
+    function renderPage(items: Item[]): React.ReactNode
     {
         return (
             <>
                 <ItemsTable items={items} />
             </>
+        );
+    }
+
+    function renderLoading(): React.ReactNode
+    {
+        return (
+            <Loading />
         );
     }
 }
