@@ -47,6 +47,6 @@ export default function SellerDashboard()
     {
         return () => {
             navigate(url);
-        }
+        };
     }
 }
