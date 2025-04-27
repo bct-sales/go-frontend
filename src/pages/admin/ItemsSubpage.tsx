@@ -31,7 +31,7 @@ export default function ItemsSubpage() : React.ReactNode
 
         case "loading":
             return (
-                <Loading message="Loading items" />
+                <Loading message="Loading items..." />
             );
 
         case "error":
