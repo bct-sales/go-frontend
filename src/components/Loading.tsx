@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 interface Props
 {
-    delayInMilliseconds: number;
+    delayInMilliseconds?: number;
     message?: string;
 }
 
-const DEFAULT_DELAY_IN_MILLISECONDS = 250;
+const DEFAULT_DELAY_IN_MILLISECONDS = 100;
 
 export default function Loading(props: Props): React.ReactNode
 {
