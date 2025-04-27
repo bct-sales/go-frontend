@@ -1,19 +1,15 @@
 import { useAuthentication } from "@/authentication";
 import ItemsTable from "@/components/ItemsTable";
+import Loading from "@/components/Loading";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
+import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-type State =
-  | { status: 'loading' }
-  | { status: 'error'; error: string }
-  | { status: 'success'; items: Item[] };
-
-
 export default function ItemsSubpage() : React.ReactNode
 {
-    const [state, setState] = useState<State>({ status: 'loading' });
+    const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const authentication = useAuthentication();
     const navigate = useNavigate();
 
@@ -21,6 +17,12 @@ export default function ItemsSubpage() : React.ReactNode
         void (async () => {
             if (authentication.status !== 'authenticated' || authentication.role !== 'seller')
             {
+                if (authentication.status === 'authenticated')
+                {
+                    authentication.logout();
+                }
+
+                setStatus({ status: 'error', tag: 'missing-authentication', details: 'You are not authorized to view this page.' });
                 navigate('/login');
                 return;
             }
@@ -29,27 +31,31 @@ export default function ItemsSubpage() : React.ReactNode
 
             if (response.success)
             {
-                setState({ status: 'success', items: response.value.items });
+                setStatus({ status: 'success', value: response.value.items });
             }
             else
             {
-                setState({ status: 'error', error: response.error.details });
+                setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
             }
         })();
     }, [authentication, navigate]);
 
-    switch (state.status)
+    switch (status.status)
     {
-        case 'loading':
-            return <div>Loading...</div>;
-        case 'error':
-            return <div>Error: {state.error}</div>;
         case 'success':
-            return renderItems(state.items);
+            return renderPage(status.value);
+
+        case 'loading':
+            return (
+                <Loading message="Loading items..." />
+            );
+
+        case 'error':
+            return <div>Error: {status.details}</div>;
     }
 
 
-    function renderItems(items: Item[]): React.ReactNode
+    function renderPage(items: Item[]): React.ReactNode
     {
         return (
             <ItemsTable items={items} />
