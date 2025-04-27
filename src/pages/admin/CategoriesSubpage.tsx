@@ -3,7 +3,7 @@ import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-count
 import { useEffect, useState } from "react";
 
 
-export default function OverviewSubpage() : React.ReactNode
+export default function CategoriesSubpage() : React.ReactNode
 {
     const [categoryCounts, setCategoryCounts] = useState<ItemCountByCategory[] | undefined>(undefined);
 

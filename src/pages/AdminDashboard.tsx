@@ -1,14 +1,14 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconGraph, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
+import { IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import CategoriesSubpage from "./admin/CategoriesSubpage";
 import ItemsSubpage from "./admin/ItemsSubpage";
-import OverviewSubpage from "./admin/OverviewSubpage";
 import UsersSubpage from "./admin/UsersSubpage";
-import classes from './AdminDashboard.module.css';
 import UserSubpage from "./admin/UserSubpage";
+import classes from './AdminDashboard.module.css';
 
 
 export default function AdminDashboard()
@@ -37,7 +37,7 @@ export default function AdminDashboard()
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                        {renderNavbarLink("Overview", "/admin", <IconGraph />)}
+                        {renderNavbarLink("Categories", "/admin", <IconChartBar />)}
                         {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
                         {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
                         {renderNavbarLink("Logout", "/logout", <IconLogout />)}
@@ -45,7 +45,7 @@ export default function AdminDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<OverviewSubpage />} />
+                        <Route path="/" element={<CategoriesSubpage />} />
                         <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersSubpage />} />
                         <Route path="/items" element={<ItemsSubpage />} />
