@@ -1,11 +1,13 @@
+import Loading from "@/components/Loading";
 import UsersTable from "@/components/UsersTable";
 import { listUsers, User } from "@/rest/admin/list-users";
+import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 
 
 export default function UsersSubpage()
 {
-    const [users, setUsers] = useState<User[]>([]);
+    const [status, setStatus] = useState<RestStatus<User[]>>({ status: "loading" });
 
     useEffect(() => {
         void (async () => {
@@ -13,19 +15,36 @@ export default function UsersSubpage()
 
             if (response.success)
             {
-                setUsers(response.value);
+                setStatus({ status: "success", value: response.value });
             }
             else
             {
-                console.log(`Failed to list users`);
-                // TODO handle error
+                setStatus({ status: "error", tag: response.error.type, details: response.error.details });
             }
         })();
     }, []);
 
-    return (
-        <>
-            <UsersTable users={users} />
-        </>
-    );
+    switch (status.status)
+    {
+        case "success":
+            return renderPage(status.value);
+
+        case "loading":
+            return (
+                <Loading message="Loading users..." />
+            );
+
+        case "error":
+            return <div className="text-center">Error: {status.tag} - {status.details}</div>;
+    }
+
+
+    function renderPage(users: User[]): React.ReactNode
+    {
+        return (
+            <>
+                <UsersTable users={users} />
+            </>
+        );
+    }
 }
