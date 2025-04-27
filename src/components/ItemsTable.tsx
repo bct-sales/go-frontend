@@ -56,7 +56,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
                 <Table.Td className={classes.itemData}>
                     {item.itemId}
                 </Table.Td>
-                <Table.Td className={classes.itemData}>
+                <Table.Td className={`${classes.itemData} ${classes.itemDescription}`}>
                     {item.description}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>

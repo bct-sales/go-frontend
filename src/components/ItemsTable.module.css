@@ -17,4 +17,8 @@
     & .userData {
         padding: 5px 2em;
     }
+
+    & .itemDescription {
+        text-align: left;
+    }
 }
