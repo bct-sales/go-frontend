@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import UserTable from "@/components/UserTable";
 import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/admin/user-information";
 import { RestStatus } from "@/rest/status";
-import { Loader, Stack } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
