@@ -11,7 +11,7 @@ type State =
   | { status: 'success'; items: Item[] };
 
 
-export default function OverviewSubpage() : React.ReactNode
+export default function ItemsSubpage() : React.ReactNode
 {
     const [state, setState] = useState<State>({ status: 'loading' });
     const authentication = useAuthentication();

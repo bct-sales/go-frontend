@@ -2,7 +2,7 @@ import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { IconList, IconLogout } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import OverviewSubpage from "./seller/OverviewSubpage";
+import ItemsSubpage from "./seller/ItemsSubpage";
 
 
 export default function SellerDashboard()
@@ -24,7 +24,7 @@ export default function SellerDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<OverviewSubpage />} />
+                        <Route path="/" element={<ItemsSubpage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
