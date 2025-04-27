@@ -4,7 +4,7 @@ import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ItemsSubpage from "./seller/ItemsSubpage";
 import { useAuthentication } from "@/authentication";
-import classes from './AdminDashboard.module.css';
+import classes from './SellerDashboard.module.css';
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 
 
@@ -34,7 +34,7 @@ export default function SellerDashboard()
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                        {renderNavbarLink("Overview", "/seller", <IconList />)}
+                        {renderNavbarLink("Items", "/seller", <IconList />)}
                         {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                     </Flex>
                 </AppShell.Navbar>
