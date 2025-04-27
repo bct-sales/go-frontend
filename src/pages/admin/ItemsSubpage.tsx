@@ -26,16 +26,20 @@ export default function ItemsSubpage() : React.ReactNode
 
     switch (itemsStatus.status)
     {
+        case "success":
+            return renderPage(itemsStatus.value);
+
         case "loading":
-            return renderLoading();
+            return (
+                <Loading message="Loading items" />
+            );
+
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
                     <strong>Error:</strong> {itemsStatus.tag}: {itemsStatus.details}
                 </div>
             );
-        case "success":
-            return renderPage(itemsStatus.value);
     }
 
 
@@ -45,13 +49,6 @@ export default function ItemsSubpage() : React.ReactNode
             <>
                 <ItemsTable items={items} />
             </>
-        );
-    }
-
-    function renderLoading(): React.ReactNode
-    {
-        return (
-            <Loading message="Loading items" />
         );
     }
 }
