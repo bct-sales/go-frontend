@@ -3,6 +3,8 @@ import ItemsTable from "@/components/ItemsTable";
 import Loading from "@/components/Loading";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
+import { Flex, Stack } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +60,12 @@ export default function ItemsSubpage() : React.ReactNode
     function renderPage(items: Item[]): React.ReactNode
     {
         return (
-            <ItemsTable items={items} />
+            <Stack>
+                <Flex justify="flex-end" align="center">
+                    <IconPlus />
+                </Flex>
+                <ItemsTable items={items} />
+            </Stack>
         );
     }
 }
