@@ -1,4 +1,4 @@
-import { ItemCountByCategory } from "@/rest/item-counts";
+import { ItemCountByCategory } from "@/rest/category-counts";
 import { Table } from "@mantine/core";
 import classes from './CategoryCountsTable.module.css'
 

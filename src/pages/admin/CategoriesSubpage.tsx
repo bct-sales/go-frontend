@@ -1,6 +1,6 @@
 import CategoryCountsTable from "@/components/CategoryCountsTable";
 import Loading from "@/components/Loading";
-import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/item-counts";
+import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
 import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 
