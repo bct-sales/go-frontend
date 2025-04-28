@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { Category, getItemCategories } from "./rest/categories";
 import { RestStatus } from "./rest/status";
 import { failure, success } from "./result";
+import { RestResult } from "./rest/result";
 
 
 export interface CategoryTable
@@ -13,23 +14,7 @@ export interface CategoryTable
 
 export function useCategories(): RestStatus<CategoryTable>
 {
-    const query = useQuery({
-        queryKey: ['categories'],
-        queryFn: async () => {
-            const restResult = await getItemCategories();
-
-            if ( restResult.success )
-            {
-                const categories = restResult.value.counts;
-
-                return success(buildCategoryTable(categories));
-            }
-            else
-            {
-                return failure(restResult.error);
-            }
-        },
-    });
+    const query = useQuery(['categories'], performQuery, { cacheTime: 1000 * 60 * 60, refetchOnWindowFocus: false, staleTime: 1000 * 60 * 60 });
 
     if ( query.data === undefined )
     {
@@ -43,6 +28,23 @@ export function useCategories(): RestStatus<CategoryTable>
     else
     {
         return { status: 'error', tag: query.data.error.type, details: query.data.error.details};
+    }
+
+
+    async function performQuery(): Promise<RestResult<CategoryTable>>
+    {
+        const restResult = await getItemCategories();
+
+        if ( restResult.success )
+        {
+            const categories = restResult.value.counts;
+
+            return success(buildCategoryTable(categories));
+        }
+        else
+        {
+            return failure(restResult.error);
+        }
     }
 }
 
