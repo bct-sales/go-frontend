@@ -7,6 +7,7 @@ import * as pages from '@/pages';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { AuthenticationProvider } from './AuthenticationProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 
 export default function App() : React.ReactNode
@@ -30,12 +31,16 @@ export default function App() : React.ReactNode
         },
     ]);
 
+    const queryClient = new QueryClient();
+
     return (
-        <AuthenticationProvider>
-            <MantineProvider defaultColorScheme="dark">
-                <Notifications />
-                <RouterProvider router={router} />
-            </MantineProvider>
-        </AuthenticationProvider>
+        <QueryClientProvider client={queryClient}>
+            <AuthenticationProvider>
+                <MantineProvider defaultColorScheme="dark">
+                    <Notifications />
+                    <RouterProvider router={router} />
+                </MantineProvider>
+            </AuthenticationProvider>
+        </QueryClientProvider>
     );
 }

@@ -1,16 +1,42 @@
+import { CategoryTable, useCategories } from "@/categories";
 import { Select } from "@mantine/core";
+import Loading from "./Loading";
+
 
 export default function ItemCategoryEditor(): React.ReactNode
 {
-    const itemCategories = [
-        { value: '1', label: 'Category 1' },
-        { value: '2', label: 'Category 2' },
-        { value: '3', label: 'Category 3' },
-        { value: '4', label: 'Category 4' },
-        { value: '5', label: 'Category 5' },
-    ];
+    const categories = useCategories();
 
-    return (
-        <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} />
-    );
+    switch ( categories.status )
+    {
+        case "loading":
+            return (
+                <Loading message="Loading categories..." />
+            );
+
+        case "error":
+            return (
+                <div>Error loading categories</div>
+            );
+
+        case "success":
+            return renderComponent( categories.value );
+    }
+
+
+    function renderComponent(categoryTable: CategoryTable): React.ReactNode
+    {
+        const itemCategories = categoryTable.categoryIds.map( ( categoryId ) =>
+            {
+                return {
+                    value: `${categoryId}`,
+                    label: categoryTable.categoryName(categoryId),
+                };
+            }
+        );
+
+        return (
+            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} />
+        );
+    }
 }
