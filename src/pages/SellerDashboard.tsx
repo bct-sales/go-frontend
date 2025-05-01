@@ -42,7 +42,7 @@ export default function SellerDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<ItemsSubpage />} />
+                        <Route path="/" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
                     </Routes>
                 </AppShell.Main>

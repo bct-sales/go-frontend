@@ -1,4 +1,3 @@
-import { useAuthentication } from "@/authentication";
 import ItemsTable from "@/components/ItemsTable";
 import Loading from "@/components/Loading";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
@@ -9,27 +8,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export default function ItemsSubpage() : React.ReactNode
+interface Props
+{
+    sellerId: number;
+}
+
+export default function ItemsSubpage(props: Props) : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
-    const authentication = useAuthentication();
     const navigate = useNavigate();
 
     useEffect(() => {
         void (async () => {
-            if (authentication.status !== 'authenticated' || authentication.role !== 'seller')
-            {
-                if (authentication.status === 'authenticated')
-                {
-                    authentication.logout();
-                }
-
-                setStatus({ status: 'error', tag: 'missing-authentication', details: 'You are not authorized to view this page.' });
-                navigate('/login');
-                return;
-            }
-
-            const response = await listSellerItems(authentication.username);
+            const response = await listSellerItems(props.sellerId);
 
             if (response.success)
             {
@@ -40,7 +31,7 @@ export default function ItemsSubpage() : React.ReactNode
                 setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
             }
         })();
-    }, [authentication, navigate]);
+    }, [props.sellerId, navigate]);
 
     switch (status.status)
     {
