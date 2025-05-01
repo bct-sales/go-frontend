@@ -16,7 +16,7 @@ export default function AddItemSubpage() : React.ReactNode
     const [donation, setDonation] = useState<boolean>(false);
 
     return (
-        <Flex direction="column" align="center" justify="center" gap="md" style={{height: '100%'}}>
+        <Flex direction="column" align="stretch" justify="center" gap="md" style={{height: '100%'}}>
             <ItemDescriptionEditor description={description} setDescription={setDescription} />
             <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} />
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
