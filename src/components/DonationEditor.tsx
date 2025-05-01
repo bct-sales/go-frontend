@@ -11,7 +11,7 @@ interface Props
 export default function DonationEditor(props: Props): React.ReactNode
 {
     return (
-        <Checkbox icon={DonationCheckboxIcon} checked={props.donation} onChange={onChange} label="Donation" />
+        <Checkbox icon={DonationCheckboxIcon} checked={props.donation} onChange={onChange} label="Donation" size="lg" />
     );
 
 

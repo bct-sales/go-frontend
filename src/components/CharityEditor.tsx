@@ -11,7 +11,7 @@ interface Props
 export default function CharityEditor(props: Props): React.ReactNode
 {
     return (
-        <Checkbox icon={CharityCheckboxIcon} checked={props.charity} onChange={onChange} label="Charity" />
+        <Checkbox icon={CharityCheckboxIcon} checked={props.charity} onChange={onChange} label="Charity" size="lg" />
     );
 
 
