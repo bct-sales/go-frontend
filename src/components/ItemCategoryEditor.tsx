@@ -42,9 +42,25 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
         );
 
         return (
-            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} value={props.categoryId?.toString()} onChange={onChange} />
+            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} value={props.categoryId?.toString()} onChange={onChange} error={renderError()} />
         );
 
+
+        function renderError(): React.ReactNode | undefined
+        {
+            if ( props.categoryId === undefined )
+            {
+                return "Category is required";
+            }
+            else if ( !categoryTable.categoryIds.includes(props.categoryId) )
+            {
+                return "Category not found";
+            }
+            else
+            {
+                return undefined;
+            }
+        }
 
         function onChange(value: string | null): void
         {
