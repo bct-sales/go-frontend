@@ -20,6 +20,7 @@ export default function ItemDescriptionEditor(props: Props): React.ReactNode
             onChange={onChange} />
     );
 
+
     function error(): string | undefined
     {
         if (description.length === 0)
