@@ -1,5 +1,5 @@
-import { Group, Stack, TextInput, Text, Popover, Button } from "@mantine/core";
-import { IconQuestionMark } from "@tabler/icons-react";
+import { Group, Stack, Text, TextInput } from "@mantine/core";
+import HelpPopover from "./HelpPopover";
 
 interface Props
 {
@@ -16,19 +16,12 @@ export default function ItemDescriptionEditor(props: Props): React.ReactNode
         <Stack gap='xs'>
             <Group justify="space-between" align="center">
                 <Text>Description</Text>
-                <Popover position="bottom" shadow="md" width={250}>
-                    <Popover.Target>
-                        <Button variant="subtle" size="xs" p={0}>
-                            <IconQuestionMark />
-                        </Button>
-                    </Popover.Target>
-                    <Popover.Dropdown>
-                        <Text size="sm">
-                            Keep it short but descriptive.
-                            Keep in mind it needs to fit on the label.
-                        </Text>
-                    </Popover.Dropdown>
-                </Popover>
+                <HelpPopover>
+                    <Text size="sm">
+                        Keep it short but descriptive.
+                        Keep in mind it needs to fit on the label.
+                    </Text>
+                </HelpPopover>
             </Group>
             <TextInput
                 placeholder="description"
