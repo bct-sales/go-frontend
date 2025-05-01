@@ -27,7 +27,7 @@ export default function AddItemSubpage(props: Props) : React.ReactNode
     const isValidData = checkValidity();
 
     return (
-        <Flex direction="column" align="stretch" justify="center" gap='md' w='400px'>
+        <Flex direction="column" align="stretch" justify="center" gap='md'>
             <ItemDescriptionEditor description={description} setDescription={setDescription} />
             <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} quickButtons={[100, 200, 500, 1000]} />
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
