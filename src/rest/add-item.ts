@@ -1,5 +1,4 @@
 import { success } from '@/result';
-import { Role } from '@/role';
 import axios from 'axios';
 import { z } from 'zod';
 import { paths } from './paths';
