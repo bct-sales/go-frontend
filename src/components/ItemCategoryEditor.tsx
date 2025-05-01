@@ -3,7 +3,13 @@ import { Select } from "@mantine/core";
 import Loading from "./Loading";
 
 
-export default function ItemCategoryEditor(): React.ReactNode
+interface Props
+{
+    categoryId: number | undefined;
+    setCategoryId: (categoryId: number) => void;
+}
+
+export default function ItemCategoryEditor(props: Props): React.ReactNode
 {
     const categories = useCategories();
 
@@ -36,7 +42,27 @@ export default function ItemCategoryEditor(): React.ReactNode
         );
 
         return (
-            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} />
+            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} value={props.categoryId?.toString()} onChange={onChange} />
         );
+
+
+        function onChange(value: string | null): void
+        {
+            if ( value === null )
+            {
+                console.error("ItemCategoryEditor: onChange: value is null");
+                return;
+            }
+
+            const categoryId = parseInt(value);
+
+            if ( isNaN(categoryId) )
+            {
+                console.error("ItemCategoryEditor: onChange: categoryId is NaN");
+                return;
+            }
+
+            props.setCategoryId(categoryId);
+        }
     }
 }
