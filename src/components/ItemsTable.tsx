@@ -6,6 +6,8 @@ import DonationViewer from "./DonationViewer";
 import classes from './ItemsTable.module.css';
 import Price from "./Price";
 import UserIdViewer from "./UserIdViewer";
+import { useCategories } from "@/categories";
+import Loading from "./Loading";
 
 interface Props
 {
@@ -27,6 +29,7 @@ interface Item
 export default function ItemsTable(props : Props) : React.ReactNode
 {
     const { items } = props;
+    const categoryTable = useCategories();
 
     return (
         <Table className={classes.itemTable}>
@@ -66,7 +69,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
                     <Price priceInCents={item.priceInCents} />
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
-                    {item.categoryId}
+                    {renderCategory(item.categoryId)}
                 </Table.Td>
                 <Table.Td className={classes.itemData}>
                     <UserIdViewer userId={item.sellerId} />
@@ -79,5 +82,20 @@ export default function ItemsTable(props : Props) : React.ReactNode
                 </Table.Td>
             </Table.Tr>
         );
+    }
+
+    function renderCategory(categoryId: number): React.ReactNode
+    {
+        switch (categoryTable.status)
+        {
+            case 'loading':
+                return <>Loading</>;
+            case 'error':
+                return <span>Error: {categoryTable.details}</span>;
+            case 'success':
+                return (
+                    <>{categoryTable.value.categoryName(categoryId)}</>
+                );
+        }
     }
 }
