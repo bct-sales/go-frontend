@@ -3,13 +3,22 @@ import DonationEditor from "@/components/DonationEditor";
 import ItemCategoryEditor from "@/components/ItemCategoryEditor";
 import ItemDescriptionEditor from "@/components/ItemDescriptionEditor";
 import ItemPriceEditor from "@/components/ItemPriceEditor";
+import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
 import { Button, Flex } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-export default function AddItemSubpage() : React.ReactNode
+interface Props
 {
+    sellerId: number;
+}
+
+export default function AddItemSubpage(props: Props) : React.ReactNode
+{
+    const navigate = useNavigate();
     const [description, setDescription] = useState<string>('');
     const [priceInCents, setPriceInCents] = useState<number>(50);
     const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
@@ -24,19 +33,42 @@ export default function AddItemSubpage() : React.ReactNode
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
             <CharityEditor charity={charity} setCharity={setCharity} />
             <DonationEditor donation={donation} setDonation={setDonation} />
-            <Button mt='xl' onClick={addItem} disabled={!isValidData}>Add Item</Button>
+            <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
         </Flex>
     );
 
 
-    function addItem(): void
+    function onAddItem(): void
     {
-        console.log('Adding item with the following details:');
-        console.log('Description:', description);
-        console.log('Price in cents:', priceInCents);
-        console.log('Category ID:', categoryId);
-        console.log('Charity:', charity);
-        console.log('Donation:', donation);
+        void (async () => {
+            const payload: Payload = {
+                description,
+                priceInCents,
+                categoryId: categoryId!,
+                charity,
+                donation,
+            };
+
+            const response = await addItem(props.sellerId, payload);
+
+            if ( response.success )
+            {
+                notifications.show({
+                    message: `Item successfully added!`,
+                    color: 'green',
+                });
+
+                navigate('/seller');
+            }
+            else
+            {
+                notifications.show({
+                    title: 'Failed to add item',
+                    message: `${response.error.details} (tag ${response.error.type})`,
+                    color: 'red',
+                });
+            }
+        })();
     }
 
     function checkValidity(): boolean
