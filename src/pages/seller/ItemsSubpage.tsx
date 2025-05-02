@@ -1,11 +1,11 @@
 import ItemsTable from "@/components/ItemsTable";
 import Loading from "@/components/Loading";
+import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
-import { Flex, Stack } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Button, Flex, Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 interface Props
@@ -53,10 +53,31 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
         return (
             <Stack>
                 <Flex justify="flex-end" align="center">
-                    <IconPlus />
+                    <Button onClick={onGenerateLabels}>Generate</Button>
                 </Flex>
                 <ItemsTable items={items} />
             </Stack>
         );
+    }
+
+    function onGenerateLabels(): void
+    {
+        void (async () => {
+            const blob = await generateLabels(props.sellerId);
+
+            if ( !blob.success )
+            {
+                console.error("Failed to generate labels", blob.error);
+                return;
+            }
+
+            const url = window.URL.createObjectURL(blob.value);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'labels.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        })();
     }
 }
