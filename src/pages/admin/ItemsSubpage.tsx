@@ -2,7 +2,8 @@ import ItemsTable from "@/components/ItemsTable";
 import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Group, Stack } from "@mantine/core";
+import { Button, Group, Menu, Stack } from "@mantine/core";
+import { IconDownload } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -53,9 +54,18 @@ export default function ItemsSubpage() : React.ReactNode
             <>
                 <Stack>
                     <Group justify="flex-end" align="center" mb="md">
-                        <Link to={url} target="_blank" download="items.csv">
-                            CSV
-                        </Link>
+                        <Menu>
+                            <Menu.Target>
+                                <Button variant="outline">
+                                    <IconDownload size={16} stroke={1.5} />
+                                </Button>
+                            </Menu.Target>
+                            <Menu.Dropdown>
+                                <Menu.Item component={Link} to={url} target="_blank" download="items.csv">
+                                    CSV
+                                </Menu.Item>
+                            </Menu.Dropdown>
+                        </Menu>
                     </Group>
                     <ItemsTable items={items} />
                 </Stack>
