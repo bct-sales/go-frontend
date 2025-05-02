@@ -3,6 +3,8 @@ import Loading from "@/components/Loading";
 import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
 import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
+import ErrorPage from "../ErrorPage";
+import { Table } from "@mantine/core";
 
 
 export default function CategoriesSubpage() : React.ReactNode
@@ -15,7 +17,8 @@ export default function CategoriesSubpage() : React.ReactNode
 
             if (data.success)
             {
-                setStatus({ status: 'success', value: data.value.counts });
+                // setStatus({ status: 'success', value: data.value.counts });
+                setStatus({ status: 'error', tag: 'Not implemented', details: 'This feature is not implemented yet.' });
             }
             else
             {
@@ -35,7 +38,22 @@ export default function CategoriesSubpage() : React.ReactNode
             );
 
         case 'error':
-            return <div>Error: {status.tag} - {status.details}</div>;
+            return (
+                <ErrorPage>
+                    <Table variant="vertical">
+                        <Table.Tbody>
+                            <Table.Tr>
+                                <Table.Th>Tag</Table.Th>
+                                <Table.Td>{status.tag}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th>Details</Table.Th>
+                                <Table.Td>{status.details}</Table.Td>
+                            </Table.Tr>
+                        </Table.Tbody>
+                    </Table>
+                </ErrorPage>
+            );
     }
 
 
