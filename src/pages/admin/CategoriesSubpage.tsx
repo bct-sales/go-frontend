@@ -17,8 +17,7 @@ export default function CategoriesSubpage() : React.ReactNode
 
             if (data.success)
             {
-                // setStatus({ status: 'success', value: data.value.counts });
-                setStatus({ status: 'error', tag: 'Not implemented', details: 'This feature is not implemented yet.' });
+                setStatus({ status: 'success', value: data.value.counts });
             }
             else
             {
