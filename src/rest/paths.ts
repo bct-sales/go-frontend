@@ -14,7 +14,7 @@ class RestPaths
 
     get items() { return `${this.root}/items`; }
 
-    get categoryCounts() { return `${this.root}/categories`; }
+    get categoryCounts() { return `${this.root}/categories?counts=true`; }
 
     get categories() { return `${this.root}/categories`; }
 }
