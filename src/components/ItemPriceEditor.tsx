@@ -1,6 +1,6 @@
-import { Button, Flex, NumberInput } from "@mantine/core";
+import { Text, Button, Flex, Group, NumberInput, Stack } from "@mantine/core";
 import { NumberFormatValues } from "react-number-format";
-import Price from "./Price";
+import HelpPopover from "./HelpPopover";
 
 
 interface Props
@@ -15,9 +15,16 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
     const { priceInCents, setPriceInCents } = props;
 
     return (
-        <Flex align="stretch" justify="flex-start" direction="column" gap="md">
+        <Stack gap='xs'>
+            <Group justify="space-between" align="center">
+                <Text>Price</Text>
+                <HelpPopover>
+                    <Text size="sm">
+                        Must be a multiple of &euro;0.50 and at least &euro;0.50.
+                    </Text>
+                </HelpPopover>
+            </Group>
             <NumberInput
-                label="Price"
                 value={priceInCents / 100}
                 step={0.50}
                 min={0.50}
@@ -28,7 +35,7 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
                 isAllowed={isAllowed}
                 onChange={onChange} />
             {renderQuickButtons()}
-        </Flex>
+        </Stack>
     );
 
 
