@@ -49,6 +49,7 @@ export default function ItemsSubpage() : React.ReactNode
     function renderPage(items: Item[]): React.ReactNode
     {
         const cvsUrl = `/api/v1/items?format=csv`;
+        const jsonUrl = `/api/v1/items?format=json`;
 
         return (
             <>
@@ -63,6 +64,9 @@ export default function ItemsSubpage() : React.ReactNode
                             <Menu.Dropdown>
                                 <Menu.Item component={Link} to={cvsUrl} target="_blank" download="items.csv">
                                     CSV
+                                </Menu.Item>
+                                <Menu.Item component={Link} to={jsonUrl} target="_blank" download="items.json">
+                                    JSON
                                 </Menu.Item>
                             </Menu.Dropdown>
                         </Menu>
