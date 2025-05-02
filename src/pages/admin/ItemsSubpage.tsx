@@ -48,7 +48,7 @@ export default function ItemsSubpage() : React.ReactNode
 
     function renderPage(items: Item[]): React.ReactNode
     {
-        const url = `/api/v1/items?format=csv`;
+        const cvsUrl = `/api/v1/items?format=csv`;
 
         return (
             <>
@@ -61,7 +61,7 @@ export default function ItemsSubpage() : React.ReactNode
                                 </Button>
                             </Menu.Target>
                             <Menu.Dropdown>
-                                <Menu.Item component={Link} to={url} target="_blank" download="items.csv">
+                                <Menu.Item component={Link} to={cvsUrl} target="_blank" download="items.csv">
                                     CSV
                                 </Menu.Item>
                             </Menu.Dropdown>
