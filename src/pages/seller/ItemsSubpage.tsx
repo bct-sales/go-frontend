@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
@@ -19,6 +19,7 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const navigate = useNavigate();
     const columns = [
+        editColumn(onEditItem),
         itemIdColumn,
         descriptionColumn,
         addedAtColumn,
@@ -89,5 +90,10 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
             a.click();
             a.remove();
         })();
+    }
+
+    function onEditItem(item: Item): void
+    {
+        console.log(`Editing item ${item.itemId}`);
     }
 }
