@@ -8,12 +8,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 
-interface Props
-{
-    sellerId: number;
-}
 
-export default function EditItemSubpage(props: Props) : React.ReactNode
+export default function EditItemSubpage() : React.ReactNode
 {
     const [searchParams] = useSearchParams();
     const itemId = parseInt(searchParams.get('itemId') || '');
