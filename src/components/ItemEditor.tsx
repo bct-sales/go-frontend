@@ -1,9 +1,9 @@
-import { Button, Flex } from "@mantine/core";
-import ItemDescriptionEditor from "./ItemDescriptionEditor";
-import ItemPriceEditor from "./ItemPriceEditor";
-import ItemCategoryEditor from "./ItemCategoryEditor";
+import { Flex } from "@mantine/core";
 import CharityEditor from "./CharityEditor";
 import DonationEditor from "./DonationEditor";
+import ItemCategoryEditor from "./ItemCategoryEditor";
+import ItemDescriptionEditor from "./ItemDescriptionEditor";
+import ItemPriceEditor from "./ItemPriceEditor";
 
 interface Props
 {
