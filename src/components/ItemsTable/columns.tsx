@@ -5,44 +5,53 @@ import DateTimeViewer from "@/components/DateTimeViewer";
 import DonationViewer from "@/components/DonationViewer";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
+import classes from './ItemsTable.module.css';
 
 
 export const itemIdColumn: Column = {
     header: 'Id',
+    className: 'item-id',
     viewer: (item: Item) => item.itemId,
 };
 
 export const descriptionColumn: Column = {
     header: 'Description',
+    className: classes.itemDescription,
     viewer: (item: Item) => item.description,
 };
 
 export const addedAtColumn: Column = {
-    header: 'Added At',
+    header: "Added At",
+    className: classes.itemAddedAt,
     viewer: (item: Item) => <DateTimeViewer dateTime={item.addedAt} />,
 };
 
 export const priceInCentsColumn: Column = {
     header: 'Price',
+    className: classes.itemPrice,
     viewer: (item: Item) => <Price priceInCents={item.priceInCents} />,
 };
 
 export const charityColumn: Column = {
     header: 'Charity',
+    className: classes.itemCharity,
     viewer: (item: Item) => <CharityViewer value={item.charity} />,
 };
 
 export const donationColumn: Column = {
     header: 'Donation',
+    className: classes.itemDonation,
     viewer: (item: Item) => <DonationViewer value={item.donation} />,
 };
 
 export const categoryColumn: Column = {
     header: 'Category',
+    className: classes.itemCategory,
     viewer: (item: Item) => <CategoryViewer categoryId={item.categoryId} />,
 };
 
 export const sellerColumn: Column = {
     header: 'Seller',
+    className: classes.itemSeller,
     viewer: (item: Item) => <UserIdViewer userId={item.sellerId} />,
 };

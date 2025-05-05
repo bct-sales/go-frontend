@@ -25,6 +25,7 @@ export interface Item
 export interface Column
 {
     header: React.ReactNode;
+    className: string;
     viewer: (item: Item) => React.ReactNode;
 }
 
@@ -38,7 +39,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
             <Table.Thead>
                 <Table.Tr>
                     {columns.map((column, index) => (
-                        <Table.Th key={index} className={classes.itemHeader}>
+                        <Table.Th key={index} className={`${classes.itemHeader} ${column.className}`}>
                             {column.header}
                         </Table.Th>
                     ))}
@@ -56,7 +57,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
         return (
             <Table.Tr key={item.itemId} className={classes.itemRow}>
                 {columns.map((column, index) => (
-                    <Table.Td key={index} className={classes.itemData}>
+                    <Table.Td key={index} className={`${classes.itemData} ${column.className}`}>
                         {column.viewer(item)}
                     </Table.Td>
                 ))}

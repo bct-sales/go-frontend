@@ -21,4 +21,32 @@
     & .itemDescription {
         text-align: left;
     }
+
+    & .itemPrice {
+        text-align: right;
+    }
+
+    & .itemId {
+        text-align: left;
+    }
+
+    & .itemCharity {
+        text-align: center;
+    }
+
+    & .itemDonation {
+        text-align: center;
+    }
+
+    & .itemCategory {
+        text-align: left;
+    }
+
+    & .itemSeller {
+        text-align: center;
+    }
+
+    & .itemAddedAt {
+        text-align: left;
+    }
 }
