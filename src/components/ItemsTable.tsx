@@ -91,15 +91,6 @@ export default function ItemsTable(props : Props) : React.ReactNode
                             {column.header}
                         </Table.Th>
                     ))}
-                    {/* <Table.Th></Table.Th>
-                    <Table.Th>Id</Table.Th>
-                    <Table.Th>Description</Table.Th>
-                    <Table.Th>Added At</Table.Th>
-                    <Table.Th>Price</Table.Th>
-                    <Table.Th>Category</Table.Th>
-                    <Table.Th>Seller</Table.Th>
-                    <Table.Th>Donation</Table.Th>
-                    <Table.Th>Charity</Table.Th> */}
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -118,35 +109,6 @@ export default function ItemsTable(props : Props) : React.ReactNode
                         {column.viewer(item)}
                     </Table.Td>
                 ))}
-                {/* <Table.Td className={classes.itemData}>
-                    {item.frozen ? <FrozenViewer value={item.frozen} /> : <Button variant="subtle" onClick={() => onEdit(item.itemId)}><IconEdit size={16} /></Button>}
-                {/* <Table.Td className={classes.itemData}>
-                    {renderEditOrFrozen(item)}
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    {item.itemId}
-                </Table.Td>
-                <Table.Td className={`${classes.itemData} ${classes.itemDescription}`}>
-                    {item.description}
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    <DateTimeViewer dateTime={item.addedAt} />
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    <Price priceInCents={item.priceInCents} />
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    {renderCategory(item.categoryId)}
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    <UserIdViewer userId={item.sellerId} />
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    <DonationViewer value={item.donation} />
-                </Table.Td>
-                <Table.Td className={classes.itemData}>
-                    <CharityViewer value={item.charity} />
-                </Table.Td> */}
             </Table.Tr>
         );
     }
@@ -164,21 +126,6 @@ export default function ItemsTable(props : Props) : React.ReactNode
                     <IconEdit size={16} />
                 </Button>
             );
-        }
-    }
-
-    function renderCategory(categoryId: number): React.ReactNode
-    {
-        switch (categoryTable.status)
-        {
-            case 'loading':
-                return <>Loading</>;
-            case 'error':
-                return <span>Error: {categoryTable.details}</span>;
-            case 'success':
-                return (
-                    <>{categoryTable.value.categoryName(categoryId)}</>
-                );
         }
     }
 
