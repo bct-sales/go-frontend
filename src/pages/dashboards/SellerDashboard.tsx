@@ -1,12 +1,12 @@
 import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconList, IconLogout, IconPlus } from "@tabler/icons-react";
+import { IconEdit, IconList, IconLogout, IconPlus } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import ItemsSubpage from "./seller/ItemsSubpage";
+import ItemsSubpage from "../seller/ItemsSubpage";
 import { useAuthentication } from "@/authentication";
 import classes from './SellerDashboard.module.css';
 import AuthenticationViewer from "@/components/AuthenticationViewer";
-import AddItemSubpage from "./seller/AddItemSubpage";
+import AddItemSubpage from "../seller/AddItemSubpage";
 
 
 export default function SellerDashboard()
@@ -37,6 +37,7 @@ export default function SellerDashboard()
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
                         {renderNavbarLink("Items", "/seller", <IconList />)}
                         {renderNavbarLink("Add Item", "/seller/add-item", <IconPlus />)}
+                        {renderNavbarLink("Edit Item", "/seller/edit-item", <IconEdit />)}
                         {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                     </Flex>
                 </AppShell.Navbar>
@@ -44,6 +45,7 @@ export default function SellerDashboard()
                     <Routes>
                         <Route path="/" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
+                        <Route path="/edit-item" element={<EditItemSubpage sellerId={authentication.username} />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
