@@ -2,6 +2,7 @@ import CharityEditor from "@/components/CharityEditor";
 import DonationEditor from "@/components/DonationEditor";
 import ItemCategoryEditor from "@/components/ItemCategoryEditor";
 import ItemDescriptionEditor from "@/components/ItemDescriptionEditor";
+import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import ItemPriceEditor from "@/components/ItemPriceEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
@@ -19,20 +20,13 @@ interface Props
 export default function AddItemSubpage(props: Props) : React.ReactNode
 {
     const navigate = useNavigate();
-    const [description, setDescription] = useState<string>('');
-    const [priceInCents, setPriceInCents] = useState<number>(50);
-    const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
-    const [charity, setCharity] = useState<boolean>(false);
-    const [donation, setDonation] = useState<boolean>(false);
+    const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: undefined, charity: false, donation: false});
+    const { description, priceInCents, categoryId, charity, donation } = itemData;
     const isValidData = checkValidity();
 
     return (
         <Flex direction="column" align="stretch" justify="center" gap='md'>
-            <ItemDescriptionEditor description={description} setDescription={setDescription} />
-            <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} quickButtons={[100, 200, 500, 1000]} />
-            <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
-            <CharityEditor charity={charity} setCharity={setCharity} />
-            <DonationEditor donation={donation} setDonation={setDonation} />
+            <ItemEditor itemData={itemData} setItemData={setItemData} />
             <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
         </Flex>
     );
