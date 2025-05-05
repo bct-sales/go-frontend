@@ -16,13 +16,13 @@ const Payload = z.object({
 export type Payload = z.infer<typeof Payload>;
 
 
-export async function updateItem(sellerId: number, payload: Payload ): Promise<RestResult<unknown>>
+export async function updateItem(itemId: number, payload: Payload ): Promise<RestResult<unknown>>
 {
-    const url = paths.sellerItems(sellerId);
+    const url = paths.item(itemId);
 
     try
     {
-        await axios.post<unknown>( url, payload );
+        await axios.put<unknown>( url, payload );
 
         return success({});
     }
