@@ -6,6 +6,9 @@ import DonationViewer from "@/components/DonationViewer";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import classes from './ItemsTable.module.css';
+import FrozenViewer from "../FrozenViewer";
+import { IconEdit } from "@tabler/icons-react";
+import { Button } from "@mantine/core";
 
 
 export const itemIdColumn: Column = {
@@ -55,3 +58,26 @@ export const sellerColumn: Column = {
     className: classes.itemSeller,
     viewer: (item: Item) => <UserIdViewer userId={item.sellerId} />,
 };
+
+export function editColumn(onClick: (item: Item) => void): Column
+{
+    return {
+        header: '',
+        className: classes.itemEdit,
+        viewer: (item: Item) => {
+            if (item.frozen) {
+                return (
+                    <FrozenViewer value={item.frozen} />
+                )
+            }
+            else
+            {
+                return (
+                    <Button onClick={() => onClick(item)} variant="subtle">
+                        <IconEdit />
+                    </Button>
+                );
+            }
+        },
+    };
+}
