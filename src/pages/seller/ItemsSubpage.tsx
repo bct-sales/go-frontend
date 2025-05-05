@@ -53,7 +53,7 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
         return (
             <Stack>
                 <Flex justify="flex-end" align="center">
-                    <Button onClick={onGenerateLabels}>Generate</Button>
+                    <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
                 </Flex>
                 <ItemsTable items={items} />
             </Stack>
