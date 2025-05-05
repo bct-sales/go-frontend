@@ -94,6 +94,6 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
 
     function onEditItem(item: Item): void
     {
-        console.log(`Editing item ${item.itemId}`);
+        navigate(`/seller/edit-item?itemId=${item.itemId}`);
     }
 }

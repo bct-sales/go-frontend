@@ -7,6 +7,7 @@ import { useAuthentication } from "@/authentication";
 import classes from './SellerDashboard.module.css';
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import AddItemSubpage from "../seller/AddItemSubpage";
+import EditItemSubpage from "../seller/EditItemSubpage";
 
 
 export default function SellerDashboard()
