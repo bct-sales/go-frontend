@@ -1,7 +1,9 @@
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import { getItemInformation, Item } from "@/rest/item-data";
 import { RestStatus } from "@/rest/status";
+import { updateItem } from "@/rest/update-item";
 import { Button, Flex } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -70,7 +72,30 @@ export default function EditItemSubpage(props: Props) : React.ReactNode
 
     function onUpdateItem(): void
     {
+        void (async () => {
+            const payload = {
+                description: itemData.description,
+                priceInCents: itemData.priceInCents,
+                categoryId: itemData.categoryId!,
+                charity: itemData.charity,
+                donation: itemData.donation,
+            };
 
+            const response = await updateItem(itemId, payload);
+
+            if (response.success) {
+                notifications.show({
+                    message: `Item successfully updated!`,
+                    color: 'green',
+                });
+            } else {
+                notifications.show({
+                    title: 'Failed to update item',
+                    message: `${response.error.details} (tag ${response.error.type})`,
+                    color: 'red',
+                });
+            }
+        })();
     }
 
     function isValidData(): boolean
