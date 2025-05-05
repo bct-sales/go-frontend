@@ -54,13 +54,13 @@ export default function SellerDashboard()
     );
 
 
-    function renderNavbarLink(label: string, to: string, Icon: React.ReactNode): React.ReactNode
+    function renderNavbarLink(label: string, to: string, icon: React.ReactNode): React.ReactNode
     {
         const isActive = to === location.pathname;
 
         return (
             <ActionIcon onClick={followLink(to)} title={label} size={64} variant={isActive ? 'filled' : 'light'}>
-                {Icon}
+                {icon}
             </ActionIcon>
         );
     }
