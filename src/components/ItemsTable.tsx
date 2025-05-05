@@ -8,6 +8,7 @@ import Price from "./Price";
 import UserIdViewer from "./UserIdViewer";
 import { useCategories } from "@/categories";
 import Loading from "./Loading";
+import FrozenViewer from "./FrozenViewer";
 
 interface Props
 {
@@ -24,6 +25,7 @@ interface Item
     sellerId: number;
     donation: boolean;
     charity: boolean;
+    frozen: boolean;
 }
 
 export default function ItemsTable(props : Props) : React.ReactNode
