@@ -1,5 +1,5 @@
 import { DateTime } from "@/datetime";
-import { Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import CharityViewer from "./CharityViewer";
 import DateTimeViewer from "./DateTimeViewer";
 import DonationViewer from "./DonationViewer";
@@ -9,6 +9,7 @@ import UserIdViewer from "./UserIdViewer";
 import { useCategories } from "@/categories";
 import Loading from "./Loading";
 import FrozenViewer from "./FrozenViewer";
+import { IconEdit } from "@tabler/icons-react";
 
 interface Props
 {
@@ -37,6 +38,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
         <Table className={classes.itemTable}>
             <Table.Thead>
                 <Table.Tr>
+                    <Table.Th></Table.Th>
                     <Table.Th>Id</Table.Th>
                     <Table.Th>Description</Table.Th>
                     <Table.Th>Added At</Table.Th>
@@ -58,6 +60,9 @@ export default function ItemsTable(props : Props) : React.ReactNode
     {
         return (
             <Table.Tr key={item.itemId} className={classes.itemRow}>
+                <Table.Td className={classes.itemData}>
+                    {renderEditOrFrozen(item)}
+                </Table.Td>
                 <Table.Td className={classes.itemData}>
                     {item.itemId}
                 </Table.Td>
@@ -86,6 +91,22 @@ export default function ItemsTable(props : Props) : React.ReactNode
         );
     }
 
+    function renderEditOrFrozen(item: Item): React.ReactNode
+    {
+        if ( item.frozen )
+        {
+            return <FrozenViewer value={item.frozen} />;
+        }
+        else
+        {
+            return (
+                <Button variant="subtle" onClick={() => onEdit(item.itemId)}>
+                    <IconEdit size={16} />
+                </Button>
+            );
+        }
+    }
+
     function renderCategory(categoryId: number): React.ReactNode
     {
         switch (categoryTable.status)
@@ -99,5 +120,10 @@ export default function ItemsTable(props : Props) : React.ReactNode
                     <>{categoryTable.value.categoryName(categoryId)}</>
                 );
         }
+    }
+
+    function onEdit(itemId: number): void
+    {
+        console.log(`Edit item ${itemId}`);
     }
 }
