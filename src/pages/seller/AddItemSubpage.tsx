@@ -1,9 +1,4 @@
-import CharityEditor from "@/components/CharityEditor";
-import DonationEditor from "@/components/DonationEditor";
-import ItemCategoryEditor from "@/components/ItemCategoryEditor";
-import ItemDescriptionEditor from "@/components/ItemDescriptionEditor";
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
-import ItemPriceEditor from "@/components/ItemPriceEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
 import { Button, Flex } from "@mantine/core";
