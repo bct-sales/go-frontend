@@ -30,7 +30,7 @@ export interface Column
 }
 
 
-export default function ItemsTable(props : Props) : React.ReactNode
+export default function ItemsTable(props: Props): React.ReactNode
 {
     const { items, columns } = props;
 
@@ -52,7 +52,7 @@ export default function ItemsTable(props : Props) : React.ReactNode
     );
 
 
-    function renderItem(item : Item) : React.ReactNode
+    function renderItem(item: Item): React.ReactNode
     {
         return (
             <Table.Tr key={item.itemId} className={classes.itemRow}>
