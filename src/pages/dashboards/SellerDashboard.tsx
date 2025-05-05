@@ -43,7 +43,7 @@ export default function SellerDashboard()
                         <NavigationButton caption="Add Item" url="/seller/add-item">
                             <IconPlus />
                         </NavigationButton>
-                        <NavigationButton caption="Edit Item" url="/seller/edit-item">
+                        <NavigationButton caption="Edit Item" url="/seller/edit-item" onlyShowWhenActive={true}>
                             <IconEdit />
                         </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
