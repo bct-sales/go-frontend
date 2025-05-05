@@ -14,8 +14,6 @@ import NavigationButton from "@/components/NavigationButton";
 export default function SellerDashboard()
 {
     const authentication = useAuthentication();
-    const location = useLocation();
-    const navigate = useNavigate();
 
     if ( authentication.status !== 'authenticated' || authentication.role !== 'seller' )
     {
@@ -55,7 +53,7 @@ export default function SellerDashboard()
                     <Routes>
                         <Route path="/" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
-                        <Route path="/edit-item" element={<EditItemSubpage sellerId={authentication.username} />} />
+                        <Route path="/edit-item" element={<EditItemSubpage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
