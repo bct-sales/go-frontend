@@ -1,5 +1,5 @@
 import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconEdit, IconList, IconLogout, IconPlus } from "@tabler/icons-react";
+import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ItemsSubpage from "../seller/ItemsSubpage";
@@ -9,6 +9,7 @@ import AuthenticationViewer from "@/components/AuthenticationViewer";
 import AddItemSubpage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
 import NavigationButton from "@/components/NavigationButton";
+import OverviewSubpage from "../seller/OverviewSubpage";
 
 
 export default function SellerDashboard()
@@ -35,7 +36,10 @@ export default function SellerDashboard()
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                        <NavigationButton caption="Items" url="/seller">
+                        <NavigationButton caption="Overview" url="/seller">
+                            <IconChartBar />
+                        </NavigationButton>
+                        <NavigationButton caption="Items" url="/seller/items">
                             <IconList />
                         </NavigationButton>
                         <NavigationButton caption="Add Item" url="/seller/add-item">
@@ -51,7 +55,8 @@ export default function SellerDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<ItemsSubpage sellerId={authentication.username} />} />
+                        <Route path="/" element={<OverviewSubpage sellerId={authentication.username} />} />
+                        <Route path="/items" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemSubpage />} />
                     </Routes>
