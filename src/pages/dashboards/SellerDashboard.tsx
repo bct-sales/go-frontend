@@ -8,6 +8,7 @@ import classes from './SellerDashboard.module.css';
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import AddItemSubpage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
+import NavigationButton from "@/components/NavigationButton";
 
 
 export default function SellerDashboard()
@@ -36,10 +37,18 @@ export default function SellerDashboard()
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                        {renderNavbarLink("Items", "/seller", <IconList />)}
-                        {renderNavbarLink("Add Item", "/seller/add-item", <IconPlus />)}
-                        {renderNavbarLink("Edit Item", "/seller/edit-item", <IconEdit />)}
-                        {renderNavbarLink("Logout", "/logout", <IconLogout />)}
+                        <NavigationButton caption="Items" url="/seller">
+                            <IconList />
+                        </NavigationButton>
+                        <NavigationButton caption="Add Item" url="/seller/add-item">
+                            <IconPlus />
+                        </NavigationButton>
+                        <NavigationButton caption="Edit Item" url="/seller/edit-item">
+                            <IconEdit />
+                        </NavigationButton>
+                        <NavigationButton caption="Logout" url="/logout">
+                            <IconLogout />
+                        </NavigationButton>
                     </Flex>
                 </AppShell.Navbar>
                 <AppShell.Main>
@@ -52,23 +61,4 @@ export default function SellerDashboard()
             </AppShell>
         </>
     );
-
-
-    function renderNavbarLink(label: string, to: string, icon: React.ReactNode): React.ReactNode
-    {
-        const isActive = to === location.pathname;
-
-        return (
-            <ActionIcon onClick={followLink(to)} title={label} size={64} variant={isActive ? 'filled' : 'light'}>
-                {icon}
-            </ActionIcon>
-        );
-    }
-
-    function followLink(url: string): () => void
-    {
-        return () => {
-            navigate(url);
-        };
-    }
 }
