@@ -1,4 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
+import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import UserTable from "@/components/UserTable";
 import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/admin/user-information";
@@ -73,10 +74,20 @@ export default function UserSubpage()
 
     function renderSeller(userInformation: SellerUserInformation): React.ReactNode
     {
+        const columns = [
+            itemIdColumn,
+            descriptionColumn,
+            addedAtColumn,
+            categoryColumn,
+            priceInCentsColumn,
+            charityColumn,
+            donationColumn,
+        ];
+
         return (
             <Stack>
                 <UserTable {...userInformation} />
-                <ItemsTable items={userInformation.items} />
+                <ItemsTable items={userInformation.items} columns={columns} />
             </Stack>
         );
     }

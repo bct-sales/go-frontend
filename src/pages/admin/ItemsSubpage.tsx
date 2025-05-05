@@ -1,4 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
+import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, sellerColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
@@ -50,6 +51,16 @@ export default function ItemsSubpage() : React.ReactNode
     {
         const cvsUrl = `/api/v1/items?format=csv`;
         const jsonUrl = `/api/v1/items?format=json`;
+        const columns = [
+            itemIdColumn,
+            descriptionColumn,
+            addedAtColumn,
+            priceInCentsColumn,
+            categoryColumn,
+            charityColumn,
+            donationColumn,
+            sellerColumn,
+        ];
 
         return (
             <>
@@ -71,7 +82,7 @@ export default function ItemsSubpage() : React.ReactNode
                             </Menu.Dropdown>
                         </Menu>
                     </Group>
-                    <ItemsTable items={items} />
+                    <ItemsTable items={items} columns={columns} />
                 </Stack>
             </>
         );

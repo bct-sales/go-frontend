@@ -15,6 +15,7 @@ const Item = z.object({
 	sellerId: z.number(),
 	donation: z.boolean(),
 	charity: z.boolean(),
+    frozen: z.boolean(),
 });
 
 export type Item = z.infer<typeof Item>;

@@ -1,4 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
+import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
@@ -17,6 +18,15 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const navigate = useNavigate();
+    const columns = [
+        itemIdColumn,
+        descriptionColumn,
+        addedAtColumn,
+        categoryColumn,
+        priceInCentsColumn,
+        charityColumn,
+        donationColumn,
+    ];
 
     useEffect(() => {
         void (async () => {
@@ -55,7 +65,7 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
                 <Flex justify="flex-end" align="center">
                     <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
                 </Flex>
-                <ItemsTable items={items} />
+                <ItemsTable items={items} columns={columns} />
             </Stack>
         );
     }
