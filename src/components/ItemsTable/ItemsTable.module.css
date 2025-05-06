@@ -49,4 +49,8 @@
     & .itemAddedAt {
         text-align: left;
     }
+
+    & .itemCopy {
+        text-align: center;
+    }
 }

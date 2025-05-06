@@ -7,7 +7,7 @@ import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import classes from './ItemsTable.module.css';
 import FrozenViewer from "../FrozenViewer";
-import { IconEdit } from "@tabler/icons-react";
+import { IconCopy, IconCopyPlus, IconEdit } from "@tabler/icons-react";
 import { Button } from "@mantine/core";
 
 
@@ -78,6 +78,21 @@ export function editColumn(onClick: (item: Item) => void): Column
                     </Button>
                 );
             }
+        },
+    };
+}
+
+export function copyColumn(onClick: (item: Item) => void): Column
+{
+    return {
+        header: '',
+        className: classes.itemCopy,
+        viewer: (item: Item) => {
+            return (
+                <Button onClick={() => onClick(item)} variant="subtle">
+                    <IconCopyPlus />
+                </Button>
+            );
         },
     };
 }

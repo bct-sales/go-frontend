@@ -1,10 +1,12 @@
 import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import { addedAtColumn, categoryColumn, charityColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
+import { addItem, Payload } from "@/rest/add-item";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
 import { Button, Flex, Stack } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +22,7 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
     const navigate = useNavigate();
     const columns = [
         editColumn(onEditItem),
+        copyColumn(onCopyItem),
         itemIdColumn,
         descriptionColumn,
         addedAtColumn,
@@ -95,5 +98,25 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
     function onEditItem(item: Item): void
     {
         navigate(`/seller/edit-item?itemId=${item.itemId}`);
+    }
+
+    function onCopyItem(item: Item): void
+    {
+        void (async () => {
+            const copyId = await addItem(props.sellerId, item);
+
+            if ( copyId.success )
+            {
+                navigate(`/seller/edit-item?itemId=${copyId.value}`);
+            }
+            else
+            {
+                notifications.show({
+                    title: 'Error',
+                    message: `Failed to copy item: ${copyId.error.details}`,
+                    color: 'red',
+                });
+            }
+        })();
     }
 }
