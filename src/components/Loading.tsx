@@ -1,5 +1,6 @@
 import { Flex, Loader, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import Delayed from "./Delayed";
 
 interface Props
 {
@@ -11,32 +12,16 @@ const DEFAULT_DELAY_IN_MILLISECONDS = 100;
 
 export default function Loading(props: Props): React.ReactNode
 {
-    const [visible, setVisible] = useState(false);
     const delayInMilliseconds = props.delayInMilliseconds || DEFAULT_DELAY_IN_MILLISECONDS;
 
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            setVisible(true);
-        }, delayInMilliseconds);
-
-        return () => {
-            clearTimeout(timeOut);
-        };
-    }, [visible, delayInMilliseconds]);
-
-    if ( visible )
-    {
-        return (
+    return (
+        <Delayed delayInMilliseconds={delayInMilliseconds}>
             <Flex justify="center" align="center" direction="column">
                 {renderMessage()}
                 <Loader type="dots" color="blue" size="xl" />
             </Flex>
-        );
-    }
-    else
-    {
-        return <></>;
-    }
+        </Delayed>
+    );
 
 
     function renderMessage(): React.ReactNode
