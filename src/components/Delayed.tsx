@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 interface Props
 {
-    delay: number;
+    delayInMilliseconds: number;
     children: React.ReactNode;
 }
 
@@ -13,9 +13,9 @@ export default function Delayed(props: Props): React.ReactNode
 
     useEffect(() =>
     {
-        const timer = setTimeout(() => setShow(true), props.delay);
+        const timer = setTimeout(() => setShow(true), props.delayInMilliseconds);
         return () => clearTimeout(timer);
-    }, [props.delay]);
+    }, [props.delayInMilliseconds]);
 
     if ( show )
     {
