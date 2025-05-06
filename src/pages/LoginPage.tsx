@@ -1,4 +1,5 @@
 import { useAuthentication } from '@/authentication';
+import Delayed from '@/components/Delayed';
 import * as rest from '@/rest/login';
 import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -31,11 +32,13 @@ export default function LoginPage()
     if ( authentication.status === 'authenticated' )
     {
         return (
-            <Center mih='50vh'>
-                <Box maw={500} mx="auto" w='40%'>
-                    <h1>Bug!</h1>
-                </Box>
-            </Center>
+            <Delayed delayInMilliseconds={500}>
+                <Center mih='50vh'>
+                    <Box maw={500} mx="auto" w='40%'>
+                        <h1>Bug!</h1>
+                    </Box>
+                </Center>
+            </Delayed>
         );
     }
 
