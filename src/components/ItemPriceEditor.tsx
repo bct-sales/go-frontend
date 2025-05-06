@@ -1,6 +1,7 @@
 import { Text, Button, Flex, Group, NumberInput, Stack } from "@mantine/core";
 import { NumberFormatValues } from "react-number-format";
 import HelpPopover from "./HelpPopover";
+import { useRef } from "react";
 
 
 interface Props
@@ -12,6 +13,7 @@ interface Props
 
 export default function ItemPriceEditor(props: Props): React.ReactNode
 {
+    const numberInputRef = useRef<HTMLInputElement>(null);
     const { priceInCents, setPriceInCents } = props;
 
     return (
@@ -25,6 +27,7 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
                 </HelpPopover>
             </Group>
             <NumberInput
+                ref={numberInputRef}
                 value={priceInCents / 100}
                 step={0.50}
                 min={0.50}
@@ -61,10 +64,20 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
         const cents = priceInCents % 100;
 
         return (
-            <Button onClick={() => setPriceInCents(priceInCents)} tabIndex={-1}>
+            <Button onClick={() => quickSetPrice(priceInCents)} tabIndex={-1}>
                 {`€${euros}.${cents.toString().padStart(2, '0')}`}
             </Button>
         );
+    }
+
+    // Called when the user clicks a quick button
+    function quickSetPrice(priceInCents: number): void
+    {
+        setPriceInCents(priceInCents);
+        if ( numberInputRef.current )
+        {
+            numberInputRef.current.focus();
+        }
     }
 
     function isAllowed(values: NumberFormatValues): boolean
