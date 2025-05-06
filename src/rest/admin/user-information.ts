@@ -81,7 +81,6 @@ export async function getUserInformation(userId: number): Promise<RestResult<Suc
     try
     {
         const response = await axios.get<unknown>(url);
-        console.log("received", response);
         const data = SuccessResponse.parse(response.data);
 
         return success(data);
