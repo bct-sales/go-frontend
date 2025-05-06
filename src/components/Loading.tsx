@@ -1,5 +1,4 @@
 import { Flex, Loader, Text } from "@mantine/core";
-import { useEffect, useState } from "react";
 import Delayed from "./Delayed";
 
 interface Props
