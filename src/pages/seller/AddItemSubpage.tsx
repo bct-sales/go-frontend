@@ -1,7 +1,7 @@
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
-import { Button, Flex } from "@mantine/core";
+import { Button, Flex, Group, Select, Switch, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,8 @@ interface Props
 export default function AddItemSubpage(props: Props) : React.ReactNode
 {
     const navigate = useNavigate();
-    const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: undefined, charity: false, donation: false});
+    const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false});
+    const [addMultiple, setAddMultiple] = useState(false);
     const { description, priceInCents, categoryId, charity, donation } = itemData;
     const isValidData = checkValidity();
 
@@ -23,6 +24,9 @@ export default function AddItemSubpage(props: Props) : React.ReactNode
         <Flex direction="column" align="stretch" justify="center" gap='md'>
             <ItemEditor itemData={itemData} setItemData={setItemData} />
             <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
+            <Group justify="flex-end">
+                <Switch label="Add multiple" checked={addMultiple} onChange={e => setAddMultiple(e.currentTarget.checked)} />
+            </Group>
         </Flex>
     );
 
@@ -47,7 +51,14 @@ export default function AddItemSubpage(props: Props) : React.ReactNode
                     color: 'green',
                 });
 
-                navigate('/seller');
+                if ( addMultiple )
+                {
+                    resetItemData();
+                }
+                else
+                {
+                    navigate('/seller');
+                }
             }
             else
             {
@@ -78,5 +89,16 @@ export default function AddItemSubpage(props: Props) : React.ReactNode
         }
 
         return true;
+    }
+
+    function resetItemData(): void
+    {
+        setItemData({
+            description: '',
+            priceInCents: 50,
+            categoryId: null,
+            charity: false,
+            donation: false,
+        });
     }
 }
