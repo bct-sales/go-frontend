@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 interface Props
 {
-    categoryId: number | undefined;
+    categoryId: number | null;
     setCategoryId: (categoryId: number) => void;
 }
 
@@ -41,14 +41,16 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
             }
         );
 
+        const categoryString = props.categoryId?.toString() ?? null;
+
         return (
-            <Select label="Category" data={itemCategories} withCheckIcon={false} allowDeselect={false} value={props.categoryId?.toString()} onChange={onChange} error={renderError()} />
+            <Select label="Category" data={itemCategories} withCheckIcon={false} value={categoryString} onChange={onChange} error={renderError()} />
         );
 
 
         function renderError(): React.ReactNode | undefined
         {
-            if ( props.categoryId === undefined )
+            if ( props.categoryId === null )
             {
                 return "Category is required";
             }

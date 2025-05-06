@@ -16,7 +16,7 @@ export interface ItemData
 {
     description: string;
     priceInCents: number;
-    categoryId: number | undefined;
+    categoryId: number | null;
     charity: boolean;
     donation: boolean;
 }
