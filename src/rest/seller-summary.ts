@@ -5,24 +5,23 @@ import axios from 'axios';
 import { z } from 'zod';
 
 
-const SuccessResponse = z.object({
+const SellerSummary = z.object({
     itemCount: z.number().nonnegative(),
     frozenItemCount: z.number().nonnegative(),
     totalPrice: z.number().nonnegative(),
 });
 
-export type SuccessResponse = z.infer<typeof SuccessResponse>;
+export type SellerSummary = z.infer<typeof SellerSummary>;
 
 
-export async function getSellerSummary(userId: number): Promise<RestResult<SuccessResponse>>
+export async function getSellerSummary(userId: number): Promise<RestResult<SellerSummary>>
 {
     const url = paths.user(userId);
 
     try
     {
         const response = await axios.get<unknown>(url);
-        console.log("received", response);
-        const data = SuccessResponse.parse(response.data);
+        const data = SellerSummary.parse(response.data);
 
         return success(data);
     }
