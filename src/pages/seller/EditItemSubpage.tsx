@@ -5,19 +5,20 @@ import { updateItem } from "@/rest/update-item";
 import { Button, Flex } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 
 export default function EditItemSubpage() : React.ReactNode
 {
+    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const itemId = parseInt(searchParams.get('itemId') || '');
     const [originalData, setOriginalData] = useState<RestStatus<Item>>({ status: 'loading' });
     const [itemData, setItemData] = useState<ItemData>({
         description: '',
         priceInCents: 50,
-        categoryId: undefined,
+        categoryId: null,
         charity: false,
         donation: false,
     });
@@ -84,6 +85,8 @@ export default function EditItemSubpage() : React.ReactNode
                     message: `Item successfully updated!`,
                     color: 'green',
                 });
+
+                navigate(`/seller/items`);
             } else {
                 notifications.show({
                     title: 'Failed to update item',
