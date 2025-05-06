@@ -24,7 +24,6 @@ export default function ItemDescriptionEditor(props: Props): React.ReactNode
                 </HelpPopover>
             </Group>
             <TextInput
-                placeholder="description"
                 error={error()}
                 value={description}
                 onChange={onChange} />
