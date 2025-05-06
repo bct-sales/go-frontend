@@ -1,7 +1,7 @@
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
-import { Button, Flex, Group, Select, Switch, Tooltip } from "@mantine/core";
+import { Button, Flex, Group, Switch } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
