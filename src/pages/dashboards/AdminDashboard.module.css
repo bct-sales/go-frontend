@@ -1,3 +1,7 @@
 .header {
     font-size: 2rem;
 }
+
+.main {
+    min-height: unset;
+}

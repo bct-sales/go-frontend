@@ -43,7 +43,7 @@ export default function AdminDashboard()
                         {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                     </Flex>
                 </AppShell.Navbar>
-                <AppShell.Main>
+                <AppShell.Main className={classes.main}>
                     <Routes>
                         <Route path="/" element={<CategoriesSubpage />} />
                         <Route path="/users/:userId" element={<UserSubpage />} />
