@@ -5,6 +5,7 @@ export type SettingsData = { advancedMode: boolean };
 
 export interface Settings extends SettingsData
 {
+    setAdvancedMode: (value: boolean) => void;
     toggleAdvancedMode: () => void;
 }
 
@@ -12,12 +13,17 @@ export const defaultSettings: SettingsData = { advancedMode: false };
 
 export function createSettings(settings: SettingsData, setSettings: (data: SettingsData) => void): Settings
 {
-    return { ...settings, toggleAdvancedMode };
+    return { ...settings, setAdvancedMode, toggleAdvancedMode };
 
 
-    function toggleAdvancedMode()
+    function setAdvancedMode(value: boolean): void
     {
-        setSettings({...settings, advancedMode: !settings.advancedMode });
+        setSettings({ ...settings, advancedMode: value });
+    }
+
+    function toggleAdvancedMode(): void
+    {
+        setAdvancedMode(!settings.advancedMode);
     }
 }
 
