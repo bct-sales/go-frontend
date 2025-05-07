@@ -18,8 +18,8 @@ export default function ItemDescriptionEditor(props: Props): React.ReactNode
                 <Text>Description</Text>
                 <HelpPopover>
                     <Text size="sm">
-                        Keep it short but descriptive.
-                        Keep in mind it needs to fit on the label.
+                        Keep the description short but useful.
+                        Take into account it needs to fit on the label.
                     </Text>
                 </HelpPopover>
             </Group>
