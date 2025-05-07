@@ -1,3 +1,4 @@
+import AdvancedOnly from "@/components/AdvancedOnly";
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
@@ -24,9 +25,11 @@ export default function AddItemSubpage(props: Props) : React.ReactNode
         <Flex direction="column" align="stretch" justify="center" gap='md'>
             <ItemEditor itemData={itemData} setItemData={setItemData} />
             <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
-            <Group justify="flex-end">
-                <Switch label="Add multiple" checked={addMultiple} onChange={e => setAddMultiple(e.currentTarget.checked)} />
-            </Group>
+            <AdvancedOnly>
+                <Group justify="flex-end">
+                    <Switch label="Add multiple" checked={addMultiple} onChange={e => setAddMultiple(e.currentTarget.checked)} />
+                </Group>
+            </AdvancedOnly>
         </Flex>
     );
 
