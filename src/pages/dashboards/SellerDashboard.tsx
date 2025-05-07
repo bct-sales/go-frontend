@@ -1,5 +1,5 @@
 import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus } from "@tabler/icons-react";
+import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ItemsSubpage from "../seller/ItemsSubpage";
@@ -10,6 +10,7 @@ import AddItemSubpage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
 import NavigationButton from "@/components/NavigationButton";
 import OverviewSubpage from "../seller/OverviewSubpage";
+import SettingsSubpage from "../seller/SettingsSubpage";
 
 
 export default function SellerDashboard()
@@ -48,6 +49,9 @@ export default function SellerDashboard()
                         <NavigationButton caption="Edit Item" url="/seller/edit-item" onlyShowWhenActive={true}>
                             <IconEdit />
                         </NavigationButton>
+                        <NavigationButton caption="Settings" url="/seller/settings">
+                            <IconSettings />
+                        </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
                             <IconLogout />
                         </NavigationButton>
@@ -59,6 +63,7 @@ export default function SellerDashboard()
                         <Route path="/items" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemSubpage />} />
+                        <Route path="/settings" element={<SettingsSubpage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
