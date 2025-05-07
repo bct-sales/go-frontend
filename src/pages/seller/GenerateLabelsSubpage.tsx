@@ -2,6 +2,7 @@ import LabelLayoutViewer from "@/components/LabelLayoutViewer";
 import { LabelLayoutData } from "@/label-layout";
 import { NumberInput, Stack } from "@mantine/core";
 
+
 interface Props
 {
     sellerId: number;
