@@ -8,6 +8,7 @@ import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { AuthenticationProvider } from './AuthenticationProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { SettingsProvider } from './SettingsProvider';
 
 
 export default function App() : React.ReactNode
@@ -35,12 +36,14 @@ export default function App() : React.ReactNode
 
     return (
         <QueryClientProvider client={queryClient}>
-            <AuthenticationProvider>
-                <MantineProvider defaultColorScheme="dark">
-                    <Notifications />
-                    <RouterProvider router={router} />
-                </MantineProvider>
-            </AuthenticationProvider>
+            <SettingsProvider>
+                <AuthenticationProvider>
+                    <MantineProvider defaultColorScheme="dark">
+                        <Notifications />
+                        <RouterProvider router={router} />
+                    </MantineProvider>
+                </AuthenticationProvider>
+            </SettingsProvider>
         </QueryClientProvider>
     );
 }
