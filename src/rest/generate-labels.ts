@@ -3,10 +3,14 @@ import axios from 'axios';
 import { convertExceptionToFailure, RestResult } from './result';
 
 
-export async function generateLabels(sellerId: number): Promise<RestResult<Blob>>
+interface Payload
 {
-    const url = `/api/v1/sellers/${sellerId}/labels`;
-    const payload = {};
+    itemIds: number[];
+}
+
+export async function generateLabels(payload: Payload): Promise<RestResult<Blob>>
+{
+    const url = `/api/v1/labels`;
 
     try
     {

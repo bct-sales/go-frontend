@@ -1,7 +1,7 @@
 import ItemsTable from "@/components/ItemsTable";
 import { addedAtColumn, categoryColumn, charityColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
-import { addItem, Payload } from "@/rest/add-item";
+import { addItem } from "@/rest/add-item";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
@@ -72,27 +72,30 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
                 <ItemsTable items={items} columns={columns} />
             </Stack>
         );
-    }
 
-    function onGenerateLabels(): void
-    {
-        void (async () => {
-            const blob = await generateLabels(props.sellerId);
 
-            if ( !blob.success )
-            {
-                console.error("Failed to generate labels", blob.error);
-                return;
-            }
+        function onGenerateLabels(): void
+        {
+            void (async () => {
+                const payload = { itemIds: items.map(item => item.itemId) };
+                console.log(payload);
+                const blob = await generateLabels(payload);
 
-            const url = window.URL.createObjectURL(blob.value);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'labels.pdf';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-        })();
+                if ( !blob.success )
+                {
+                    console.error("Failed to generate labels", blob.error);
+                    return;
+                }
+
+                const url = window.URL.createObjectURL(blob.value);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'labels.pdf';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })();
+        }
     }
 
     function onEditItem(item: Item): void
