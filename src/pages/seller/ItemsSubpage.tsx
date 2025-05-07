@@ -5,7 +5,7 @@ import { addItem } from "@/rest/add-item";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Flex, Stack } from "@mantine/core";
+import { Button, Flex, ScrollArea, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -69,7 +69,9 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
                 <Flex justify="flex-end" align="center">
                     <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
                 </Flex>
-                <ItemsTable items={items} columns={columns} />
+                <ScrollArea style={{ height: 'calc(50vh)' }} scrollbars="y">
+                    <ItemsTable items={items} columns={columns} />
+                </ScrollArea>
             </Stack>
         );
 
