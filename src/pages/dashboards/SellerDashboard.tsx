@@ -1,16 +1,15 @@
-import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings } from "@tabler/icons-react";
-import React from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import ItemsSubpage from "../seller/ItemsSubpage";
 import { useAuthentication } from "@/authentication";
-import classes from './SellerDashboard.module.css';
 import AuthenticationViewer from "@/components/AuthenticationViewer";
+import NavigationButton from "@/components/NavigationButton";
+import { AppShell, Flex, Stack, Text } from "@mantine/core";
+import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings } from "@tabler/icons-react";
+import { Route, Routes } from "react-router-dom";
 import AddItemSubpage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
-import NavigationButton from "@/components/NavigationButton";
+import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
 import SettingsSubpage from "../seller/SettingsSubpage";
+import classes from './SellerDashboard.module.css';
 
 
 export default function SellerDashboard()
