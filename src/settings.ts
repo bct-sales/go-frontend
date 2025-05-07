@@ -17,7 +17,6 @@ export function createSettings(settings: SettingsData, setSettings: (data: Setti
 
     function toggleAdvancedMode()
     {
-        console.log("Toggling advanced mode", settings.advancedMode);
         setSettings({...settings, advancedMode: !settings.advancedMode });
     }
 }
