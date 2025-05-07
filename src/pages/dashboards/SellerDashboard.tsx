@@ -2,7 +2,7 @@ import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings } from "@tabler/icons-react";
+import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import AddItemSubpage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
@@ -10,6 +10,7 @@ import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
 import SettingsSubpage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
+import GenerateLabelsSubpage from "../seller/GenerateLabelsSubpage";
 
 
 export default function SellerDashboard()
@@ -48,6 +49,9 @@ export default function SellerDashboard()
                         <NavigationButton caption="Edit Item" url="/seller/edit-item" onlyShowWhenActive={true}>
                             <IconEdit />
                         </NavigationButton>
+                        <NavigationButton caption="Generate Labels" url="/seller/labels">
+                            <IconTag />
+                        </NavigationButton>
                         <NavigationButton caption="Settings" url="/seller/settings">
                             <IconSettings />
                         </NavigationButton>
@@ -62,6 +66,7 @@ export default function SellerDashboard()
                         <Route path="/items" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemSubpage />} />
+                        <Route path="/labels" element={<GenerateLabelsSubpage sellerId={authentication.username} />} />
                         <Route path="/settings" element={<SettingsSubpage />} />
                     </Routes>
                 </AppShell.Main>
