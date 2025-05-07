@@ -1,10 +1,5 @@
-import Loading from "@/components/Loading";
-import Price from "@/components/Price";
 import SellerSummaryViewer from "@/components/SellerSummaryViewer";
-import { getSellerSummary, SellerSummary } from "@/rest/seller-summary";
-import { RestStatus } from "@/rest/status";
-import { Table } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { Card, Text } from "@mantine/core";
 
 
 interface Props
@@ -12,9 +7,16 @@ interface Props
     sellerId: number;
 }
 
-export default function OverviewSubpage(props: Props) : React.ReactNode
+export default function OverviewSubpage(props: Props): React.ReactNode
 {
     return (
-        <SellerSummaryViewer sellerId={props.sellerId} />
+        <Card withBorder p="lg" radius="md">
+            <Card.Section withBorder pb='sm' pt='xs'>
+                <Text fw='bold'>Overview</Text>
+            </Card.Section>
+            <Card.Section>
+                <SellerSummaryViewer sellerId={props.sellerId} />
+            </Card.Section>
+        </Card>
     );
 }
