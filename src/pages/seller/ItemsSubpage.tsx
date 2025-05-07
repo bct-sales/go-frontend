@@ -5,6 +5,7 @@ import { addItem } from "@/rest/add-item";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
+import { useSettings } from "@/settings";
 import { Button, Flex, ScrollArea, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
@@ -19,18 +20,9 @@ interface Props
 export default function ItemsSubpage(props: Props) : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
+    const settings = useSettings();
     const navigate = useNavigate();
-    const columns = [
-        editColumn(onEditItem),
-        copyColumn(onCopyItem),
-        itemIdColumn,
-        descriptionColumn,
-        addedAtColumn,
-        categoryColumn,
-        priceInCentsColumn,
-        charityColumn,
-        donationColumn,
-    ];
+    const columns = determineColumns();
 
     useEffect(() => {
         void (async () => {
@@ -123,5 +115,36 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
                 });
             }
         })();
+    }
+
+    function determineColumns(): Column[]
+    {
+        if ( settings.advancedMode )
+        {
+            return [
+                editColumn(onEditItem),
+                copyColumn(onCopyItem),
+                itemIdColumn,
+                descriptionColumn,
+                addedAtColumn,
+                categoryColumn,
+                priceInCentsColumn,
+                charityColumn,
+                donationColumn,
+            ];
+        }
+        else
+        {
+            return [
+                editColumn(onEditItem),
+                itemIdColumn,
+                descriptionColumn,
+                addedAtColumn,
+                categoryColumn,
+                priceInCentsColumn,
+                charityColumn,
+                donationColumn,
+            ];
+        }
     }
 }
