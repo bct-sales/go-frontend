@@ -12,3 +12,9 @@
 .childContainer {
     padding: 1em;
 }
+
+.captionContainer {
+    display: block;
+    justify-content: stretch;
+    cursor: pointer;
+}
