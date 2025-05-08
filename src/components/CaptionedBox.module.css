@@ -1,0 +1,14 @@
+.container {
+    border: 2px solid #555;
+}
+
+.caption {
+    background-color: #555;
+    font-variant: small-caps;
+    font-weight: bold;
+    padding: 0.5em;
+}
+
+.childContainer {
+    padding: 1em;
+}
