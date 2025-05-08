@@ -1,10 +1,12 @@
 import { success } from '@/result';
 import axios from 'axios';
 import { convertExceptionToFailure, RestResult } from './result';
+import { LabelLayoutData } from '@/label-layout';
 
 
 interface Payload
 {
+    layout: LabelLayoutData;
     itemIds: number[];
 }
 
