@@ -1,24 +1,29 @@
+import { z } from "zod";
 import { range } from "./util";
 
-export interface Spacing
-{
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
-}
 
-export interface LabelLayoutData
-{
-    paperWidth: number;
-    paperHeight: number;
-    paperMargins: Spacing;
-    columns: number;
-    rows: number;
-    labelMargins: Spacing;
-    labelPadding: Spacing;
-    fontSize: number;
-}
+const Spacing = z.object({
+    top: z.number().min(0),
+    bottom: z.number().min(0),
+    left: z.number().min(0),
+    right: z.number().min(0)
+});
+
+export type Spacing = z.infer<typeof Spacing>;
+
+
+const LabelLayoutData = z.object({
+    paperWidth: z.number().min(0),
+    paperHeight: z.number().min(0),
+    paperMargins: Spacing,
+    columns: z.number().min(1),
+    rows: z.number().min(1),
+    labelMargins: Spacing,
+    labelPadding: Spacing,
+    fontSize: z.number().min(0)
+});
+
+export type LabelLayoutData = z.infer<typeof LabelLayoutData>;
 
 export interface Rectangle
 {
