@@ -3,7 +3,7 @@ import React from "react";
 
 interface Props
 {
-    width: number;
+    width: string | number;
     labelLayout: LabelLayoutData
 }
 
@@ -14,7 +14,7 @@ export default function LabelLayoutViewer(props: Props): React.ReactNode
 
     return (
         <div style={{padding: '10px', background: '#AAA'}}>
-            <svg width={500} viewBox={`0 0 ${labelLayout.paperWidth} ${labelLayout.paperHeight}`}>
+            <svg width={props.width} viewBox={`0 0 ${labelLayout.paperWidth} ${labelLayout.paperHeight}`}>
                 <rect x={0} y={0} width={labelLayout.paperWidth} height={labelLayout.paperHeight} fill="white" stroke="black" strokeWidth={1} />
                 {renderLabels()}
             </svg>
