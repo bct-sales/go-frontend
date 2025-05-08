@@ -1,6 +1,7 @@
 import { Collapse, Group, Stack, Text } from '@mantine/core';
 import classes from './CaptionedBox.module.css';
 import { useState } from 'react';
+import { IconChevronDown, IconCircleChevronDown } from '@tabler/icons-react';
 
 
 interface Props
@@ -15,7 +16,8 @@ export default function CaptionedBox(props: Props): React.ReactNode
 
     return (
         <Stack className={classes.container} gap={0}>
-            <Group className={classes.captionContainer} onClick={() => setCollapsed(!collapsed)} justify='stretch'>
+            <Group className={classes.captionContainer} onClick={() => setCollapsed(!collapsed)} justify='stretch' style={{position: 'relative'}}>
+                <IconCircleChevronDown style={{position: 'absolute', right: '2px', height: '100%'}} />
                 <Text className={classes.caption}>{props.caption}</Text>
             </Group>
             <Collapse in={collapsed} transitionDuration={250}>
