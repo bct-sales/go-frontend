@@ -5,7 +5,7 @@ import { AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import AddItemPage from "../seller/AddItemPage";
-import EditItemSubpage from "../seller/EditItemPage";
+import EditItemPage from "../seller/EditItemPage";
 import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
 import SettingsSubpage from "../seller/SettingsSubpage";
@@ -65,7 +65,7 @@ export default function SellerDashboard()
                         <Route path="/" element={<OverviewSubpage sellerId={authentication.username} />} />
                         <Route path="/items" element={<ItemsSubpage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemPage sellerId={authentication.username} />} />
-                        <Route path="/edit-item" element={<EditItemSubpage />} />
+                        <Route path="/edit-item" element={<EditItemPage />} />
                         <Route path="/labels" element={<GenerateLabelsSubpage sellerId={authentication.username} />} />
                         <Route path="/settings" element={<SettingsSubpage />} />
                     </Routes>

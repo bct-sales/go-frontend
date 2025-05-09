@@ -9,7 +9,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 
-export default function EditItemSubpage() : React.ReactNode
+export default function EditItemPage() : React.ReactNode
 {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
