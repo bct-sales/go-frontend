@@ -11,6 +11,7 @@ import { listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
 import { Button, Center, Flex, Group, Stack, Stepper, Tabs, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import ItemSelectionSubpage from "./ItemSelectionSubpage";
 
 
 interface Props
@@ -89,17 +90,10 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
 
     function renderPage(items: Item[]): React.ReactNode
     {
-        const columns = [
-            selectionColumn(item => selectedItems[item.itemId] === true, (item, selected) => { setSelectedItems({...selectedItems, [item.itemId]: selected}) }),
-            itemIdColumn,
-            descriptionColumn,
-            categoryColumn,
-        ]
-
         return (
             <Stepper active={activeStep} onStepClick={setActiveStep} color="teal" size="sm" iconPosition="left" style={{ width: '100%' }}>
                 <Stepper.Step label="Select Items" allowStepSelect={true}>
-                    <ItemsTable items={items} columns={columns} />
+                    <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItems[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItems({ ...selectedItems, [item.itemId]: selected }) }} />
                 </Stepper.Step>
                 <Stepper.Step label="Label Layout" allowStepSelect={true}>
                     <Group justify="center" align="flex-start">
