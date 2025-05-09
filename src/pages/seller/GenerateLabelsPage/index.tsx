@@ -1,13 +1,10 @@
-import InsetsEditor from "@/components/InsetsEditor";
-import LabelLayoutViewer from "@/components/LabelLayoutViewer";
 import Loading from "@/components/Loading";
-import NumberInput from "@/components/NumberInput";
 import { LabelLayoutData } from "@/label-layout";
 import { generateLabels } from "@/rest/generate-labels";
 import { Item } from "@/rest/item-data";
 import { listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Center, Flex, Group, Stack, Stepper, Tabs, Text } from "@mantine/core";
+import { Button, Stack, Stepper } from "@mantine/core";
 import { useEffect, useState } from "react";
 import ItemSelectionSubpage from "./ItemSelectionSubpage";
 import LayoutSubpage from "./LayoutSubpage";
