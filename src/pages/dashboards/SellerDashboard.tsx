@@ -10,7 +10,7 @@ import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
 import SettingsSubpage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
-import GenerateLabelsSubpage from "../seller/GenerateLabelsSubpage";
+import GenerateLabelsSubpage from "../seller/GenerateLabelsPage";
 
 
 export default function SellerDashboard()
