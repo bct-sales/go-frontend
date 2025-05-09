@@ -4,7 +4,7 @@ import NavigationButton from "@/components/NavigationButton";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import AddItemSubpage from "../seller/AddItemSubpage";
+import AddItemPage from "../seller/AddItemSubpage";
 import EditItemSubpage from "../seller/EditItemSubpage";
 import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
@@ -64,7 +64,7 @@ export default function SellerDashboard()
                     <Routes>
                         <Route path="/" element={<OverviewSubpage sellerId={authentication.username} />} />
                         <Route path="/items" element={<ItemsSubpage sellerId={authentication.username} />} />
-                        <Route path="/add-item" element={<AddItemSubpage sellerId={authentication.username} />} />
+                        <Route path="/add-item" element={<AddItemPage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemSubpage />} />
                         <Route path="/labels" element={<GenerateLabelsSubpage sellerId={authentication.username} />} />
                         <Route path="/settings" element={<SettingsSubpage />} />

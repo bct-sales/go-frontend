@@ -14,7 +14,7 @@ interface Props
     sellerId: number;
 }
 
-export default function AddItemSubpage(props: Props) : React.ReactNode
+export default function AddItemPage(props: Props) : React.ReactNode
 {
     const navigate = useNavigate();
     const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false});
