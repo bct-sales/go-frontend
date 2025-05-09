@@ -18,7 +18,7 @@ interface Props
     sellerId: number;
 }
 
-export default function GenerateLabelsSubpage(props: Props): React.ReactNode
+export default function GenerateLabelsPage(props: Props): React.ReactNode
 {
     const defaultLabelLayout: LabelLayoutData = {
         paperWidth: 210,
