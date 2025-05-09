@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import AddItemPage from "../seller/AddItemPage";
 import EditItemPage from "../seller/EditItemPage";
 import ItemsPage from "../seller/ItemsPage";
-import OverviewSubpage from "../seller/OverviewSubpage";
+import OverviewSubpage from "../seller/OverviewPage";
 import SettingsSubpage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
 import GenerateLabelsPage from "../seller/GenerateLabelsPage";
