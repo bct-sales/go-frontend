@@ -8,6 +8,7 @@ import { Button, Stack, Stepper } from "@mantine/core";
 import { useEffect, useState } from "react";
 import ItemSelectionSubpage from "./ItemSelectionSubpage";
 import LayoutSubpage from "./LayoutSubpage";
+import { notifications } from "@mantine/notifications";
 
 
 interface Props
@@ -132,7 +133,11 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
 
                 if ( !blob.success )
                 {
-                    console.error("Failed to generate labels", blob.error);
+                    notifications.show({
+                        title: "Error",
+                        message: `Failed to generate labels: ${blob.error.details} (${blob.error.type})`,
+                        color: "red",
+                    });
                     return;
                 }
 
