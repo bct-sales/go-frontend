@@ -5,7 +5,7 @@ import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 
 
-export default function UsersPage()
+export default function UsersOverviewPage()
 {
     const [status, setStatus] = useState<RestStatus<User[]>>({ status: "loading" });
 

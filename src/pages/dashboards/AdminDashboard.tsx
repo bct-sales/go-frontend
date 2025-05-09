@@ -6,7 +6,7 @@ import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
-import UsersPage from "../admin/UsersPage";
+import UsersOverviewPage from "../admin/UsersPage";
 import UserSubpage from "../admin/UserPage";
 import classes from './AdminDashboard.module.css';
 
@@ -47,7 +47,7 @@ export default function AdminDashboard()
                     <Routes>
                         <Route path="/" element={<CategoriesPage />} />
                         <Route path="/users/:userId" element={<UserSubpage />} />
-                        <Route path="/users" element={<UsersPage />} />
+                        <Route path="/users" element={<UsersOverviewPage />} />
                         <Route path="/items" element={<ItemsPage />} />
                     </Routes>
                 </AppShell.Main>
