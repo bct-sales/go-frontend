@@ -1,5 +1,6 @@
-import { Checkbox } from "@mantine/core";
+import { Checkbox, Flex } from "@mantine/core";
 import DonationCheckboxIcon from "./DonationCheckboxIcon";
+import HelpPopover from "./HelpPopover";
 
 
 interface Props
@@ -11,7 +12,12 @@ interface Props
 export default function DonationEditor(props: Props): React.ReactNode
 {
     return (
-        <Checkbox icon={DonationCheckboxIcon} checked={props.donation} onChange={onChange} label="Donation" size="lg" />
+        <Flex justify="space-between">
+            <Checkbox icon={DonationCheckboxIcon} checked={props.donation} onChange={onChange} label="Donation" size="lg" />
+            <HelpPopover>
+                In case the item gets sold, the profits will be given to the BCT.
+            </HelpPopover>
+        </Flex>
     );
 
 
