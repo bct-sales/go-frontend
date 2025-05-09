@@ -46,7 +46,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
     const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const [labelLayout, setLabelLayout] = useState<LabelLayoutData>(defaultLabelLayout);
     const [activeStep, setActiveStep] = useState<number>(0);
-    const [selectedItems, setSelectedItems] = useState<{ [id: string]: boolean }>({});
+    const [selectedItemTable, setSelectedItemTable] = useState<{ [id: string]: boolean }>({});
     useEffect(() => {
             void (async () => {
                 const response = await listSellerItems(props.sellerId);
@@ -60,7 +60,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
                     {
                         mapping[item.itemId] = true;
                     }
-                    setSelectedItems(mapping);
+                    setSelectedItemTable(mapping);
                 }
                 else
                 {
@@ -104,7 +104,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             {
                 case 0:
                     return (
-                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItems[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItems({ ...selectedItems, [item.itemId]: selected }) }} />
+                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItemTable[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItemTable({ ...selectedItemTable, [item.itemId]: selected }) }} />
                     );
 
                 case 1:
@@ -125,7 +125,9 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
         function onGenerateLabels(): void
         {
             void (async () => {
-                const payload = { layout: labelLayout, itemIds: items.map(item => item.itemId) };
+                const selectedItems = items.filter(item => selectedItemTable[item.itemId] === true);
+                const selectedItemIds = selectedItems.map(item => item.itemId);
+                const payload = { layout: labelLayout, itemIds: selectedItemIds };
                 const blob = await generateLabels(payload);
 
                 if ( !blob.success )
