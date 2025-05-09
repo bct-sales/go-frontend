@@ -17,7 +17,7 @@ interface Props
     sellerId: number;
 }
 
-export default function ItemsSubpage(props: Props) : React.ReactNode
+export default function ItemsPage(props: Props) : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const settings = useSettings();
