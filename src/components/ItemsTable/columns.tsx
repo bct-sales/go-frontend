@@ -8,7 +8,8 @@ import UserIdViewer from "@/components/UserIdViewer";
 import classes from './ItemsTable.module.css';
 import FrozenViewer from "../FrozenViewer";
 import { IconCopy, IconCopyPlus, IconEdit } from "@tabler/icons-react";
-import { Button } from "@mantine/core";
+import { Button, Checkbox } from "@mantine/core";
+import NumberInput from "@/components/NumberInput";
 
 
 export const itemIdColumn: Column = {
@@ -92,6 +93,35 @@ export function copyColumn(onClick: (item: Item) => void): Column
                 <Button onClick={() => onClick(item)} variant="subtle">
                     <IconCopyPlus />
                 </Button>
+            );
+        },
+    };
+}
+
+export function selectionColumn(isSelected: (item: Item) => boolean, onChangeSelected: (item: Item, selected: boolean) => void): Column
+{
+    return {
+        header: '',
+        className: classes.itemSelect,
+        viewer: (item: Item) => {
+            return (
+                <Checkbox checked={isSelected(item)} onChange={e => onChangeSelected(item, e.currentTarget.checked)} />
+            );
+        },
+    };
+}
+
+export function countColumn(count: (item: Item) => number, onChangeCount: (item: Item, count: number) => void): Column
+{
+    return {
+        header: 'Count',
+        className: classes.itemCount,
+        viewer: (item: Item) => {
+            return (
+                <NumberInput
+                    value={count(item)}
+                    onChange={n => onChangeCount(item, n)}
+                />
             );
         },
     };
