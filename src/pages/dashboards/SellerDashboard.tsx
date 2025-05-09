@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import AddItemPage from "../seller/AddItemPage";
 import EditItemPage from "../seller/EditItemPage";
 import ItemsPage from "../seller/ItemsPage";
-import OverviewSubpage from "../seller/OverviewPage";
+import OverviewPage from "../seller/OverviewPage";
 import SettingsSubpage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
 import GenerateLabelsPage from "../seller/GenerateLabelsPage";
@@ -62,7 +62,7 @@ export default function SellerDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<OverviewSubpage sellerId={authentication.username} />} />
+                        <Route path="/" element={<OverviewPage sellerId={authentication.username} />} />
                         <Route path="/items" element={<ItemsPage sellerId={authentication.username} />} />
                         <Route path="/add-item" element={<AddItemPage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemPage />} />

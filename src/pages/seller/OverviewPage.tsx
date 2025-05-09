@@ -12,7 +12,7 @@ interface Props
     sellerId: number;
 }
 
-export default function OverviewSubpage(props: Props): React.ReactNode
+export default function OverviewPage(props: Props): React.ReactNode
 {
     const navigate = useNavigate();
     const [status, setStatus] = useState<RestStatus<SellerSummary>>({ status: 'loading' });
