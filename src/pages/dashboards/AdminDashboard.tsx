@@ -4,7 +4,7 @@ import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import CategoriesSubpage from "../admin/CategoriesSubpage";
+import CategoriesSubpage from "../admin/CategoriesPage";
 import ItemsSubpage from "../admin/ItemsSubpage";
 import UsersSubpage from "../admin/UsersSubpage";
 import UserSubpage from "../admin/UserSubpage";
