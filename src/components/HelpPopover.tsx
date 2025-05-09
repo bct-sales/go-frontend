@@ -1,5 +1,5 @@
 import { Button, Popover } from "@mantine/core";
-import { IconQuestionMark } from "@tabler/icons-react";
+import { IconHelpCircle, IconQuestionMark } from "@tabler/icons-react";
 
 interface Props
 {
@@ -12,7 +12,7 @@ export default function HelpPopover(props: Props): React.ReactNode
         <Popover position="bottom" shadow="md" width={250}>
             <Popover.Target>
                 <Button variant="subtle" size="xs" p={0}>
-                    <IconQuestionMark />
+                    <IconHelpCircle />
                 </Button>
             </Popover.Target>
             <Popover.Dropdown>
