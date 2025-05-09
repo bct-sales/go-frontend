@@ -4,12 +4,12 @@ import React from "react";
 interface Props
 {
     width: string | number;
-    labelLayout: LabelLayoutData
+    layout: LabelLayoutData
 }
 
 export default function LabelLayoutViewer(props: Props): React.ReactNode
 {
-    const { labelLayout } = props;
+    const { layout: labelLayout } = props;
     const layoutHelper = new LayoutHelper(labelLayout);
 
     return (
