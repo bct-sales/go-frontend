@@ -5,7 +5,7 @@ import { IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/ico
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
-import ItemsSubpage from "../admin/ItemsPage";
+import ItemsPage from "../admin/ItemsPage";
 import UsersSubpage from "../admin/UsersSubpage";
 import UserSubpage from "../admin/UserSubpage";
 import classes from './AdminDashboard.module.css';
@@ -48,7 +48,7 @@ export default function AdminDashboard()
                         <Route path="/" element={<CategoriesPage />} />
                         <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersSubpage />} />
-                        <Route path="/items" element={<ItemsSubpage />} />
+                        <Route path="/items" element={<ItemsPage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
