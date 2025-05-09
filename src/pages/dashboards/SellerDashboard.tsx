@@ -6,7 +6,7 @@ import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, I
 import { Route, Routes } from "react-router-dom";
 import AddItemPage from "../seller/AddItemPage";
 import EditItemPage from "../seller/EditItemPage";
-import ItemsSubpage from "../seller/ItemsSubpage";
+import ItemsSubpage from "../seller/ItemsPage";
 import OverviewSubpage from "../seller/OverviewSubpage";
 import SettingsSubpage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
