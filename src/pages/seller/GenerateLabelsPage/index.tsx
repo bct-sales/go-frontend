@@ -1,6 +1,4 @@
 import InsetsEditor from "@/components/InsetsEditor";
-import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, descriptionColumn, itemIdColumn, selectionColumn } from "@/components/ItemsTable/columns";
 import LabelLayoutViewer from "@/components/LabelLayoutViewer";
 import Loading from "@/components/Loading";
 import NumberInput from "@/components/NumberInput";
@@ -92,19 +90,40 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
     function renderPage(items: Item[]): React.ReactNode
     {
         return (
-            <Stepper active={activeStep} onStepClick={setActiveStep} color="teal" size="sm" iconPosition="left" style={{ width: '100%' }}>
-                <Stepper.Step label="Select Items" allowStepSelect={true}>
-                    <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItems[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItems({ ...selectedItems, [item.itemId]: selected }) }} />
-                </Stepper.Step>
-                <Stepper.Step label="Label Layout" allowStepSelect={true}>
-                    <LayoutSubpage layout={labelLayout} setLayout={setLabelLayout} />
-                </Stepper.Step>
-                <Stepper.Step label="Generate PDF" allowStepSelect={true}>
-                    <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
-                </Stepper.Step>
-            </Stepper>
+            <Stack align="center" justify="flex-start" gap="lg">
+                <Stepper active={activeStep} onStepClick={setActiveStep} color="teal" size="sm" iconPosition="left">
+                    <Stepper.Step label="Select Items" allowStepSelect={true} />
+                    <Stepper.Step label="Label Layout" allowStepSelect={true} />
+                    <Stepper.Step label="Generate PDF" allowStepSelect={true} />
+                </Stepper>
+                {renderActiveStep()}
+            </Stack>
         );
 
+
+        function renderActiveStep(): React.ReactNode
+        {
+            switch ( activeStep )
+            {
+                case 0:
+                    return (
+                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItems[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItems({ ...selectedItems, [item.itemId]: selected }) }} />
+                    );
+
+                case 1:
+                    return (
+                        <LayoutSubpage layout={labelLayout} setLayout={setLabelLayout} />
+                    );
+
+                case 2:
+                    return (
+                        <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
+                    );
+
+                default:
+                    return <div>Bug: unknown step</div>;
+            }
+        }
 
         function onGenerateLabels(): void
         {
