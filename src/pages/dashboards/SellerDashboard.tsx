@@ -4,7 +4,7 @@ import NavigationButton from "@/components/NavigationButton";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import AddItemPage from "../seller/AddItemSubpage";
+import AddItemPage from "../seller/AddItemPage";
 import EditItemSubpage from "../seller/EditItemSubpage";
 import ItemsSubpage from "../seller/ItemsSubpage";
 import OverviewSubpage from "../seller/OverviewSubpage";
