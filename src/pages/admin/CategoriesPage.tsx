@@ -7,7 +7,7 @@ import ErrorPage from "../ErrorPage";
 import { Table } from "@mantine/core";
 
 
-export default function CategoriesSubpage() : React.ReactNode
+export default function CategoriesPage() : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });
 

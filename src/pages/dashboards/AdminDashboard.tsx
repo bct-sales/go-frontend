@@ -4,8 +4,8 @@ import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import CategoriesSubpage from "../admin/CategoriesPage";
-import ItemsSubpage from "../admin/ItemsSubpage";
+import CategoriesPage from "../admin/CategoriesPage";
+import ItemsSubpage from "../admin/ItemsPage";
 import UsersSubpage from "../admin/UsersSubpage";
 import UserSubpage from "../admin/UserSubpage";
 import classes from './AdminDashboard.module.css';
@@ -45,7 +45,7 @@ export default function AdminDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main className={classes.main}>
                     <Routes>
-                        <Route path="/" element={<CategoriesSubpage />} />
+                        <Route path="/" element={<CategoriesPage />} />
                         <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersSubpage />} />
                         <Route path="/items" element={<ItemsSubpage />} />
