@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, descriptionColumn, itemIdColumn, selectionColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, selectionColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/rest/item-data";
 
 interface Props
@@ -17,6 +17,9 @@ export default function ItemSelectionSubpage(props: Props): React.ReactNode
         itemIdColumn,
         descriptionColumn,
         categoryColumn,
+        priceInCentsColumn,
+        charityColumn,
+        donationColumn,
     ];
 
     return (
