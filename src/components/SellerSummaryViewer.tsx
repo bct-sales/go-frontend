@@ -24,8 +24,8 @@ export default function SellerSummaryViewer(props: Props) : React.ReactNode
                     <Table.Td>{props.itemCount}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
-                    <Table.Th>Frozen Item Count</Table.Th>
-                    <Table.Td>{props.frozenItemCount}</Table.Td>
+                    <Table.Th>Unlabeled Items</Table.Th>
+                    <Table.Td>{props.itemCount - props.frozenItemCount}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Total Item's Worth</Table.Th>
