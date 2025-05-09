@@ -7,7 +7,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
 import UsersPage from "../admin/UsersPage";
-import UserSubpage from "../admin/UserSubpage";
+import UserSubpage from "../admin/UserPage";
 import classes from './AdminDashboard.module.css';
 
 
