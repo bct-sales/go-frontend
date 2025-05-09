@@ -15,8 +15,7 @@ export default function CharityEditor(props: Props): React.ReactNode
         <Flex justify="space-between">
             <Checkbox icon={CharityCheckboxIcon} checked={props.charity} onChange={onChange} label="Charity" size="lg" />
             <HelpPopover>
-                If the item gets sold, you will receive the profits.
-                If the item does not get sold, it will be donated to a charity.
+                In case the item does not get sold, it will be donated to a charity.
             </HelpPopover>
         </Flex>
     );
