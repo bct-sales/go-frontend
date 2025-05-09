@@ -4,13 +4,13 @@ import NavigationButton from "@/components/NavigationButton";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import AddItemPage from "../seller/AddItemPage";
-import EditItemPage from "../seller/EditItemPage";
-import ItemsPage from "../seller/ItemsPage";
-import OverviewPage from "../seller/OverviewPage";
-import SettingsPage from "../seller/SettingsPage";
-import classes from './SellerDashboard.module.css';
+import AddItemPage from "@/pages/seller/AddItemPage";
+import EditItemPage from "@/pages/seller/EditItemPage";
+import ItemsPage from "@/pages/seller/ItemsPage";
+import OverviewPage from "@/pages/seller/OverviewPage";
+import SettingsPage from "@/pages/seller/SettingsPage";
 import GenerateLabelsPage from "@/pages/seller/GenerateLabelsPage";
+import classes from './SellerDashboard.module.css';
 
 
 export default function SellerDashboard()
