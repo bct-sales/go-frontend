@@ -1,6 +1,7 @@
-import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, selectionColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/rest/item-data";
+import { useSettings } from "@/settings";
+import AdvancedItemSelectionSubpage from "./AdvancedItemSelectionSubpage";
+import SimpleItemSelectionSubpage from "./SimpleItemSelectionSubpage";
 
 interface Props
 {
@@ -11,18 +12,14 @@ interface Props
 
 export default function ItemSelectionSubpage(props: Props): React.ReactNode
 {
-    const { items, isItemSelected, setItemSelection } = props;
-    const columns = [
-        selectionColumn(isItemSelected, setItemSelection),
-        itemIdColumn,
-        descriptionColumn,
-        categoryColumn,
-        priceInCentsColumn,
-        charityColumn,
-        donationColumn,
-    ];
+    const settings = useSettings();
 
-    return (
-        <ItemsTable items={items} columns={columns} />
-    );
+    if ( settings.advancedMode )
+    {
+        return <AdvancedItemSelectionSubpage {...props} />;
+    }
+    else
+    {
+        return <SimpleItemSelectionSubpage {...props} />;
+    }
 }
