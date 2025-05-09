@@ -3,11 +3,10 @@ import { addedAtColumn, categoryColumn, charityColumn, copyColumn, descriptionCo
 import { Column } from "@/components/ItemsTable/ItemsTable";
 import Loading from "@/components/Loading";
 import { addItem } from "@/rest/add-item";
-import { generateLabels } from "@/rest/generate-labels";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
 import { useSettings } from "@/settings";
-import { Button, Flex, ScrollArea, Stack } from "@mantine/core";
+import { ScrollArea, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +37,7 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
                 setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
             }
         })();
-    }, [props.sellerId, navigate]);
+    }, [props.sellerId]);
 
     switch (status.status)
     {
@@ -59,38 +58,11 @@ export default function ItemsSubpage(props: Props) : React.ReactNode
     {
         return (
             <Stack>
-                <Flex justify="flex-end" align="center">
-                    <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
-                </Flex>
                 <ScrollArea style={{ height: 'calc(50vh)' }} scrollbars="y">
                     <ItemsTable items={items} columns={columns} />
                 </ScrollArea>
             </Stack>
         );
-
-
-        function onGenerateLabels(): void
-        {
-            void (async () => {
-                const payload = { itemIds: items.map(item => item.itemId) };
-                console.log(payload);
-                const blob = await generateLabels(payload);
-
-                if ( !blob.success )
-                {
-                    console.error("Failed to generate labels", blob.error);
-                    return;
-                }
-
-                const url = window.URL.createObjectURL(blob.value);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'labels.pdf';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            })();
-        }
     }
 
     function onEditItem(item: Item): void
