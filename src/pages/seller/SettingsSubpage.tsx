@@ -2,7 +2,7 @@ import { useSettings } from "@/settings";
 import { Stack, Switch } from "@mantine/core";
 
 
-export default function SettingsSubpage()
+export default function SettingsPage()
 {
     const settings = useSettings();
 

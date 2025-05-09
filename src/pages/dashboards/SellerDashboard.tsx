@@ -8,7 +8,7 @@ import AddItemPage from "../seller/AddItemPage";
 import EditItemPage from "../seller/EditItemPage";
 import ItemsPage from "../seller/ItemsPage";
 import OverviewPage from "../seller/OverviewPage";
-import SettingsSubpage from "../seller/SettingsSubpage";
+import SettingsPage from "../seller/SettingsSubpage";
 import classes from './SellerDashboard.module.css';
 import GenerateLabelsPage from "../seller/GenerateLabelsPage";
 
@@ -67,7 +67,7 @@ export default function SellerDashboard()
                         <Route path="/add-item" element={<AddItemPage sellerId={authentication.username} />} />
                         <Route path="/edit-item" element={<EditItemPage />} />
                         <Route path="/labels" element={<GenerateLabelsPage sellerId={authentication.username} />} />
-                        <Route path="/settings" element={<SettingsSubpage />} />
+                        <Route path="/settings" element={<SettingsPage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
