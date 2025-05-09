@@ -48,6 +48,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
 
     const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const [labelLayout, setLabelLayout] = useState<LabelLayoutData>(defaultLabelLayout);
+    const [activeStep, setActiveStep] = useState<number>(0);
     const [selectedItems, setSelectedItems] = useState<{ [id: string]: boolean }>({});
     useEffect(() => {
             void (async () => {
@@ -96,11 +97,11 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
         ]
 
         return (
-            <Stepper active={1} color="teal" size="sm" iconPosition="right" style={{ width: '100%' }}>
-                <Stepper.Step label="Select Items" allowStepSelect={false}>
+            <Stepper active={activeStep} onStepClick={setActiveStep} color="teal" size="sm" iconPosition="left" style={{ width: '100%' }}>
+                <Stepper.Step label="Select Items" allowStepSelect={true}>
                     <ItemsTable items={items} columns={columns} />
                 </Stepper.Step>
-                <Stepper.Step label="Label Layout" allowStepSelect={false}>
+                <Stepper.Step label="Label Layout" allowStepSelect={true}>
                     <Group justify="center" align="flex-start">
                         <LabelLayoutViewer width='400' labelLayout={labelLayout} />
                         <Stack align="stretch">
@@ -165,7 +166,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
                         </Stack>
                     </Group>
                 </Stepper.Step>
-                <Stepper.Step label="Generate PDF" allowStepSelect={false}>
+                <Stepper.Step label="Generate PDF" allowStepSelect={true}>
                     <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
                 </Stepper.Step>
             </Stepper>
