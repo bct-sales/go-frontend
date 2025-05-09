@@ -10,7 +10,7 @@ import ItemsPage from "../seller/ItemsPage";
 import OverviewPage from "../seller/OverviewPage";
 import SettingsPage from "../seller/SettingsPage";
 import classes from './SellerDashboard.module.css';
-import GenerateLabelsPage from "../seller/GenerateLabelsPage";
+import GenerateLabelsPage from "../seller/GenerateLabelsPage/GenerateLabelsPage";
 
 
 export default function SellerDashboard()
