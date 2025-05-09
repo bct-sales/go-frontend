@@ -1,5 +1,5 @@
 import { Button, Popover } from "@mantine/core";
-import { IconHelpCircle, IconQuestionMark } from "@tabler/icons-react";
+import { IconHelpCircle } from "@tabler/icons-react";
 
 interface Props
 {
