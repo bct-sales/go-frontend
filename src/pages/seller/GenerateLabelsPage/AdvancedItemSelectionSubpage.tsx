@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, charityColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/rest/item-data";
 import { useState } from "react";
 
