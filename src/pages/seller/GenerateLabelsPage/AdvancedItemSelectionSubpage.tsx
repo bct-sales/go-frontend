@@ -7,16 +7,18 @@ import { useState } from "react";
 interface Props
 {
     items: Item[];
-    isItemSelected: (item: Item) => boolean;
-    setItemSelection: (item: Item, selected: boolean) => void;
+    count: (item: Item) => number;
+    setCount: (item: Item, n: number) => void;
 }
 
 export default function AdvancedItemSelectionSubpage(props: Props): React.ReactNode
 {
     const [ activeItemIndex, setActiveItemIndex ] = useState<number | null>(null);
-    const { items, isItemSelected, setItemSelection } = props;
+    const [ itemSelectionTable, setItemSelectionTable ] = useState<{ [id: string]: boolean }>({});
+    const { items, count, setCount } = props;
     const columns = [
         smartSelectionColumn({isSelected: i => isItemSelected(items[i]), onChangeSelected: (i, b) => setItemSelection(items[i], b), itemCount: items.length, activeItemIndex}),
+        countColumn(count, setCount),
         itemIdColumn,
         descriptionColumn,
         categoryColumn,
@@ -40,5 +42,15 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
         {
             setActiveItemIndex(itemIndex);
         }
+    }
+
+    function isItemSelected(item: Item): boolean
+    {
+        return itemSelectionTable[item.itemId] ?? false;
+    }
+
+    function setItemSelection(item: Item, selected: boolean): void
+    {
+        setItemSelectionTable(old => ({ ...old, [item.itemId]: selected }));
     }
 }

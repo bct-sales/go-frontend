@@ -5,7 +5,7 @@ import DonationViewer from "@/components/DonationViewer";
 import NumberInput from "@/components/NumberInput";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
-import { count, range } from "@/util";
+import { range } from "@/util";
 import { Button, Checkbox } from "@mantine/core";
 import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
 import FrozenViewer from "../FrozenViewer";
@@ -153,7 +153,7 @@ export function smartSelectionColumn(args: SmartSelectionColumnArguments): Colum
     }
 }
 
-export function countColumn(count: (item: Item) => number, onChangeCount: (item: Item, count: number) => void): Column
+export function countColumn(count: (item: Item) => number, setCount: (item: Item, count: number) => void): Column
 {
     return {
         header: 'Count',
@@ -162,7 +162,7 @@ export function countColumn(count: (item: Item) => number, onChangeCount: (item:
             return (
                 <NumberInput
                     value={count(item)}
-                    onChange={n => onChangeCount(item, n)}
+                    onChange={n => setCount(item, n)}
                 />
             );
         },

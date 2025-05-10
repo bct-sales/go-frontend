@@ -1,19 +1,19 @@
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, selectionColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, charityColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/rest/item-data";
 
 interface Props
 {
     items: Item[];
-    isItemSelected: (item: Item) => boolean;
-    setItemSelection: (item: Item, selected: boolean) => void;
+    count: (item: Item) => number;
+    setCount: (item: Item, n: number) => void;
 }
 
 export default function SimpleItemSelectionSubpage(props: Props): React.ReactNode
 {
-    const { items, isItemSelected, setItemSelection } = props;
+    const { items } = props;
     const columns = [
-        selectionColumn(isItemSelected, setItemSelection),
+        countColumn(props.count, props.setCount),
         itemIdColumn,
         descriptionColumn,
         categoryColumn,

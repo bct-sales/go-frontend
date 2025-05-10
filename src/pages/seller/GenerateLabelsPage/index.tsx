@@ -47,7 +47,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
     const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const [labelLayout, setLabelLayout] = useState<LabelLayoutData>(defaultLabelLayout);
     const [activeStep, setActiveStep] = useState<number>(0);
-    const [selectedItemTable, setSelectedItemTable] = useState<{ [id: string]: boolean }>({});
+    const [itemCountTable, setItemCountTable] = useState<{ [id: string]: number }>({});
 
     useEffect(() => {
             void (async () => {
@@ -57,12 +57,12 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
                 {
                     setItemsStatus({ status: 'success', value: response.value.items });
 
-                    const mapping: { [id: string]: boolean } = {};
+                    const table: { [id: string]: number } = {};
                     for (const item of response.value.items)
                     {
-                        mapping[item.itemId] = true;
+                        table[item.itemId] = 2;
                     }
-                    setSelectedItemTable(mapping);
+                    setItemCountTable(table);
                 }
                 else
                 {
@@ -106,7 +106,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             {
                 case 0:
                     return (
-                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItemTable[item.itemId] === true} setItemSelection={updateSelectedItemTable} />
+                        <ItemSelectionSubpage items={items} count={count} setCount={setCount} />
                     );
 
                 case 1:
@@ -124,16 +124,20 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             }
         }
 
-        function updateSelectedItemTable(item: Item, selected: boolean): void
-        {
-            setSelectedItemTable(old => ({ ...old, [item.itemId]: selected }));
-        }
-
         function onGenerateLabels(): void
         {
             void (async () => {
-                const selectedItems = items.filter(item => selectedItemTable[item.itemId] === true);
-                const selectedItemIds = selectedItems.map(item => item.itemId);
+                const selectedItemIds: number[] = [];
+
+                for ( const item of items )
+                {
+                    const n = count(item);
+                    for ( let i = 0; i < n; i++ )
+                    {
+                        selectedItemIds.push(item.itemId);
+                    }
+                }
+
                 const payload = { layout: labelLayout, itemIds: selectedItemIds };
                 const blob = await generateLabels(payload);
 
@@ -156,5 +160,15 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
                 a.remove();
             })();
         }
+    }
+
+    function count(item: Item): number
+    {
+        return itemCountTable[item.itemId] || 0;
+    }
+
+    function setCount(item: Item, n: number): void
+    {
+        setItemCountTable(old => ({ ...old, [item.itemId]: n }));
     }
 }

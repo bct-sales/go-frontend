@@ -6,8 +6,8 @@ import SimpleItemSelectionSubpage from "./SimpleItemSelectionSubpage";
 interface Props
 {
     items: Item[];
-    isItemSelected: (item: Item) => boolean;
-    setItemSelection: (item: Item, selected: boolean) => void;
+    count: (item: Item) => number;
+    setCount: (item: Item, selected: number) => void;
 }
 
 export default function ItemSelectionSubpage(props: Props): React.ReactNode
