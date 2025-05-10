@@ -1,4 +1,4 @@
-import { ActionIcon, Checkbox, Collapse, Group, Stack } from "@mantine/core";
+import { ActionIcon, Checkbox, Collapse, Group, Stack, Tooltip } from "@mantine/core";
 import { IconArrowBarDown, IconArrowBarUp } from "@tabler/icons-react";
 
 
@@ -30,9 +30,11 @@ export default function SmartSelection(props: Props): React.ReactNode
     {
         return (
             <Collapse in={props.showRangeSelectors}>
-                <ActionIcon variant="subtle" disabled={!props.canSelectUpwards} onClick={e => props.onClickUpwards?.(e.ctrlKey)} p={0}>
-                    <IconArrowBarUp />
-                </ActionIcon>
+                <Tooltip label="Automates clicks on all items above. Ctrl forces deselect." openDelay={500}>
+                    <ActionIcon variant="subtle" disabled={!props.canSelectUpwards} onClick={e => props.onClickUpwards?.(e.ctrlKey)} p={0}>
+                        <IconArrowBarUp />
+                    </ActionIcon>
+                </Tooltip>
             </Collapse>
         );
     }
@@ -42,9 +44,11 @@ export default function SmartSelection(props: Props): React.ReactNode
     {
         return (
             <Collapse in={props.showRangeSelectors}>
-                <ActionIcon variant="subtle" disabled={!props.canSelectDownwards} onClick={e => props.onClickDownwards?.(e.ctrlKey)}>
-                    <IconArrowBarDown />
-                </ActionIcon>
+                <Tooltip label="Automates clicks on all items below. Ctrl forces deselect." openDelay={500}>
+                    <ActionIcon variant="subtle" disabled={!props.canSelectDownwards} onClick={e => props.onClickDownwards?.(e.ctrlKey)}>
+                        <IconArrowBarDown />
+                    </ActionIcon>
+                </Tooltip>
             </Collapse>
         );
     }
