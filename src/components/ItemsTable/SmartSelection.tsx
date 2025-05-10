@@ -8,9 +8,9 @@ interface Props
     canSelectDownwards: boolean;
     showRangeSelectors: boolean;
     isSelected: boolean;
-    onChangeSelected: (selected: boolean) => void;
-    onSelectUpwards?: () => void;
-    onSelectDownwards?: () => void;
+    onClickCheckbox: (selected: boolean) => void;
+    onClickUpwards?: (ctrl: boolean) => void;
+    onClickDownwards?: (ctrl: boolean) => void;
 }
 
 export default function SmartSelection(props: Props): React.ReactNode
@@ -19,7 +19,7 @@ export default function SmartSelection(props: Props): React.ReactNode
         <Stack align="center" gap='0'>
             {renderSelectBefore()}
             <Group>
-                <Checkbox checked={props.isSelected} onChange={e => props.onChangeSelected(e.currentTarget.checked)} />
+                <Checkbox checked={props.isSelected} onChange={e => props.onClickCheckbox(e.currentTarget.checked)} />
             </Group>
             {renderSelectAfter()}
         </Stack>
@@ -30,7 +30,7 @@ export default function SmartSelection(props: Props): React.ReactNode
     {
         return (
             <Collapse in={props.showRangeSelectors}>
-                <ActionIcon variant="subtle" disabled={!props.canSelectUpwards} onClick={() => props.onSelectUpwards?.()}>
+                <ActionIcon variant="subtle" disabled={!props.canSelectUpwards} onClick={e => props.onClickUpwards?.(e.ctrlKey)} p={0}>
                     <IconArrowBarUp />
                 </ActionIcon>
             </Collapse>
@@ -42,7 +42,7 @@ export default function SmartSelection(props: Props): React.ReactNode
     {
         return (
             <Collapse in={props.showRangeSelectors}>
-                <ActionIcon variant="subtle" disabled={!props.canSelectDownwards} onClick={() => props.onSelectDownwards?.()}>
+                <ActionIcon variant="subtle" disabled={!props.canSelectDownwards} onClick={e => props.onClickDownwards?.(e.ctrlKey)}>
                     <IconArrowBarDown />
                 </ActionIcon>
             </Collapse>

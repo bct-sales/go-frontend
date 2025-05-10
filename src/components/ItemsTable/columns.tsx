@@ -132,22 +132,23 @@ export function smartSelectionColumn(args: SmartSelectionColumnArguments): Colum
             return (
                 <SmartSelection
                     isSelected={isSelected(itemIndex)}
-                    onChangeSelected={b => onChangeSelected(itemIndex, b)}
+                    onClickCheckbox={b => onChangeSelected(itemIndex, b)}
                     canSelectUpwards={itemIndex > 0}
                     canSelectDownwards={itemIndex < itemCount - 1}
                     showRangeSelectors={itemIndex === activeItemIndex}
-                    onSelectDownwards={() => toggleRange(itemIndex, itemCount - 1)}
-                    onSelectUpwards={() => toggleRange(0, itemIndex)} />
+                    onClickDownwards={ctrl => updateRange(itemIndex + 1, itemCount - 1, ctrl)}
+                    onClickUpwards={ctrl => updateRange(0, itemIndex - 1, ctrl)} />
             );
         },
     };
 
 
-    function toggleRange(startIndex: number, endIndex: number): void
+    function updateRange(startIndex: number, endIndex: number, ctrl: boolean): void
     {
         for ( const index of range(startIndex, endIndex + 1) )
         {
-            onChangeSelected(index, !isSelected(index));
+            const newIsSelected = ctrl ? false : !isSelected(index);
+            onChangeSelected(index, newIsSelected);
         }
     }
 }
