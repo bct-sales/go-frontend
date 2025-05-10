@@ -7,6 +7,8 @@ interface Props
 {
     items: Item[];
     columns: Column[];
+    onItemClicked?: (item: Item, rowIndex: number) => void;
+    onItemDoubleClicked?: (item: Item, rowIndex: number) => void;
 }
 
 export interface Item
@@ -26,7 +28,7 @@ export interface Column
 {
     header: React.ReactNode;
     className: string;
-    viewer: (item: Item) => React.ReactNode;
+    viewer: (item: Item, itemIndex: number) => React.ReactNode;
 }
 
 
@@ -37,7 +39,7 @@ export default function ItemsTable(props: Props): React.ReactNode
     return (
         <Table className={classes.itemTable}>
             <Table.Thead>
-                <Table.Tr>
+                <Table.Tr className={classes.itemHeaderRow}>
                     {columns.map((column, index) => (
                         <Table.Th key={index} className={`${classes.itemHeader} ${column.className}`}>
                             {column.header}
@@ -52,13 +54,16 @@ export default function ItemsTable(props: Props): React.ReactNode
     );
 
 
-    function renderItem(item: Item): React.ReactNode
+    function renderItem(item: Item, itemIndex: number): React.ReactNode
     {
         return (
             <Table.Tr key={item.itemId} className={classes.itemRow}>
                 {columns.map((column, index) => (
-                    <Table.Td key={index} className={`${classes.itemData} ${column.className}`}>
-                        {column.viewer(item)}
+                    <Table.Td key={index}
+                              className={`${classes.itemData} ${column.className}`}
+                              onClick={() => props.onItemClicked?.(item, itemIndex)}
+                              onDoubleClick={() => props.onItemDoubleClicked?.(item, itemIndex)}>
+                        {column.viewer(item, itemIndex)}
                     </Table.Td>
                 ))}
             </Table.Tr>

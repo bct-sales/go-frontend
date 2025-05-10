@@ -1,6 +1,8 @@
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, selectionColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/rest/item-data";
+import { useState } from "react";
+
 
 interface Props
 {
@@ -11,9 +13,10 @@ interface Props
 
 export default function AdvancedItemSelectionSubpage(props: Props): React.ReactNode
 {
+    const [ activeItemIndex, setActiveItemIndex ] = useState<number | null>(null);
     const { items, isItemSelected, setItemSelection } = props;
     const columns = [
-        selectionColumn(isItemSelected, setItemSelection),
+        smartSelectionColumn({isSelected: i => isItemSelected(items[i]), onChangeSelected: (i, b) => setItemSelection(items[i], b), itemCount: items.length, activeItemIndex}),
         itemIdColumn,
         descriptionColumn,
         categoryColumn,
@@ -23,6 +26,19 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
     ];
 
     return (
-        <ItemsTable items={items} columns={columns} />
+        <ItemsTable items={items} columns={columns} onItemDoubleClicked={onItemDoubleClicked} />
     );
+
+
+    function onItemDoubleClicked(_item: Item, itemIndex: number): void
+    {
+        if (activeItemIndex === itemIndex)
+        {
+            setActiveItemIndex(null);
+        }
+        else
+        {
+            setActiveItemIndex(itemIndex);
+        }
+    }
 }

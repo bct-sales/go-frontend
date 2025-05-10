@@ -1,15 +1,17 @@
-import { Column, Item } from "./ItemsTable";
 import CategoryViewer from "@/components/CategoryViewer";
 import CharityViewer from "@/components/CharityViewer";
 import DateTimeViewer from "@/components/DateTimeViewer";
 import DonationViewer from "@/components/DonationViewer";
+import NumberInput from "@/components/NumberInput";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
-import classes from './ItemsTable.module.css';
-import FrozenViewer from "../FrozenViewer";
-import { IconCopy, IconCopyPlus, IconEdit } from "@tabler/icons-react";
+import { count, range } from "@/util";
 import { Button, Checkbox } from "@mantine/core";
-import NumberInput from "@/components/NumberInput";
+import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
+import FrozenViewer from "../FrozenViewer";
+import { Column, Item } from "./ItemsTable";
+import classes from './ItemsTable.module.css';
+import SmartSelection from "./SmartSelection";
 
 
 export const itemIdColumn: Column = {
@@ -109,6 +111,45 @@ export function selectionColumn(isSelected: (item: Item) => boolean, onChangeSel
             );
         },
     };
+}
+
+export type SmartSelectionColumnArguments =
+{
+    isSelected: (itemIndex: number) => boolean;
+    onChangeSelected: (itemIndex: number, selected: boolean) => void;
+    itemCount: number;
+    activeItemIndex: number | null;
+}
+
+export function smartSelectionColumn(args: SmartSelectionColumnArguments): Column
+{
+    const { isSelected, onChangeSelected, itemCount, activeItemIndex } = args;
+
+    return {
+        header: '',
+        className: classes.itemSelect,
+        viewer: (_item: Item, itemIndex: number) => {
+            return (
+                <SmartSelection
+                    isSelected={isSelected(itemIndex)}
+                    onChangeSelected={b => onChangeSelected(itemIndex, b)}
+                    canSelectUpwards={itemIndex > 0}
+                    canSelectDownwards={itemIndex < itemCount - 1}
+                    showRangeSelectors={itemIndex === activeItemIndex}
+                    onSelectDownwards={() => toggleRange(itemIndex, itemCount - 1)}
+                    onSelectUpwards={() => toggleRange(0, itemIndex)} />
+            );
+        },
+    };
+
+
+    function toggleRange(startIndex: number, endIndex: number): void
+    {
+        for ( const index of range(startIndex, endIndex + 1) )
+        {
+            onChangeSelected(index, !isSelected(index));
+        }
+    }
 }
 
 export function countColumn(count: (item: Item) => number, onChangeCount: (item: Item, count: number) => void): Column

@@ -105,7 +105,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             {
                 case 0:
                     return (
-                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItemTable[item.itemId] === true} setItemSelection={(item, selected) => { setSelectedItemTable({ ...selectedItemTable, [item.itemId]: selected }) }} />
+                        <ItemSelectionSubpage items={items} isItemSelected={(item) => selectedItemTable[item.itemId] === true} setItemSelection={updateSelectedItemTable} />
                     );
 
                 case 1:
@@ -121,6 +121,11 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
                 default:
                     return <div>Bug: unknown step</div>;
             }
+        }
+
+        function updateSelectedItemTable(item: Item, selected: boolean): void
+        {
+            setSelectedItemTable(old => ({ ...old, [item.itemId]: selected }));
         }
 
         function onGenerateLabels(): void
