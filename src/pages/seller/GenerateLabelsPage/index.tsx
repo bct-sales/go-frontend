@@ -48,6 +48,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
     const [labelLayout, setLabelLayout] = useState<LabelLayoutData>(defaultLabelLayout);
     const [activeStep, setActiveStep] = useState<number>(0);
     const [selectedItemTable, setSelectedItemTable] = useState<{ [id: string]: boolean }>({});
+
     useEffect(() => {
             void (async () => {
                 const response = await listSellerItems(props.sellerId);
