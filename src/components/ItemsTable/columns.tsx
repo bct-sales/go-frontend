@@ -163,7 +163,9 @@ export function countColumn(count: (item: Item) => number, setCount: (item: Item
                 <NumberInput
                     value={count(item)}
                     onChange={n => setCount(item, n)}
-                />
+                    w='5em'
+                    min={0}
+                    step={1} />
             );
         },
     };

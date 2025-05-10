@@ -1,6 +1,9 @@
+import CaptionedBox from "@/components/CaptionedBox";
 import ItemsTable from "@/components/ItemsTable";
 import { categoryColumn, charityColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
+import NumberInput from "@/components/NumberInput";
 import { Item } from "@/rest/item-data";
+import { Button, Group, Stack, Text } from "@mantine/core";
 import { useState } from "react";
 
 
@@ -14,6 +17,7 @@ interface Props
 export default function AdvancedItemSelectionSubpage(props: Props): React.ReactNode
 {
     const [ activeItemIndex, setActiveItemIndex ] = useState<number | null>(null);
+    const [ quickAmount, setQuickAmount ] = useState<number>(2);
     const [ itemSelectionTable, setItemSelectionTable ] = useState<{ [id: string]: boolean }>({});
     const { items, count, setCount } = props;
     const columns = [
@@ -28,9 +32,29 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
     ];
 
     return (
-        <ItemsTable items={items} columns={columns} onItemDoubleClicked={onItemDoubleClicked} />
+        <Stack align="center">
+            <CaptionedBox caption="Advanced functionality">
+                <Group>
+                    <Text>Set selected items to </Text>
+                    <NumberInput min={0} step={1} value={quickAmount} onChange={setQuickAmount} w='5em' />
+                    <Button onClick={updateAllSelectedItems}>Go</Button>
+                </Group>
+            </CaptionedBox>
+            <ItemsTable items={items} columns={columns} onItemDoubleClicked={onItemDoubleClicked} />
+        </Stack>
     );
 
+
+    function updateAllSelectedItems(): void
+    {
+        items.forEach((item) =>
+        {
+            if (isItemSelected(item))
+            {
+                setCount(item, quickAmount);
+            }
+        });
+    }
 
     function onItemDoubleClicked(_item: Item, itemIndex: number): void
     {
