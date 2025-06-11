@@ -1,9 +1,7 @@
-import AdvancedOnly from "@/components/AdvancedOnly";
-import HelpPopover from "@/components/HelpPopover";
 import ItemEditor, { ItemData } from "@/components/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
-import { Button, Flex, Group, Switch, Text } from "@mantine/core";
+import { Button, Flex } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +16,6 @@ export default function AddItemPage(props: Props) : React.ReactNode
 {
     const navigate = useNavigate();
     const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false});
-    const [addMultiple, setAddMultiple] = useState(false);
     const { description, priceInCents, categoryId, charity, donation } = itemData;
     const isValidData = checkValidity();
 
@@ -26,16 +23,6 @@ export default function AddItemPage(props: Props) : React.ReactNode
         <Flex direction="column" align="stretch" justify="center" gap='md'>
             <ItemEditor itemData={itemData} setItemData={setItemData} />
             <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
-            <AdvancedOnly>
-                <Group justify="flex-end">
-                    <Switch label="Add multiple" checked={addMultiple} onChange={e => setAddMultiple(e.currentTarget.checked)} />
-                    <HelpPopover>
-                        <Text size="sm">
-                            If enabled, pressing "Add Item" will add the item and reset the form, allowing you to add another item without going back to the item overview page.
-                        </Text>
-                    </HelpPopover>
-                </Group>
-            </AdvancedOnly>
         </Flex>
     );
 
@@ -60,14 +47,7 @@ export default function AddItemPage(props: Props) : React.ReactNode
                     color: 'green',
                 });
 
-                if ( addMultiple )
-                {
-                    resetItemData();
-                }
-                else
-                {
-                    navigate('/seller');
-                }
+                resetItemData();
             }
             else
             {

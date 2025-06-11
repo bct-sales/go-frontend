@@ -22,8 +22,8 @@ const ErrorTag = z.enum([
     "no_such_category",
     "item_frozen",
     "invalid_price",
-    "sale_missing_items",
     "duplicate_item_in_sale",
+    "missing_items",
 ])
 
 type ErrorTag = z.infer<typeof ErrorTag>;

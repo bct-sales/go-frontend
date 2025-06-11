@@ -14,7 +14,7 @@ const ItemCountByCategory = z.object({
 export type ItemCountByCategory = z.infer<typeof ItemCountByCategory>;
 
 const ItemCountsByCategoryResponse = z.object({
-    counts: z.array(ItemCountByCategory),
+    categories: z.array(ItemCountByCategory),
 });
 
 export type ItemCountsByCategoryResponse = z.infer<typeof ItemCountsByCategoryResponse>;

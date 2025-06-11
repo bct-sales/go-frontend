@@ -13,7 +13,7 @@ const Category = z.object({
 export type Category = z.infer<typeof Category>;
 
 const SuccessResponse = z.object({
-    counts: z.array(Category),
+    categories: z.array(Category),
 });
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;

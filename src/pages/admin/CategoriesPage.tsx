@@ -17,7 +17,7 @@ export default function CategoriesPage() : React.ReactNode
 
             if (data.success)
             {
-                setStatus({ status: 'success', value: data.value.counts });
+                setStatus({ status: 'success', value: data.value.categories });
             }
             else
             {

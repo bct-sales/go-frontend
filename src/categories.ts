@@ -37,7 +37,7 @@ export function useCategories(): RestStatus<CategoryTable>
 
         if ( restResult.success )
         {
-            const categories = restResult.value.counts;
+            const categories = restResult.value.categories;
 
             return success(buildCategoryTable(categories));
         }
