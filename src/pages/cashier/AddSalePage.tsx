@@ -6,7 +6,7 @@ interface Props
     cashierId: number;
 }
 
-export default function OverviewPage(props: Props): React.ReactNode
+export default function AddSalePage(props: Props): React.ReactNode
 {
     return (
         <Text size="xl"style={{ padding: '1rem' }}>

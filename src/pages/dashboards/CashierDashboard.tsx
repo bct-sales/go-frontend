@@ -1,9 +1,9 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
-import OverviewPage from "@/pages/cashier/OverviewPage";
+import AddSalePage from "@/pages/cashier/AddSalePage";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconLogout } from "@tabler/icons-react";
+import { IconCashRegister, IconChartBar, IconLogout } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import classes from './CashierDashboard.module.css';
 
@@ -33,7 +33,7 @@ export default function CashierDashboard()
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
                         <NavigationButton caption="Overview" url="/cashier">
-                            <IconChartBar />
+                            <IconCashRegister />
                         </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
                             <IconLogout />
@@ -42,7 +42,7 @@ export default function CashierDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<OverviewPage cashierId={authentication.username} />} />
+                        <Route path="/" element={<AddSalePage cashierId={authentication.username} />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
