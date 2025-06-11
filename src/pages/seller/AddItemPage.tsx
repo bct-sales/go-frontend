@@ -4,7 +4,6 @@ import { validateDescription, validatePrice } from "@/validation";
 import { Button, Flex } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 
 interface Props
@@ -14,7 +13,6 @@ interface Props
 
 export default function AddItemPage(props: Props) : React.ReactNode
 {
-    const navigate = useNavigate();
     const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false});
     const { description, priceInCents, categoryId, charity, donation } = itemData;
     const isValidData = checkValidity();
