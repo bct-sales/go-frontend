@@ -30,6 +30,10 @@ export default function App() : React.ReactNode
             path: '/seller/*',
             element: <pages.SellerDashboard />,
         },
+        {
+            path: '/cashier/*',
+            element: <pages.CashierDashboard />,
+        },
     ]);
 
     const queryClient = new QueryClient();
