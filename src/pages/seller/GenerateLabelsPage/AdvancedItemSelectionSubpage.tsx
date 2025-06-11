@@ -37,10 +37,10 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
                 <Group>
                     <Text>Set selected items to </Text>
                     <NumberInput min={0} step={1} value={quickAmount} onChange={setQuickAmount} w='5em' />
-                    <Button onClick={updateAllSelectedItems}>Go</Button>
+                    <Button onClick={updateAllSelectedItems}>Update</Button>
                 </Group>
             </CaptionedBox>
-            <ItemsTable items={items} columns={columns} onItemDoubleClicked={onItemDoubleClicked} />
+            <ItemsTable items={items} columns={columns} onItemActivated={onItemActivated} />
         </Stack>
     );
 
@@ -56,7 +56,7 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
         });
     }
 
-    function onItemDoubleClicked(_item: Item, itemIndex: number): void
+    function onItemActivated(_item: Item, itemIndex: number): void
     {
         if (activeItemIndex === itemIndex)
         {

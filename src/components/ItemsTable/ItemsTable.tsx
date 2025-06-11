@@ -8,7 +8,7 @@ interface Props
     items: Item[];
     columns: Column[];
     onItemClicked?: (item: Item, rowIndex: number) => void;
-    onItemDoubleClicked?: (item: Item, rowIndex: number) => void;
+    onItemActivated?: (item: Item, rowIndex: number) => void;
 }
 
 export interface Item
@@ -62,11 +62,16 @@ export default function ItemsTable(props: Props): React.ReactNode
                     <Table.Td key={index}
                               className={`${classes.itemData} ${column.className}`}
                               onClick={() => props.onItemClicked?.(item, itemIndex)}
-                              onDoubleClick={() => props.onItemDoubleClicked?.(item, itemIndex)}>
+                              onDoubleClick={() => notifyItemActivation(item, itemIndex)}>
                         {column.viewer(item, itemIndex)}
                     </Table.Td>
                 ))}
             </Table.Tr>
         );
+    }
+
+    function notifyItemActivation(item: Item, itemIndex: number): void
+    {
+        props.onItemActivated?.(item, itemIndex);
     }
 }
