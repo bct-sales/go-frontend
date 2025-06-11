@@ -67,8 +67,8 @@ export default function AddSalePage(props: Props): React.ReactNode
 
             if ( result.success )
             {
-                const itemInformation: Item = result.value;
-                const updatedSaleItems: Item[] = [itemInformation, ...saleItems];
+                const itemInformation = result.value;
+                const updatedSaleItems = [itemInformation, ...saleItems];
                 setSaleItems(updatedSaleItems);
                 resetItemInput();
             }
