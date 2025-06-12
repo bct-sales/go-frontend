@@ -1,12 +1,14 @@
-import { Table } from "@mantine/core";
+import { Stack, Table, Tooltip } from "@mantine/core";
 import React from "react";
 import classes from './SaleItemsTable.module.css';
 import Price from "./Price";
+import { IconAlertTriangle, IconTrash } from "@tabler/icons-react";
 
 
 interface Props
 {
     items: SaleItem[];
+    onRemoveItem?: (index: number) => void;
 }
 
 export interface SaleItem
@@ -34,6 +36,9 @@ export default function ItemsTable(props: Props): React.ReactNode
                     <Table.Th>
                         Price
                     </Table.Th>
+                    <Table.Th>
+
+                    </Table.Th>
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -43,7 +48,7 @@ export default function ItemsTable(props: Props): React.ReactNode
     );
 
 
-    function renderItem(item: SaleItem): React.ReactNode
+    function renderItem(item: SaleItem, index: number): React.ReactNode
     {
         return (
             <Table.Tr key={item.itemId} className={rowClassNameFor(item)}>
@@ -55,6 +60,12 @@ export default function ItemsTable(props: Props): React.ReactNode
                 </Table.Td>
                 <Table.Td>
                     <Price priceInCents={item.priceInCents} />
+                </Table.Td>
+                <Table.Td className={classes.alertColumn}>
+                    {renderRemoveButton(index)}
+                </Table.Td>
+                <Table.Td className={classes.alertColumn}>
+                    {renderWarning(item)}
                 </Table.Td>
             </Table.Tr>
         );
@@ -69,5 +80,36 @@ export default function ItemsTable(props: Props): React.ReactNode
         }
 
         return classNames.join(' ');
+    }
+
+    function renderWarning(item: SaleItem): React.ReactNode
+    {
+        if ( item.alreadySold ) {
+            return (
+                <Stack align="center" justify="center">
+                    <Tooltip label="This item has already been sold">
+                        <IconAlertTriangle />
+                    </Tooltip>
+                </Stack>
+            );
+        }
+
+        return null;
+    }
+
+    function renderRemoveButton(index: number): React.ReactNode
+    {
+        return (
+            <Stack align="center" justify="center">
+                <Tooltip label="Remove item from sale">
+                    <IconTrash onClick={() => notifyRemoveItemWithIndex(index)} />
+                </Tooltip>
+            </Stack>
+        );
+    }
+
+    function notifyRemoveItemWithIndex(index: number): void
+    {
+        props.onRemoveItem?.(index);
     }
 }
