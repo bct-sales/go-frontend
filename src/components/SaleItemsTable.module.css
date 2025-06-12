@@ -1,0 +1,47 @@
+.itemTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.itemRow {
+    &:nth-child(odd) {
+        background-color: #333;
+    }
+
+    &:nth-child(even) {
+        background-color: #444;
+    }
+
+    &.alreadySold {
+        background-color: #F55;
+        font-weight: bold;;
+        color: black;
+    }
+
+    &:hover {
+        background-color: #558;
+    }
+
+    &:hover.alreadySold {
+        color: red;
+    }
+
+    border-bottom: #AAA 1px solid;
+    user-select: none;
+
+    & .userData {
+        padding: 5px 2em;
+    }
+
+    & .itemDescription {
+        text-align: left;
+    }
+
+    & .itemPrice {
+        text-align: right;
+    }
+
+    & .itemId {
+        text-align: left;
+    }
+}
