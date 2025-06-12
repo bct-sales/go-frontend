@@ -31,7 +31,7 @@ export default function AddSalePage(props: Props): React.ReactNode
                     <CaptionedBox caption="Add Item">
                         <Stack align="center">
                             <Group >
-                                <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} classNames={{input: classes.itemIdInput}} />
+                                <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
                                 <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
                                     <IconPlus />
                                 </ActionIcon>
@@ -149,7 +149,7 @@ export default function AddSalePage(props: Props): React.ReactNode
         return !isNaN(itemId) && itemId > 0;
     }
 
-    function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void
+    function onKeyDownInItemIdInput(event: React.KeyboardEvent<HTMLInputElement>): void
     {
         if (event.key === 'Enter')
         {
