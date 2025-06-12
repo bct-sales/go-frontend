@@ -6,7 +6,7 @@ import NumberInput from "@/components/NumberInput";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import { range } from "@/util";
-import { Button, Checkbox } from "@mantine/core";
+import { Button, Checkbox, Group } from "@mantine/core";
 import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
 import FrozenViewer from "../FrozenViewer";
 import { Column, Item } from "./ItemsTable";
@@ -35,7 +35,11 @@ export const addedAtColumn: Column = {
 export const priceInCentsColumn: Column = {
     header: 'Price',
     className: classes.itemPrice,
-    viewer: (item: Item) => <Price priceInCents={item.priceInCents} />,
+    viewer: (item: Item) => (
+        <Group justify="flex-end" w="100%">
+            <Price priceInCents={item.priceInCents} />
+        </Group>
+    ),
 };
 
 export const charityColumn: Column = {
