@@ -18,14 +18,6 @@
         color: black;
     }
 
-    &:hover {
-        background-color: #558;
-    }
-
-    &:hover.alreadySold {
-        color: red;
-    }
-
     border-bottom: #AAA 1px solid;
     user-select: none;
 
