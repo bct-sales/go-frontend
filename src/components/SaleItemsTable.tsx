@@ -1,4 +1,4 @@
-import { Stack, Table, Tooltip } from "@mantine/core";
+import { ActionIcon, Stack, Table, Tooltip } from "@mantine/core";
 import React from "react";
 import classes from './SaleItemsTable.module.css';
 import Price from "./Price";
@@ -36,9 +36,8 @@ export default function ItemsTable(props: Props): React.ReactNode
                     <Table.Th>
                         Price
                     </Table.Th>
-                    <Table.Th>
-
-                    </Table.Th>
+                    <Table.Th />
+                    <Table.Th />
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -102,7 +101,9 @@ export default function ItemsTable(props: Props): React.ReactNode
         return (
             <Stack align="center" justify="center">
                 <Tooltip label="Remove item from sale">
-                    <IconTrash onClick={() => notifyRemoveItemWithIndex(index)} />
+                    <ActionIcon onClick={() => notifyRemoveItemWithIndex(index)} color="red" variant="outline">
+                        <IconTrash />
+                    </ActionIcon>
                 </Tooltip>
             </Stack>
         );
