@@ -3,7 +3,7 @@ import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
 import AddSalePage from "@/pages/cashier/AddSalePage";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconCashRegister, IconChartBar, IconLogout } from "@tabler/icons-react";
+import { IconCashRegister, IconLogout } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import classes from './CashierDashboard.module.css';
 

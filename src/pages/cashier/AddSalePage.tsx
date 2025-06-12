@@ -1,6 +1,5 @@
 import CaptionedBox from "@/components/CaptionedBox";
-import ItemsTable from "@/components/ItemsTable";
-import { descriptionColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item } from "@/rest/item-data";
 import { ActionIcon, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
@@ -28,10 +27,20 @@ export default function AddSalePage(props: Props): React.ReactNode
                     <ActionIcon onClick={onFinalizeSale}><IconCashRegister /></ActionIcon>
                 </Stack>
             </CaptionedBox>
-            <ItemsTable items={saleItems} columns={[itemIdColumn, descriptionColumn, priceInCentsColumn]}></ItemsTable>
+            <SaleItemsTable items={saleItems.map(toSaleItem)} />
         </Stack>
     );
 
+
+    function toSaleItem(item: Item): SaleItem
+    {
+        return {
+            itemId: item.itemId,
+            description: item.description,
+            priceInCents: item.priceInCents,
+            alreadySold: item.soldIn.length > 0,
+        };
+    }
 
     function onUpdateItemId(value: string): void
     {
