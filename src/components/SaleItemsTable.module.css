@@ -3,9 +3,19 @@
     border-collapse: collapse;
 }
 
+.itemHeaderRow {
+    border-bottom: 2px solid white;
+}
+
 .itemRow {
+    user-select: none;
+
     &:nth-child(odd) {
         background-color: #333;
+    }
+
+    &:not(:last-child) {
+        border-bottom: solid 1px white;
     }
 
     &:nth-child(even) {
@@ -16,9 +26,6 @@
         font-weight: bold;
         color: red;
     }
-
-    border-bottom: #AAA 1px solid;
-    user-select: none;
 
     & .userData {
         padding: 5px 2em;
