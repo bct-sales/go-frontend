@@ -38,7 +38,7 @@ export default function AddSalePage(props: Props): React.ReactNode
                             </Group>
                         </Stack>
                     </CaptionedBox>
-                    <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                    <Button onClick={finalizeSale} disabled={!canFinalizeSale} mb='xl'>
                         Finalize Sale
                     </Button>
                     <CaptionedBox caption="Sale Items">
@@ -137,7 +137,7 @@ export default function AddSalePage(props: Props): React.ReactNode
         }
     }
 
-    function onFinalizeSale(): void
+    function finalizeSale(): void
     {
         setStep(1);
     }
@@ -154,7 +154,15 @@ export default function AddSalePage(props: Props): React.ReactNode
         if ( event.key === 'Enter' )
         {
             event.preventDefault();
-            onAddItem();
+
+            if ( event.ctrlKey )
+            {
+                finalizeSale();
+            }
+            else
+            {
+                onAddItem();
+            }
         }
     }
 
