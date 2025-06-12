@@ -13,9 +13,8 @@
     }
 
     &.alreadySold {
-        background-color: #F55;
-        font-weight: bold;;
-        color: black;
+        font-weight: bold;
+        color: red;
     }
 
     border-bottom: #AAA 1px solid;
