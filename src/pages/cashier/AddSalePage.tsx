@@ -1,7 +1,7 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item } from "@/rest/item-data";
-import { ActionIcon, Button, Group, Stack, TextInput } from "@mantine/core";
+import { ActionIcon, Button, Flex, Group, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconCashRegister, IconPlus } from "@tabler/icons-react";
 import { useRef, useState } from "react";
@@ -33,9 +33,14 @@ export default function AddSalePage(props: Props): React.ReactNode
                 </Stack>
             </CaptionedBox>
             <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
-                        Finalize Sale
+                Finalize Sale
             </Button>
             <CaptionedBox caption="Sale Items">
+                <Flex direction="row" justify="flex-end">
+                    <Button color="red" onClick={removeAllSaleItems}>
+                        Remove All
+                    </Button>
+                </Flex>
                 <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
             </CaptionedBox>
         </Stack>
@@ -140,5 +145,10 @@ export default function AddSalePage(props: Props): React.ReactNode
     {
         const updatedItems = saleItems.filter((_, i) => i !== index);
         setSaleItems(updatedItems);
+    }
+
+    function removeAllSaleItems(): void
+    {
+        setSaleItems([]);
     }
 }
