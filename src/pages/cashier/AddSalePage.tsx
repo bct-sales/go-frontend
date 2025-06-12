@@ -1,11 +1,13 @@
 import CaptionedBox from "@/components/CaptionedBox";
+import Price from "@/components/Price";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item } from "@/rest/item-data";
-import { ActionIcon, Button, Flex, Group, Stack, TextInput } from "@mantine/core";
+import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { IconCashRegister, IconPlus } from "@tabler/icons-react";
+import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 import classes from './AddSalePage.module.css';
+import { addSale } from "@/rest/add-sale";
 
 
 interface Props
@@ -15,34 +17,60 @@ interface Props
 
 export default function AddSalePage(props: Props): React.ReactNode
 {
+    const [step, setStep] = useState(0);
     const [saleItems, setSaleItems] = useState<Item[]>([]);
     const [itemId, setItemId] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
     const canFinalizeSale = saleItems.length > 0;
+    const totalPriceInCents = saleItems.reduce((total, item) => total + item.priceInCents, 0);
 
     return (
-        <Stack>
-            <CaptionedBox caption="Add Item">
-                <Stack align="center">
-                    <Group >
-                        <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} classNames={{input: classes.itemIdInput}} />
-                        <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
-                            <IconPlus />
-                        </ActionIcon>
-                    </Group>
+        <Stepper active={step}>
+            <Stepper.Step label="Items" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
+                <Stack>
+                    <CaptionedBox caption="Add Item">
+                        <Stack align="center">
+                            <Group >
+                                <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} classNames={{input: classes.itemIdInput}} />
+                                <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
+                                    <IconPlus />
+                                </ActionIcon>
+                            </Group>
+                        </Stack>
+                    </CaptionedBox>
+                    <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                        Finalize Sale
+                    </Button>
+                    <CaptionedBox caption="Sale Items">
+                        {renderSaleItems()}
+                    </CaptionedBox>
                 </Stack>
-            </CaptionedBox>
-            <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
-                Finalize Sale
-            </Button>
-            <CaptionedBox caption="Sale Items">
-                {renderSaleItems()}
-            </CaptionedBox>
-        </Stack>
+            </Stepper.Step>
+            <Stepper.Step label="Payment" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
+                <Stack>
+                    <CaptionedBox caption="Amount Due">
+                        <Stack align="center">
+                            <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
+                            <Group justify="space-between" w="100%">
+                                <Button leftSection={<IconBackspace />} onClick={() => setStep(0)} variant="outline">
+                                    Back to Items
+                                </Button>
+                                <Tooltip label="Press this button after receiving payment">
+                                    <Button leftSection={<IconCheck />} color="green" onClick={onPaymentReceived}>
+                                        Payment Received
+                                    </Button>
+                                </Tooltip>
+                            </Group>
+                        </Stack>
+                    </CaptionedBox>
+                </Stack>
+            </Stepper.Step>
+        </Stepper>
+
     );
 
 
-    function toSaleItem(item: Item): SaleItem
+    function convertToSaleItem(item: Item): SaleItem
     {
         return {
             itemId: item.itemId,
@@ -111,7 +139,7 @@ export default function AddSalePage(props: Props): React.ReactNode
 
     function onFinalizeSale(): void
     {
-        setSaleItems([]);
+        setStep(1);
     }
 
     function isValidItemId(value: string): boolean
@@ -166,9 +194,35 @@ export default function AddSalePage(props: Props): React.ReactNode
                             Remove All
                         </Button>
                     </Flex>
-                    <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
+                    <SaleItemsTable items={saleItems.map(convertToSaleItem)} onRemoveItem={removeItemWithIndex} />
                 </>
             );
+        }
+    }
+
+    async function onPaymentReceived(): Promise<void>
+    {
+        const itemIds = saleItems.map(item => item.itemId);
+        const result = await addSale({ itemIds });
+
+        if ( result.success )
+        {
+            notifications.show({
+                message: `Sale completed successfully`,
+                color: 'green',
+            });
+
+            removeAllSaleItems();
+            setStep(0);
+        }
+        else
+        {
+            notifications.show({
+                message: `Failed to complete sale`,
+                color: 'red',
+            });
+
+            console.error(result.error);
         }
     }
 }
