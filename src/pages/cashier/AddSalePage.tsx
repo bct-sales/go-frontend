@@ -5,6 +5,7 @@ import { ActionIcon, Group, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconCashRegister, IconPlus } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import classes from './AddSalePage.module.css';
 
 
 interface Props
@@ -23,7 +24,7 @@ export default function AddSalePage(props: Props): React.ReactNode
             <CaptionedBox caption="Add Item">
                 <Stack align="center">
                     <Group>
-                        <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} />
+                        <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} classNames={{input: classes.itemIdInput}} />
                         <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
                             <IconPlus />
                         </ActionIcon>
