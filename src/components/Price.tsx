@@ -1,8 +1,9 @@
-import { Flex, Text } from "@mantine/core";
+import { Text } from "@mantine/core";
 
 interface Props
 {
     priceInCents: number;
+    className?: string;
 }
 
 
@@ -14,16 +15,10 @@ export default function Price(props: Props): React.ReactNode
     const cents = priceInCents % 100;
 
     return (
-        <Flex justify="flex-end" align="center" style={{ width: '100%' }}>
-            <Text>
-                &euro;{euros}
-            </Text>
-            <Text>
-                .
-            </Text>
-            <Text w='2rem' style={{ textAlign: 'left' }}>
-                {cents.toString().padStart(2, '0')}
-            </Text>
-        </Flex>
+        <Text className={props.className}>
+            &euro;{euros}
+            .
+            {cents.toString().padStart(2, '0')}
+        </Text>
     );
 }
