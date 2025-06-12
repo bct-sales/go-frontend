@@ -1,7 +1,7 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item } from "@/rest/item-data";
-import { ActionIcon, Stack, TextInput } from "@mantine/core";
+import { ActionIcon, Group, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconCashRegister, IconPlus } from "@tabler/icons-react";
 import { useRef, useState } from "react";
@@ -21,9 +21,13 @@ export default function AddSalePage(props: Props): React.ReactNode
     return (
         <Stack>
             <CaptionedBox caption="Add Item">
-                <Stack>
-                    <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} />
-                    <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}><IconPlus /></ActionIcon>
+                <Stack align="center">
+                    <Group>
+                        <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} />
+                        <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
+                            <IconPlus />
+                        </ActionIcon>
+                    </Group>
                     <ActionIcon onClick={onFinalizeSale}><IconCashRegister /></ActionIcon>
                 </Stack>
             </CaptionedBox>
