@@ -36,12 +36,7 @@ export default function AddSalePage(props: Props): React.ReactNode
                 Finalize Sale
             </Button>
             <CaptionedBox caption="Sale Items">
-                <Flex direction="row" justify="flex-end">
-                    <Button color="red" onClick={removeAllSaleItems}>
-                        Remove All
-                    </Button>
-                </Flex>
-                <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
+                {renderSaleItems()}
             </CaptionedBox>
         </Stack>
     );
@@ -150,5 +145,30 @@ export default function AddSalePage(props: Props): React.ReactNode
     function removeAllSaleItems(): void
     {
         setSaleItems([]);
+    }
+
+    function renderSaleItems(): React.ReactNode
+    {
+        if ( saleItems.length === 0 )
+        {
+            return (
+                <>
+                    No items have been added yet
+                </>
+            );
+        }
+        else
+        {
+            return (
+                <>
+                    <Flex direction="row" justify="flex-end">
+                        <Button color="red" onClick={removeAllSaleItems}>
+                            Remove All
+                        </Button>
+                    </Flex>
+                    <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
+                </>
+            );
+        }
     }
 }
