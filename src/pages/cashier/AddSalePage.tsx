@@ -30,12 +30,14 @@ export default function AddSalePage(props: Props): React.ReactNode
                             <IconPlus />
                         </ActionIcon>
                     </Group>
-                    <Button onClick={onFinalizeSale} disabled={!canFinalizeSale}>
-                        Finalize Sale
-                    </Button>
                 </Stack>
             </CaptionedBox>
-            <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
+            <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                        Finalize Sale
+            </Button>
+            <CaptionedBox caption="Sale Items">
+                <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
+            </CaptionedBox>
         </Stack>
     );
 
