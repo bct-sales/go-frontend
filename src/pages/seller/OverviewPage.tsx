@@ -100,7 +100,7 @@ export default function OverviewPage(props: Props): React.ReactNode
                         </Card>
                     </Stepper.Step>
                     <Stepper.Step label="Step 3" description="Bring items to allocator">
-                    <Card w="50%" m="auto" mt='lg' withBorder radius="md">
+                        <Card w="50%" m="auto" mt='lg' withBorder radius="md">
                             <Card.Section p='md'>
                                 <Text>
                                     You have added items to your seller account, and generated labels for them.
