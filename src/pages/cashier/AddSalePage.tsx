@@ -1,7 +1,7 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item } from "@/rest/item-data";
-import { ActionIcon, Group, Stack, TextInput } from "@mantine/core";
+import { ActionIcon, Button, Group, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconCashRegister, IconPlus } from "@tabler/icons-react";
 import { useRef, useState } from "react";
@@ -18,18 +18,21 @@ export default function AddSalePage(props: Props): React.ReactNode
     const [saleItems, setSaleItems] = useState<Item[]>([]);
     const [itemId, setItemId] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
+    const canFinalizeSale = saleItems.length > 0;
 
     return (
         <Stack>
             <CaptionedBox caption="Add Item">
                 <Stack align="center">
-                    <Group>
+                    <Group >
                         <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDown} classNames={{input: classes.itemIdInput}} />
                         <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
                             <IconPlus />
                         </ActionIcon>
                     </Group>
-                    <ActionIcon onClick={onFinalizeSale}><IconCashRegister /></ActionIcon>
+                    <Button onClick={onFinalizeSale} disabled={!canFinalizeSale}>
+                        Finalize Sale
+                    </Button>
                 </Stack>
             </CaptionedBox>
             <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
