@@ -27,7 +27,7 @@ export default function AddSalePage(props: Props): React.ReactNode
                     <ActionIcon onClick={onFinalizeSale}><IconCashRegister /></ActionIcon>
                 </Stack>
             </CaptionedBox>
-            <SaleItemsTable items={saleItems.map(toSaleItem)} />
+            <SaleItemsTable items={saleItems.map(toSaleItem)} onRemoveItem={removeItemWithIndex} />
         </Stack>
     );
 
@@ -124,5 +124,11 @@ export default function AddSalePage(props: Props): React.ReactNode
     {
         setItemId("");
         itemInputRef.current?.focus();
+    }
+
+    function removeItemWithIndex(index: number): void
+    {
+        const updatedItems = saleItems.filter((_, i) => i !== index);
+        setSaleItems(updatedItems);
     }
 }
