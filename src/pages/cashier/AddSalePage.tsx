@@ -151,7 +151,7 @@ export default function AddSalePage(props: Props): React.ReactNode
 
     function onKeyDownInItemIdInput(event: React.KeyboardEvent<HTMLInputElement>): void
     {
-        if (event.key === 'Enter')
+        if ( event.key === 'Enter' )
         {
             event.preventDefault();
             onAddItem();
