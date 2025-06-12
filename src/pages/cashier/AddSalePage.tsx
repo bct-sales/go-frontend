@@ -162,7 +162,7 @@ export default function AddSalePage(props: Props): React.ReactNode
             return (
                 <>
                     <Flex direction="row" justify="flex-end">
-                        <Button color="red" onClick={removeAllSaleItems}>
+                        <Button color="red" onClick={removeAllSaleItems} tabIndex={-1}>
                             Remove All
                         </Button>
                     </Flex>
