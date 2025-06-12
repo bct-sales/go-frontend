@@ -19,6 +19,8 @@ class RestPaths
     get categoryCounts() { return `${this.root}/categories?counts=visible`; }
 
     get categories() { return `${this.root}/categories`; }
+
+    get sales() { return `${this.root}/sales`; }
 }
 
 export const paths = new RestPaths(ROOT_URL);
