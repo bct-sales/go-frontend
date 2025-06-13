@@ -32,7 +32,7 @@ export default function CashierDashboard()
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                        <NavigationButton caption="Overview" url="/cashier">
+                        <NavigationButton caption="Sales" url="/cashier">
                             <IconCashRegister />
                         </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
