@@ -53,7 +53,7 @@ export default function AddSalePage(): React.ReactNode
                         </Stack>
                     </CaptionedBox>
                     <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
-                        <Button onClick={finalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                        <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
                             Finalize Sale
                         </Button>
                     </Tooltip>
@@ -110,51 +110,57 @@ export default function AddSalePage(): React.ReactNode
 
     async function onAddItem(): Promise<void>
     {
-        const itemIdNumber = parseInt(itemId, 10);
-
-        if ( !isNaN(itemIdNumber) )
+        if ( canAddItem )
         {
-            if ( saleItems.some(item => item.itemId === itemIdNumber) )
+            const itemIdNumber = parseInt(itemId, 10);
+
+            if ( !isNaN(itemIdNumber) )
             {
-                notifications.show({
-                    message: `Item already in sale`,
-                    color: 'red',
-                });
+                if ( saleItems.some(item => item.itemId === itemIdNumber) )
+                {
+                    notifications.show({
+                        message: `Item already in sale`,
+                        color: 'red',
+                    });
 
-                resetItemInput();
-                return;
-            }
+                    resetItemInput();
+                    return;
+                }
 
-            const result = await getItemInformation(itemIdNumber);
+                const result = await getItemInformation(itemIdNumber);
 
-            if ( result.success )
-            {
-                const itemInformation = result.value;
-                const updatedSaleItems = [itemInformation, ...saleItems];
-                setSaleItems(updatedSaleItems);
-                resetItemInput();
+                if ( result.success )
+                {
+                    const itemInformation = result.value;
+                    const updatedSaleItems = [itemInformation, ...saleItems];
+                    setSaleItems(updatedSaleItems);
+                    resetItemInput();
+                }
+                else
+                {
+                    notifications.show({
+                        message: `Unknown item`,
+                        color: 'red',
+                    });
+                }
             }
             else
             {
+                // This should never happen, button should be disabled if itemId is not a valid number
                 notifications.show({
-                    message: `Unknown item`,
+                    message: `Invalid item ID`,
                     color: 'red',
                 });
             }
         }
-        else
-        {
-            // This should never happen, button should be disabled if itemId is not a valid number
-            notifications.show({
-                message: `Invalid item ID`,
-                color: 'red',
-            });
-        }
     }
 
-    function finalizeSale(): void
+    function onFinalizeSale(): void
     {
-        setStep(1);
+        if ( canFinalizeSale )
+        {
+            setStep(1);
+        }
     }
 
     function isValidItemId(value: string): boolean
@@ -172,17 +178,14 @@ export default function AddSalePage(): React.ReactNode
 
             if ( event.ctrlKey )
             {
-                if ( !event.altKey && canFinalizeSale )
+                if ( !event.altKey )
                 {
-                    finalizeSale();
+                    onFinalizeSale();
                 }
             }
             else
             {
-                if ( canAddItem )
-                {
-                    onAddItem();
-                }
+                onAddItem();
             }
         }
     }
