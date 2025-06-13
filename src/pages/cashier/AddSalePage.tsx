@@ -26,7 +26,7 @@ export default function AddSalePage(props: Props): React.ReactNode
 
     return (
         <Stepper active={step}>
-            <Stepper.Step label="Items" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
+            <Stepper.Step label="Step 1" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
                 <Stack>
                     <CaptionedBox caption="Add Item">
                         <Stack align="center">
@@ -46,7 +46,7 @@ export default function AddSalePage(props: Props): React.ReactNode
                     </CaptionedBox>
                 </Stack>
             </Stepper.Step>
-            <Stepper.Step label="Payment" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
+            <Stepper.Step label="Step 2" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
                 <Stack>
                     <CaptionedBox caption="Amount Due">
                         <Stack align="center">
@@ -66,7 +66,6 @@ export default function AddSalePage(props: Props): React.ReactNode
                 </Stack>
             </Stepper.Step>
         </Stepper>
-
     );
 
 
