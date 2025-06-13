@@ -3,6 +3,7 @@ import SellerSummaryViewer from "@/components/SellerSummaryViewer";
 import { getSellerSummary, SellerSummary } from "@/rest/seller-summary";
 import { RestStatus } from "@/rest/status";
 import { Button, Card, Stack, Stepper, Text } from "@mantine/core";
+import { IconTag, IconList, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -86,13 +87,13 @@ export default function OverviewPage(props: Props): React.ReactNode
                             </Card.Section>
                             <Card.Section p='md'>
                                 <Stack>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/items') }}>
+                                    <Button leftSection={<IconList />} onClick={() => { navigate('/seller/items') }}>
                                         Item Overview
                                     </Button>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/add-item') }}>
+                                    <Button leftSection={<IconPlus />} onClick={() => { navigate('/seller/add-item') }}>
                                         Add More Items
                                     </Button>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/labels') }}>
+                                    <Button leftSection={<IconTag />} onClick={() => { navigate('/seller/labels') }}>
                                         Generate Labels
                                     </Button>
                                 </Stack>
