@@ -10,12 +10,7 @@ import classes from './AddSalePage.module.css';
 import { addSale } from "@/rest/add-sale";
 
 
-interface Props
-{
-    cashierId: number;
-}
-
-export default function AddSalePage(props: Props): React.ReactNode
+export default function AddSalePage(): React.ReactNode
 {
     const [step, setStep] = useState(0);
     const [saleItems, setSaleItems] = useState<Item[]>([]);
@@ -32,15 +27,19 @@ export default function AddSalePage(props: Props): React.ReactNode
                         <Stack align="center">
                             <Group >
                                 <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
-                                <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
-                                    <IconPlus />
-                                </ActionIcon>
+                                <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
+                                    <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
+                                        <IconPlus />
+                                    </ActionIcon>
+                                </Tooltip>
                             </Group>
                         </Stack>
                     </CaptionedBox>
-                    <Button onClick={finalizeSale} disabled={!canFinalizeSale} mb='xl'>
-                        Finalize Sale
-                    </Button>
+                    <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
+                        <Button onClick={finalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                            Finalize Sale
+                        </Button>
+                    </Tooltip>
                     <CaptionedBox caption="Sale Items">
                         {renderSaleItems()}
                     </CaptionedBox>

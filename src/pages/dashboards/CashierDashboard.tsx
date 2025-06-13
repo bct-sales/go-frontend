@@ -42,7 +42,7 @@ export default function CashierDashboard()
                 </AppShell.Navbar>
                 <AppShell.Main>
                     <Routes>
-                        <Route path="/" element={<AddSalePage cashierId={authentication.username} />} />
+                        <Route path="/" element={<AddSalePage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
