@@ -21,6 +21,8 @@ class RestPaths
     get categories() { return `${this.root}/categories`; }
 
     get sales() { return `${this.root}/sales`; }
+
+    cashierSales(cashierId: number) { return `${this.root}/cashiers/${cashierId}/sales`; }
 }
 
 export const paths = new RestPaths(ROOT_URL);
