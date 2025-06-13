@@ -5,9 +5,10 @@ import { getItemInformation, Item } from "@/rest/item-data";
 import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from './AddSalePage.module.css';
 import { addSale } from "@/rest/add-sale";
+import { useHotkeys } from "@mantine/hooks";
 
 
 export default function AddSalePage(): React.ReactNode
@@ -16,7 +17,23 @@ export default function AddSalePage(): React.ReactNode
     const [saleItems, setSaleItems] = useState<Item[]>([]);
     const [itemId, setItemId] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
-    const canFinalizeSale = saleItems.length > 0;
+    useHotkeys([
+        [
+            'Ctrl+Alt+Enter',
+            () => {
+                if ( step === 1 )
+                {
+                    onPaymentReceived();
+                }
+            }
+        ],
+    ])
+    useEffect(() => {
+        itemInputRef.current?.focus();
+    }, [step]);
+
+    const canAddItem = isValidItemId(itemId);
+    const canFinalizeSale = saleItems.length > 0 && itemId.length === 0;
     const totalPriceInCents = saleItems.reduce((total, item) => total + item.priceInCents, 0);
 
     return (
@@ -28,7 +45,7 @@ export default function AddSalePage(): React.ReactNode
                             <Group >
                                 <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
                                 <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
-                                    <ActionIcon onClick={onAddItem} disabled={!isValidItemId(itemId)}>
+                                    <ActionIcon onClick={onAddItem} disabled={!canAddItem}>
                                         <IconPlus />
                                     </ActionIcon>
                                 </Tooltip>
@@ -155,11 +172,17 @@ export default function AddSalePage(): React.ReactNode
 
             if ( event.ctrlKey )
             {
-                finalizeSale();
+                if ( !event.altKey && canFinalizeSale )
+                {
+                    finalizeSale();
+                }
             }
             else
             {
-                onAddItem();
+                if ( canAddItem )
+                {
+                    onAddItem();
+                }
             }
         }
     }
