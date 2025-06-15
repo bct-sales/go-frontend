@@ -1,7 +1,7 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
+import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
@@ -9,6 +9,7 @@ import ItemsPage from "../admin/ItemsPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import UserSubpage from "../admin/UserPage";
 import classes from './AdminDashboard.module.css';
+import SalesPage from "../admin/SalesPage";
 
 
 export default function AdminDashboard()
@@ -40,6 +41,7 @@ export default function AdminDashboard()
                         {renderNavbarLink("Categories", "/admin", <IconChartBar />)}
                         {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
                         {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
+                        {renderNavbarLink("Sales", "/admin/sales", <IconCashRegister />)}
                         {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                     </Flex>
                 </AppShell.Navbar>
@@ -49,6 +51,7 @@ export default function AdminDashboard()
                         <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersOverviewPage />} />
                         <Route path="/items" element={<ItemsPage />} />
+                        <Route path="/sales" element={<SalesPage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
