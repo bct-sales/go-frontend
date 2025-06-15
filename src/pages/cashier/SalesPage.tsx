@@ -70,7 +70,7 @@ export default function SalesPage(props: Props): React.ReactNode
                         <Table.Tr>
                             <Table.Th>Sale ID</Table.Th>
                             <Table.Th>Item Count</Table.Th>
-                            <Table.Th>Total Price (in cents)</Table.Th>
+                            <Table.Th>Total</Table.Th>
                             <Table.Th>Transaction Time</Table.Th>
                         </Table.Tr>
                     </Table.Thead>
