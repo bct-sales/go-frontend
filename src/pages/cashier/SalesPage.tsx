@@ -69,9 +69,9 @@ export default function SalesPage(props: Props): React.ReactNode
                     <Table.Thead>
                         <Table.Tr>
                             <Table.Th>Sale ID</Table.Th>
-                            <Table.Th>Transaction Time</Table.Th>
                             <Table.Th>Item Count</Table.Th>
                             <Table.Th>Total Price (in cents)</Table.Th>
+                            <Table.Th>Transaction Time</Table.Th>
                         </Table.Tr>
                     </Table.Thead>
                     <Table.Tbody>
@@ -86,9 +86,9 @@ export default function SalesPage(props: Props): React.ReactNode
                 return (
                     <Table.Tr key={sale.saleId}>
                         <Table.Td>{sale.saleId}</Table.Td>
-                        <Table.Td><DateTimeViewer dateTime={sale.transactionTime} /></Table.Td>
                         <Table.Td>{sale.itemCount}</Table.Td>
                         <Table.Td><Price priceInCents={sale.totalPriceInCents} /></Table.Td>
+                        <Table.Td><DateTimeViewer dateTime={sale.transactionTime} /></Table.Td>
                     </Table.Tr>
                 );
             }
