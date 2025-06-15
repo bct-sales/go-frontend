@@ -7,7 +7,7 @@ import SalesTable from "./SalesTable";
 
 export default function SalesPage() : React.ReactNode
 {
-    const [salesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
+    const [antiChronologicalSalesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
 
     useEffect(() => {
         void (async () => {
@@ -15,7 +15,9 @@ export default function SalesPage() : React.ReactNode
 
             if (response.success)
             {
-                setSalesStatus({status: "success", value: response.value.sales});
+                const sales = response.value.sales;
+                sales.reverse();
+                setSalesStatus({status: "success", value: sales});
             }
             else
             {
@@ -24,10 +26,10 @@ export default function SalesPage() : React.ReactNode
         })();
     }, []);
 
-    switch (salesStatus.status)
+    switch (antiChronologicalSalesStatus.status)
     {
         case "success":
-            return renderPage(salesStatus.value);
+            return renderPage(antiChronologicalSalesStatus.value);
 
         case "loading":
             return (
@@ -37,17 +39,17 @@ export default function SalesPage() : React.ReactNode
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {salesStatus.tag}: {salesStatus.details}
+                    <strong>Error:</strong> {antiChronologicalSalesStatus.tag}: {antiChronologicalSalesStatus.details}
                 </div>
             );
     }
 
 
-    function renderPage(sales: Sale[]): React.ReactNode
+    function renderPage(antiChronologicalSales: Sale[]): React.ReactNode
     {
         return (
             <>
-                <SalesTable sales={sales} />
+                <SalesTable sales={antiChronologicalSales} />
             </>
         );
     }
