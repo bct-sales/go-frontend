@@ -15,14 +15,16 @@ interface Props
 
 export default function SalesPage(props: Props): React.ReactNode
 {
-    const [salesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
+    const [antiChronologicalSalesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
     useEffect(() => {
             void (async () => {
                 const response = await listCashierSales(props.cashierId);
 
                 if (response.success)
                 {
-                    setSalesStatus({status: "success", value: response.value.sales});
+                    const sales = response.value.sales;
+                    sales.reverse();
+                    setSalesStatus({status: "success", value: sales});
                 }
                 else
                 {
@@ -31,10 +33,10 @@ export default function SalesPage(props: Props): React.ReactNode
             })();
         }, [props.cashierId]);
 
-    switch (salesStatus.status)
+    switch (antiChronologicalSalesStatus.status)
     {
         case "success":
-            return renderPage(salesStatus.value);
+            return renderPage(antiChronologicalSalesStatus.value);
 
         case "loading":
             return (
@@ -44,15 +46,15 @@ export default function SalesPage(props: Props): React.ReactNode
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {salesStatus.tag}: {salesStatus.details}
+                    <strong>Error:</strong> {antiChronologicalSalesStatus.tag}: {antiChronologicalSalesStatus.details}
                 </div>
             );
     }
 
 
-    function renderPage(sales: Sale[]): React.ReactNode
+    function renderPage(antiChronologicalSales: Sale[]): React.ReactNode
     {
-        if (sales.length === 0)
+        if (antiChronologicalSales.length === 0)
         {
             return (
                 <>
@@ -62,7 +64,6 @@ export default function SalesPage(props: Props): React.ReactNode
         }
         else
         {
-            const reversedSales = [...sales].reverse(); // Reverse the order to show the most recent sales first
             return (
                 <Table>
                     <Table.Thead>
@@ -74,7 +75,7 @@ export default function SalesPage(props: Props): React.ReactNode
                         </Table.Tr>
                     </Table.Thead>
                     <Table.Tbody>
-                        {reversedSales.map(renderSale)}
+                        {antiChronologicalSales.map(renderSale)}
                     </Table.Tbody>
                 </Table>
             );
