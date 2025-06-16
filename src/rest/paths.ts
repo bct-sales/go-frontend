@@ -22,6 +22,8 @@ class RestPaths
 
     get sales() { return `${this.root}/sales`; }
 
+    sale(saleId: number) { return `${this.root}/sales/${saleId}`; }
+
     cashierSales(cashierId: number) { return `${this.root}/cashiers/${cashierId}/sales`; }
 }
 
