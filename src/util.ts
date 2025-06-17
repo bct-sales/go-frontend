@@ -24,3 +24,16 @@ export function count<T>(elements: T[], predicate: (element: T) => boolean): num
 
     return count;
 }
+
+export function replaceAtIndex<T>(array: T[], index: number, value: T): T[]
+{
+    if (index < 0 || index >= array.length)
+    {
+        throw new RangeError(`Index ${index} is out of bounds for array of length ${array.length}`);
+    }
+
+    const newArray = [...array];
+    newArray[index] = value;
+
+    return newArray;
+}
