@@ -1,5 +1,6 @@
 import { ItemCountByCategory } from "@/rest/category-counts";
 import { Table } from "@mantine/core";
+import { DataTable } from 'mantine-datatable';
 import classes from './CategoryCountsTable.module.css'
 
 
@@ -18,44 +19,33 @@ interface Category
 export default function CategoryCountsTable(props: Props): React.ReactNode
 {
     const categoryCounts = props.categoryCounts;
+    const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
 
     return (
-        <Table>
-            <Table.Thead>
-                <Table.Tr className={classes.headerRow}>
-                    <Table.Th>Category Id</Table.Th>
-                    <Table.Th>Category Name</Table.Th>
-                    <Table.Th>Count</Table.Th>
-                </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>
-                {categoryCounts.map(renderCategoryCount)}
-                {renderTotalCountRow()}
-            </Table.Tbody>
-        </Table>
+        <DataTable
+            highlightOnHover
+            striped
+            records={categoryCounts}
+            columns={[
+                {
+                    accessor: 'categoryId',
+                    title: 'Id',
+                    cellsClassName: classes.id,
+                    footer: <>Total</>,
+                },
+                {
+                    accessor: 'categoryName',
+                    title: 'Category Name',
+                    cellsClassName: classes.description,
+                },
+                {
+                    accessor: 'count',
+                    title: 'Count',
+                    footer: total,
+                    cellsClassName: classes.count,
+                    footerClassName: classes.count,
+                }
+            ]}
+        />
     );
-
-    function renderCategoryCount(itemCount: ItemCountByCategory): React.ReactNode
-    {
-        return (
-            <Table.Tr key={itemCount.categoryId} className={classes.categoryCountRow}>
-                <Table.Td>{itemCount.categoryId}</Table.Td>
-                <Table.Td className={classes.categoryName}>{itemCount.categoryName}</Table.Td>
-                <Table.Td>{itemCount.count}</Table.Td>
-            </Table.Tr>
-        );
-    }
-
-    function renderTotalCountRow(): React.ReactNode
-    {
-        const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
-
-        return (
-            <Table.Tr className={classes.totalRow}>
-                <Table.Td></Table.Td>
-                <Table.Td className={classes.total}>Total</Table.Td>
-                <Table.Td>{total}</Table.Td>
-            </Table.Tr>
-        );
-    }
 }
