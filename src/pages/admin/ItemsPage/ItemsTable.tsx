@@ -33,6 +33,7 @@ export default function ItemsPage(props: Props): React.ReactNode
             striped
             highlightOnHover
             records={props.items}
+            height="calc(100vh - 300px)"
             columns={[
                 {
                     accessor: 'itemId',
