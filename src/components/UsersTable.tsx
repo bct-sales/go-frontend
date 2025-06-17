@@ -29,6 +29,7 @@ export default function UsersTable(props: Props): React.ReactNode
         <DataTable
             striped
             records={users}
+            height="calc(100vh - 200px)"
             columns={[
                 {
                     accessor: 'id',
