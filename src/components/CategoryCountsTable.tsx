@@ -1,7 +1,5 @@
-import { ItemCountByCategory } from "@/rest/category-counts";
-import { Table } from "@mantine/core";
 import { DataTable } from 'mantine-datatable';
-import classes from './CategoryCountsTable.module.css'
+import classes from './CategoryCountsTable.module.css';
 
 
 interface Props
