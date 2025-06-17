@@ -5,10 +5,17 @@ import classes from './CategoryCountsTable.module.css'
 
 interface Props
 {
-    categoryCounts : ItemCountByCategory[];
+    categoryCounts: Category[];
 }
 
-export default function CategoryCountsTable(props : Props) : React.ReactNode
+interface Category
+{
+    categoryId: number;
+    categoryName: string;
+    count: number;
+}
+
+export default function CategoryCountsTable(props: Props): React.ReactNode
 {
     const categoryCounts = props.categoryCounts;
 
@@ -28,7 +35,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
         </Table>
     );
 
-    function renderCategoryCount(itemCount : ItemCountByCategory) : React.ReactNode
+    function renderCategoryCount(itemCount: ItemCountByCategory): React.ReactNode
     {
         return (
             <Table.Tr key={itemCount.categoryId} className={classes.categoryCountRow}>
@@ -39,7 +46,7 @@ export default function CategoryCountsTable(props : Props) : React.ReactNode
         );
     }
 
-    function renderTotalCountRow() : React.ReactNode
+    function renderTotalCountRow(): React.ReactNode
     {
         const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
 
