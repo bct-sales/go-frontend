@@ -1,7 +1,9 @@
 import DateTimeViewer from "@/components/DateTimeViewer";
 import Price from "@/components/Price";
+import UserIdViewer from "@/components/UserIdViewer";
 import { DateTime } from "@/datetime";
 import { Table } from "@mantine/core";
+import { DataTable } from "mantine-datatable";
 import React from "react";
 
 interface Props
@@ -23,42 +25,37 @@ export default function SalesTable(props: Props): React.ReactNode
     const { sales } = props;
 
     return (
-        <Table>
-            <Table.Thead>
-                <Table.Tr>
-                    <Table.Th>Sale ID</Table.Th>
-                    <Table.Th>Cashier ID</Table.Th>
-                    <Table.Th>Item Count</Table.Th>
-                    <Table.Th>Total</Table.Th>
-                    <Table.Th>Transaction Time</Table.Th>
-                </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>
-                {renderRows()}
-            </Table.Tbody>
-        </Table>
+        <DataTable
+            striped
+            highlightOnHover
+            records={sales}
+            columns={[
+                {
+                    accessor: "saleId",
+                    title: "Sale ID",
+                },
+                {
+                    accessor: "cashierId",
+                    title: "Cashier ID",
+                    render: (sale) => <UserIdViewer userId={sale.cashierId} />,
+                },
+                {
+                    accessor: "transactionTime",
+                    title: "Transaction Time",
+                    render: (sale) => <DateTimeViewer dateTime={sale.transactionTime} />,
+                },
+                {
+                    accessor: "itemCount",
+                    title: "Item Count",
+                },
+                {
+                    accessor: "totalPriceInCents",
+                    title: "Total Price",
+                    render: (sale) => <Price priceInCents={sale.totalPriceInCents} />,
+                },
+            ]}
+        />
     );
 
 
-    function renderRows(): React.ReactNode
-    {
-        return sales.map(renderRow);
-    }
-
-    function renderRow(sale: Sale): React.ReactNode
-    {
-        return (
-            <Table.Tr key={sale.saleId}>
-                <Table.Td>{sale.saleId}</Table.Td>
-                <Table.Td>{sale.cashierId}</Table.Td>
-                <Table.Td>{sale.itemCount}</Table.Td>
-                <Table.Td>
-                    <Price priceInCents={sale.totalPriceInCents} />
-                </Table.Td>
-                <Table.Td>
-                    <DateTimeViewer dateTime={sale.transactionTime} />
-                </Table.Td>
-            </Table.Tr>
-        );
-    }
 }
