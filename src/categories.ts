@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Category, getItemCategories } from "./rest/categories";
 import { RestStatus } from "./rest/status";
 import { failure, success } from "./result";
@@ -14,7 +14,13 @@ export interface CategoryTable
 
 export function useCategories(): RestStatus<CategoryTable>
 {
-    const query = useQuery(['categories'], performQuery, { cacheTime: 1000 * 60 * 60, refetchOnWindowFocus: false, staleTime: 1000 * 60 * 60 });
+    const query = useQuery(
+        {
+            queryKey: ['categories'],
+            queryFn: performQuery,
+            refetchOnWindowFocus: false,
+            staleTime: 1000 * 60 * 60,
+        });
 
     if ( query.data === undefined )
     {

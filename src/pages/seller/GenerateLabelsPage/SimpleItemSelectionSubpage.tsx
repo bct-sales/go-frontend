@@ -1,6 +1,6 @@
 import ItemsTable from "@/components/ItemsTable";
 import { categoryColumn, charityColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
-import { Item } from "@/rest/item-data";
+import { Item } from "@/components/ItemsTable/ItemsTable";
 
 interface Props
 {

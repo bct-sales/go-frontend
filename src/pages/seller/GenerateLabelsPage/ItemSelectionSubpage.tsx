@@ -1,7 +1,7 @@
-import { Item } from "@/rest/item-data";
 import { useSettings } from "@/settings";
 import AdvancedItemSelectionSubpage from "./AdvancedItemSelectionSubpage";
 import SimpleItemSelectionSubpage from "./SimpleItemSelectionSubpage";
+import { Item } from "@/components/ItemsTable/ItemsTable";
 
 interface Props
 {

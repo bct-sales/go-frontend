@@ -22,7 +22,6 @@ export interface Item
     donation: boolean;
     charity: boolean;
     frozen: boolean;
-    soldIn: number[];
 }
 
 export interface Column

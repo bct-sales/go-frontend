@@ -1,8 +1,8 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import ItemsTable from "@/components/ItemsTable";
 import { categoryColumn, charityColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
+import { Item } from "@/components/ItemsTable/ItemsTable";
 import NumberInput from "@/components/NumberInput";
-import { Item } from "@/rest/item-data";
 import { Button, Group, Stack, Text } from "@mantine/core";
 import { useState } from "react";
 

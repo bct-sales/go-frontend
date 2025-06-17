@@ -1,7 +1,6 @@
 import Loading from "@/components/Loading";
 import { LabelLayoutData } from "@/label-layout";
 import { generateLabels } from "@/rest/generate-labels";
-import { Item } from "@/rest/item-data";
 import { listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
 import { Button, Stack, Stepper } from "@mantine/core";
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import ItemSelectionSubpage from "./ItemSelectionSubpage";
 import LayoutSubpage from "./LayoutSubpage";
 import { notifications } from "@mantine/notifications";
+import { Item } from "@/components/ItemsTable/ItemsTable";
 
 
 interface Props

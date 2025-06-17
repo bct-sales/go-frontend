@@ -7,7 +7,7 @@ import * as pages from '@/pages';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { AuthenticationProvider } from './AuthenticationProvider';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SettingsProvider } from './SettingsProvider';
 
 
