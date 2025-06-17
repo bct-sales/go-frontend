@@ -58,7 +58,10 @@ export default function UsersTable(props: Props): React.ReactNode
                     title: 'Last Activity',
                     render: (user: User) => renderLastActivity(user.lastActivity),
                 },
-                { accessor: 'password', title: 'Password' },
+                {
+                    accessor: 'password',
+                    title: 'Password'
+                },
             ]}
         />
     );
