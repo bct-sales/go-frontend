@@ -1,43 +1,28 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
-import { AppShell, Flex, Stack, Text } from "@mantine/core";
-import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
-import { Route, Routes, useNavigate } from "react-router-dom";
 import AddItemPage from "@/pages/seller/AddItemPage";
 import EditItemPage from "@/pages/seller/EditItemPage";
+import GenerateLabelsPage from "@/pages/seller/GenerateLabelsPage";
 import ItemsPage from "@/pages/seller/ItemsPage";
 import OverviewPage from "@/pages/seller/OverviewPage";
 import SettingsPage from "@/pages/seller/SettingsPage";
-import GenerateLabelsPage from "@/pages/seller/GenerateLabelsPage";
+import { AppShell, Flex, Text } from "@mantine/core";
+import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
+import { Route, Routes } from "react-router-dom";
 import classes from './SellerDashboard.module.css';
-import { useEffect } from "react";
+import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 
 
 export default function SellerDashboard()
 {
     const authentication = useAuthentication();
-    const navigate = useNavigate();
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'seller';
 
-    useEffect(() => {
-        if ( !authenticated )
-        {
-            if ( authentication.status === 'authenticated' )
-            {
-                authentication.logout();
-            }
-
-            navigate('/login');
-        }
-    });
-
-    if ( !authenticated  )
+    if ( !authenticated )
     {
         return (
-            <Stack>
-                Redirecting...
-            </Stack>
+            <RedirectToLoginPage />
         );
     }
 

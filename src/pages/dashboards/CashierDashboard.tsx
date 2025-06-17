@@ -3,39 +3,24 @@ import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
 import AddSalePage from "@/pages/cashier/AddSalePage";
 import SalesPage from "@/pages/cashier/SalesPage";
-import { AppShell, Flex, Stack, Text } from "@mantine/core";
+import { AppShell, Flex, Text } from "@mantine/core";
 import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import classes from './CashierDashboard.module.css';
-import { useEffect } from "react";
+import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 
 
 export default function CashierDashboard()
 {
     const authentication = useAuthentication();
-    const navigate = useNavigate();
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'cashier';
 
-    useEffect(() => {
-        if ( !authenticated )
+    if ( !authenticated )
         {
-            if ( authentication.status === 'authenticated' )
-            {
-                authentication.logout();
-            }
-
-            navigate('/login');
+            return (
+                <RedirectToLoginPage />
+            );
         }
-    });
-
-    if ( !authenticated  )
-    {
-        return (
-            <Stack>
-                Redirecting...
-            </Stack>
-        );
-    }
 
     return (
         <>

@@ -1,8 +1,9 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
+import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import { ActionIcon, AppShell, Flex, Text } from "@mantine/core";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
@@ -19,24 +20,10 @@ export default function AdminDashboard()
     const navigate = useNavigate();
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'admin';
 
-    useEffect(() => {
-        if ( !authenticated )
-        {
-            if ( authentication.status === 'authenticated' )
-            {
-                authentication.logout();
-            }
-
-            navigate('/login');
-        }
-    });
-
     if ( !authenticated )
     {
         return (
-            <>
-                Redirecting...
-            </>
+            <RedirectToLoginPage />
         );
     }
 
