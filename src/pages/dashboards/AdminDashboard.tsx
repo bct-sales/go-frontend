@@ -1,15 +1,15 @@
 import { useAuthentication } from "@/authentication";
 import AuthenticationViewer from "@/components/AuthenticationViewer";
-import { ActionIcon, AppShell, Flex, Stack, Text } from "@mantine/core";
+import { ActionIcon, AppShell, Flex, Text } from "@mantine/core";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
-import UsersOverviewPage from "../admin/UsersOverviewPage";
-import UserSubpage from "../admin/UserPage";
-import classes from './AdminDashboard.module.css';
 import SalesPage from "../admin/SalesPage";
+import UserSubpage from "../admin/UserPage";
+import UsersOverviewPage from "../admin/UsersOverviewPage";
+import classes from './AdminDashboard.module.css';
 
 
 export default function AdminDashboard()
@@ -17,13 +17,26 @@ export default function AdminDashboard()
     const authentication = useAuthentication();
     const location = useLocation();
     const navigate = useNavigate();
+    const authenticated = authentication.status === 'authenticated' && authentication.role === 'admin';
 
-    if ( authentication.status !== 'authenticated' || authentication.role !== 'admin' )
+    useEffect(() => {
+        if ( !authenticated )
+        {
+            if ( authentication.status === 'authenticated' )
+            {
+                authentication.logout();
+            }
+
+            navigate('/login');
+        }
+    });
+
+    if ( !authenticated )
     {
         return (
-            <Stack justify="center" align="center" style={{height: '100vh'}}>
-                <h1>Lost authentication data!</h1>
-            </Stack>
+            <>
+                Redirecting...
+            </>
         );
     }
 

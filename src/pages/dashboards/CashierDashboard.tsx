@@ -5,19 +5,34 @@ import AddSalePage from "@/pages/cashier/AddSalePage";
 import SalesPage from "@/pages/cashier/SalesPage";
 import { AppShell, Flex, Stack, Text } from "@mantine/core";
 import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import classes from './CashierDashboard.module.css';
+import { useEffect } from "react";
 
 
 export default function CashierDashboard()
 {
     const authentication = useAuthentication();
+    const navigate = useNavigate();
+    const authenticated = authentication.status === 'authenticated' && authentication.role === 'cashier';
 
-    if ( authentication.status !== 'authenticated' || authentication.role !== 'cashier' )
+    useEffect(() => {
+        if ( !authenticated )
+        {
+            if ( authentication.status === 'authenticated' )
+            {
+                authentication.logout();
+            }
+
+            navigate('/login');
+        }
+    });
+
+    if ( !authenticated  )
     {
         return (
-            <Stack justify="center" align="center" style={{height: '100vh'}}>
-                <h1>Lost authentication data!</h1>
+            <Stack>
+                Redirecting...
             </Stack>
         );
     }
