@@ -1,5 +1,3 @@
-import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, sellerColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
@@ -7,6 +5,7 @@ import { Button, Group, Menu, Stack } from "@mantine/core";
 import { IconDownload } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ItemsTable from "./ItemsTable";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -51,16 +50,6 @@ export default function ItemsPage() : React.ReactNode
     {
         const cvsUrl = `/api/v1/items?format=csv`;
         const jsonUrl = `/api/v1/items?format=json`;
-        const columns = [
-            itemIdColumn,
-            descriptionColumn,
-            addedAtColumn,
-            priceInCentsColumn,
-            categoryColumn,
-            charityColumn,
-            donationColumn,
-            sellerColumn,
-        ];
 
         return (
             <>
@@ -82,7 +71,7 @@ export default function ItemsPage() : React.ReactNode
                             </Menu.Dropdown>
                         </Menu>
                     </Group>
-                    <ItemsTable items={items} columns={columns} />
+                    <ItemsTable items={items} />
                 </Stack>
             </>
         );
