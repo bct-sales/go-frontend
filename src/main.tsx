@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.css'
 //import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
+import '@mantine/notifications/styles.layer.css';
 import '@mantine/core/styles.layer.css';
-import 'mantine-datatable/styles.css';
+import 'mantine-datatable/styles.layer.css';
 import ReactDOM from 'react-dom/client'
 import App from './App';
 

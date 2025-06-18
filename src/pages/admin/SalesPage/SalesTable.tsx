@@ -2,22 +2,39 @@ import DateTimeViewer from "@/components/DateTimeViewer";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import { DateTime } from "@/datetime";
-import { Table } from "@mantine/core";
+import { Box, Group, Stack, Text } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import React from "react";
+import classes from "./SalesTable.module.css";
+import CharityViewer from "@/components/CharityViewer";
+import DonationViewer from "@/components/DonationViewer";
+import SaleIdViewer from "@/components/SaleIdViewer";
 
 interface Props
 {
     sales: Sale[];
+    requestSaleDetails?: (saleIndex: number) => void;
 }
 
-interface Sale
+export interface Sale
 {
     saleId: number;
     cashierId: number;
     transactionTime: DateTime;
     itemCount: number;
     totalPriceInCents: number;
+    items?: Item[];
+}
+
+export interface Item
+{
+	itemId: number;
+	sellerId: number;
+	description: string;
+	priceInCents: number;
+	categoryId: number;
+	charity: boolean;
+	donation: boolean;
 }
 
 export default function SalesTable(props: Props): React.ReactNode
@@ -26,13 +43,13 @@ export default function SalesTable(props: Props): React.ReactNode
 
     return (
         <DataTable
-            striped
-            highlightOnHover
             records={sales}
+            idAccessor="saleId"
             columns={[
                 {
                     accessor: "saleId",
                     title: "Sale ID",
+                    render: (sale) => <SaleIdViewer saleId={sale.saleId} />,
                 },
                 {
                     accessor: "cashierId",
@@ -56,6 +73,4 @@ export default function SalesTable(props: Props): React.ReactNode
             ]}
         />
     );
-
-
 }

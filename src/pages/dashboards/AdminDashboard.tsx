@@ -11,6 +11,7 @@ import SalesPage from "../admin/SalesPage";
 import UserSubpage from "../admin/UserPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
+import SalePage from "../admin/SalePage.tsx";
 
 
 export default function AdminDashboard()
@@ -52,6 +53,7 @@ export default function AdminDashboard()
                         <Route path="/users" element={<UsersOverviewPage />} />
                         <Route path="/items" element={<ItemsPage />} />
                         <Route path="/sales" element={<SalesPage />} />
+                        <Route path="/sales/:saleId" element={<SalePage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>

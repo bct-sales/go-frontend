@@ -14,12 +14,14 @@ const Item = z.object({
     categoryId: z.number(),
     donation: z.boolean(),
     charity: z.boolean(),
+    addedAt: DateTime,
 });
 
 export type Item = z.infer<typeof Item>;
 
 
 const Sale = z.object({
+    saleId: z.number(),
     cashierId: z.number(),
     transactionTime: DateTime,
     items: z.array(Item),
@@ -29,12 +31,12 @@ export type Sale = z.infer<typeof Sale>;
 
 const SuccessResponse = Sale;
 
-type SuccessResponse = z.infer<typeof SuccessResponse>;
+export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
 
 export async function getSaleInformation(itemId: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.item(itemId);
+    const url = paths.sale(itemId);
 
     try
     {

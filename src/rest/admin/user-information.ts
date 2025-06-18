@@ -23,8 +23,8 @@ type ItemInformation = z.infer<typeof ItemInformation>;
 
 
 const SaleInformation = z.object({
-    sale_id: z.number(),
-    transaction_time: DateTime,
+    saleId: z.number(),
+    transactionTime: DateTime,
 });
 
 type SaleInformation = z.infer<typeof SaleInformation>;

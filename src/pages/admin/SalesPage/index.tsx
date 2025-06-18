@@ -1,8 +1,11 @@
 import Loading from "@/components/Loading";
-import { listSales, Sale } from "@/rest/admin/list-sales";
+import { listSales } from "@/rest/admin/list-sales";
 import { RestStatus } from "@/rest/status";
 import React, { useEffect, useState } from "react";
-import SalesTable from "./SalesTable";
+import SalesTable, { Sale } from "./SalesTable";
+import { replaceAtIndex } from "@/util";
+import { getSaleInformation } from "@/rest/sale-information";
+import { notifications } from "@mantine/notifications";
 
 
 export default function SalesPage() : React.ReactNode
@@ -49,8 +52,35 @@ export default function SalesPage() : React.ReactNode
     {
         return (
             <>
-                <SalesTable sales={antiChronologicalSales} />
+                <SalesTable sales={antiChronologicalSales} requestSaleDetails={requestSaleDetails} />
             </>
         );
+
+
+        async function requestSaleDetails(saleIndex: number): Promise<void>
+        {
+            const sale = antiChronologicalSales[saleIndex];
+            const saleInformation = await getSaleInformation(sale.saleId)
+
+            if ( saleInformation.success )
+            {
+                const updatedSale: Sale = {
+                    ...sale,
+                    items: saleInformation.value.items,
+                };
+                const updatedSales = replaceAtIndex(antiChronologicalSales, saleIndex, updatedSale);
+                setSalesStatus({status: "success", value: updatedSales});
+            }
+            else
+            {
+                notifications.show({
+                    title: "Error",
+                    message: `Failed to load sale details`,
+                    color: "red",
+                });
+
+                console.error(`Failed to load sale details for sale ID ${sale.saleId}:`, saleInformation.error);
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ export default function UserSubpage()
 
     useEffect(() => {
             void (async () => {
-                if ( !userId || !/\d+/.test(userId) )
+                if ( !userId || !/^\d+$/.test(userId) )
                 {
                     setStatus({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
                     return;
