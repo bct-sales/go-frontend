@@ -41,7 +41,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             left: 2,
             right: 2
         },
-        fontSize: 12
+        fontSize: 5
     };
 
     const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
