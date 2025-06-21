@@ -1,3 +1,19 @@
-.description {
+.table {
+    width: 50vw;
+}
+
+.id-column {
+
+}
+
+.descriptionColumn {
     text-align: left;
+}
+
+.categoryColumn {
+    text-align: left;
+}
+
+.classColumn {
+    text-align: right;
 }

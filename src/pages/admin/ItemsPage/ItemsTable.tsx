@@ -7,6 +7,7 @@ import UserIdViewer from "@/components/UserIdViewer";
 import { DateTime } from "@/datetime";
 import { DataTable } from "mantine-datatable";
 import classes from './ItemsTable.module.css';
+import { Flex } from "@mantine/core";
 
 export interface Item
 {
@@ -30,6 +31,7 @@ export default function ItemsPage(props: Props): React.ReactNode
 {
     return (
         <DataTable
+            className={classes.table}
             striped
             highlightOnHover
             records={props.items}
@@ -42,7 +44,7 @@ export default function ItemsPage(props: Props): React.ReactNode
                 {
                     accessor: 'description',
                     title: 'Description',
-                    cellsClassName: classes.description,
+                    cellsClassName: classes.descriptionColumn,
 
                 },
                 {
@@ -53,12 +55,14 @@ export default function ItemsPage(props: Props): React.ReactNode
                 {
                     accessor: 'priceInCents',
                     title: 'Price',
-                    render: (item: Item) => <Price priceInCents={item.priceInCents} />,
+                    render: (item: Item) => <Flex justify='flex-end'><Price priceInCents={item.priceInCents} /></Flex>,
+                    cellsClassName: classes.priceColumn,
                 },
                 {
                     accessor: 'categoryId',
                     title: 'Category',
                     render: (item: Item) => <CategoryViewer categoryId={item.categoryId} />,
+                    cellsClassName: classes.categoryColumn,
                 },
                 {
                     accessor: 'charity',
