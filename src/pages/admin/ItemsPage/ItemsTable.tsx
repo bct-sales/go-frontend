@@ -42,6 +42,11 @@ export default function ItemsPage(props: Props): React.ReactNode
                     title: 'Id',
                 },
                 {
+                    accessor: 'sellerId',
+                    title: 'Seller',
+                    render: (item: Item) => <UserIdViewer userId={item.sellerId} />,
+                },
+                {
                     accessor: 'description',
                     title: 'Description',
                     cellsClassName: classes.descriptionColumn,
@@ -72,11 +77,6 @@ export default function ItemsPage(props: Props): React.ReactNode
                     accessor: 'donation',
                     title: 'Donation',
                     render: (item: Item) => <DonationViewer value={item.donation} />,
-                },
-                {
-                    accessor: 'sellerId',
-                    title: 'Seller Id',
-                    render: (item: Item) => <UserIdViewer userId={item.sellerId} />,
                 },
             ]}
         />
