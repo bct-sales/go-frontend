@@ -43,6 +43,7 @@ export default function SalesTable(props: Props): React.ReactNode
 
     return (
         <DataTable
+            striped
             records={sales}
             idAccessor="saleId"
             height="calc(100vh - 200px)"
