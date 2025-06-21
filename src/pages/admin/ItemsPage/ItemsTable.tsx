@@ -40,11 +40,14 @@ export default function ItemsPage(props: Props): React.ReactNode
                 {
                     accessor: 'itemId',
                     title: 'Id',
+                    cellsClassName: classes.idColumn,
                 },
                 {
                     accessor: 'sellerId',
                     title: 'Seller',
                     render: (item: Item) => <UserIdViewer userId={item.sellerId} />,
+                    cellsClassName: classes.sellerColumn,
+
                 },
                 {
                     accessor: 'description',
@@ -70,13 +73,17 @@ export default function ItemsPage(props: Props): React.ReactNode
                 },
                 {
                     accessor: 'charity',
-                    title: 'Charity',
+                    title: '',
                     render: (item: Item) => <CharityViewer value={item.charity} />,
+                    cellsClassName: classes.charityColumn,
+
                 },
                 {
                     accessor: 'donation',
-                    title: 'Donation',
+                    title: '',
                     render: (item: Item) => <DonationViewer value={item.donation} />,
+                    cellsClassName: classes.donationColumn,
+
                 },
             ]}
         />
