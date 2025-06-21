@@ -45,7 +45,6 @@ export default function ItemsPage(props: Props): React.ReactNode
                     accessor: 'description',
                     title: 'Description',
                     cellsClassName: classes.descriptionColumn,
-
                 },
                 {
                     accessor: 'addedAt',
