@@ -1,11 +1,12 @@
 import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Group, Menu, Pagination, Stack } from "@mantine/core";
+import { Button, Group, Menu, Pagination, Select, Stack } from "@mantine/core";
 import { IconDownload } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ItemsTable from "./ItemsTable";
+import { range } from "@/util";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -53,12 +54,16 @@ export default function ItemsPage() : React.ReactNode
         const cvsUrl = `/api/v1/items?format=csv`;
         const jsonUrl = `/api/v1/items?format=json`;
         const lastPage = Math.ceil(totalItemCount / itemsPagePage);
+        const pageRange = range(1, lastPage).map(p => `${p}`);
 
         return (
             <>
                 <Stack>
                     <Group justify="space-between" align="center" mb="md">
-                        <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
+                        <Group>
+                            <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
+                            <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w='5em' />
+                        </Group>
                         <Menu>
                             <Menu.Target>
                                 <Button variant="outline">
