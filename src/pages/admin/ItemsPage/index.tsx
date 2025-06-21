@@ -1,7 +1,7 @@
 import Loading from "@/components/Loading";
 import { listItems, Item } from "@/rest/admin/list-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Group, Menu, Stack } from "@mantine/core";
+import { Button, Group, Menu, Pagination, Stack } from "@mantine/core";
 import { IconDownload } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -10,27 +10,29 @@ import ItemsTable from "./ItemsTable";
 
 export default function ItemsPage() : React.ReactNode
 {
-    const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({status: "loading"});
+    const [itemsStatus, setItemsStatus] = useState<RestStatus<{items: Item[], totalItemCount: number}>>({status: "loading"});
+    const [page, setPage] = useState(1);
+    const itemsPagePage = 20;
 
     useEffect(() => {
         void (async () => {
-            const response = await listItems();
+            const response = await listItems(itemsPagePage * (page - 1), itemsPagePage);
 
             if (response.success)
             {
-                setItemsStatus({status: "success", value: response.value.items});
+                setItemsStatus({status: "success", value: { items: response.value.items, totalItemCount: response.value.totalItemCount }});
             }
             else
             {
                 setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
             }
         })();
-    }, []);
+    }, [page]);
 
     switch (itemsStatus.status)
     {
         case "success":
-            return renderPage(itemsStatus.value);
+            return renderPage(itemsStatus.value.items, itemsStatus.value.totalItemCount);
 
         case "loading":
             return (
@@ -46,15 +48,17 @@ export default function ItemsPage() : React.ReactNode
     }
 
 
-    function renderPage(items: Item[]): React.ReactNode
+    function renderPage(items: Item[], totalItemCount: number): React.ReactNode
     {
         const cvsUrl = `/api/v1/items?format=csv`;
         const jsonUrl = `/api/v1/items?format=json`;
+        const lastPage = Math.ceil(totalItemCount / itemsPagePage);
 
         return (
             <>
                 <Stack>
-                    <Group justify="flex-end" align="center" mb="md">
+                    <Group justify="space-between" align="center" mb="md">
+                        <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
                         <Menu>
                             <Menu.Target>
                                 <Button variant="outline">

@@ -14,6 +14,8 @@ class RestPaths
 
     get items() { return `${this.root}/items`; }
 
+    itemsRange(start: number, count: number) { return `${this.root}/items?offset=${start}&limit=${count}`; }
+
     item(itemId: number) { return `${this.root}/items/${itemId}`; }
 
     get categoryCounts() { return `${this.root}/categories?counts=visible`; }
