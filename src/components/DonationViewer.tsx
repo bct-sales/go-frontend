@@ -1,3 +1,4 @@
+import { Tooltip } from "@mantine/core";
 import { IconGiftFilled } from "@tabler/icons-react";
 
 interface Props
@@ -13,7 +14,9 @@ export default function DonationViewer(props: Props): React.ReactNode
     if ( value )
     {
         return (
-            <IconGiftFilled />
+            <Tooltip label="If this item gets sold, the proceeds will go to the BCT.">
+                <IconGiftFilled />
+            </Tooltip>
         );
     }
     else
