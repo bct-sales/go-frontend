@@ -1,5 +1,5 @@
 import Loading from "@/components/Loading";
-import { listSales } from "@/rest/admin/list-sales";
+import { listRecentSales, listSales } from "@/rest/admin/list-sales";
 import { RestStatus } from "@/rest/status";
 import React, { useEffect, useState } from "react";
 import SalesTable, { Sale } from "./SalesTable";
@@ -10,29 +10,28 @@ import { notifications } from "@mantine/notifications";
 
 export default function SalesPage() : React.ReactNode
 {
-    const [antiChronologicalSalesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
+    const [status, setStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
 
     useEffect(() => {
         void (async () => {
-            const response = await listSales();
+            const response = await listRecentSales(20);
 
             if (response.success)
             {
                 const sales = response.value.sales;
-                sales.reverse();
-                setSalesStatus({status: "success", value: sales});
+                setStatus({status: "success", value: sales});
             }
             else
             {
-                setSalesStatus({status: "error", tag: response.error.type, details: response.error.details});
+                setStatus({status: "error", tag: response.error.type, details: response.error.details});
             }
         })();
     }, []);
 
-    switch (antiChronologicalSalesStatus.status)
+    switch (status.status)
     {
         case "success":
-            return renderPage(antiChronologicalSalesStatus.value);
+            return renderPage(status.value);
 
         case "loading":
             return (
@@ -42,24 +41,24 @@ export default function SalesPage() : React.ReactNode
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {antiChronologicalSalesStatus.tag}: {antiChronologicalSalesStatus.details}
+                    <strong>Error:</strong> {status.tag}: {status.details}
                 </div>
             );
     }
 
 
-    function renderPage(antiChronologicalSales: Sale[]): React.ReactNode
+    function renderPage(recentSales: Sale[]): React.ReactNode
     {
         return (
             <>
-                <SalesTable sales={antiChronologicalSales} requestSaleDetails={requestSaleDetails} />
+                <SalesTable sales={recentSales} requestSaleDetails={requestSaleDetails} />
             </>
         );
 
 
         async function requestSaleDetails(saleIndex: number): Promise<void>
         {
-            const sale = antiChronologicalSales[saleIndex];
+            const sale = recentSales[saleIndex];
             const saleInformation = await getSaleInformation(sale.saleId)
 
             if ( saleInformation.success )
@@ -68,8 +67,8 @@ export default function SalesPage() : React.ReactNode
                     ...sale,
                     items: saleInformation.value.items,
                 };
-                const updatedSales = replaceAtIndex(antiChronologicalSales, saleIndex, updatedSale);
-                setSalesStatus({status: "success", value: updatedSales});
+                const updatedSales = replaceAtIndex(recentSales, saleIndex, updatedSale);
+                setStatus({status: "success", value: updatedSales});
             }
             else
             {
