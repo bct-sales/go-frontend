@@ -41,3 +41,21 @@ export async function listSales(): Promise<RestResult<SuccessResponse>>
         return convertExceptionToFailure(exception);
     }
 }
+
+export async function listRecentSales(count: number): Promise<RestResult<SuccessResponse>>
+{
+    const url = paths.recentSales(count);
+
+    try
+    {
+        const response = await axios.get<unknown>(url);
+        const data = SuccessResponse.parse(response.data);
+
+        return success({ sales: data.sales });
+    }
+    catch ( exception: unknown )
+    {
+        console.error(exception);
+        return convertExceptionToFailure(exception);
+    }
+}
