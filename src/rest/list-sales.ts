@@ -19,6 +19,8 @@ export type Sale = z.infer<typeof Sale>;
 
 const SuccessResponse = z.object({
     sales: z.array(Sale),
+    saleCount: z.number().nonnegative(),
+    totalSaleValueInCents: z.number().nonnegative(),
 });
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
@@ -33,7 +35,11 @@ export async function listSales(): Promise<RestResult<SuccessResponse>>
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success({ sales: data.sales });
+        return success({
+            sales: data.sales,
+            saleCount: data.saleCount,
+            totalSaleValueInCents: data.totalSaleValueInCents
+        });
     }
     catch ( exception: unknown )
     {
@@ -51,7 +57,11 @@ export async function listRecentSales(count: number): Promise<RestResult<Success
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success({ sales: data.sales });
+        return success({
+            sales: data.sales,
+            saleCount: data.saleCount,
+            totalSaleValueInCents: data.totalSaleValueInCents
+        });
     }
     catch ( exception: unknown )
     {
