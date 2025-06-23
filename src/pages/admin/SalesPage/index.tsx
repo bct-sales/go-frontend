@@ -1,5 +1,5 @@
 import Loading from "@/components/Loading";
-import { listRecentSales, listSales } from "@/rest/admin/list-sales";
+import { listRecentSales, listSales } from "@/rest/list-sales";
 import { RestStatus } from "@/rest/status";
 import React, { useEffect, useState } from "react";
 import SalesTable, { Sale } from "./SalesTable";
