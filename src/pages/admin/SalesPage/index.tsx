@@ -1,11 +1,11 @@
 import Loading from "@/components/Loading";
-import { listRecentSales, listSales } from "@/rest/list-sales";
+import { listRecentSales } from "@/rest/list-sales";
+import { getSaleInformation } from "@/rest/sale-information";
 import { RestStatus } from "@/rest/status";
+import { replaceAtIndex } from "@/util";
+import { notifications } from "@mantine/notifications";
 import React, { useEffect, useState } from "react";
 import SalesTable, { Sale } from "./SalesTable";
-import { replaceAtIndex } from "@/util";
-import { getSaleInformation } from "@/rest/sale-information";
-import { notifications } from "@mantine/notifications";
 
 
 export default function SalesPage() : React.ReactNode
