@@ -16,7 +16,7 @@ export default function Price(props: Props): React.ReactNode
 
     return (
         <Text className={props.className}>
-            &euro;{euros}
+            &euro;{euros.toLocaleString()}
             .
             {cents.toString().padStart(2, '0')}
         </Text>
