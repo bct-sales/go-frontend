@@ -6,11 +6,19 @@ import { replaceAtIndex } from "@/util";
 import { notifications } from "@mantine/notifications";
 import React, { useEffect, useState } from "react";
 import SalesTable, { Sale } from "./SalesTable";
+import SaleOverview from "./SaleOverview";
 
+
+interface Data
+{
+    recentSales: Sale[];
+    saleCount: number;
+    totalSaleValue: number;
+}
 
 export default function SalesPage() : React.ReactNode
 {
-    const [status, setStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
+    const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
 
     useEffect(() => {
         void (async () => {
@@ -18,8 +26,13 @@ export default function SalesPage() : React.ReactNode
 
             if (response.success)
             {
-                const sales = response.value.sales;
-                setStatus({status: "success", value: sales});
+                const data = {
+                    recentSales: response.value.sales,
+                    saleCount: response.value.saleCount,
+                    totalSaleValue: response.value.totalSaleValueInCents,
+                };
+
+                setStatus({status: "success", value: data});
             }
             else
             {
@@ -47,39 +60,13 @@ export default function SalesPage() : React.ReactNode
     }
 
 
-    function renderPage(recentSales: Sale[]): React.ReactNode
+    function renderPage(data: Data): React.ReactNode
     {
         return (
             <>
-                <SalesTable sales={recentSales} requestSaleDetails={requestSaleDetails} />
+                <SaleOverview saleCount={data.saleCount} totalSaleValue={data.totalSaleValue} />
+                <SalesTable sales={data.recentSales} />
             </>
         );
-
-
-        async function requestSaleDetails(saleIndex: number): Promise<void>
-        {
-            const sale = recentSales[saleIndex];
-            const saleInformation = await getSaleInformation(sale.saleId)
-
-            if ( saleInformation.success )
-            {
-                const updatedSale: Sale = {
-                    ...sale,
-                    items: saleInformation.value.items,
-                };
-                const updatedSales = replaceAtIndex(recentSales, saleIndex, updatedSale);
-                setStatus({status: "success", value: updatedSales});
-            }
-            else
-            {
-                notifications.show({
-                    title: "Error",
-                    message: `Failed to load sale details`,
-                    color: "red",
-                });
-
-                console.error(`Failed to load sale details for sale ID ${sale.saleId}:`, saleInformation.error);
-            }
-        }
     }
 }

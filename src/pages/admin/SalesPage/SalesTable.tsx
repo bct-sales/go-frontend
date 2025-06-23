@@ -13,7 +13,6 @@ import SaleIdViewer from "@/components/SaleIdViewer";
 interface Props
 {
     sales: Sale[];
-    requestSaleDetails?: (saleIndex: number) => void;
 }
 
 export interface Sale
