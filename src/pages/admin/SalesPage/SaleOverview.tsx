@@ -7,6 +7,8 @@ interface Props
 {
     saleCount: number;
     totalSaleValue: number;
+    itemCount: number;
+    soldItemCount: number;
 }
 
 export default function SaleOverview(props: Props): React.ReactNode
@@ -22,6 +24,14 @@ export default function SaleOverview(props: Props): React.ReactNode
                     <Table.Tr>
                         <Table.Th className={classes.key}>Total Sale Value</Table.Th>
                         <Table.Td className={classes.value}><Price priceInCents={props.totalSaleValue} /></Table.Td>
+                    </Table.Tr>
+                    <Table.Tr>
+                        <Table.Th className={classes.key}>Item Count</Table.Th>
+                        <Table.Td className={classes.value}>{props.itemCount}</Table.Td>
+                    </Table.Tr>
+                    <Table.Tr>
+                        <Table.Th className={classes.key}>Sold Item Count</Table.Th>
+                        <Table.Td className={classes.value}>{props.soldItemCount}</Table.Td>
                     </Table.Tr>
                 </Table.Tbody>
             </Table>

@@ -41,7 +41,6 @@ export default function SalesTable(props: Props): React.ReactNode
             striped
             records={sales}
             idAccessor="saleId"
-            height="calc(100vh - 200px)"
             columns={[
                 {
                     accessor: "saleId",

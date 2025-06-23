@@ -1,19 +1,19 @@
 import Loading from "@/components/Loading";
 import { listRecentSales } from "@/rest/list-sales";
-import { getSaleInformation } from "@/rest/sale-information";
 import { RestStatus } from "@/rest/status";
-import { replaceAtIndex } from "@/util";
-import { notifications } from "@mantine/notifications";
 import React, { useEffect, useState } from "react";
-import SalesTable, { Sale } from "./SalesTable";
 import SaleOverview from "./SaleOverview";
+import SalesTable, { Sale } from "./SalesTable";
+import CaptionedBox from "@/components/CaptionedBox";
 
 
 interface Data
 {
-    recentSales: Sale[];
+    sales: Sale[];
     saleCount: number;
-    totalSaleValue: number;
+    totalSaleValueInCents: number;
+    itemCount: number;
+    soldItemCount: number;
 }
 
 export default function SalesPage() : React.ReactNode
@@ -22,17 +22,11 @@ export default function SalesPage() : React.ReactNode
 
     useEffect(() => {
         void (async () => {
-            const response = await listRecentSales(20);
+            const response = await listRecentSales(10);
 
             if (response.success)
             {
-                const data = {
-                    recentSales: response.value.sales,
-                    saleCount: response.value.saleCount,
-                    totalSaleValue: response.value.totalSaleValueInCents,
-                };
-
-                setStatus({status: "success", value: data});
+                setStatus({status: "success", value: response.value});
             }
             else
             {
@@ -64,8 +58,10 @@ export default function SalesPage() : React.ReactNode
     {
         return (
             <>
-                <SaleOverview saleCount={data.saleCount} totalSaleValue={data.totalSaleValue} />
-                <SalesTable sales={data.recentSales} />
+                <SaleOverview saleCount={data.saleCount} totalSaleValue={data.totalSaleValueInCents} itemCount={data.itemCount} soldItemCount={data.soldItemCount} />
+                <CaptionedBox caption="Recent Sales">
+                    <SalesTable sales={data.sales} />
+                </CaptionedBox>
             </>
         );
     }
