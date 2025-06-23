@@ -1,5 +1,5 @@
 import Loading from "@/components/Loading";
-import { listItems, Item } from "@/rest/admin/list-items";
+import { listItems, Item } from "@/rest/list-items";
 import { RestStatus } from "@/rest/status";
 import { Button, Center, Group, Menu, Pagination, Select, Stack } from "@mantine/core";
 import { IconDownload } from "@tabler/icons-react";
