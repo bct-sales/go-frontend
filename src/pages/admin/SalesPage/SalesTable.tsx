@@ -1,14 +1,10 @@
 import DateTimeViewer from "@/components/DateTimeViewer";
 import Price from "@/components/Price";
+import SaleIdViewer from "@/components/SaleIdViewer";
 import UserIdViewer from "@/components/UserIdViewer";
 import { DateTime } from "@/datetime";
-import { Box, Group, Stack, Text } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import React from "react";
-import classes from "./SalesTable.module.css";
-import CharityViewer from "@/components/CharityViewer";
-import DonationViewer from "@/components/DonationViewer";
-import SaleIdViewer from "@/components/SaleIdViewer";
 
 interface Props
 {
