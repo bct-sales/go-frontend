@@ -1,6 +1,6 @@
 import Loading from "@/components/Loading";
 import UsersTable from "@/components/UsersTable";
-import { listUsers, User } from "@/rest/admin/list-users";
+import { listUsers, User } from "@/rest/list-users";
 import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 

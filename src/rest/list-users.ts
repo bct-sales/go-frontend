@@ -2,7 +2,7 @@ import { convertExceptionToFailure, RestResult } from '@/rest/result';
 import { success } from '@/result';
 import axios from 'axios';
 import { z } from 'zod';
-import { paths } from '../paths';
+import { paths } from '@/rest/paths';
 import { DateTime } from '@/datetime';
 
 
