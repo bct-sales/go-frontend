@@ -5,14 +5,13 @@ import DateTimeViewer from "@/components/DateTimeViewer";
 import DonationViewer from "@/components/DonationViewer";
 import Loading from "@/components/Loading";
 import Price from "@/components/Price";
-import UserIdViewer from "@/components/UserIdViewer";
-import { getSaleInformation, Item, Sale, SuccessResponse } from "@/rest/sale-information";
+import { getSaleInformation, Item, SuccessResponse } from "@/rest/sale-information";
 import { RestStatus } from "@/rest/status";
-import { Table } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SaleInformation from "./SaleInformation";
+import ItemTable from "./ItemTable";
 
 
 export default function SalePage()
@@ -75,54 +74,9 @@ export default function SalePage()
                     <SaleInformation sale={saleInformation} />
                 </CaptionedBox>
                 <CaptionedBox caption="Items">
-                    {renderItemTable(saleInformation.items)}
+                    <ItemTable items={saleInformation.items} />
                 </CaptionedBox>
             </>
-        );
-    }
-
-    function renderItemTable(items: Item[]): React.ReactNode
-    {
-        return (
-            <DataTable
-                striped
-                records={items}
-                columns={[
-                    {
-                        accessor: 'itemId',
-                        title: "Id",
-                    },
-                    {
-                        accessor: 'description',
-                        title: "Description",
-                    },
-                    {
-                        accessor: 'categoryId',
-                        title: "Category",
-                        render: item => <CategoryViewer categoryId={item.categoryId} />,
-                    },
-                    {
-                        accessor: 'priceInCents',
-                        title: "Price",
-                        render: item => <Price priceInCents={item.priceInCents} />,
-                    },
-                    {
-                        accessor: 'charity',
-                        title: "Charity",
-                        render: item => <CharityViewer value={item.charity} />,
-                    },
-                    {
-                        accessor: 'donation',
-                        title: "Donation",
-                        render: item => <DonationViewer value={item.charity} />,
-                    },
-                    {
-                        accessor: 'addedAt',
-                        title: "Added At",
-                        render: item => <DateTimeViewer dateTime={item.addedAt} />,
-                    },
-                ]}
-            />
         );
     }
 }
