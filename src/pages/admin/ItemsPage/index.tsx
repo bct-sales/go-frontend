@@ -3,7 +3,7 @@ import { listItems, Item } from "@/rest/list-items";
 import { RestStatus } from "@/rest/status";
 import { Button, Center, Group, Menu, Pagination, Select, Stack } from "@mantine/core";
 import { IconDownload } from "@tabler/icons-react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ItemsTable from "./ItemsTable";
 import { range } from "@/util";
@@ -11,24 +11,22 @@ import { range } from "@/util";
 
 export default function ItemsPage() : React.ReactNode
 {
+    const itemsPagePage = 20;
     const [itemsStatus, setItemsStatus] = useState<RestStatus<{items: Item[], totalItemCount: number}>>({status: "loading"});
     const [page, setPage] = useState(1);
-    const itemsPagePage = 20;
+    const refresh = useCallback(async () => {
+        const response = await listItems(itemsPagePage * (page - 1), itemsPagePage);
 
-    useEffect(() => {
-        void (async () => {
-            const response = await listItems(itemsPagePage * (page - 1), itemsPagePage);
-
-            if (response.success)
-            {
-                setItemsStatus({status: "success", value: { items: response.value.items, totalItemCount: response.value.totalItemCount }});
-            }
-            else
-            {
-                setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
-            }
-        })();
+        if (response.success)
+        {
+            setItemsStatus({status: "success", value: { items: response.value.items, totalItemCount: response.value.totalItemCount }});
+        }
+        else
+        {
+            setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
+        }
     }, [page]);
+    useEffect(() => { refresh(); }, [refresh]);
 
     switch (itemsStatus.status)
     {
