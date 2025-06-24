@@ -1,10 +1,11 @@
 import Loading from "@/components/Loading";
 import { listRecentSales } from "@/rest/list-sales";
 import { RestStatus } from "@/rest/status";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SaleOverview from "./SaleOverview";
 import SalesTable, { Sale } from "./SalesTable";
 import CaptionedBox from "@/components/CaptionedBox";
+import { useWebSocket } from "@/websocket";
 
 
 interface Data
@@ -19,21 +20,12 @@ interface Data
 export default function SalesPage() : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
+    useWebSocket("ws://localhost:8000/api/v1/websocket", () => {
+        refreshData();
+    });
 
-    useEffect(() => {
-        void (async () => {
-            const response = await listRecentSales(10);
 
-            if (response.success)
-            {
-                setStatus({status: "success", value: response.value});
-            }
-            else
-            {
-                setStatus({status: "error", tag: response.error.type, details: response.error.details});
-            }
-        })();
-    }, []);
+    useEffect(() => { refreshData(); }, []);
 
     switch (status.status)
     {
@@ -64,5 +56,19 @@ export default function SalesPage() : React.ReactNode
                 </CaptionedBox>
             </>
         );
+    }
+
+    async function refreshData()
+    {
+        const response = await listRecentSales(10);
+
+        if (response.success)
+        {
+            setStatus({status: "success", value: response.value});
+        }
+        else
+        {
+            setStatus({status: "error", tag: response.error.type, details: response.error.details});
+        }
     }
 }
