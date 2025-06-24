@@ -17,13 +17,24 @@ interface Data
     soldItemCount: number;
 }
 
-export default function SalesPage() : React.ReactNode
+interface Props
+{
+    registerUpdateObserver: (observer: () => void) => (() => void);
+}
+
+export default function SalesPage(props: Props) : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
     useWebSocket("ws://localhost:8000/api/v1/websocket", () => {
         refreshData();
     });
-    useEffect(() => { refreshData(); }, []);
+    useEffect(() => {
+        refreshData();
+    }, []);
+    useEffect(() => {
+        console.log("Registering update observer for SalesPage");
+        return props.registerUpdateObserver(refreshData);
+    });
 
     switch (status.status)
     {

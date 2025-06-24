@@ -3,7 +3,7 @@ import AuthenticationViewer from "@/components/AuthenticationViewer";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import { ActionIcon, AppShell, Flex, Text } from "@mantine/core";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import React from "react";
+import React, { useRef } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
@@ -12,14 +12,30 @@ import UserSubpage from "../admin/UserPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
 import SalePage from "../admin/SalePage.tsx";
+import { useWebSocket } from "@/websocket.ts";
 
+
+type Observer =
+{
+    active: boolean;
+    callback: () => void;
+};
 
 export default function AdminDashboard()
 {
     const authentication = useAuthentication();
     const location = useLocation();
     const navigate = useNavigate();
+    const observers = useRef<Observer[]>([]);
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'admin';
+
+    useWebSocket("ws://localhost:8000/api/v1/websocket", () => {
+        observers.current.forEach(observer => {
+            if (observer.active) {
+                observer.callback();
+            }
+        });
+    });
 
     if ( !authenticated )
     {
@@ -52,7 +68,7 @@ export default function AdminDashboard()
                         <Route path="/users/:userId" element={<UserSubpage />} />
                         <Route path="/users" element={<UsersOverviewPage />} />
                         <Route path="/items" element={<ItemsPage />} />
-                        <Route path="/sales" element={<SalesPage />} />
+                        <Route path="/sales" element={<SalesPage registerUpdateObserver={registerUpdateObserver} />} />
                         <Route path="/sales/:saleId" element={<SalePage />} />
                     </Routes>
                 </AppShell.Main>
@@ -76,6 +92,19 @@ export default function AdminDashboard()
     {
         return () => {
             navigate(url);
-        }
+        };
+    }
+
+    function registerUpdateObserver(callback: () => void): () => void
+    {
+        const observer: Observer = { active: true, callback };
+        observers.current = [...observers.current, observer];
+
+        console.log("Registered observer", observers.current.length);
+
+        return () => {
+            observer.active = false;
+            observers.current = observers.current.filter(o => o.active);
+        };
     }
 }
