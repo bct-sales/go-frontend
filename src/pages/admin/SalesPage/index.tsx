@@ -23,8 +23,6 @@ export default function SalesPage() : React.ReactNode
     useWebSocket("ws://localhost:8000/api/v1/websocket", () => {
         refreshData();
     });
-
-
     useEffect(() => { refreshData(); }, []);
 
     switch (status.status)
