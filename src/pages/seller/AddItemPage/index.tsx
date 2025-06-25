@@ -1,4 +1,4 @@
-import ItemEditor, { ItemData } from "@/components/ItemEditor";
+import ItemEditor, { ItemData } from "@/pages/seller/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
 import { Button, Flex } from "@mantine/core";

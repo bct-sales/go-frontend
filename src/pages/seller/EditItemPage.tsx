@@ -1,4 +1,4 @@
-import ItemEditor, { ItemData } from "@/components/ItemEditor";
+import ItemEditor, { ItemData } from "@/pages/seller/ItemEditor";
 import { getItemInformation, Item } from "@/rest/item-data";
 import { RestStatus } from "@/rest/status";
 import { updateItem } from "@/rest/update-item";
