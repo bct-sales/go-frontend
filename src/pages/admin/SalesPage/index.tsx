@@ -2,7 +2,7 @@ import CaptionedBox from "@/components/CaptionedBox";
 import Loading from "@/components/Loading";
 import { listRecentSales } from "@/rest/list-sales";
 import { RestStatus } from "@/rest/status";
-import { useWebSocket } from "@/websocket";
+import { useUpdateNotifications as useUpdateNotifier, useWebSocket } from "@/websocket";
 import React, { useEffect, useState } from "react";
 import SaleOverview from "./SaleOverview";
 import SalesTable, { Sale } from "./SalesTable";
@@ -17,24 +17,16 @@ interface Data
     soldItemCount: number;
 }
 
-interface Props
-{
-    registerUpdateObserver: (observer: () => void) => (() => void);
-}
-
-export default function SalesPage(props: Props) : React.ReactNode
+export default function SalesPage() : React.ReactNode
 {
     const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
-    useWebSocket("ws://localhost:8000/api/v1/websocket", () => {
-        refreshData();
-    });
+    const updateNotifier = useUpdateNotifier();
     useEffect(() => {
         refreshData();
     }, []);
     useEffect(() => {
-        console.log("Registering update observer for SalesPage");
-        return props.registerUpdateObserver(refreshData);
-    });
+        return updateNotifier.register(refreshData);
+    }, [updateNotifier])
 
     switch (status.status)
     {
