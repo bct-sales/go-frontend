@@ -44,7 +44,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
         const categoryString = props.categoryId?.toString() ?? null;
 
         return (
-            <Select label="Category" data={itemCategories} withCheckIcon={false} value={categoryString} onChange={onChange} error={renderError()} />
+            <Select label="Category" data={itemCategories} withCheckIcon={false} value={categoryString} onChange={onChange} error={renderError()} searchable />
         );
 
 
