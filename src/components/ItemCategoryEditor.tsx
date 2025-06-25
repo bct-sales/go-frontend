@@ -1,5 +1,5 @@
 import { CategoryTable, useCategories } from "@/categories";
-import { Select } from "@mantine/core";
+import { Group, Select, Stack, Text } from "@mantine/core";
 import Loading from "./Loading";
 
 
@@ -44,7 +44,12 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
         const categoryString = props.categoryId?.toString() ?? null;
 
         return (
-            <Select label="Category" data={itemCategories} withCheckIcon={false} value={categoryString} onChange={onChange} error={renderError()} searchable />
+            <Stack gap='xs' align="stretch" mt='sm'>
+                <Group justify="flex-start" align="center">
+                    <Text>Category</Text>
+                </Group>
+                <Select data={itemCategories} withCheckIcon={false} value={categoryString} onChange={onChange} error={renderError()} searchable />
+            </Stack>
         );
 
 
