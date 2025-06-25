@@ -2,7 +2,7 @@ import CaptionedBox from "@/components/CaptionedBox";
 import Loading from "@/components/Loading";
 import { listRecentSales } from "@/rest/list-sales";
 import { RestStatus } from "@/rest/status";
-import { useUpdateNotifications as useUpdateNotifier, useWebSocket } from "@/websocket";
+import { useUpdateNotifications as useUpdateNotifier } from "@/websocket";
 import React, { useEffect, useState } from "react";
 import SaleOverview from "./SaleOverview";
 import SalesTable, { Sale } from "./SalesTable";

@@ -1,21 +1,22 @@
 import React from 'react';
-import { useEffect, useRef } from 'react';
 
 
-export function useWebSocket(url: string, onMessage: (msg: string) => void) {
-    const wsRef = useRef<WebSocket | null>(null);
+interface WebsocketFacade
+{
+    register: (callback: (msg: string) => void) => () => void;
+}
 
-    useEffect(() => {
-        console.log("opening websocket", url);
-        const ws = new WebSocket(url);
-        wsRef.current = ws;
+const dummyWebsocketFacade: WebsocketFacade = {
+    register: () => {
+        throw new Error("WebsocketFacade not initialized");
+    }
+};
 
-        ws.onmessage = (event) => onMessage(event.data);
+export const WebsocketContext = React.createContext<WebsocketFacade>(dummyWebsocketFacade);
 
-        return () => { setTimeout( () => { ws.send("bye"); ws.close(); }, 1000 ); }
-    }, [url, onMessage]);
-
-    return wsRef;
+export function useWebsocket(): WebsocketFacade
+{
+    return React.useContext(WebsocketContext);
 }
 
 export interface UpdateNotifier

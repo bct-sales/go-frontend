@@ -6,6 +6,7 @@ import { Notifications } from '@mantine/notifications';
 import { AuthenticationProvider } from './AuthenticationProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SettingsProvider } from './SettingsProvider';
+import WebsocketProvider from './components/WebsocketProvider';
 
 
 export default function App() : React.ReactNode
@@ -36,15 +37,17 @@ export default function App() : React.ReactNode
     const queryClient = new QueryClient();
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <SettingsProvider>
-                <AuthenticationProvider>
-                    <MantineProvider defaultColorScheme="dark">
-                        <Notifications />
-                        <RouterProvider router={router} />
-                    </MantineProvider>
-                </AuthenticationProvider>
-            </SettingsProvider>
-        </QueryClientProvider>
+        <WebsocketProvider url="ws://localhost:8000/api/v1/websocket">
+            <QueryClientProvider client={queryClient}>
+                <SettingsProvider>
+                    <AuthenticationProvider>
+                        <MantineProvider defaultColorScheme="dark">
+                            <Notifications />
+                            <RouterProvider router={router} />
+                        </MantineProvider>
+                    </AuthenticationProvider>
+                </SettingsProvider>
+            </QueryClientProvider>
+        </WebsocketProvider>
     );
 }
