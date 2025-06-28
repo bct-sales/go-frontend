@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { viteSingleFile } from "vite-plugin-singlefile"
 
 
 interface Definitions
@@ -17,7 +18,8 @@ export default defineConfig(({ command } ) => {
     return {
         plugins: [
             react(),
-            tsconfigPaths()
+            tsconfigPaths(),
+            viteSingleFile(),
         ],
         resolve: {
             alias: {
