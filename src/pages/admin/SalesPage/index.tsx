@@ -14,7 +14,8 @@ interface Data
     saleCount: number;
     totalSaleValueInCents: number;
     itemCount: number;
-    soldItemCount: number;
+    distinctSoldItemCount: number;
+    totalSoldItemCount: number;
 }
 
 export default function SalesPage() : React.ReactNode
@@ -51,7 +52,13 @@ export default function SalesPage() : React.ReactNode
     {
         return (
             <>
-                <SaleOverview saleCount={data.saleCount} totalSaleValue={data.totalSaleValueInCents} itemCount={data.itemCount} soldItemCount={data.soldItemCount} />
+                <SaleOverview
+                    saleCount={data.saleCount}
+                    totalSaleValue={data.totalSaleValueInCents}
+                    itemCount={data.itemCount}
+                    distinctSoldItemCount={data.distinctSoldItemCount}
+                    totalSoldItemCount={data.totalSoldItemCount}
+                />
                 <CaptionedBox caption="Recent Sales">
                     <SalesTable sales={data.sales} />
                 </CaptionedBox>
