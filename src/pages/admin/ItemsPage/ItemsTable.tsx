@@ -72,13 +72,6 @@ export default function ItemsPage(props: Props): React.ReactNode
                     cellsClassName: classes.categoryColumn,
                 },
                 {
-                    accessor: 'charity',
-                    title: '',
-                    render: (item: Item) => <CharityViewer value={item.charity} />,
-                    cellsClassName: classes.charityColumn,
-
-                },
-                {
                     accessor: 'donation',
                     title: '',
                     render: (item: Item) => <DonationViewer value={item.donation} />,
