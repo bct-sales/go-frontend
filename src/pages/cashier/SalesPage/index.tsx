@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import Price from "@/components/Price";
 import { listRecentCashierSales, Sale, SuccessResponse } from "@/rest/list-cashier-sales";
 import { RestStatus } from "@/rest/status";
-import { Pagination, Stack, Table } from "@mantine/core";
+import { Center, Pagination, Stack, Table } from "@mantine/core";
 import { useCallback, useEffect, useState } from "react";
 
 
@@ -69,7 +69,9 @@ export default function SalesPage(props: Props): React.ReactNode
 
             return (
                 <Stack>
-                    <Pagination total={lastPage} value={oneIndexedPage} onChange={setOneIndexedPage} />
+                    <Center mb='xl'>
+                        <Pagination total={lastPage} value={oneIndexedPage} onChange={setOneIndexedPage} />
+                    </Center>
                     <Table>
                         <Table.Thead>
                             <Table.Tr>
