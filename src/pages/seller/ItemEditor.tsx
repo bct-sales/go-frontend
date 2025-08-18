@@ -1,5 +1,4 @@
 import { Flex } from "@mantine/core";
-import CharityEditor from "../../components/CharityEditor";
 import DonationEditor from "../../components/DonationEditor";
 import ItemCategoryEditor from "../../components/ItemCategoryEditor";
 import ItemDescriptionEditor from "../../components/ItemDescriptionEditor";
@@ -23,14 +22,13 @@ export interface ItemData
 
 export default function ItemEditor(props: Props): React.ReactNode
 {
-    const { description, priceInCents, categoryId, charity, donation } = props.itemData;
+    const { description, priceInCents, categoryId, donation } = props.itemData;
 
     return (
         <Flex direction="column" align="stretch" justify="center" gap='md'>
             <ItemDescriptionEditor description={description} setDescription={setDescription} />
             <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} quickButtons={[100, 200, 500, 1000]} />
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
-            <CharityEditor charity={charity} setCharity={setCharity} />
             <DonationEditor donation={donation} setDonation={setDonation} />
         </Flex>
     );
@@ -49,11 +47,6 @@ export default function ItemEditor(props: Props): React.ReactNode
     function setCategoryId(categoryId: number): void
     {
         props.setItemData({ ...props.itemData, categoryId });
-    }
-
-    function setCharity(charity: boolean): void
-    {
-        props.setItemData({ ...props.itemData, charity });
     }
 
     function setDonation(donation: boolean): void
