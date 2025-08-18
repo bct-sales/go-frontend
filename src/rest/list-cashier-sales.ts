@@ -18,6 +18,7 @@ export type Sale = z.infer<typeof Sale>;
 
 const SuccessResponse = z.object({
     sales: z.array(Sale),
+    saleCount: z.number().nonnegative(),
 })
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
@@ -32,7 +33,7 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success({ sales: data.sales });
+        return success(data);
     }
     catch ( exception: unknown )
     {
@@ -50,7 +51,7 @@ export async function listRecentCashierSales(cashierId: number, count: number): 
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success({ sales: data.sales });
+        return success(data);
     }
     catch ( exception: unknown )
     {
