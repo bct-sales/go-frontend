@@ -1,10 +1,10 @@
 import DateTimeViewer from "@/components/DateTimeViewer";
 import Loading from "@/components/Loading";
 import Price from "@/components/Price";
-import { listRecentCashierSales, Sale } from "@/rest/list-cashier-sales";
+import { listRecentCashierSales, Sale, SuccessResponse } from "@/rest/list-cashier-sales";
 import { RestStatus } from "@/rest/status";
-import { Table } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { Pagination, Stack, Table } from "@mantine/core";
+import { useCallback, useEffect, useState } from "react";
 
 
 interface Props
@@ -15,27 +15,28 @@ interface Props
 
 export default function SalesPage(props: Props): React.ReactNode
 {
-    const [antiChronologicalSalesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
-    useEffect(() => {
-            void (async () => {
-                const response = await listRecentCashierSales(props.cashierId, 10);
+    const salesPerPage = 10;
+    const [status, setStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
+    const [oneIndexedPage, setOneIndexedPage] = useState<number>(1);
+    const refresh = useCallback(async () => {
+        const response = await listRecentCashierSales(props.cashierId, salesPerPage, (oneIndexedPage - 1) * salesPerPage);
 
-                if (response.success)
-                {
-                    const sales = response.value.sales;
-                    setSalesStatus({status: "success", value: sales});
-                }
-                else
-                {
-                    setSalesStatus({status: "error", tag: response.error.type, details: response.error.details});
-                }
-            })();
-        }, [props.cashierId]);
+        if (response.success)
+        {
+            setStatus({status: "success", value: response.value});
+        }
+        else
+        {
+            setStatus({status: "error", tag: response.error.type, details: response.error.details});
+        }
+    }, [props.cashierId, oneIndexedPage]);
 
-    switch (antiChronologicalSalesStatus.status)
+    useEffect(() => { refresh(); }, [props.cashierId, refresh]);
+
+    switch (status.status)
     {
         case "success":
-            return renderPage(antiChronologicalSalesStatus.value);
+            return renderPage(status.value.saleCount, status.value.sales);
 
         case "loading":
             return (
@@ -45,13 +46,13 @@ export default function SalesPage(props: Props): React.ReactNode
         case "error":
             return (
                 <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {antiChronologicalSalesStatus.tag}: {antiChronologicalSalesStatus.details}
+                    <strong>Error:</strong> {status.tag}: {status.details}
                 </div>
             );
     }
 
 
-    function renderPage(antiChronologicalSales: Sale[]): React.ReactNode
+    function renderPage(totalSaleCount: number, antiChronologicalSales: Sale[]): React.ReactNode
     {
         if (antiChronologicalSales.length === 0)
         {
@@ -63,20 +64,26 @@ export default function SalesPage(props: Props): React.ReactNode
         }
         else
         {
+            console.log(totalSaleCount, salesPerPage)
+            const lastPage = Math.ceil(totalSaleCount / salesPerPage);
+
             return (
-                <Table>
-                    <Table.Thead>
-                        <Table.Tr>
-                            <Table.Th>Sale ID</Table.Th>
-                            <Table.Th>Item Count</Table.Th>
-                            <Table.Th>Total</Table.Th>
-                            <Table.Th>Transaction Time</Table.Th>
-                        </Table.Tr>
-                    </Table.Thead>
-                    <Table.Tbody>
-                        {antiChronologicalSales.map(renderSale)}
-                    </Table.Tbody>
-                </Table>
+                <Stack>
+                    <Pagination total={lastPage} value={oneIndexedPage} onChange={setOneIndexedPage} />
+                    <Table>
+                        <Table.Thead>
+                            <Table.Tr>
+                                <Table.Th>Sale ID</Table.Th>
+                                <Table.Th>Item Count</Table.Th>
+                                <Table.Th>Total</Table.Th>
+                                <Table.Th>Transaction Time</Table.Th>
+                            </Table.Tr>
+                        </Table.Thead>
+                        <Table.Tbody>
+                            {antiChronologicalSales.map(renderSale)}
+                        </Table.Tbody>
+                    </Table>
+                </Stack>
             );
 
 
