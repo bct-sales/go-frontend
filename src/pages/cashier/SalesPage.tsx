@@ -1,7 +1,7 @@
 import DateTimeViewer from "@/components/DateTimeViewer";
 import Loading from "@/components/Loading";
 import Price from "@/components/Price";
-import { listCashierSales, Sale } from "@/rest/list-cashier-sales";
+import { listRecentCashierSales, Sale } from "@/rest/list-cashier-sales";
 import { RestStatus } from "@/rest/status";
 import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
@@ -18,12 +18,11 @@ export default function SalesPage(props: Props): React.ReactNode
     const [antiChronologicalSalesStatus, setSalesStatus] = useState<RestStatus<Sale[]>>({status: "loading"});
     useEffect(() => {
             void (async () => {
-                const response = await listCashierSales(props.cashierId);
+                const response = await listRecentCashierSales(props.cashierId, 10);
 
                 if (response.success)
                 {
                     const sales = response.value.sales;
-                    sales.reverse();
                     setSalesStatus({status: "success", value: sales});
                 }
                 else
