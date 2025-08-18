@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, charityColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import { addedAtColumn, categoryColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import { Column } from "@/components/ItemsTable/ItemsTable";
 import Loading from "@/components/Loading";
 import { addItem } from "@/rest/add-item";
@@ -102,7 +102,6 @@ export default function ItemsPage(props: Props) : React.ReactNode
                 addedAtColumn,
                 categoryColumn,
                 priceInCentsColumn,
-                charityColumn,
                 donationColumn,
             ];
         }
@@ -115,7 +114,6 @@ export default function ItemsPage(props: Props) : React.ReactNode
                 addedAtColumn,
                 categoryColumn,
                 priceInCentsColumn,
-                charityColumn,
                 donationColumn,
             ];
         }
