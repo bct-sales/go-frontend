@@ -1,17 +1,11 @@
 import CaptionedBox from "@/components/CaptionedBox";
-import CategoryViewer from "@/components/CategoryViewer";
-import CharityViewer from "@/components/CharityViewer";
-import DateTimeViewer from "@/components/DateTimeViewer";
-import DonationViewer from "@/components/DonationViewer";
 import Loading from "@/components/Loading";
-import Price from "@/components/Price";
-import { getSaleInformation, Item, SuccessResponse } from "@/rest/sale-information";
+import { getSaleInformation, SuccessResponse } from "@/rest/sale-information";
 import { RestStatus } from "@/rest/status";
-import { DataTable } from "mantine-datatable";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SaleInformation from "./SaleInformation";
 import ItemTable from "./ItemTable";
+import SaleInformation from "./SaleInformation";
 
 
 export default function SalePage()
