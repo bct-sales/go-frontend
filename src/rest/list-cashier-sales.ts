@@ -21,7 +21,7 @@ const SuccessResponse = z.object({
     saleCount: z.number().nonnegative(),
 })
 
-type SuccessResponse = z.infer<typeof SuccessResponse>;
+export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
 
 export async function listCashierSales(cashierId: number): Promise<RestResult<SuccessResponse>>
@@ -42,9 +42,9 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
     }
 }
 
-export async function listRecentCashierSales(cashierId: number, count: number): Promise<RestResult<SuccessResponse>>
+export async function listRecentCashierSales(cashierId: number, count: number, offset: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.recentCashierSales(cashierId, count);
+    const url = paths.recentCashierSales(cashierId, count, offset);
 
     try
     {

@@ -30,7 +30,7 @@ class RestPaths
 
     cashierSales(cashierId: number) { return `${this.root}/cashiers/${cashierId}/sales`; }
 
-    recentCashierSales(cashierId: number, count: number) { return `${this.root}/cashiers/${cashierId}/sales?order=antichronological&offset=0&limit=${count}`; }
+    recentCashierSales(cashierId: number, count: number, offset: number) { return `${this.root}/cashiers/${cashierId}/sales?order=antichronological&offset=${offset}&limit=${count}`; }
 }
 
 export const paths = new RestPaths(ROOT_URL);
