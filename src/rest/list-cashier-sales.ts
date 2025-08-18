@@ -40,3 +40,21 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
         return convertExceptionToFailure(exception);
     }
 }
+
+export async function listRecentCashierSales(cashierId: number, count: number): Promise<RestResult<SuccessResponse>>
+{
+    const url = paths.recentCashierSales(cashierId, count);
+
+    try
+    {
+        const response = await axios.get<unknown>(url);
+        const data = SuccessResponse.parse(response.data);
+
+        return success({ sales: data.sales });
+    }
+    catch ( exception: unknown )
+    {
+        console.error(exception);
+        return convertExceptionToFailure(exception);
+    }
+}
