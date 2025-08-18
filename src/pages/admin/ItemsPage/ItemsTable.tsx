@@ -1,13 +1,12 @@
 import CategoryViewer from "@/components/CategoryViewer";
-import CharityViewer from "@/components/CharityViewer";
 import DateTimeViewer from "@/components/DateTimeViewer";
 import DonationViewer from "@/components/DonationViewer";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import { DateTime } from "@/datetime";
+import { Flex } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import classes from './ItemsTable.module.css';
-import { Flex } from "@mantine/core";
 
 export interface Item
 {
