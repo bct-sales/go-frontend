@@ -6,7 +6,7 @@ import NumberInput from "@/components/NumberInput";
 import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import { range } from "@/util";
-import { Button, Checkbox, Group } from "@mantine/core";
+import { Button, Checkbox, Group, Tooltip } from "@mantine/core";
 import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
 import FrozenViewer from "../FrozenViewer";
 import { Column, Item } from "./ItemsTable";
@@ -80,9 +80,11 @@ export function editColumn(onClick: (item: Item) => void): Column
             else
             {
                 return (
-                    <Button onClick={() => onClick(item)} variant="subtle">
-                        <IconEdit />
-                    </Button>
+                    <Tooltip label="Edit item" openDelay={500}>
+                        <Button onClick={() => onClick(item)} variant="subtle">
+                            <IconEdit />
+                        </Button>
+                    </Tooltip>
                 );
             }
         },
