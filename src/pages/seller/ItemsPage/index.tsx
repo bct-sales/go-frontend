@@ -62,7 +62,7 @@ export default function ItemsPage(props: Props) : React.ReactNode
                 <Flex direction='row' justify='flex-end'>
                     <AddItemButton />
                 </Flex>
-                <ScrollArea style={{ height: 'calc(50vh)' }} scrollbars="y">
+                <ScrollArea style={{ height: 'calc(80vh)' }} scrollbars="y">
                     <ItemsTable items={items} columns={columns} />
                 </ScrollArea>
             </Stack>
