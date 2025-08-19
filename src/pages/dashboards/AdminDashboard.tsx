@@ -3,7 +3,7 @@ import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import UpdateProvider from "@/components/UpdateProvider.tsx";
 import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
@@ -13,6 +13,7 @@ import UserSubpage from "../admin/UserPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
 import DashboardHeader from "./DashboardHeader.tsx";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 
 export default function AdminDashboard()
@@ -20,6 +21,7 @@ export default function AdminDashboard()
     const authentication = useAuthentication();
     const location = useLocation();
     const navigate = useNavigate();
+    const [navbarVisible, { toggle: toggleNavbarVisibility }] = useDisclosure(true);
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'admin';
 
     if ( !authenticated )
@@ -32,9 +34,9 @@ export default function AdminDashboard()
     return (
         <>
             <UpdateProvider>
-                <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
+                <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {desktop: !navbarVisible, mobile: !navbarVisible}}} header={{height: 100}}>
                     <AppShell.Header>
-                        <DashboardHeader title="Administration Dashboard" userId={authentication.username} role={authentication.role} />
+                        <DashboardHeader title="Administration Dashboard" userId={authentication.username} role={authentication.role} onToggleMenu={toggleNavbarVisibility} navbarVisible={navbarVisible} />
                     </AppShell.Header>
                     <AppShell.Navbar>
                         <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>

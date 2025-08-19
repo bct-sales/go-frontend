@@ -7,11 +7,13 @@ import { AppShell, Flex } from "@mantine/core";
 import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import DashboardHeader from "./DashboardHeader";
+import { useDisclosure } from "@mantine/hooks";
 
 
 export default function CashierDashboard()
 {
     const authentication = useAuthentication();
+    const [navbarVisible, { toggle: toggleNavbarVisibility }] = useDisclosure(true);
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'cashier';
 
     if ( !authenticated )
@@ -23,9 +25,9 @@ export default function CashierDashboard()
 
     return (
         <>
-            <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
+            <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {desktop: !navbarVisible, mobile: !navbarVisible}}} header={{height: 100}}>
                 <AppShell.Header>
-                    <DashboardHeader title="Cashier Dashboard" userId={authentication.username} role={authentication.role} />
+                    <DashboardHeader title="Cashier Dashboard" userId={authentication.username} role={authentication.role} onToggleMenu={toggleNavbarVisibility} navbarVisible={navbarVisible} />
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
