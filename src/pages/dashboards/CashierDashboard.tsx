@@ -8,6 +8,7 @@ import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import classes from './CashierDashboard.module.css';
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
+import DashboardHeader from "./DashboardHeader";
 
 
 export default function CashierDashboard()
@@ -25,11 +26,8 @@ export default function CashierDashboard()
     return (
         <>
             <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
-            <AppShell.Header>
-                    <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>
-                        <Text className={classes.header}>Cashier Dashboard</Text>
-                        <AuthenticationViewer username={authentication.username} role={authentication.role} />
-                    </Flex>
+                <AppShell.Header>
+                    <DashboardHeader title="Cashier Dashboard" userId={authentication.username} role={authentication.role} />
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
