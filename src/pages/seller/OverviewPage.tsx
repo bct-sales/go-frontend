@@ -144,7 +144,7 @@ export default function OverviewPage(props: Props): React.ReactNode
             {
                 return (
                     <Text>
-                        You have currently added {sellerSummary.itemCount}.
+                        You have currently added {sellerSummary.itemCount} items.
                         However, for {labelsToBePrinted} of them, you have not yet printed labels.
                         You can add more items, or choose to generate labels.
                     </Text>
