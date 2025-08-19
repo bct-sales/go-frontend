@@ -12,6 +12,7 @@ interface Props
     items: Item[];
     count: (item: Item) => number;
     setCount: (item: Item, n: number) => void;
+    goToNextStep: () => void;
 }
 
 export default function AdvancedItemSelectionSubpage(props: Props): React.ReactNode
@@ -40,6 +41,7 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
                 </Group>
             </CaptionedBox>
             <ItemsTable items={items} columns={columns} onItemActivated={onItemActivated} />
+            <Button onClick={props.goToNextStep}>Next Step</Button>
         </Stack>
     );
 

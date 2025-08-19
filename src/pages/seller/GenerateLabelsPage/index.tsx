@@ -106,7 +106,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
             {
                 case 0:
                     return (
-                        <ItemSelectionSubpage items={items} count={count} setCount={setCount} />
+                        <ItemSelectionSubpage items={items} count={count} setCount={setCount} goToNextStep={() => setActiveStep(1)} />
                     );
 
                 case 1:
