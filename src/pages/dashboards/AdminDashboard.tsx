@@ -1,8 +1,7 @@
 import { useAuthentication } from "@/authentication";
-import AuthenticationViewer from "@/components/AuthenticationViewer";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import UpdateProvider from "@/components/UpdateProvider.tsx";
-import { ActionIcon, AppShell, Flex, Text } from "@mantine/core";
+import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
