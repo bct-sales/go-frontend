@@ -13,6 +13,7 @@ import SalesPage from "../admin/SalesPage";
 import UserSubpage from "../admin/UserPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
+import DashboardHeader from "./DashboardHeader.tsx";
 
 
 export default function AdminDashboard()
@@ -34,10 +35,7 @@ export default function AdminDashboard()
             <UpdateProvider>
                 <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
                     <AppShell.Header>
-                        <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>
-                            <Text className={classes.header}>Administration Dashboard</Text>
-                            <AuthenticationViewer username={authentication.username} role={authentication.role} />
-                        </Flex>
+                        <DashboardHeader title="Administration Dashboard" userId={authentication.username} role={authentication.role} />
                     </AppShell.Header>
                     <AppShell.Navbar>
                         <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
