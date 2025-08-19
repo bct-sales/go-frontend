@@ -30,7 +30,7 @@ export default function SellerDashboard()
     return (
         <>
             <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
-            <AppShell.Header>
+                <AppShell.Header>
                     <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>
                         <Text className={classes.header}>Seller Dashboard</Text>
                         <AuthenticationViewer username={authentication.username} role={authentication.role} />
