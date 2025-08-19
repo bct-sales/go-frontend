@@ -10,9 +10,9 @@ import SettingsPage from "@/pages/seller/SettingsPage";
 import { AppShell, Flex, Text } from "@mantine/core";
 import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import classes from './SellerDashboard.module.css';
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import HelpPage from "../seller/HelpPage";
+import DashboardHeader from "./DashboardHeader";
 
 
 export default function SellerDashboard()
@@ -31,10 +31,7 @@ export default function SellerDashboard()
         <>
             <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {mobile: true}}} header={{height: 100}}>
                 <AppShell.Header>
-                    <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>
-                        <Text className={classes.header}>Seller Dashboard</Text>
-                        <AuthenticationViewer username={authentication.username} role={authentication.role} />
-                    </Flex>
+                    <DashboardHeader title="Seller Dashboard" userId={authentication.username} role={authentication.role} />
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
