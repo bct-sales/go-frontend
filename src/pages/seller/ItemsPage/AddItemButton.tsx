@@ -1,5 +1,4 @@
-import { ActionIcon, Tooltip } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 export default function AddItemButton(): React.ReactNode
@@ -7,15 +6,14 @@ export default function AddItemButton(): React.ReactNode
     const navigate = useNavigate();
 
     return (
-        <Tooltip label="Add Item" openDelay={500}>
-            <ActionIcon
-                variant="filled"
-                color="blue"
-                size="xl"
-                onClick={() => navigate('/seller/add-item')}
-                title="Add Item">
-                <IconPlus />
-            </ActionIcon>
-        </Tooltip>
+        <Button onClick={navigateToAddItemPage}>
+            Add Item
+        </Button>
     );
+
+
+    function navigateToAddItemPage(): void
+    {
+        navigate('/seller/add-item');
+    }
 }
