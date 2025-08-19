@@ -4,7 +4,6 @@ import { Table } from "@mantine/core";
 
 interface Props
 {
-    sellerId: number;
     itemCount: number;
     frozenItemCount: number;
     totalPrice: number;
@@ -15,10 +14,6 @@ export default function SellerSummaryViewer(props: Props) : React.ReactNode
     return (
         <Table variant="vertical">
             <Table.Tbody>
-                <Table.Tr>
-                    <Table.Th>Seller ID</Table.Th>
-                    <Table.Td>{props.sellerId}</Table.Td>
-                </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Item Count</Table.Th>
                     <Table.Td>{props.itemCount}</Table.Td>

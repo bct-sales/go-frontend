@@ -60,7 +60,6 @@ export default function OverviewPage(props: Props): React.ReactNode
                     </Card.Section>
                     <Card.Section>
                         <SellerSummaryViewer
-                            sellerId={props.sellerId}
                             itemCount={sellerSummary.itemCount}
                             frozenItemCount={sellerSummary.frozenItemCount}
                             totalPrice={sellerSummary.totalPrice} />
