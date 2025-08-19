@@ -1,3 +1,4 @@
+import { Tooltip } from "@mantine/core";
 import { IconSquareKey } from "@tabler/icons-react";
 
 interface Props
@@ -13,7 +14,9 @@ export default function FrozenViewer(props: Props): React.ReactNode
     if ( value )
     {
         return (
-            <IconSquareKey />
+            <Tooltip label="This item is frozen and cannot be edited" openDelay={500}>
+                <IconSquareKey />
+            </Tooltip>
         );
     }
     else
