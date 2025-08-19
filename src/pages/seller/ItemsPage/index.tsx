@@ -6,10 +6,11 @@ import { addItem } from "@/rest/add-item";
 import { Item, listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
 import { useSettings } from "@/settings";
-import { ScrollArea, Stack } from "@mantine/core";
+import { Flex, ScrollArea, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AddItemButton from "./AddItemButton";
 
 
 interface Props
@@ -58,6 +59,9 @@ export default function ItemsPage(props: Props) : React.ReactNode
     {
         return (
             <Stack>
+                <Flex direction='row' justify='flex-end'>
+                    <AddItemButton />
+                </Flex>
                 <ScrollArea style={{ height: 'calc(50vh)' }} scrollbars="y">
                     <ItemsTable items={items} columns={columns} />
                 </ScrollArea>
