@@ -1,13 +1,11 @@
 import { useAuthentication } from "@/authentication";
-import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
+import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import AddSalePage from "@/pages/cashier/AddSalePage";
 import SalesPage from "@/pages/cashier/SalesPage";
-import { AppShell, Flex, Text } from "@mantine/core";
+import { AppShell, Flex } from "@mantine/core";
 import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import classes from './CashierDashboard.module.css';
-import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import DashboardHeader from "./DashboardHeader";
 
 
