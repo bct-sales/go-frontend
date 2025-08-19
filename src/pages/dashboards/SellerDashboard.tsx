@@ -8,10 +8,11 @@ import ItemsPage from "@/pages/seller/ItemsPage";
 import OverviewPage from "@/pages/seller/OverviewPage";
 import SettingsPage from "@/pages/seller/SettingsPage";
 import { AppShell, Flex, Text } from "@mantine/core";
-import { IconChartBar, IconEdit, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
+import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import classes from './SellerDashboard.module.css';
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
+import HelpPage from "../seller/HelpPage";
 
 
 export default function SellerDashboard()
@@ -55,6 +56,9 @@ export default function SellerDashboard()
                         <NavigationButton caption="Settings" url="/seller/settings">
                             <IconSettings />
                         </NavigationButton>
+                        <NavigationButton caption="Help" url="/seller/help">
+                            <IconHelp />
+                        </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
                             <IconLogout />
                         </NavigationButton>
@@ -68,6 +72,7 @@ export default function SellerDashboard()
                         <Route path="/edit-item" element={<EditItemPage />} />
                         <Route path="/labels" element={<GenerateLabelsPage sellerId={authentication.username} />} />
                         <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="/help" element={<HelpPage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
