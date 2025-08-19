@@ -14,7 +14,7 @@ export default function FrozenViewer(props: Props): React.ReactNode
     if ( value )
     {
         return (
-            <Tooltip label="This item is frozen and cannot be edited" openDelay={500}>
+            <Tooltip label="This item is frozen and cannot be edited." openDelay={500}>
                 <IconSquareKey />
             </Tooltip>
         );
