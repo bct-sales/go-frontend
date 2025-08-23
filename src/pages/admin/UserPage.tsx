@@ -80,7 +80,6 @@ export default function UserSubpage()
             addedAtColumn,
             categoryColumn,
             priceInCentsColumn,
-            charityColumn,
             donationColumn,
         ];
 
