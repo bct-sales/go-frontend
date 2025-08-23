@@ -48,7 +48,7 @@ export default function LoginPage()
                 <Center>
                     <Card bg='red'>
                         <Text>
-                            Beware! The site is still being in beta phase!
+                            Beware! The site is still in beta phase!
                             For testing purposes, the database can be reset at any time.
                         </Text>
                     </Card>
