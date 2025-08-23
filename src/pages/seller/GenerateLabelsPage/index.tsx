@@ -112,7 +112,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
 
                 case 1:
                     return (
-                        <LayoutSubpage layout={labelLayout} setLayout={setLabelLayout} />
+                        <LayoutSubpage layout={labelLayout} setLayout={setLabelLayout} goToNextStep={() => setActiveStep(2)} />
                     );
 
                 case 2:
