@@ -7,11 +7,16 @@ import { AuthenticationProvider } from './AuthenticationProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SettingsProvider } from './SettingsProvider';
 import WebsocketProvider from './components/WebsocketProvider';
+import RedirectToLoginPage from './components/RedirectToLoginPage';
 
 
 export default function App() : React.ReactNode
 {
     const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <RedirectToLoginPage />
+        },
         {
             path: '/login',
             element: <pages.LoginPage />,
