@@ -22,7 +22,6 @@ export default function ItemSelectionSubpage(props: Props): React.ReactNode
                 <Tabs defaultValue="label-counts">
                     <Tabs.List>
                         <Tabs.Tab value="label-counts">Label Counts</Tabs.Tab>
-                        <Tabs.Tab value="paper-size">Sheet Size</Tabs.Tab>
                         <Tabs.Tab value="paper-margins">Sheet Margins</Tabs.Tab>
                         <Tabs.Tab value="label-margins">Label Margins</Tabs.Tab>
                     </Tabs.List>
@@ -35,19 +34,6 @@ export default function ItemSelectionSubpage(props: Props): React.ReactNode
                             </Flex>
                             <NumberInput label="Columns" min={1} step={1} value={layout.columns} onChange={onChange('columns')} />
                             <NumberInput label="Rows" min={1} step={1} value={layout.rows} onChange={onChange('rows')} />
-                        </Stack>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="paper-size">
-                        <Stack mt='md'>
-                            <Flex justify='stretch'>
-                                <Text w='400px'>
-                                    Here you can set the size of the paper. The default is A4 (210mm x 297mm).
-                                    Note that the preview might react unintuitively to the changes:
-                                    it accurately reflects the proportions of the paper, but not the actual size.
-                                </Text>
-                            </Flex>
-                            <NumberInput label="Width" min={0} step={1} value={layout.paperWidth} suffix='mm' onChange={onChange('paperWidth')} />
-                            <NumberInput label="Height" min={0} step={1} value={layout.paperHeight} suffix='mm' onChange={onChange('paperHeight')} />
                         </Stack>
                     </Tabs.Panel>
                     <Tabs.Panel value="paper-margins">
