@@ -23,7 +23,7 @@ export default function SellerSummaryViewer(props: Props) : React.ReactNode
                     <Table.Td className={classes.value}>{props.itemCount - props.frozenItemCount}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
-                    <Table.Th className={classes.header}>Total Item's Worth</Table.Th>
+                    <Table.Th className={classes.header}>Total Items' Value</Table.Th>
                     <Table.Td className={classes.value}><Price priceInCents={props.totalPrice} /></Table.Td>
                 </Table.Tr>
             </Table.Tbody>
