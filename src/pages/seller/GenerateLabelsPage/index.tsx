@@ -9,6 +9,7 @@ import ItemSelectionSubpage from "./ItemSelectionSubpage";
 import LayoutSubpage from "./LayoutSubpage";
 import { notifications } from "@mantine/notifications";
 import { Item } from "@/components/ItemsTable/ItemsTable";
+import FinalizePage from "./FinalizePage";
 
 
 interface Props
@@ -116,7 +117,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
 
                 case 2:
                     return (
-                        <Button onClick={onGenerateLabels} disabled={items.length === 0}>Generate</Button>
+                        <FinalizePage onFinalize={onGenerateLabels} disabled={items.length === 0} />
                     );
 
                 default:
