@@ -16,15 +16,12 @@ export default function DateTimeViewer(props: Props): React.ReactNode
         );
     }
 
+    const date = new Date(props.dateTime.timestamp * 1000);
+
+
     return (
         <span>
-            {dateTime.year}-{pad(dateTime.month)}-{pad(dateTime.day)} {pad(dateTime.hour)}:{pad(dateTime.minute)}:{pad(dateTime.second)}
+            {date.toLocaleString('en-UK')}
         </span>
     );
-
-
-    function pad(n : number)
-    {
-        return n.toString().padStart(2, '0');
-    }
 }

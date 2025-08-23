@@ -8,6 +8,7 @@ export const DateTime = z.object({
     hour: z.number(),
     minute: z.number(),
     second: z.number(),
+    timestamp: z.number(),
 });
 
 export type DateTime = z.infer<typeof DateTime>;
