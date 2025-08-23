@@ -37,7 +37,7 @@ export default function UserTable(props: Props): React.ReactNode
     );
 
 
-    function renderLastActivity(lastActivity?: { year: number, month: number, day: number, hour: number, minute: number, second: number }): React.ReactNode
+    function renderLastActivity(lastActivity?: DateTime): React.ReactNode
     {
         if (lastActivity === undefined)
         {
