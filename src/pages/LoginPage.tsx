@@ -1,7 +1,7 @@
 import { useAuthentication } from '@/authentication';
 import Delayed from '@/components/Delayed';
 import * as rest from '@/rest/login';
-import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
+import { Box, Button, Card, Center, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from '@mantine/notifications';
 import React from "react";
@@ -44,20 +44,30 @@ export default function LoginPage()
 
     return (
         <>
-            <Center mih='50vh'>
-                <Box maw={500} mx="auto" w='40%'>
-                    <form onSubmit={form.onSubmit(onSubmit)}>
-                        <Center>
-                            <Box miw='20em'>
-                                {renderLoginInput()}
-                                {renderPasswordInput()}
-                            </Box>
-                        </Center>
+            <Stack>
+                <Center>
+                    <Card bg='red'>
+                        <Text>
+                            Beware! The site is still being in beta phase!
+                            For testing purposes, the database can be reset at any time.
+                        </Text>
+                    </Card>
+                </Center>
+                <Center mih='50vh'>
+                    <Box maw={500} mx="auto" w='40%'>
+                        <form onSubmit={form.onSubmit(onSubmit)}>
+                            <Center>
+                                <Box miw='20em'>
+                                    {renderLoginInput()}
+                                    {renderPasswordInput()}
+                                </Box>
+                            </Center>
 
-                        <Button type="submit">Login</Button>
-                    </form>
-                </Box>
-            </Center>
+                            <Button type="submit">Login</Button>
+                        </form>
+                    </Box>
+                </Center>
+            </Stack>
         </>
     );
 
