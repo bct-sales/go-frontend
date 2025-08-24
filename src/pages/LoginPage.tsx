@@ -44,30 +44,20 @@ export default function LoginPage()
 
     return (
         <>
-            <Stack>
-                <Center>
-                    <Card bg='red'>
-                        <Text>
-                            Beware! The site is still in beta phase!
-                            For testing purposes, the database can be reset at any time.
-                        </Text>
-                    </Card>
-                </Center>
-                <Center mih='50vh'>
-                    <Box maw={500} mx="auto" w='40%'>
-                        <form onSubmit={form.onSubmit(onSubmit)}>
-                            <Center>
-                                <Box miw='20em'>
-                                    {renderLoginInput()}
-                                    {renderPasswordInput()}
-                                </Box>
-                            </Center>
+            <Center mih='50vh'>
+                <Box maw={500} mx="auto" w='40%'>
+                    <form onSubmit={form.onSubmit(onSubmit)}>
+                        <Center>
+                            <Box miw='20em'>
+                                {renderLoginInput()}
+                                {renderPasswordInput()}
+                            </Box>
+                        </Center>
 
-                            <Button type="submit">Login</Button>
-                        </form>
-                    </Box>
-                </Center>
-            </Stack>
+                        <Button type="submit">Login</Button>
+                    </form>
+                </Box>
+            </Center>
         </>
     );
 
