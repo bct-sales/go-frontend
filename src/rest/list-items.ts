@@ -24,6 +24,7 @@ export type Item = z.infer<typeof Item>;
 const SuccessResponse = z.object({
     items: z.array(Item),
     totalItemCount: z.number().nonnegative(),
+    totalItemValue: z.number().nonnegative(),
 });
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
@@ -38,7 +39,7 @@ export async function listItems(start: number, count: number): Promise<RestResul
         const response = await axios.get<unknown>(url);
         const data = SuccessResponse.parse(response.data);
 
-        return success({ items: data.items, totalItemCount: data.totalItemCount });
+        return success(data);
     }
     catch ( exception: unknown )
     {
