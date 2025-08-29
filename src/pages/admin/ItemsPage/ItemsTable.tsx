@@ -75,7 +75,6 @@ export default function ItemsPage(props: Props): React.ReactNode
                     title: '',
                     render: (item: Item) => <DonationViewer value={item.donation} />,
                     cellsClassName: classes.donationColumn,
-
                 },
             ]}
         />
