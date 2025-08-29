@@ -16,6 +16,7 @@ interface Data
     itemCount: number;
     distinctSoldItemCount: number;
     totalSoldItemCount: number;
+    totalItemValue: number;
 }
 
 export default function SalesPage() : React.ReactNode
@@ -58,6 +59,7 @@ export default function SalesPage() : React.ReactNode
                     itemCount={data.itemCount}
                     distinctSoldItemCount={data.distinctSoldItemCount}
                     totalSoldItemCount={data.totalSoldItemCount}
+                    totalItemValue={data.totalItemValue}
                 />
                 <CaptionedBox caption="Recent Sales">
                     <SalesTable sales={data.sales} />
