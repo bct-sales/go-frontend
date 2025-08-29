@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ItemsTable from "./ItemsTable";
 import { range } from "@/util";
+import DownloadAs from "@/components/DownloadAs";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -62,21 +63,7 @@ export default function ItemsPage() : React.ReactNode
                             <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
                             <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w='5em' />
                         </Group>
-                        <Menu>
-                            <Menu.Target>
-                                <Button variant="outline">
-                                    <IconDownload size={16} stroke={1.5} />
-                                </Button>
-                            </Menu.Target>
-                            <Menu.Dropdown>
-                                <Menu.Item component={Link} to={cvsUrl} target="_blank" download="items.csv">
-                                    CSV
-                                </Menu.Item>
-                                <Menu.Item component={Link} to={jsonUrl} target="_blank" download="items.json">
-                                    JSON
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
+                        <DownloadAs cvsUrl={cvsUrl} jsonUrl={jsonUrl} />
                     </Group>
                     <Center>
                         <ItemsTable items={items} />
