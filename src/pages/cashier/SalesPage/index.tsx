@@ -64,7 +64,6 @@ export default function SalesPage(props: Props): React.ReactNode
         }
         else
         {
-            console.log(totalSaleCount, salesPerPage)
             const lastPage = Math.ceil(totalSaleCount / salesPerPage);
 
             return (
