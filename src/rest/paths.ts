@@ -8,6 +8,10 @@ class RestPaths
 
     get users() { return `${this.root}/users`; }
 
+    get usersAsJson() { return `${this.users}?format=json`; }
+
+    get usersAsCsv() { return `${this.users}?format=csv`; }
+
     user(userId: number) { return `${this.root}/users/${userId}`; }
 
     sellerItems(sellerId: number) { return `${this.root}/sellers/${sellerId}/items`; }
