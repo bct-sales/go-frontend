@@ -20,6 +20,7 @@ export type Sale = z.infer<typeof Sale>;
 const SuccessResponse = z.object({
     sales: z.array(Sale),
     itemCount: z.number().nonnegative(),
+    totalItemValue: z.number().nonnegative(),
     distinctSoldItemCount: z.number().nonnegative(),
     totalSoldItemCount: z.number().nonnegative(),
     saleCount: z.number().nonnegative(),
