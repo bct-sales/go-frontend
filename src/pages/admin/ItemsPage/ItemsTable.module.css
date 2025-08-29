@@ -35,6 +35,10 @@
     width: 4em;
 }
 
+.frozenColumn {
+    width: 4em;
+}
+
 .priceColumn {
     width: 6em;
 }

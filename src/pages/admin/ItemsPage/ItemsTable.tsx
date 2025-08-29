@@ -7,6 +7,7 @@ import { DateTime } from "@/datetime";
 import { Flex } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import classes from './ItemsTable.module.css';
+import FrozenViewer from "@/components/FrozenViewer";
 
 export interface Item
 {
@@ -76,6 +77,12 @@ export default function ItemsPage(props: Props): React.ReactNode
                     render: (item: Item) => <DonationViewer value={item.donation} />,
                     cellsClassName: classes.donationColumn,
                 },
+                {
+                    accessor: 'frozen',
+                    title: 'Frozen',
+                    render: (item: Item) => <FrozenViewer value={item.frozen} />,
+                    cellsClassName: classes.frozenColumn,
+                }
             ]}
         />
     );
