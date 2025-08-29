@@ -11,11 +11,11 @@ import ItemsTable from "./ItemsTable";
 
 export default function ItemsPage() : React.ReactNode
 {
-    const itemsPagePage = 20;
+    const itemsPerPage = 20;
     const [itemsStatus, setItemsStatus] = useState<RestStatus<{items: Item[], totalItemCount: number}>>({status: "loading"});
     const [page, setPage] = useState(1);
     const refresh = useCallback(async () => {
-        const response = await listItems(itemsPagePage * (page - 1), itemsPagePage);
+        const response = await listItems(itemsPerPage * (page - 1), itemsPerPage);
 
         if (response.success)
         {
@@ -51,7 +51,7 @@ export default function ItemsPage() : React.ReactNode
     {
         const cvsUrl = paths.itemsAsCsv;
         const jsonUrl = paths.itemsAsJson;
-        const lastPage = Math.ceil(totalItemCount / itemsPagePage);
+        const lastPage = Math.ceil(totalItemCount / itemsPerPage);
         const pageRange = range(1, lastPage).map(p => `${p}`);
 
         return (
@@ -71,7 +71,7 @@ export default function ItemsPage() : React.ReactNode
 
         function renderPaginationControls(): React.ReactNode
         {
-            const needsMoreThanOnePage = items.length > itemsPagePage;
+            const needsMoreThanOnePage = items.length > itemsPerPage;
 
             if ( !needsMoreThanOnePage )
             {
