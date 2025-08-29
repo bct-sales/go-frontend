@@ -1,14 +1,12 @@
-import Loading from "@/components/Loading";
-import { listItems, Item } from "@/rest/list-items";
-import { RestStatus } from "@/rest/status";
-import { Button, Center, Group, Menu, Pagination, Select, Stack } from "@mantine/core";
-import { IconDownload } from "@tabler/icons-react";
-import React, { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ItemsTable from "./ItemsTable";
-import { range } from "@/util";
 import DownloadAs from "@/components/DownloadAs";
+import Loading from "@/components/Loading";
+import { Item, listItems } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
+import { RestStatus } from "@/rest/status";
+import { range } from "@/util";
+import { Center, Group, Pagination, Select, Stack } from "@mantine/core";
+import React, { useCallback, useEffect, useState } from "react";
+import ItemsTable from "./ItemsTable";
 
 
 export default function ItemsPage() : React.ReactNode
