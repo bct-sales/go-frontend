@@ -1,5 +1,3 @@
-import { Text } from "@mantine/core";
-
 interface Props
 {
     priceInCents: number;
@@ -15,10 +13,10 @@ export default function Price(props: Props): React.ReactNode
     const cents = priceInCents % 100;
 
     return (
-        <Text className={props.className}>
+        <span className={props.className}>
             &euro;{euros.toLocaleString()}
             .
             {cents.toString().padStart(2, '0')}
-        </Text>
+        </span>
     );
 }
