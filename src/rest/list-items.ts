@@ -27,7 +27,7 @@ const SuccessResponse = z.object({
     totalItemValue: z.number().nonnegative(),
 });
 
-type SuccessResponse = z.infer<typeof SuccessResponse>;
+export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
 
 export async function listItems(start: number, count: number): Promise<RestResult<SuccessResponse>>
