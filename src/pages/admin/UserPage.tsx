@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, charityColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import { addedAtColumn, categoryColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import Loading from "@/components/Loading";
 import UserTable from "@/components/UserTable";
 import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/user-information";
