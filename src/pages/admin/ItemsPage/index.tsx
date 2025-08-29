@@ -1,6 +1,6 @@
 import DownloadAs from "@/components/DownloadAs";
 import Loading from "@/components/Loading";
-import { Item, listItems } from "@/rest/list-items";
+import { Item, listItems, SuccessResponse } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
 import { range } from "@/util";
@@ -12,14 +12,14 @@ import ItemsTable from "./ItemsTable";
 export default function ItemsPage() : React.ReactNode
 {
     const itemsPerPage = 20;
-    const [itemsStatus, setItemsStatus] = useState<RestStatus<{items: Item[], totalItemCount: number}>>({status: "loading"});
+    const [itemsStatus, setItemsStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
     const [page, setPage] = useState(1);
     const refresh = useCallback(async () => {
         const response = await listItems(itemsPerPage * (page - 1), itemsPerPage);
 
         if (response.success)
         {
-            setItemsStatus({status: "success", value: { items: response.value.items, totalItemCount: response.value.totalItemCount }});
+            setItemsStatus({status: "success", value: response.value});
         }
         else
         {
@@ -31,7 +31,7 @@ export default function ItemsPage() : React.ReactNode
     switch (itemsStatus.status)
     {
         case "success":
-            return renderPage(itemsStatus.value.items, itemsStatus.value.totalItemCount);
+            return renderPage(itemsStatus.value.items, itemsStatus.value.totalItemCount, itemsStatus.value.totalItemValue);
 
         case "loading":
             return (
@@ -47,7 +47,7 @@ export default function ItemsPage() : React.ReactNode
     }
 
 
-    function renderPage(items: Item[], totalItemCount: number): React.ReactNode
+    function renderPage(items: Item[], totalItemCount: number, totalItemValue: number): React.ReactNode
     {
         const cvsUrl = paths.itemsAsCsv;
         const jsonUrl = paths.itemsAsJson;
@@ -71,7 +71,7 @@ export default function ItemsPage() : React.ReactNode
 
         function renderPaginationControls(): React.ReactNode
         {
-            const needsMoreThanOnePage = items.length > itemsPerPage;
+            const needsMoreThanOnePage = totalItemCount > itemsPerPage;
 
             if ( !needsMoreThanOnePage )
             {
