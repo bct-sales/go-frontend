@@ -58,10 +58,7 @@ export default function ItemsPage() : React.ReactNode
             <>
                 <Stack>
                     <Group justify="space-between" align="center" mb="md">
-                        <Group>
-                            <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
-                            <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w='5em' />
-                        </Group>
+                        {renderPaginationControls()}
                         <DownloadAs cvsUrl={cvsUrl} jsonUrl={jsonUrl} />
                     </Group>
                     <Center>
@@ -70,5 +67,26 @@ export default function ItemsPage() : React.ReactNode
                 </Stack>
             </>
         );
+
+
+        function renderPaginationControls(): React.ReactNode
+        {
+            const needsMoreThanOnePage = items.length > itemsPagePage;
+
+            if ( !needsMoreThanOnePage )
+            {
+                // Dummy element needed so that space-between still works correctly
+                return <span />;
+            }
+            else
+            {
+                return (
+                    <Group>
+                        <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
+                        <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w='5em' />
+                    </Group>
+                );
+            }
+        }
     }
 }
