@@ -54,6 +54,12 @@ export const donationColumn: Column = {
     viewer: (item: Item) => <DonationViewer value={item.donation} />,
 };
 
+export const frozenColumn: Column = {
+    header: 'Frozen',
+    className: classes.itemFrozen,
+    viewer: (item: Item) => <FrozenViewer value={item.frozen} />,
+};
+
 export const categoryColumn: Column = {
     header: 'Category',
     className: classes.itemCategory,
