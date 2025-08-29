@@ -4,9 +4,12 @@ import { Item, listItems, SuccessResponse } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
 import { range } from "@/util";
-import { Center, Group, Pagination, Select, Stack } from "@mantine/core";
+import { Center, Group, Pagination, Select, Stack, Table } from "@mantine/core";
 import React, { useCallback, useEffect, useState } from "react";
 import ItemsTable from "./ItemsTable";
+import CaptionedBox from "@/components/CaptionedBox";
+import classes from './ItemsPage.module.css';
+import Price from "@/components/Price";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -57,6 +60,7 @@ export default function ItemsPage() : React.ReactNode
         return (
             <>
                 <Stack>
+                    {renderOverview()}
                     <Group justify="space-between" align="center" mb="md">
                         {renderPaginationControls()}
                         <DownloadAs cvsUrl={cvsUrl} jsonUrl={jsonUrl} />
@@ -68,6 +72,30 @@ export default function ItemsPage() : React.ReactNode
             </>
         );
 
+
+        function renderOverview(): React.ReactNode
+        {
+            return (
+                <Center m='xl'>
+                    <Group>
+                        <CaptionedBox caption="Overview">
+                            <Table>
+                                <Table.Tbody>
+                                    <Table.Tr>
+                                        <Table.Th className={classes.key}>Total Item Count</Table.Th>
+                                        <Table.Td className={classes.value}>{totalItemCount}</Table.Td>
+                                    </Table.Tr>
+                                    <Table.Tr>
+                                        <Table.Th className={classes.key}>Total Item Value</Table.Th>
+                                        <Table.Td className={classes.value}><Price priceInCents={totalItemValue} /></Table.Td>
+                                    </Table.Tr>
+                                </Table.Tbody>
+                            </Table>
+                        </CaptionedBox>
+                    </Group>
+                </Center>
+            );
+        }
 
         function renderPaginationControls(): React.ReactNode
         {
