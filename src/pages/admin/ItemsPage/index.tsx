@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import ItemsTable from "./ItemsTable";
 import { range } from "@/util";
 import DownloadAs from "@/components/DownloadAs";
+import { paths } from "@/rest/paths";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -50,8 +51,8 @@ export default function ItemsPage() : React.ReactNode
 
     function renderPage(items: Item[], totalItemCount: number): React.ReactNode
     {
-        const cvsUrl = `/api/v1/items?format=csv`;
-        const jsonUrl = `/api/v1/items?format=json`;
+        const cvsUrl = paths.itemsAsCsv;
+        const jsonUrl = paths.itemsAsJson;
         const lastPage = Math.ceil(totalItemCount / itemsPagePage);
         const pageRange = range(1, lastPage).map(p => `${p}`);
 

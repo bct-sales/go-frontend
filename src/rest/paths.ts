@@ -14,6 +14,10 @@ class RestPaths
 
     get items() { return `${this.root}/items`; }
 
+    get itemsAsJson() { return `${this.items}?format=json`; }
+
+    get itemsAsCsv() { return `${this.items}?format=csv`; }
+
     itemsRange(start: number, count: number) { return `${this.root}/items?offset=${start}&limit=${count}`; }
 
     item(itemId: number) { return `${this.root}/items/${itemId}`; }
