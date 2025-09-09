@@ -1,10 +1,8 @@
-import { Table } from "@mantine/core";
-import classes from './UsersTable.module.css'
-import DateTimeViewer from "./DateTimeViewer";
-import { NavLink } from "react-router-dom";
 import { DateTime } from "@/datetime";
-import UserIdViewer from "./UserIdViewer";
 import { DataTable } from "mantine-datatable";
+import { NavLink } from "react-router-dom";
+import DateTimeViewer from "./DateTimeViewer";
+import UserIdViewer from "./UserIdViewer";
 
 interface Props
 {
