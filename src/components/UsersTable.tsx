@@ -37,7 +37,7 @@ export default function UsersTable(props: Props): React.ReactNode
             sortedUsers.reverse();
         }
         setRows(sortedUsers);
-    }, [sortStatus]);
+    }, [users, sortStatus]);
 
     return (
         <DataTable
