@@ -7,14 +7,24 @@ import ReactDOM from 'react-dom/client'
 import App from './App';
 
 const root = document.getElementById('root');
+const strictMode = false;
 
 if ( root )
 {
-    ReactDOM.createRoot(root).render(
-        <React.StrictMode>
+    if ( strictMode )
+    {
+        ReactDOM.createRoot(root).render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>,
+        );
+    }
+    else
+    {
+        ReactDOM.createRoot(root).render(
             <App />
-        </React.StrictMode>,
-    );
+        );
+    }
 }
 else
 {
