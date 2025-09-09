@@ -1,8 +1,10 @@
 import { DateTime } from "@/datetime";
-import { DataTable } from "mantine-datatable";
+import { DataTable, DataTableSortStatus } from "mantine-datatable";
 import { NavLink } from "react-router-dom";
 import DateTimeViewer from "./DateTimeViewer";
 import UserIdViewer from "./UserIdViewer";
+import { useEffect, useState } from "react";
+import sortBy from 'lodash/sortBy';
 
 interface Props
 {
@@ -22,11 +24,25 @@ interface User
 export default function UsersTable(props: Props): React.ReactNode
 {
     const { users } = props;
+    const [ sortStatus, setSortStatus ] = useState<DataTableSortStatus<User>>({
+        columnAccessor: 'id',
+        direction: 'asc',
+    });
+    const [rows, setRows] = useState(sortBy(users, 'id'));
+
+    useEffect(() => {
+        const sortedUsers = sortBy(users, sortStatus.columnAccessor);
+        if ( sortStatus.direction === 'desc' )
+        {
+            sortedUsers.reverse();
+        }
+        setRows(sortedUsers);
+    }, [sortStatus]);
 
     return (
         <DataTable
             striped
-            records={users}
+            records={rows}
             highlightOnHover
             height="calc(100vh - 200px)"
             columns={[
@@ -38,6 +54,7 @@ export default function UsersTable(props: Props): React.ReactNode
                             <UserIdViewer userId={user.id} />
                         </NavLink>
                     ),
+                    sortable: true,
                 },
                 {
                     accessor: 'role',
@@ -45,7 +62,8 @@ export default function UsersTable(props: Props): React.ReactNode
                 },
                 {
                     accessor: 'itemCount',
-                    title: 'Item Count'
+                    title: 'Item Count',
+                    sortable: true,
                 },
                 {
                     accessor: 'createdAt',
@@ -62,6 +80,8 @@ export default function UsersTable(props: Props): React.ReactNode
                     title: 'Password'
                 },
             ]}
+            sortStatus={sortStatus}
+            onSortStatusChange={setSortStatus}
         />
     );
 
