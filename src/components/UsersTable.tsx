@@ -6,6 +6,8 @@ import UserIdViewer from "./UserIdViewer";
 import { useEffect, useState } from "react";
 import sortBy from 'lodash/sortBy';
 import { Pagination, Stack } from "@mantine/core";
+import classes from './UsersTable.module.css';
+
 
 interface Props
 {
@@ -46,7 +48,7 @@ export default function UsersTable(props: Props): React.ReactNode
     const rowsOnPage = rows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
-        <Stack>
+        <Stack className={classes.container}>
             <Pagination value={page} onChange={setPage} total={lastPage} />
             <DataTable
                 striped
@@ -63,29 +65,35 @@ export default function UsersTable(props: Props): React.ReactNode
                             </NavLink>
                         ),
                         sortable: true,
+                        width: 40,
                     },
                     {
                         accessor: 'role',
-                        title: 'Role'
+                        title: 'Role',
+                        width: 100,
                     },
                     {
                         accessor: 'itemCount',
-                        title: 'Item Count',
+                        title: '#Items',
                         sortable: true,
+                        width: 70,
                     },
                     {
                         accessor: 'createdAt',
                         title: 'Created At',
                         render: (user: User) => <DateTimeViewer dateTime={user.createdAt} />,
+                        width: 160,
                     },
                     {
                         accessor: 'lastActivity',
                         title: 'Last Activity',
                         render: (user: User) => renderLastActivity(user.lastActivity),
+                        width: 160,
                     },
                     {
                         accessor: 'password',
-                        title: 'Password'
+                        title: 'Password',
+                        width: 80,
                     },
                 ]}
                 sortStatus={sortStatus}
