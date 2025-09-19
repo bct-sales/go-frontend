@@ -49,10 +49,10 @@ export class ActiveSoundEmitter implements SoundEmitter
     public warning()
     {
         const frequencies = [
-            { frequency: 440, offset: 0 },
-            { frequency: 880, offset: 0.05 },
-            { frequency: 440, offset: 0.1 },
-            { frequency: 880, offset: 0.15 },
+            { frequency: this.pitch(0), offset: 0 },
+            { frequency: this.pitch(12), offset: 0.05 },
+            { frequency: this.pitch(0), offset: 0.1 },
+            { frequency: this.pitch(12), offset: 0.15 },
         ];
 
         this.playSound(frequencies, 0.2);
