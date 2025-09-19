@@ -1,5 +1,4 @@
 import { useAuthentication } from "@/authentication";
-import AuthenticationViewer from "@/components/AuthenticationViewer";
 import NavigationButton from "@/components/NavigationButton";
 import AddItemPage from "@/pages/seller/AddItemPage";
 import EditItemPage from "@/pages/seller/EditItemPage";
@@ -7,7 +6,7 @@ import GenerateLabelsPage from "@/pages/seller/GenerateLabelsPage";
 import ItemsPage from "@/pages/seller/ItemsPage";
 import OverviewPage from "@/pages/seller/OverviewPage";
 import SettingsPage from "@/pages/seller/SettingsPage";
-import { AppShell, Flex, Text } from "@mantine/core";
+import { AppShell, Flex } from "@mantine/core";
 import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
