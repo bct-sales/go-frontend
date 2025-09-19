@@ -134,7 +134,7 @@ export default function AddSalePage(): React.ReactNode
             {
                 if ( saleItems.some(item => item.itemId === itemIdNumber) )
                 {
-                    onItemAddedAlreadyInSale();
+                    onTriedAddingSameItemTwice();
                     return;
                 }
 
@@ -172,7 +172,7 @@ export default function AddSalePage(): React.ReactNode
     /*
         Called when the user tried to add an item that is already included in the current sale.
     */
-    function onItemAddedAlreadyInSale()
+    function onTriedAddingSameItemTwice()
     {
         notifications.show({
             message: `Item already in sale`,
