@@ -122,12 +122,7 @@ export default function AddSalePage(): React.ReactNode
             {
                 if ( saleItems.some(item => item.itemId === itemIdNumber) )
                 {
-                    notifications.show({
-                        message: `Item already in sale`,
-                        color: 'red',
-                    });
-
-                    resetItemInput();
+                    onItemAddedAlreadyInSale();
                     return;
                 }
 
@@ -157,6 +152,19 @@ export default function AddSalePage(): React.ReactNode
                 });
             }
         }
+    }
+
+    /*
+        Called when the user tried to add an item that is already included in the current sale.
+    */
+    function onItemAddedAlreadyInSale()
+    {
+        notifications.show({
+            message: `Item already in sale`,
+            color: 'red',
+        });
+
+        resetItemInput();
     }
 
     function onFinalizeSale(): void
