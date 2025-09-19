@@ -21,30 +21,50 @@ export class ActiveSoundEmitter implements SoundEmitter
         this.audioContext = new AudioContext();
     }
 
+    private pitch(n: number): number
+    {
+        return 440 * 2**(n/12);
+    }
+
     public success()
     {
-        this.playSound(880, 0.1);
+        const frequencies = [
+            { frequency: this.pitch(12), offset: 0 },
+            { frequency: this.pitch(16), offset: 0.05 },
+        ];
+
+        this.playSound(frequencies, 0.1);
     }
 
     public error()
     {
-        this.playSound(220, 0.1);
+        const frequencies = [
+            { frequency: this.pitch(-6), offset: 0 },
+            { frequency: this.pitch(-12), offset: 0.05 },
+        ];
+
+        this.playSound(frequencies, 0.1);
     }
 
     public warning()
     {
-        const oscillator = this.audioContext.createOscillator();
-        oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime);
-        oscillator.frequency.setValueAtTime(880, this.audioContext.currentTime+0.05);
-        oscillator.connect(this.audioContext.destination);
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.1);
+        const frequencies = [
+            { frequency: 440, offset: 0 },
+            { frequency: 880, offset: 0.05 },
+            { frequency: 440, offset: 0.1 },
+            { frequency: 880, offset: 0.15 },
+        ];
+
+        this.playSound(frequencies, 0.2);
     }
 
-    private playSound(frequency: number, duration: number)
+    private playSound(frequencies: {frequency: number, offset: number}[], duration: number)
     {
         const oscillator = this.audioContext.createOscillator();
-        oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+        for ( const {frequency, offset } of frequencies )
+        {
+            oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime + offset);
+        }
         oscillator.connect(this.audioContext.destination);
         oscillator.start();
         oscillator.stop(this.audioContext.currentTime + duration);
