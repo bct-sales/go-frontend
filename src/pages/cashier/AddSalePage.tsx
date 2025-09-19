@@ -108,6 +108,10 @@ export default function AddSalePage(): React.ReactNode
         }
     }
 
+    /*
+        Called when an item id has been entered and needs to be added to the sale.
+        The item id has not been checked yet at this point.
+    */
     async function onAddItem(): Promise<void>
     {
         if ( canAddItem )
@@ -258,3 +262,5 @@ export default function AddSalePage(): React.ReactNode
         }
     }
 }
+
+\ No newline at end of file
