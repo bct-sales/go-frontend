@@ -1,19 +1,31 @@
 import React from "react";
 
 
-export type SettingsData = { advancedMode: boolean };
+export type SettingsData = {
+    advancedMode: boolean,
+    cashierSounds: boolean,
+};
 
 export interface Settings extends SettingsData
 {
     setAdvancedMode: (value: boolean) => void;
     toggleAdvancedMode: () => void;
+    setCashierSounds: (value: boolean) => void;
 }
 
-export const defaultSettings: SettingsData = { advancedMode: false };
+export const defaultSettings: SettingsData = {
+    advancedMode: false,
+    cashierSounds: false,
+};
 
 export function createSettings(settings: SettingsData, setSettings: (data: SettingsData) => void): Settings
 {
-    return { ...settings, setAdvancedMode, toggleAdvancedMode };
+    return {
+        ...settings,
+        setAdvancedMode,
+        toggleAdvancedMode,
+        setCashierSounds,
+    };
 
 
     function setAdvancedMode(value: boolean): void
@@ -24,6 +36,11 @@ export function createSettings(settings: SettingsData, setSettings: (data: Setti
     function toggleAdvancedMode(): void
     {
         setAdvancedMode(!settings.advancedMode);
+    }
+
+    function setCashierSounds(value: boolean): void
+    {
+        setSettings({ ...settings, cashierSounds: value} );
     }
 }
 

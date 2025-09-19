@@ -9,6 +9,8 @@ import { useEffect, useRef, useState } from "react";
 import classes from './AddSalePage.module.css';
 import { addSale } from "@/rest/add-sale";
 import { useHotkeys } from "@mantine/hooks";
+import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
+import { useSettings } from "@/settings";
 
 
 export default function AddSalePage(): React.ReactNode
@@ -17,7 +19,15 @@ export default function AddSalePage(): React.ReactNode
     const [saleItems, setSaleItems] = useState<Item[]>([]);
     const [itemId, setItemId] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
-    const audioContext = useRef(new AudioContext());
+    const settings = useSettings();
+    const soundEmitter = useRef(new MuteSoundEmitter());
+
+    useEffect(() => {
+        if ( settings.cashierSounds )
+        {
+            soundEmitter.current = new ActiveSoundEmitter();
+        }
+    }, [settings.cashierSounds]);
 
     useHotkeys([
         [
@@ -139,11 +149,11 @@ export default function AddSalePage(): React.ReactNode
 
                     if ( itemInformation.soldIn.length === 0 )
                     {
-                        playSuccessSound();
+                        soundEmitter.current.success();
                     }
                     else
                     {
-                        playWarningSound();
+                        soundEmitter.current.warning();
                     }
                 }
                 else
@@ -152,7 +162,7 @@ export default function AddSalePage(): React.ReactNode
                         message: `Unknown item`,
                         color: 'red',
                     });
-                    playErrorSound();
+                    soundEmitter.current.error();
                 }
             }
             else
@@ -162,7 +172,7 @@ export default function AddSalePage(): React.ReactNode
                     message: `Invalid item ID`,
                     color: 'red',
                 });
-                playErrorSound();
+                soundEmitter.current.error();
             }
         }
     }
@@ -178,7 +188,7 @@ export default function AddSalePage(): React.ReactNode
         });
 
         resetItemInput();
-        playErrorSound();
+        soundEmitter.current.error();
     }
 
     function onFinalizeSale(): void
@@ -282,34 +292,5 @@ export default function AddSalePage(): React.ReactNode
 
             console.error(result.error);
         }
-    }
-
-    function playSuccessSound()
-    {
-        playSound(880, 0.1);
-    }
-
-    function playErrorSound()
-    {
-        playSound(220, 0.1);
-    }
-
-    function playWarningSound()
-    {
-        const oscillator = audioContext.current.createOscillator();
-        oscillator.frequency.setValueAtTime(440, audioContext.current.currentTime);
-        oscillator.frequency.setValueAtTime(880, audioContext.current.currentTime+0.05);
-        oscillator.connect(audioContext.current.destination);
-        oscillator.start();
-        oscillator.stop(audioContext.current.currentTime + 0.1);
-    }
-
-    function playSound(frequency: number, duration: number)
-    {
-        const oscillator = audioContext.current.createOscillator();
-        oscillator.frequency.setValueAtTime(frequency, audioContext.current.currentTime);
-        oscillator.connect(audioContext.current.destination);
-        oscillator.start();
-        oscillator.stop(audioContext.current.currentTime + duration);
     }
 }

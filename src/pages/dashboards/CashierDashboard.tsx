@@ -4,10 +4,11 @@ import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import AddSalePage from "@/pages/cashier/AddSalePage";
 import SalesPage from "@/pages/cashier/SalesPage";
 import { AppShell, Flex } from "@mantine/core";
-import { IconCashRegister, IconList, IconLogout } from "@tabler/icons-react";
+import { IconCashRegister, IconList, IconLogout, IconSettings } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import DashboardHeader from "./DashboardHeader";
 import { useDisclosure } from "@mantine/hooks";
+import SettingsPage from "../cashier/SettingsPage";
 
 
 export default function CashierDashboard()
@@ -37,6 +38,9 @@ export default function CashierDashboard()
                         <NavigationButton caption="View Sales" url="/cashier/sales">
                             <IconList />
                         </NavigationButton>
+                        <NavigationButton caption="Settings" url="/cashier/settings">
+                            <IconSettings />
+                        </NavigationButton>
                         <NavigationButton caption="Logout" url="/logout">
                             <IconLogout />
                         </NavigationButton>
@@ -46,6 +50,7 @@ export default function CashierDashboard()
                     <Routes>
                         <Route path="/" element={<AddSalePage />} />
                         <Route path="/sales" element={<SalesPage cashierId={authentication.username} />} />
+                        <Route path="/settings" element={<SettingsPage />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
