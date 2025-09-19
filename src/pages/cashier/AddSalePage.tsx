@@ -17,6 +17,8 @@ export default function AddSalePage(): React.ReactNode
     const [saleItems, setSaleItems] = useState<Item[]>([]);
     const [itemId, setItemId] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
+    const audioContext = useRef(new AudioContext());
+
     useHotkeys([
         [
             'Ctrl+Alt+Enter',
@@ -134,6 +136,15 @@ export default function AddSalePage(): React.ReactNode
                     const updatedSaleItems = [itemInformation, ...saleItems];
                     setSaleItems(updatedSaleItems);
                     resetItemInput();
+
+                    if ( itemInformation.soldIn.length === 0 )
+                    {
+                        playSuccessSound();
+                    }
+                    else
+                    {
+                        playWarningSound();
+                    }
                 }
                 else
                 {
@@ -141,6 +152,7 @@ export default function AddSalePage(): React.ReactNode
                         message: `Unknown item`,
                         color: 'red',
                     });
+                    playErrorSound();
                 }
             }
             else
@@ -150,6 +162,7 @@ export default function AddSalePage(): React.ReactNode
                     message: `Invalid item ID`,
                     color: 'red',
                 });
+                playErrorSound();
             }
         }
     }
@@ -165,6 +178,7 @@ export default function AddSalePage(): React.ReactNode
         });
 
         resetItemInput();
+        playErrorSound();
     }
 
     function onFinalizeSale(): void
@@ -269,6 +283,33 @@ export default function AddSalePage(): React.ReactNode
             console.error(result.error);
         }
     }
-}
 
-\ No newline at end of file
+    function playSuccessSound()
+    {
+        playSound(880, 0.1);
+    }
+
+    function playErrorSound()
+    {
+        playSound(220, 0.1);
+    }
+
+    function playWarningSound()
+    {
+        const oscillator = audioContext.current.createOscillator();
+        oscillator.frequency.setValueAtTime(440, audioContext.current.currentTime);
+        oscillator.frequency.setValueAtTime(880, audioContext.current.currentTime+0.05);
+        oscillator.connect(audioContext.current.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.current.currentTime + 0.1);
+    }
+
+    function playSound(frequency: number, duration: number)
+    {
+        const oscillator = audioContext.current.createOscillator();
+        oscillator.frequency.setValueAtTime(frequency, audioContext.current.currentTime);
+        oscillator.connect(audioContext.current.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.current.currentTime + duration);
+    }
+}
