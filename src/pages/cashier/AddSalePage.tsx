@@ -1,7 +1,7 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import Price from "@/components/Price";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
-import { getItemInformation, Item } from "@/rest/item-data";
+import { getItemInformation, Item, SuccessResponse } from "@/rest/item-data";
 import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
@@ -145,16 +145,8 @@ export default function AddSalePage(): React.ReactNode
                     const itemInformation = result.value;
                     const updatedSaleItems = [itemInformation, ...saleItems];
                     setSaleItems(updatedSaleItems);
-                    resetItemInput();
 
-                    if ( itemInformation.soldIn.length === 0 )
-                    {
-                        soundEmitter.current.success();
-                    }
-                    else
-                    {
-                        soundEmitter.current.warning();
-                    }
+                    onItemAddedSuccessfully(itemInformation);
                 }
                 else
                 {
@@ -189,6 +181,23 @@ export default function AddSalePage(): React.ReactNode
 
         resetItemInput();
         soundEmitter.current.error();
+    }
+
+    /*
+        Called when the user has been successfully added to the sale.
+    */
+    function onItemAddedSuccessfully(itemInformation: SuccessResponse)
+    {
+        resetItemInput();
+
+        if ( itemInformation.soldIn.length === 0 )
+        {
+            soundEmitter.current.success();
+        }
+        else
+        {
+            soundEmitter.current.warning();
+        }
     }
 
     function onFinalizeSale(): void

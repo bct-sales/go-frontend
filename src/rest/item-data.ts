@@ -24,7 +24,7 @@ export type Item = z.infer<typeof Item>;
 
 const SuccessResponse = Item;
 
-type SuccessResponse = z.infer<typeof SuccessResponse>;
+export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
 
 export async function getItemInformation(itemId: number): Promise<RestResult<SuccessResponse>>
