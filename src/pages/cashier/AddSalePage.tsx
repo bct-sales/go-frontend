@@ -147,14 +147,12 @@ export default function AddSalePage(): React.ReactNode
                     setSaleItems(updatedSaleItems);
 
                     onItemAddedSuccessfully(itemInformation);
+                    return;
                 }
                 else
                 {
-                    notifications.show({
-                        message: `Unknown item`,
-                        color: 'red',
-                    });
-                    soundEmitter.current.error();
+                    onTriedAddingUnknownItem();
+                    return;
                 }
             }
             else
@@ -170,7 +168,7 @@ export default function AddSalePage(): React.ReactNode
     }
 
     /*
-        Called when the user tried to add an item that is already included in the current sale.
+        Called when the cashier tried to add an item that is already included in the current sale.
     */
     function onTriedAddingSameItemTwice()
     {
@@ -184,7 +182,19 @@ export default function AddSalePage(): React.ReactNode
     }
 
     /*
-        Called when the user has been successfully added to the sale.
+        Called when the cashier tried adding an unknown item to the sale.
+    */
+    function onTriedAddingUnknownItem()
+    {
+        notifications.show({
+            message: `Unknown item`,
+            color: 'red',
+        });
+        soundEmitter.current.error();
+    }
+
+    /*
+        Called when the cashier has been successfully added to the sale.
     */
     function onItemAddedSuccessfully(itemInformation: SuccessResponse)
     {
