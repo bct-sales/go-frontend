@@ -32,9 +32,6 @@ export default function UsersTable(props: Props): React.ReactNode
         direction: 'asc',
     });
     const [ rows, setRows ] = useState(sortBy(users, 'id'));
-    const [ page, setPage ] = useState(1);
-    const rowsPerPage = 20;
-    const lastPage = Math.ceil(users.length / rowsPerPage);
 
     useEffect(() => {
         const sortedUsers = sortBy(users, sortStatus.columnAccessor);
@@ -45,14 +42,12 @@ export default function UsersTable(props: Props): React.ReactNode
         setRows(sortedUsers);
     }, [users, sortStatus]);
 
-    const rowsOnPage = rows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
         <Stack className={classes.container}>
-            <Pagination value={page} onChange={setPage} total={lastPage} />
             <DataTable
                 striped
-                records={rowsOnPage}
+                records={rows}
                 highlightOnHover
                 height="calc(100vh - 200px)"
                 columns={[
