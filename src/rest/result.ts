@@ -7,6 +7,7 @@ const ErrorTag = z.enum([
     "unknown",
     "no_such_user",
     "no_such_item",
+    "no_such_sale",
     "invalid_id",
     "wrong_password",
     "wrong_role",
@@ -17,6 +18,7 @@ const ErrorTag = z.enum([
     "invalid_uri_parameters",
     "invalid_user_id",
     "invalid_item_id",
+    "invalid_sale_id",
     "wrong_user",
     "wrong_seller",
     "no_such_category",
@@ -24,6 +26,7 @@ const ErrorTag = z.enum([
     "invalid_price",
     "duplicate_item_in_sale",
     "missing_items",
+    "invalid_layout",
 ])
 
 type ErrorTag = z.infer<typeof ErrorTag>;
@@ -51,7 +54,7 @@ export function identifyErrorInException(error: unknown): Error
             else
             {
                 console.error("Failed to parse error", parsed.error);
-                return { type: "unknown", details: "Failed to parse error" };
+                return { type: "unknown", details: `Failed to parse error "${data}"` };
             }
         }
 
