@@ -1,4 +1,4 @@
-import { failure, Result, success } from "@/result";
+import { failure, Result } from "@/result";
 import axios from 'axios';
 import { z } from 'zod';
 
