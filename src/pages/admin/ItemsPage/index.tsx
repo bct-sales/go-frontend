@@ -10,6 +10,8 @@ import ItemsTable from "./ItemsTable";
 import CaptionedBox from "@/components/CaptionedBox";
 import classes from './ItemsPage.module.css';
 import Price from "@/components/Price";
+import ErrorPage from "@/pages/ErrorPage";
+import RestErrorViewer from "@/components/RestErrorViewer";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -43,9 +45,9 @@ export default function ItemsPage() : React.ReactNode
 
         case "error":
             return (
-                <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {itemsStatus.tag}: {itemsStatus.details}
-                </div>
+                <ErrorPage>
+                    <RestErrorViewer tag={itemsStatus.tag} details={itemsStatus.details} />
+                </ErrorPage>
             );
     }
 

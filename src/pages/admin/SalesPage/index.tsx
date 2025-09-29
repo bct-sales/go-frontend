@@ -6,6 +6,8 @@ import { useUpdateNotifications as useUpdateNotifier } from "@/websocket";
 import React, { useEffect, useState } from "react";
 import SaleOverview from "./SaleOverview";
 import SalesTable, { Sale } from "./SalesTable";
+import ErrorPage from "@/pages/ErrorPage";
+import RestErrorViewer from "@/components/RestErrorViewer";
 
 
 interface Data
@@ -42,9 +44,9 @@ export default function SalesPage() : React.ReactNode
 
         case "error":
             return (
-                <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {status.tag}: {status.details}
-                </div>
+                <ErrorPage>
+                    <RestErrorViewer tag={status.tag} details={status.details} />
+                </ErrorPage>
             );
     }
 

@@ -5,6 +5,7 @@ import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 import ErrorPage from "../ErrorPage";
 import { Table } from "@mantine/core";
+import RestErrorViewer from "@/components/RestErrorViewer";
 
 
 export default function CategoriesPage() : React.ReactNode
@@ -39,18 +40,7 @@ export default function CategoriesPage() : React.ReactNode
         case 'error':
             return (
                 <ErrorPage>
-                    <Table variant="vertical">
-                        <Table.Tbody>
-                            <Table.Tr>
-                                <Table.Th>Tag</Table.Th>
-                                <Table.Td>{status.tag}</Table.Td>
-                            </Table.Tr>
-                            <Table.Tr>
-                                <Table.Th>Details</Table.Th>
-                                <Table.Td>{status.details}</Table.Td>
-                            </Table.Tr>
-                        </Table.Tbody>
-                    </Table>
+                    <RestErrorViewer tag={status.tag} details={status.details} />
                 </ErrorPage>
             );
     }

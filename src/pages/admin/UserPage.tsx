@@ -7,6 +7,8 @@ import { RestStatus } from "@/rest/status";
 import { Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ErrorPage from "../ErrorPage";
+import RestErrorViewer from "@/components/RestErrorViewer";
 
 
 export default function UserSubpage()
@@ -39,7 +41,9 @@ export default function UserSubpage()
     {
         case 'error':
             return (
-                <div>Error: {status.tag} - {status.details}</div>
+                <ErrorPage>
+                    <RestErrorViewer tag={status.tag} details={status.details} />
+                </ErrorPage>
             );
 
         case 'loading':

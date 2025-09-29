@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemTable from "./ItemTable";
 import SaleInformation from "./SaleInformation";
+import ErrorPage from "@/pages/ErrorPage";
+import RestErrorViewer from "@/components/RestErrorViewer";
 
 
 export default function SalePage()
@@ -47,7 +49,9 @@ export default function SalePage()
     {
         case 'error':
             return (
-                <div>Error: {saleStatus.tag} - {saleStatus.details}</div>
+                <ErrorPage>
+                    <RestErrorViewer tag={saleStatus.tag} details={saleStatus.details} />
+                </ErrorPage>
             );
 
         case 'loading':
