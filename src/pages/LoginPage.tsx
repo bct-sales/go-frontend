@@ -1,7 +1,7 @@
 import { useAuthentication } from '@/authentication';
 import Delayed from '@/components/Delayed';
 import * as rest from '@/rest/login';
-import { Box, Button, Card, Center, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
+import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from '@mantine/notifications';
 import React from "react";

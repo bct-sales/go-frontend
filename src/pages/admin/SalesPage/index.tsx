@@ -45,7 +45,7 @@ export default function SalesPage() : React.ReactNode
         case "error":
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={status.tag} details={status.details} />
+                    <RestErrorViewer tag={status.tag} details={status.details} operation="listRecentSales()" />
                 </ErrorPage>
             );
     }

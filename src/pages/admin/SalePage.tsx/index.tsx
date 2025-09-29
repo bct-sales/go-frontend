@@ -50,7 +50,7 @@ export default function SalePage()
         case 'error':
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={saleStatus.tag} details={saleStatus.details} />
+                    <RestErrorViewer tag={saleStatus.tag} details={saleStatus.details} operation={`getSaleInformation(${saleIdString})`} />
                 </ErrorPage>
             );
 

@@ -4,7 +4,6 @@ import { getItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-c
 import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
 import ErrorPage from "../ErrorPage";
-import { Table } from "@mantine/core";
 import RestErrorViewer from "@/components/RestErrorViewer";
 
 
@@ -40,7 +39,7 @@ export default function CategoriesPage() : React.ReactNode
         case 'error':
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={status.tag} details={status.details} />
+                    <RestErrorViewer tag={status.tag} details={status.details} operation='getItemCountsPerCategory()' />
                 </ErrorPage>
             );
     }

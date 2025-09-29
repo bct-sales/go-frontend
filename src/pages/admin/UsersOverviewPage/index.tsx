@@ -42,7 +42,7 @@ export default function UsersOverviewPage()
         case "error":
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={status.tag} details={status.details} />
+                    <RestErrorViewer tag={status.tag} details={status.details} operation='listUsers()' />
                 </ErrorPage>
             );
     }

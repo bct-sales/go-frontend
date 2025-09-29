@@ -46,7 +46,7 @@ export default function ItemsPage() : React.ReactNode
         case "error":
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={itemsStatus.tag} details={itemsStatus.details} />
+                    <RestErrorViewer tag={itemsStatus.tag} details={itemsStatus.details} operation="listItems()" />
                 </ErrorPage>
             );
     }

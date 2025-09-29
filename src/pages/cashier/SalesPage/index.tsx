@@ -12,7 +12,6 @@ interface Props
     cashierId: number;
 }
 
-
 export default function SalesPage(props: Props): React.ReactNode
 {
     const salesPerPage = 10;
