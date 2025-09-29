@@ -1,6 +1,7 @@
 import { ErrorTag } from "@/rest/result";
-import { Table } from "@mantine/core";
+import { List, Stack, Table, Text } from "@mantine/core";
 import React from "react";
+import classes from './RestErrorViewer.module.css';
 
 
 interface Props
@@ -12,26 +13,26 @@ interface Props
 export default function RestErrorViewer(props: Props): React.ReactNode
 {
     return (
-        <Table variant="vertical">
+        <Table variant="vertical" className={classes.table}>
             <Table.Tbody>
                 <Table.Tr>
                     <Table.Th>Tag</Table.Th>
-                    <Table.Td>{props.tag}</Table.Td>
+                    <Table.Td className={classes.rightColumn}>{props.tag}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
                     <Table.Th>Details</Table.Th>
-                    <Table.Td>{props.details}</Table.Td>
+                    <Table.Td className={classes.rightColumn}>{props.details}</Table.Td>
                 </Table.Tr>
                 <Table.Tr>
-                    <Table.Th>Explanations</Table.Th>
-                    <Table.Td>{explainError(props.tag)}</Table.Td>
+                    <Table.Th>Explanation</Table.Th>
+                    <Table.Td className={classes.rightColumn}>{explainError(props.tag)}</Table.Td>
                 </Table.Tr>
             </Table.Tbody>
         </Table>
     );
 }
 
-function explainError(error: ErrorTag): string
+function explainError(error: ErrorTag): React.ReactNode
 {
     switch ( error )
     {
@@ -96,7 +97,26 @@ function explainError(error: ErrorTag): string
             return 'The wrong password was given.';
 
         case 'wrong_role':
-            return 'The currently logged in user does not have the necessary permissions.';
+            return (
+                <Stack>
+                    <Text>
+                        The currently logged in user does not have the necessary permissions.
+                        Perhaps you logged in as a different user in another tab?
+                        If so, those credentials overwrote the ones in this tab.
+                    </Text>
+                    <Text>
+                        Possible solutions are
+                    </Text>
+                    <List>
+                        <List.Item>
+                            Use two different browsers.
+                        </List.Item>
+                        <List.Item>
+                            Use a regular tab, and one in incognito mode.
+                        </List.Item>
+                    </List>
+                </Stack>
+            );
 
         case 'wrong_seller':
             return 'This seller does not have the necessary permissions to perform the operation.';
