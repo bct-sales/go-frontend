@@ -1,6 +1,8 @@
 import DownloadAs from "@/components/DownloadAs";
 import Loading from "@/components/Loading";
+import RestErrorViewer from "@/components/RestErrorViewer";
 import UsersTable from "@/components/UsersTable";
+import ErrorPage from "@/pages/ErrorPage";
 import { listUsers, User } from "@/rest/list-users";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
@@ -38,7 +40,11 @@ export default function UsersOverviewPage()
             );
 
         case "error":
-            return <div className="text-center">Error: {status.tag} - {status.details}</div>;
+            return (
+                <ErrorPage>
+                    <RestErrorViewer tag={status.tag} details={status.details} />
+                </ErrorPage>
+            );
     }
 
 
