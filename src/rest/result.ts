@@ -29,7 +29,7 @@ const ErrorTag = z.enum([
     "invalid_layout",
 ])
 
-type ErrorTag = z.infer<typeof ErrorTag>;
+export type ErrorTag = z.infer<typeof ErrorTag>;
 
 
 const Error = z.object({
