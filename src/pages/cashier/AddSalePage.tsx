@@ -304,12 +304,22 @@ export default function AddSalePage(): React.ReactNode
         }
         else
         {
-            notifications.show({
-                message: `Failed to complete sale`,
-                color: 'red',
-            });
-
             console.error(result.error);
+
+            if ( result.error.type === 'wrong_role' )
+            {
+                notifications.show({
+                    message: `Failed to complete sale: you are not logged in as cashier`,
+                    color: 'red',
+                });
+            }
+            else
+            {
+                notifications.show({
+                    message: `Failed to complete sale: ${result.error.type}`,
+                    color: 'red',
+                });
+            }
         }
     }
 }
