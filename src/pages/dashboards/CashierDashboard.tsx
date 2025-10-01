@@ -4,25 +4,30 @@ import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import AddSalePage from "@/pages/cashier/AddSalePage";
 import SalesPage from "@/pages/cashier/SalesPage";
 import { AppShell, Flex } from "@mantine/core";
-import { IconCashRegister, IconList, IconLogout, IconSettings } from "@tabler/icons-react";
+import { IconCashRegister, IconCoffee, IconList, IconLogout, IconSettings } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import DashboardHeader from "./DashboardHeader";
 import { useDisclosure } from "@mantine/hooks";
 import SettingsPage from "../cashier/SettingsPage";
+import AddConsumablesSalePage from "../cashier/AddConsumablesSalePage";
+import { useSettings } from "@/settings";
+import ShowIf from "@/components/ShowIf";
 
 
 export default function CashierDashboard()
 {
     const authentication = useAuthentication();
     const [navbarVisible, { toggle: toggleNavbarVisibility }] = useDisclosure(true);
+    const settings = useSettings();
     const authenticated = authentication.status === 'authenticated' && authentication.role === 'cashier';
 
+
     if ( !authenticated )
-        {
-            return (
-                <RedirectToLoginPage />
-            );
-        }
+    {
+        return (
+            <RedirectToLoginPage />
+        );
+    }
 
     return (
         <>
@@ -35,6 +40,11 @@ export default function CashierDashboard()
                         <NavigationButton caption="Add Sale" url="/cashier">
                             <IconCashRegister />
                         </NavigationButton>
+                        <ShowIf show={settings.showConsumables}>
+                            <NavigationButton caption="Add Consumable Sale" url="/cashier/consumables">
+                                <IconCoffee />
+                            </NavigationButton>
+                        </ShowIf>
                         <NavigationButton caption="View Sales" url="/cashier/sales">
                             <IconList />
                         </NavigationButton>
@@ -49,6 +59,7 @@ export default function CashierDashboard()
                 <AppShell.Main>
                     <Routes>
                         <Route path="/" element={<AddSalePage />} />
+                        <Route path="/consumables" element={<AddConsumablesSalePage />} />
                         <Route path="/sales" element={<SalesPage cashierId={authentication.username} />} />
                         <Route path="/settings" element={<SettingsPage />} />
                     </Routes>

@@ -8,7 +8,8 @@ export default function SettingsPage()
 
     return (
         <Stack>
-            <Switch label="Play sounds" onChange={onToggleSounds} checked={settings.cashierSounds} />
+            <Switch label="Play Sounds" onChange={onToggleSounds} checked={settings.cashierSounds} />
+            <Switch label="Show Consumables Page" onChange={onToggleShowConsumables} checked={settings.showConsumables} />
         </Stack>
     );
 
@@ -16,5 +17,10 @@ export default function SettingsPage()
     function onToggleSounds(event: React.ChangeEvent<HTMLInputElement>) {
         const isChecked = event.currentTarget.checked;
         settings.setCashierSounds(isChecked);
+    }
+
+    function onToggleShowConsumables(event: React.ChangeEvent<HTMLInputElement>) {
+        const isChecked = event.currentTarget.checked;
+        settings.setShowConsumables(isChecked);
     }
 }

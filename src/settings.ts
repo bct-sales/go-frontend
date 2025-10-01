@@ -4,6 +4,7 @@ import React from "react";
 export type SettingsData = {
     advancedMode: boolean,
     cashierSounds: boolean,
+    showConsumables: boolean
 };
 
 export interface Settings extends SettingsData
@@ -11,11 +12,13 @@ export interface Settings extends SettingsData
     setAdvancedMode: (value: boolean) => void;
     toggleAdvancedMode: () => void;
     setCashierSounds: (value: boolean) => void;
+    setShowConsumables: (value: boolean) => void;
 }
 
 export const defaultSettings: SettingsData = {
     advancedMode: false,
     cashierSounds: false,
+    showConsumables: false,
 };
 
 export function createSettings(settings: SettingsData, setSettings: (data: SettingsData) => void): Settings
@@ -25,6 +28,7 @@ export function createSettings(settings: SettingsData, setSettings: (data: Setti
         setAdvancedMode,
         toggleAdvancedMode,
         setCashierSounds,
+        setShowConsumables,
     };
 
 
@@ -41,6 +45,11 @@ export function createSettings(settings: SettingsData, setSettings: (data: Setti
     function setCashierSounds(value: boolean): void
     {
         setSettings({ ...settings, cashierSounds: value} );
+    }
+
+    function setShowConsumables(value: boolean): void
+    {
+        setSettings({ ...settings, showConsumables: value} );
     }
 }
 
