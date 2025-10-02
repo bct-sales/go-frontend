@@ -22,6 +22,8 @@ class RestPaths
 
     get itemsAsCsv() { return `${this.items}?format=csv`; }
 
+    itemsInCategory(categoryId: number) { return `${this.root}/items?category=${categoryId}`; }
+
     itemsRange(start: number, count: number) { return `${this.root}/items?offset=${start}&limit=${count}`; }
 
     item(itemId: number) { return `${this.root}/items/${itemId}`; }
