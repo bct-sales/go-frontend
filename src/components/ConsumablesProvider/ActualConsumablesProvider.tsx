@@ -4,6 +4,8 @@ import { listItemsInCategory } from "@/rest/list-items-in-category";
 import { RestStatus } from "@/rest/status";
 import React from "react";
 import Loading from "../Loading";
+import { notifications, useNotifications } from "@mantine/notifications";
+import { itemIdColumn } from "../ItemsTable/columns";
 
 
 interface Props
@@ -13,8 +15,8 @@ interface Props
 
 type ExtendedRestStatus =
     | RestStatus<Consumable[]>
-    | { status: 'no-consumable-category' }
-    | { status: 'invalid-consumable-description', description: string };
+    | { status: 'no-consumable-category' };
+
 
 export default function ActualConsumablesProvider(props: Props): React.ReactNode
 {
@@ -38,32 +40,52 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
                 const items = data.value.items;
                 const table = new Map<string, Consumable>();
                 const regex = /^(.*) \((\d+)\)$/;
+                let errorCount = 0;
 
-                for ( const item of items )
+                console.group('Looking for consumable items');
+
+                try
                 {
-                    console.debug(`Processing consumable item "${item.description}" with id ${item.itemId}`);
-
-                    const match = regex.exec(item.description);
-
-                    if ( !match )
+                    for ( const item of items )
                     {
-                        setConsumablesStatus({status: 'invalid-consumable-description', description: item.description});
-                        return;
+                        console.debug(`Processing consumable item "${item.description}" with id ${item.itemId}`);
+
+                        const match = regex.exec(item.description);
+
+                        if ( !match )
+                        {
+                            console.error(`Could not process item ${item.itemId} %O, whose description "${item.description}" should follow the pattern "... (n)".\nSkipping this item.`, item);
+                            errorCount++;
+                            continue;
+                        }
+
+                        const name = match[1];
+                        const quantity = parseInt(match[2]);
+
+                        if ( !table.has(name) )
+                        {
+                            table.set(name, new Consumable(name));
+                        }
+
+                        table.get(name)!.addQuantityItem(quantity, item.itemId);
                     }
 
-                    const name = match[1];
-                    const quantity = parseInt(match[2]);
-
-                    if ( !table.has(name) )
+                    if ( errorCount > 0 )
                     {
-                        table.set(name, new Consumable(name));
+                        notifications.show({
+                            title: `${errorCount} error(s) occurred while looking for consumables`,
+                            message: 'See console for more information',
+                            color: 'red',
+                        });
                     }
 
-                    table.get(name)!.addQuantityItem(quantity, item.itemId);
+                    const consumables = [...table.values()];
+                    setConsumablesStatus( {status: 'success', value: consumables} );
                 }
-
-                const consumables = [...table.values()];
-                setConsumablesStatus( {status: 'success', value: consumables} );
+                finally
+                {
+                    console.groupEnd();
+                }
             }
             else
             {
@@ -82,11 +104,6 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
         case 'no-consumable-category':
             return (
                 <div>No consumables category found</div>
-            );
-
-        case 'invalid-consumable-description':
-            return (
-                <div>Invalid consumable description: {consumablesStatus.description}</div>
             );
 
         case 'loading':
