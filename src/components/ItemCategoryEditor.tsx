@@ -39,7 +39,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
                     label: categoryTable.categoryName(categoryId),
                 };
             }
-        );
+        ).filter( ({label}) => label !== 'Consumable' );
 
         const categoryString = props.categoryId?.toString() ?? null;
 
