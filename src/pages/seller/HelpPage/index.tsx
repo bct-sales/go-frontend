@@ -90,10 +90,10 @@ export default function HelpPage() : React.ReactNode
         ];
     }
 
-    function renderQuestion(question: FrequentlyAskedQuestion): JSX.Element
+    function renderQuestion(question: FrequentlyAskedQuestion, index: number): JSX.Element
     {
         return (
-            <Accordion.Item value={question.value}>
+            <Accordion.Item value={question.value} key={index}>
                 <Accordion.Control>
                     <Text className={classes.question}>
                     {question.question}

@@ -36,6 +36,7 @@ export default function ItemsPage(props: Props): React.ReactNode
             highlightOnHover
             records={props.items}
             height="calc(100vh - 300px)"
+            idAccessor="itemId"
             columns={[
                 {
                     accessor: 'itemId',

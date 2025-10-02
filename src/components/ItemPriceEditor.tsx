@@ -64,7 +64,7 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
         const cents = priceInCents % 100;
 
         return (
-            <Button onClick={() => quickSetPrice(priceInCents)} tabIndex={-1}>
+            <Button onClick={() => quickSetPrice(priceInCents)} tabIndex={-1} key={priceInCents}>
                 {`€${euros}.${cents.toString().padStart(2, '0')}`}
             </Button>
         );
