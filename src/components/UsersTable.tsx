@@ -55,9 +55,7 @@ export default function UsersTable(props: Props): React.ReactNode
                         accessor: 'id',
                         title: 'Id',
                         render: (user: User) => (
-                            <NavLink to={`/admin/users/${user.id}`}>
-                                <UserIdViewer userId={user.id} />
-                            </NavLink>
+                            <UserIdViewer userId={user.id} />
                         ),
                         sortable: true,
                         width: 40,
