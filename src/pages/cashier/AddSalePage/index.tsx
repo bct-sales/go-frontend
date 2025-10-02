@@ -1,16 +1,16 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import Price from "@/components/Price";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
+import { addSale } from "@/rest/add-sale";
 import { getItemInformation, Item, SuccessResponse } from "@/rest/item-data";
-import { ActionIcon, Button, Flex, Group, Stack, Stepper, Table, TextInput, Tooltip } from "@mantine/core";
+import { useSettings } from "@/settings";
+import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
+import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
+import { useHotkeys } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
 import classes from './AddSalePage.module.css';
-import { addSale } from "@/rest/add-sale";
-import { useHotkeys } from "@mantine/hooks";
-import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
-import { useSettings } from "@/settings";
 import ConsumablesViewer from "./ConsumablesViewer";
 
 
