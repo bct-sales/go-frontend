@@ -1,8 +1,8 @@
+import { useAuthentication } from "@/authentication";
 import { ErrorTag } from "@/rest/result";
-import { List, Stack, Table, Text } from "@mantine/core";
+import { Table } from "@mantine/core";
 import React from "react";
 import classes from './RestErrorViewer.module.css';
-import { useAuthentication } from "@/authentication";
 
 
 interface Props

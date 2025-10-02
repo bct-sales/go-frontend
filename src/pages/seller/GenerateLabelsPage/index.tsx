@@ -1,15 +1,15 @@
+import { Item } from "@/components/ItemsTable/ItemsTable";
 import Loading from "@/components/Loading";
 import { LabelLayoutData } from "@/label-layout";
 import { generateLabels } from "@/rest/generate-labels";
 import { listSellerItems } from "@/rest/list-seller-items";
 import { RestStatus } from "@/rest/status";
-import { Button, Stack, Stepper } from "@mantine/core";
+import { Stack, Stepper } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
+import FinalizePage from "./FinalizePage";
 import ItemSelectionSubpage from "./ItemSelectionSubpage";
 import LayoutSubpage from "./LayoutSubpage";
-import { notifications } from "@mantine/notifications";
-import { Item } from "@/components/ItemsTable/ItemsTable";
-import FinalizePage from "./FinalizePage";
 
 
 interface Props

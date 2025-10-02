@@ -1,7 +1,7 @@
 import ItemsTable from "@/components/ItemsTable";
 import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/components/ItemsTable/ItemsTable";
-import { Button, Card, Center, Stack, Text } from "@mantine/core";
+import { Button, Center, Stack } from "@mantine/core";
 
 interface Props
 {
@@ -49,3 +49,5 @@ export default function SimpleItemSelectionSubpage(props: Props): React.ReactNod
         );
     }
 }
+
+\ No newline at end of file
