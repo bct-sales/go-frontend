@@ -98,6 +98,7 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
     switch ( consumablesStatus.status )
     {
         case 'error':
+            console.error(`Error while fetching items from server: ${consumablesStatus}`)
             return (
                 <Alert color='red' icon={<IconExclamationCircle />}>
                     An error occurred while fetching items from the server.
