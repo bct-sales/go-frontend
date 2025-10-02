@@ -4,7 +4,7 @@ import { listItemsInCategory } from "@/rest/list-items-in-category";
 import { RestStatus } from "@/rest/status";
 import { notifications } from "@mantine/notifications";
 import React from "react";
-import Loading from "../Loading";
+import Loading from "@/components/Loading";
 import { Alert, Tooltip } from "@mantine/core";
 import { IconExclamationCircle } from "@tabler/icons-react";
 
