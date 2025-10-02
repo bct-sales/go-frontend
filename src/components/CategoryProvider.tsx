@@ -15,7 +15,7 @@ export default function CategoryProvider(props: Props): React.ReactNode
     {
         case 'error':
             return (
-                <div>Error loading categories</div>
+                <div>Error loading categories: {categoryTableStatus.details}</div>
             );
 
         case 'loading':
