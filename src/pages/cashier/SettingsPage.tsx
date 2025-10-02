@@ -9,7 +9,7 @@ export default function SettingsPage()
     return (
         <Stack>
             <Switch label="Play Sounds" onChange={onToggleSounds} checked={settings.cashierSounds} />
-            <Switch label="Show Consumables Page" onChange={onToggleShowConsumables} checked={settings.showConsumables} />
+            <Switch label="Show Consumables" onChange={onToggleShowConsumables} checked={settings.showConsumables} />
         </Stack>
     );
 
