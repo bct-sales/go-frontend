@@ -2,10 +2,9 @@ import { useCategoryContext } from "@/categories";
 import { Consumable, ConsumablesContext } from "@/consumables";
 import { listItemsInCategory } from "@/rest/list-items-in-category";
 import { RestStatus } from "@/rest/status";
+import { notifications } from "@mantine/notifications";
 import React from "react";
 import Loading from "../Loading";
-import { notifications, useNotifications } from "@mantine/notifications";
-import { itemIdColumn } from "../ItemsTable/columns";
 
 
 interface Props
