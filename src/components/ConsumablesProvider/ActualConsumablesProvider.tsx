@@ -5,6 +5,8 @@ import { RestStatus } from "@/rest/status";
 import { notifications } from "@mantine/notifications";
 import React from "react";
 import Loading from "../Loading";
+import { Alert, Tooltip } from "@mantine/core";
+import { IconExclamationCircle } from "@tabler/icons-react";
 
 
 interface Props
@@ -101,8 +103,13 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
             );
 
         case 'no-consumable-category':
+            console.error(`In order for consumables detection to work, an item category named "Consumable" must exist.\nCategories that were found:\n${categoryTable.categoryNames().join("\n")}`);
             return (
-                <div>No consumables category found</div>
+                <Tooltip label={`In order for consumables detection to work, an item category named "Consumable" must exist.`}>
+                    <Alert color='red' icon={<IconExclamationCircle />}>
+                        <div>No consumables category found</div>
+                    </Alert>
+                </Tooltip>
             );
 
         case 'loading':
