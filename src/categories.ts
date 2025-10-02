@@ -11,6 +11,8 @@ export interface CategoryTable
     get categoryIds(): number[];
 
     categoryName(id: number): string;
+
+    categoryNames(): string[];
 }
 
 export function useCategories(): RestStatus<CategoryTable>
@@ -58,7 +60,7 @@ export function useCategories(): RestStatus<CategoryTable>
 
 function buildCategoryTable(categories: Category[]): CategoryTable
 {
-    return { categoryIds: categoryIds(), categoryName };
+    return { categoryIds: categoryIds(), categoryName, categoryNames: categoryNames };
 
 
     function categoryIds(): number[]
@@ -78,6 +80,11 @@ function buildCategoryTable(categories: Category[]): CategoryTable
         {
             throw new Error("No such category: " + id);
         }
+    }
+
+    function categoryNames(): string[]
+    {
+        return categoryIds().map(id => categoryName(id));
     }
 }
 
