@@ -3,6 +3,7 @@ import { Category, getItemCategories } from "./rest/categories";
 import { RestStatus } from "./rest/status";
 import { failure, success } from "./result";
 import { RestResult } from "./rest/result";
+import React from "react";
 
 
 export interface CategoryTable
@@ -78,4 +79,12 @@ function buildCategoryTable(categories: Category[]): CategoryTable
             throw new Error("No such category: " + id);
         }
     }
+}
+
+
+export const CategoryContext = React.createContext<CategoryTable>(buildCategoryTable([]));
+
+export function useCategoryContext(): CategoryTable
+{
+    return React.useContext(CategoryContext);
 }
