@@ -2,22 +2,23 @@ import CaptionedBox from "@/components/CaptionedBox";
 import Price from "@/components/Price";
 import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
 import { getItemInformation, Item, SuccessResponse } from "@/rest/item-data";
-import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
+import { ActionIcon, Button, Flex, Group, Stack, Stepper, Table, TextInput, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from './AddSalePage.module.css';
 import { addSale } from "@/rest/add-sale";
 import { useHotkeys } from "@mantine/hooks";
 import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
 import { useSettings } from "@/settings";
+import ConsumablesViewer from "./ConsumablesViewer";
 
 
 export default function AddSalePage(): React.ReactNode
 {
     const [step, setStep] = useState(0);
     const [saleItems, setSaleItems] = useState<Item[]>([]);
-    const [itemId, setItemId] = useState<string>("");
+    const [itemIdString, setItemIdString] = useState<string>("");
     const itemInputRef = useRef<HTMLInputElement>(null);
     const settings = useSettings();
     const soundEmitter = useRef(new MuteSoundEmitter());
@@ -44,8 +45,8 @@ export default function AddSalePage(): React.ReactNode
         itemInputRef.current?.focus();
     }, [step]);
 
-    const canAddItem = isValidItemId(itemId);
-    const canFinalizeSale = saleItems.length > 0 && itemId.length === 0;
+    const canAddItem = isValidItemId(itemIdString);
+    const canFinalizeSale = saleItems.length > 0 && itemIdString.length === 0;
     const totalPriceInCents = saleItems.reduce((total, item) => total + item.priceInCents, 0);
 
     return (
@@ -55,13 +56,14 @@ export default function AddSalePage(): React.ReactNode
                     <CaptionedBox caption="Add Item">
                         <Stack align="center">
                             <Group >
-                                <TextInput value={itemId} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
+                                <TextInput value={itemIdString} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
                                 <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
                                     <ActionIcon onClick={onAddItem} disabled={!canAddItem}>
                                         <IconPlus />
                                     </ActionIcon>
                                 </Tooltip>
                             </Group>
+                            {settings.showConsumables ? renderConsumables() : <></>}
                         </Stack>
                     </CaptionedBox>
                     <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
@@ -97,6 +99,13 @@ export default function AddSalePage(): React.ReactNode
     );
 
 
+    function renderConsumables(): React.ReactNode
+    {
+        return (
+            <ConsumablesViewer onAddItem={onAddItemWithId} />
+        );
+    }
+
     function convertToSaleItem(item: Item): SaleItem
     {
         return {
@@ -111,49 +120,28 @@ export default function AddSalePage(): React.ReactNode
     {
         if ( value.toLocaleLowerCase().endsWith("x") )
         {
-            setItemId(value.slice(0, -1));
+            setItemIdString(value.slice(0, -1));
             onAddItem();
         }
         else
         {
-            setItemId(value);
+            setItemIdString(value);
         }
     }
 
     /*
         Called when an item id has been entered and needs to be added to the sale.
-        The item id has not been checked yet at this point.
+        The item id is taken from the input box and its value not been checked yet at this point.
     */
     async function onAddItem(): Promise<void>
     {
         if ( canAddItem )
         {
-            const itemIdNumber = parseInt(itemId, 10);
+            const itemIdNumber = parseInt(itemIdString, 10);
 
             if ( !isNaN(itemIdNumber) )
             {
-                if ( saleItems.some(item => item.itemId === itemIdNumber) )
-                {
-                    onTriedAddingSameItemTwice();
-                    return;
-                }
-
-                const result = await getItemInformation(itemIdNumber);
-
-                if ( result.success )
-                {
-                    const itemInformation = result.value;
-                    const updatedSaleItems = [itemInformation, ...saleItems];
-                    setSaleItems(updatedSaleItems);
-
-                    onItemAddedSuccessfully(itemInformation);
-                    return;
-                }
-                else
-                {
-                    onTriedAddingUnknownItem();
-                    return;
-                }
+                onAddItemWithId(itemIdNumber);
             }
             else
             {
@@ -164,6 +152,35 @@ export default function AddSalePage(): React.ReactNode
                 });
                 soundEmitter.current.error();
             }
+        }
+    }
+
+    /*
+        Called when an item with the specified id must be added.
+    */
+    async function onAddItemWithId(itemId: number): Promise<void>
+    {
+        // Ensure the item is not yet included in the sale
+        if ( saleItems.some(item => item.itemId === itemId) )
+        {
+            onTriedAddingSameItemTwice();
+            return;
+        }
+
+        const result = await getItemInformation(itemId);
+
+        if ( result.success )
+        {
+            const itemInformation = result.value;
+            setSaleItems(old => [itemInformation, ...old]);
+
+            onItemAddedSuccessfully(itemInformation);
+            return;
+        }
+        else
+        {
+            onTriedAddingUnknownItem();
+            return;
         }
     }
 
@@ -247,7 +264,7 @@ export default function AddSalePage(): React.ReactNode
 
     function resetItemInput(): void
     {
-        setItemId("");
+        setItemIdString("");
         itemInputRef.current?.focus();
     }
 
