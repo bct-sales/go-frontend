@@ -24,6 +24,7 @@ export default function CategoryCountsTable(props: Props): React.ReactNode
             highlightOnHover
             striped
             records={categoryCounts}
+            idAccessor="categoryId"
             columns={[
                 {
                     accessor: 'categoryId',
