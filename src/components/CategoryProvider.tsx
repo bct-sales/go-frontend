@@ -1,4 +1,6 @@
 import { CategoryContext, useCategories } from "@/categories";
+import { Alert } from "@mantine/core";
+import { IconExclamationCircle } from "@tabler/icons-react";
 import React from "react";
 
 
@@ -15,7 +17,9 @@ export default function CategoryProvider(props: Props): React.ReactNode
     {
         case 'error':
             return (
-                <div>Error loading categories: {categoryTableStatus.details}</div>
+                <Alert color='red' icon={<IconExclamationCircle />}>
+                    Error loading categories: {categoryTableStatus.details}
+                </Alert>
             );
 
         case 'loading':
