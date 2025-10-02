@@ -2,8 +2,9 @@ import { useAuthentication } from "@/authentication";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import UpdateProvider from "@/components/UpdateProvider.tsx";
 import { ActionIcon, AppShell, Flex } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "../admin/CategoriesPage";
 import ItemsPage from "../admin/ItemsPage";
@@ -13,7 +14,6 @@ import UserSubpage from "../admin/UserPage";
 import UsersOverviewPage from "../admin/UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
 import DashboardHeader from "./DashboardHeader.tsx";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 
 export default function AdminDashboard()
