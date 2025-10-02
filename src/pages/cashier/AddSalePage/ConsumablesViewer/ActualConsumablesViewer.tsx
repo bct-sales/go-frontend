@@ -56,7 +56,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactNode
     function renderQuantityButton(consumable: Consumable, quantity: number): React.ReactNode
     {
         return (
-            <Button size='sm' onClick={() => onQuantityClicked(consumable, quantity)}>
+            <Button size='sm' onClick={() => onQuantityClicked(consumable, quantity)} key={quantity}>
                 {quantity}
             </Button>
         );
