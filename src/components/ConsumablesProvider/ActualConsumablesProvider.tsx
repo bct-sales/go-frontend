@@ -99,7 +99,9 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
     {
         case 'error':
             return (
-                <div>Error loading consumables</div>
+                <Alert color='red' icon={<IconExclamationCircle />}>
+                    An error occurred while fetching items from the server.
+                </Alert>
             );
 
         case 'no-consumable-category':
@@ -107,7 +109,7 @@ export default function ActualConsumablesProvider(props: Props): React.ReactNode
             return (
                 <Tooltip label={`In order for consumables detection to work, an item category named "Consumable" must exist.`}>
                     <Alert color='red' icon={<IconExclamationCircle />}>
-                        <div>No consumables category found</div>
+                        No consumables category found
                     </Alert>
                 </Tooltip>
             );
