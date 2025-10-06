@@ -1,4 +1,4 @@
-import DownloadAs from "@/components/DownloadAs";
+import ExportButton from "@/components/ExportButton";
 import Loading from "@/components/Loading";
 import RestErrorViewer from "@/components/RestErrorViewer";
 import UsersTable from "@/components/UsersTable";
@@ -50,11 +50,24 @@ export default function UsersOverviewPage()
 
     function renderPage(users: User[]): React.ReactNode
     {
+        const exportFormats = [
+            {
+                caption: 'CSV',
+                url: paths.usersAsCsv,
+                filename: 'users.csv',
+            },
+            {
+                caption: 'JSON',
+                url: paths.usersAsJson,
+                filename: 'users.json'
+            },
+        ];
+
         return (
             <>
                 <Stack>
                     <Group justify="flex-end">
-                        <DownloadAs cvsUrl={paths.usersAsCsv} jsonUrl={paths.usersAsJson} />
+                        <ExportButton formats={exportFormats} />
                     </Group>
                     <UsersTable users={users} />
                 </Stack>
