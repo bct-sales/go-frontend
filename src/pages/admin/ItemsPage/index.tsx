@@ -1,4 +1,3 @@
-import DownloadAs from "@/components/DownloadAs";
 import Loading from "@/components/Loading";
 import { Item, listItems, SuccessResponse } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
