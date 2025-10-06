@@ -80,8 +80,10 @@ export default function AddSalePage(): React.ReactNode
                 <Stack>
                     <CaptionedBox caption="Amount Due">
                         <Stack align="center">
-                            <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
-                            <Center>{saleItems.length} items</Center>
+                            <Stack align="center" gap='0' m='xl'>
+                                <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
+                                <Center>Item count: {saleItems.length}</Center>
+                            </Stack>
                             <Group justify="space-between" w="100%">
                                 <Button leftSection={<IconBackspace />} onClick={() => setStep(0)} variant="outline">
                                     Back to Items
