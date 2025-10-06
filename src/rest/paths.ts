@@ -34,6 +34,12 @@ class RestPaths
 
     get sales() { return `${this.root}/sales`; }
 
+    get soldItems() { return `${this.root}/sales/items`; }
+
+    get soldItemsAsJson() { return `${this.root}/sales/items?format=json`; }
+
+    get soldItemsAsCsv() { return `${this.root}/sales/items?format=csv`; }
+
     recentSales(count: number) { return `${this.root}/sales?order=antichronological&offset=0&limit=${count}`; }
 
     sale(saleId: number) { return `${this.root}/sales/${saleId}`; }
