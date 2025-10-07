@@ -4,20 +4,22 @@ import classes from './CategoryCountsTable.module.css';
 
 interface Props
 {
-    categoryCounts: Category[];
+    itemCountsByCategory: ItemCount[];
 }
 
-interface Category
+interface ItemCount
 {
     categoryId: number;
     categoryName: string;
     count: number;
+    soldCount: number;
 }
 
 export default function CategoryCountsTable(props: Props): React.ReactNode
 {
-    const categoryCounts = props.categoryCounts;
+    const categoryCounts = props.itemCountsByCategory;
     const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);
+    const totalSold = categoryCounts.reduce((acc, curr) => acc + curr.soldCount, 0);
 
     return (
         <DataTable
@@ -43,7 +45,14 @@ export default function CategoryCountsTable(props: Props): React.ReactNode
                     footer: total,
                     cellsClassName: classes.count,
                     footerClassName: classes.count,
-                }
+                },
+                {
+                    accessor: 'soldCount',
+                    title: '#Sold',
+                    footer: totalSold,
+                    cellsClassName: classes.count,
+                    footerClassName: classes.count,
+                },
             ]}
         />
     );
