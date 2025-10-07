@@ -26,7 +26,7 @@ export default function ExportButton(props: Props): React.ReactNode
                 </Button>
             </Menu.Target>
             <Menu.Dropdown>
-                {props.formats.map(renderFormatMenuItem)}                
+                {props.formats.map(renderFormatMenuItem)}
             </Menu.Dropdown>
         </Menu>
     );
