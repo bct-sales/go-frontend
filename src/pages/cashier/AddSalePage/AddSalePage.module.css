@@ -1,7 +1,8 @@
 .itemIdInput {
-    text-align: center;;
+    text-align: center;
 }
 
 .totalPrice {
     font-size: 500%;
+    line-height: 1.25em;
 }

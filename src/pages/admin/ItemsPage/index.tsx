@@ -1,4 +1,3 @@
-import DownloadAs from "@/components/DownloadAs";
 import Loading from "@/components/Loading";
 import { Item, listItems, SuccessResponse } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
@@ -12,6 +11,7 @@ import classes from './ItemsPage.module.css';
 import Price from "@/components/Price";
 import ErrorPage from "@/pages/ErrorPage";
 import RestErrorViewer from "@/components/RestErrorViewer";
+import ExportButton from "@/components/ExportButton";
 
 
 export default function ItemsPage() : React.ReactNode
@@ -54,10 +54,20 @@ export default function ItemsPage() : React.ReactNode
 
     function renderPage(items: Item[], totalItemCount: number, totalItemValue: number): React.ReactNode
     {
-        const cvsUrl = paths.itemsAsCsv;
-        const jsonUrl = paths.itemsAsJson;
         const lastPage = Math.ceil(totalItemCount / itemsPerPage);
         const pageRange = range(1, lastPage).map(p => `${p}`);
+        const exportFormats = [
+            {
+                caption: 'CSV',
+                url: paths.itemsAsCsv,
+                filename: 'items.csv',
+            },
+            {
+                caption: 'JSON',
+                url: paths.itemsAsJson,
+                filename: 'items.json',
+            },
+        ];
 
         return (
             <>
@@ -65,7 +75,7 @@ export default function ItemsPage() : React.ReactNode
                     {renderOverview()}
                     <Group justify="space-between" align="center" mb="md">
                         {renderPaginationControls()}
-                        <DownloadAs cvsUrl={cvsUrl} jsonUrl={jsonUrl} />
+                        <ExportButton formats={exportFormats} />
                     </Group>
                     <Center>
                         <ItemsTable items={items} />

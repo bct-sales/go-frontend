@@ -5,7 +5,7 @@ import { addSale } from "@/rest/add-sale";
 import { getItemInformation, Item, SuccessResponse } from "@/rest/item-data";
 import { useSettings } from "@/settings";
 import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
-import { ActionIcon, Button, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
+import { ActionIcon, Button, Center, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
@@ -80,7 +80,10 @@ export default function AddSalePage(): React.ReactNode
                 <Stack>
                     <CaptionedBox caption="Amount Due">
                         <Stack align="center">
-                            <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
+                            <Stack align="center" gap='0' m='xl'>
+                                <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
+                                <Center>Item count: {saleItems.length}</Center>
+                            </Stack>
                             <Group justify="space-between" w="100%">
                                 <Button leftSection={<IconBackspace />} onClick={() => setStep(0)} variant="outline">
                                     Back to Items
