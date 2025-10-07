@@ -240,9 +240,7 @@ export default function AddSalePage(): React.ReactNode
 
     function isValidItemId(value: string): boolean
     {
-        const itemId = parseInt(value, 10);
-
-        return !isNaN(itemId) && itemId > 0;
+        return /^\d+$/.test(value);
     }
 
     function onKeyDownInItemIdInput(event: React.KeyboardEvent<HTMLInputElement>): void
