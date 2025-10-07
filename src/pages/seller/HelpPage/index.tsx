@@ -1,4 +1,4 @@
-import { Accordion, Anchor, Stack, Text, Title } from "@mantine/core";
+import { Accordion, Anchor, List, Stack, Text, Title } from "@mantine/core";
 import React from "react";
 import classes from './HelpPage.module.css';
 
@@ -76,6 +76,22 @@ export default function HelpPage() : React.ReactNode
                         No, in no case can you make corrections to the label.
                         Throw away the label and create a new item with the correct information.
                     </Text>
+                ),
+            },
+            {
+                value: "same-item",
+                question: "I have two identical items. Can I reuse the same label for both?",
+                answer: (
+                    <>
+                        <Text className={classes.answer}>
+                            In short: no.
+                        </Text>
+                        <Text className={classes.answer}>
+                            Say you have two identical shirts: same description "White Shirt", same asking price of &euro;2, etc.
+                            If you reuse the same label (i.e., they both have the same item number), then both shirts will be seen as a single unit and be sold together for &euro;2.
+                            If you want to receive &euro;2 for each shirt sold, you need to ensure they have unique item numbers.
+                        </Text>
+                    </>
                 ),
             },
             {
