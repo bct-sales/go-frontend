@@ -9,7 +9,7 @@ import RestErrorViewer from "@/components/RestErrorViewer";
 
 export default function CategoriesPage() : React.ReactNode
 {
-    const [status, setStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });
+    const [itemCountsStatus, setItemCountsStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });
 
     useEffect(() => {
         void (async () => {
@@ -17,19 +17,19 @@ export default function CategoriesPage() : React.ReactNode
 
             if (data.success)
             {
-                setStatus({ status: 'success', value: data.value.categories });
+                setItemCountsStatus({ status: 'success', value: data.value.categories });
             }
             else
             {
-                setStatus({ status: 'error', tag: data.error.type, details: data.error.details });
+                setItemCountsStatus({ status: 'error', tag: data.error.type, details: data.error.details });
             }
         })();
     }, []);
 
-    switch (status.status)
+    switch (itemCountsStatus.status)
     {
         case 'success':
-            return renderPage(status.value);
+            return renderPage(itemCountsStatus.value);
 
         case 'loading':
             return (
@@ -39,7 +39,7 @@ export default function CategoriesPage() : React.ReactNode
         case 'error':
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={status.tag} details={status.details} operation='getItemCountsPerCategory()' />
+                    <RestErrorViewer tag={itemCountsStatus.tag} details={itemCountsStatus.details} operation='getItemCountsPerCategory()' />
                 </ErrorPage>
             );
     }
