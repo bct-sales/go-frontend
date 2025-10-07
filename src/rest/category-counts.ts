@@ -22,7 +22,24 @@ export type ItemCountsByCategoryResponse = z.infer<typeof ItemCountsByCategoryRe
 
 export async function getItemCountsPerCategory(): Promise<RestResult<ItemCountsByCategoryResponse>>
 {
-    const url = paths.categoryCounts;
+    const url = paths.itemCountsByCategory;
+
+    try
+    {
+        const response = await axios.get<unknown>(url);
+        const data = ItemCountsByCategoryResponse.parse(response.data);
+
+        return success(data);
+    }
+    catch ( error: unknown )
+    {
+        return convertExceptionToFailure(error);
+    }
+}
+
+export async function getSoldItemCountsPerCategory(): Promise<RestResult<ItemCountsByCategoryResponse>>
+{
+    const url = paths.soldItemCountsByCategory;
 
     try
     {

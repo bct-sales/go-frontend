@@ -28,7 +28,9 @@ class RestPaths
 
     item(itemId: number) { return `${this.root}/items/${itemId}`; }
 
-    get categoryCounts() { return `${this.root}/categories?counts=visible`; }
+    get itemCountsByCategory() { return `${this.root}/categories?counts=visible`; }
+
+    get soldItemCountsByCategory() { return `${this.root}/categories?counts=sold`; }
 
     get categories() { return `${this.root}/categories`; }
 
