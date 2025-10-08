@@ -21,7 +21,7 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
             <Group justify="flex-end">
                 {renderViewModeSwitch()}
             </Group>
-            <Group w='800px' justify='center'>
+            <Group w='1200px' justify='center'>
                 {renderView()}
             </Group>
         </Stack>
@@ -95,7 +95,7 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
 
         return (
             <Card padding='md'>
-                <BarChart h={800} w={800} dataKey={categoryKey} data={barChartData} series={series} type='stacked' orientation="vertical" xAxisProps={{type: 'number'}} yAxisProps={{type: 'category', width: 120}} />
+                <BarChart h={800} w='800' dataKey={categoryKey} data={barChartData} series={series} type='stacked' orientation="vertical" xAxisProps={{type: 'number'}} yAxisProps={{type: 'category', width: 120}} />
             </Card>
         );
     }
