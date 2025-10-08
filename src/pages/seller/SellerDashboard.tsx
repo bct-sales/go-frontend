@@ -10,8 +10,8 @@ import { AppShell, Flex } from "@mantine/core";
 import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
-import HelpPage from "../seller/HelpPage";
-import DashboardHeader from "./DashboardHeader";
+import HelpPage from "./HelpPage";
+import DashboardHeader from "../dashboards/DashboardHeader";
 import { useDisclosure } from "@mantine/hooks";
 
 
