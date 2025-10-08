@@ -1,4 +1,4 @@
-import CategoryCountsTable from "@/components/CategoryCountsTable";
+import CategoryCountsTable, { ItemCount } from "@/components/CategoryCountsTable";
 import Loading from "@/components/Loading";
 import { getItemCountsPerCategory, getSoldItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
 import { RestStatus } from "@/rest/status";
@@ -72,7 +72,17 @@ export default function CategoriesPage() : React.ReactNode
 
     function renderPage(itemCounts: ItemCountByCategory[], soldItemCounts: ItemCountByCategory[]) : React.ReactNode
     {
-        const itemCountsTable = new Map<number, number>();
+        const combinedItemCounts = combineItemCounts(itemCounts, soldItemCounts);
+
+        return (
+            <CategoryCountsTable itemCountsByCategory={combinedItemCounts} />
+        );
+    }
+}
+
+function combineItemCounts(itemCounts: ItemCountByCategory[], soldItemCounts: ItemCountByCategory[]): ItemCount[]
+{
+    const itemCountsTable = new Map<number, number>();
         const soldItemCountsTable = new Map<number, number>();
         const categoryNameTable = new Map<number, string>();
 
@@ -93,7 +103,7 @@ export default function CategoriesPage() : React.ReactNode
         }
 
         const categoryIds = [...itemCountsTable.keys()];
-        const combinedItemCounts = categoryIds.map(categoryId => {
+        return categoryIds.map(categoryId => {
             const categoryName = categoryNameTable.get(categoryId) ?? "<error>";
             const count = itemCountsTable.get(categoryId) ?? -1;
             const soldCount = soldItemCountsTable.get(categoryId) ?? -1;
@@ -105,9 +115,4 @@ export default function CategoriesPage() : React.ReactNode
                 soldCount,
             };
         });
-
-        return (
-            <CategoryCountsTable itemCountsByCategory={combinedItemCounts} />
-        );
-    }
 }
