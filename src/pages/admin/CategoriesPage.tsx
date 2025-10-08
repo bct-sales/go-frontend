@@ -83,36 +83,36 @@ export default function CategoriesPage() : React.ReactNode
 function combineItemCounts(itemCounts: ItemCountByCategory[], soldItemCounts: ItemCountByCategory[]): ItemCount[]
 {
     const itemCountsTable = new Map<number, number>();
-        const soldItemCountsTable = new Map<number, number>();
-        const categoryNameTable = new Map<number, string>();
+    const soldItemCountsTable = new Map<number, number>();
+    const categoryNameTable = new Map<number, string>();
 
-        for ( const itemCount of itemCounts )
+    for ( const itemCount of itemCounts )
+    {
+        categoryNameTable.set(itemCount.categoryId, itemCount.categoryName);
+        itemCountsTable.set(itemCount.categoryId, itemCount.count);
+    }
+
+    for ( const soldItemCount of soldItemCounts )
+    {
+        if ( categoryNameTable.get(soldItemCount.categoryId) !== soldItemCount.categoryName )
         {
-            categoryNameTable.set(itemCount.categoryId, itemCount.categoryName);
-            itemCountsTable.set(itemCount.categoryId, itemCount.count);
+            console.error("Inconsistency detected in item count vs sold item count");
         }
 
-        for ( const soldItemCount of soldItemCounts )
-        {
-            if ( categoryNameTable.get(soldItemCount.categoryId) !== soldItemCount.categoryName )
-            {
-                console.error("Inconsistency detected in item count vs sold item count");
-            }
+        soldItemCountsTable.set(soldItemCount.categoryId, soldItemCount.count);
+    }
 
-            soldItemCountsTable.set(soldItemCount.categoryId, soldItemCount.count);
-        }
+    const categoryIds = [...itemCountsTable.keys()];
+    return categoryIds.map(categoryId => {
+        const categoryName = categoryNameTable.get(categoryId) ?? "<error>";
+        const count = itemCountsTable.get(categoryId) ?? -1;
+        const soldCount = soldItemCountsTable.get(categoryId) ?? -1;
 
-        const categoryIds = [...itemCountsTable.keys()];
-        return categoryIds.map(categoryId => {
-            const categoryName = categoryNameTable.get(categoryId) ?? "<error>";
-            const count = itemCountsTable.get(categoryId) ?? -1;
-            const soldCount = soldItemCountsTable.get(categoryId) ?? -1;
-
-            return {
-                categoryId,
-                categoryName,
-                count,
-                soldCount,
-            };
-        });
+        return {
+            categoryId,
+            categoryName,
+            count,
+            soldCount,
+        };
+    });
 }
