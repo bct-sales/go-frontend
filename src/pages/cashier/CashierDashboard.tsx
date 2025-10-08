@@ -7,8 +7,8 @@ import { AppShell, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconCashRegister, IconList, IconLogout, IconSettings } from "@tabler/icons-react";
 import { Route, Routes } from "react-router-dom";
-import SettingsPage from "../cashier/SettingsPage";
-import DashboardHeader from "../DashboardHeader.tsx";
+import SettingsPage from "./SettingsPage";
+import DashboardHeader from "@/pages/DashboardHeader.tsx";
 
 
 export default function CashierDashboard()

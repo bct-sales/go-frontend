@@ -1,4 +1,4 @@
-import CategoryProvider from "../CategoryProvider";
+import CategoryProvider from "@/components/CategoryProvider";
 import ActualCategoryViewer from "./ActualCategoryViewer";
 
 

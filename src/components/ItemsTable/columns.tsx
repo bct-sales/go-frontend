@@ -8,7 +8,7 @@ import UserIdViewer from "@/components/UserIdViewer";
 import { range } from "@/util";
 import { Button, Checkbox, Group, Tooltip } from "@mantine/core";
 import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
-import FrozenViewer from "../FrozenViewer";
+import FrozenViewer from "@/components/FrozenViewer";
 import { Column, Item } from "./ItemsTable";
 import classes from './ItemsTable.module.css';
 import SmartSelection from "./SmartSelection";
