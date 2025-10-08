@@ -7,7 +7,7 @@ interface Props
     itemCountsByCategory: ItemCount[];
 }
 
-interface ItemCount
+export interface ItemCount
 {
     categoryId: number;
     categoryName: string;
