@@ -1,10 +1,12 @@
 import CategoryCountsTable, { ItemCount } from "@/components/CategoryCountsTable";
 import Loading from "@/components/Loading";
+import RestErrorViewer from "@/components/RestErrorViewer";
+import ErrorPage from "@/pages/ErrorPage";
 import { getItemCountsPerCategory, getSoldItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
 import { RestStatus } from "@/rest/status";
-import { useEffect, useState } from "react";
-import ErrorPage from "@/pages/ErrorPage";
-import RestErrorViewer from "@/components/RestErrorViewer";
+import { BarChart } from "@mantine/charts";
+import { Card, Stack } from "@mantine/core";
+import React, { useEffect, useState } from "react";
 
 
 export default function CategoriesPage() : React.ReactNode
@@ -75,7 +77,35 @@ export default function CategoriesPage() : React.ReactNode
         const combinedItemCounts = combineItemCounts(itemCounts, soldItemCounts);
 
         return (
-            <CategoryCountsTable itemCountsByCategory={combinedItemCounts} />
+            <Stack>
+                <CategoryCountsTable itemCountsByCategory={combinedItemCounts} />
+                {renderBarChart(combinedItemCounts)}
+            </Stack>
+        );
+    }
+
+    function renderBarChart(itemCounts: ItemCount[]): React.ReactNode
+    {
+        const categoryKey = 'category';
+        const soldItemsKey = 'SoldItems';
+        const unsoldItemsKey = 'UnsoldItems';
+        const barChartData = itemCounts.map(itemCount => {
+            return {
+                [categoryKey]: itemCount.categoryName,
+                [soldItemsKey]: itemCount.soldCount,
+                [unsoldItemsKey]: itemCount.count - itemCount.soldCount,
+            };
+        });
+
+        const series = [
+            {name: soldItemsKey, color: 'green.6'},
+            {name: unsoldItemsKey, color: 'blue.6'},
+        ];
+
+        return (
+            <Card padding='md'>
+                <BarChart h={800} w={800} dataKey={categoryKey} data={barChartData} series={series} type='stacked' orientation="vertical" xAxisProps={{type: 'number'}} yAxisProps={{type: 'category'}} />
+            </Card>
         );
     }
 }
