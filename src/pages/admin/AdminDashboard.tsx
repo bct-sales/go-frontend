@@ -6,14 +6,14 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import CategoriesPage from "../admin/CategoriesPage";
-import ItemsPage from "../admin/ItemsPage";
-import SalePage from "../admin/SalePage.tsx";
-import SalesPage from "../admin/SalesPage";
-import UserSubpage from "../admin/UserPage";
-import UsersOverviewPage from "../admin/UsersOverviewPage";
+import CategoriesPage from "./CategoriesPage.tsx";
+import ItemsPage from "./ItemsPage/index.tsx";
+import SalePage from "./SalePage.tsx/index.tsx";
+import SalesPage from "./SalesPage/index.tsx";
+import UserSubpage from "./UserPage.tsx";
+import UsersOverviewPage from "./UsersOverviewPage/index.tsx";
 import classes from './AdminDashboard.module.css';
-import DashboardHeader from "./DashboardHeader.tsx";
+import DashboardHeader from "../dashboards/DashboardHeader.tsx";
 
 
 export default function AdminDashboard()
