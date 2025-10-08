@@ -1,19 +1,19 @@
 import { useAuthentication } from "@/authentication";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
-import UpdateProvider from "@/components/UpdateProvider.tsx";
+import UpdateProvider from "@/components/UpdateProvider";
 import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import CategoriesPage from "./CategoriesPage.tsx";
-import ItemsPage from "./ItemsPage/index.tsx";
-import SalePage from "./SalePage.tsx/index.tsx";
-import SalesPage from "./SalesPage/index.tsx";
-import UserSubpage from "./UserPage.tsx";
-import UsersOverviewPage from "./UsersOverviewPage/index.tsx";
+import CategoriesPage from "./CategoriesPage";
+import ItemsPage from "./ItemsPage";
+import SalePage from "./SalePage.tsx";
+import SalesPage from "./SalesPage";
+import UserSubpage from "./UserPage";
+import UsersOverviewPage from "./UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
-import DashboardHeader from "@/pages/DashboardHeader.tsx";
+import DashboardHeader from "@/pages/DashboardHeader";
 
 
 export default function AdminDashboard()
