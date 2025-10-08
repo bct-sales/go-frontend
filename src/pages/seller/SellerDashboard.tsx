@@ -11,7 +11,7 @@ import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconS
 import { Route, Routes } from "react-router-dom";
 import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import HelpPage from "./HelpPage";
-import DashboardHeader from "../dashboards/DashboardHeader";
+import DashboardHeader from "../DashboardHeader";
 import { useDisclosure } from "@mantine/hooks";
 
 

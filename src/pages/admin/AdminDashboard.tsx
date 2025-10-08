@@ -13,7 +13,7 @@ import SalesPage from "./SalesPage/index.tsx";
 import UserSubpage from "./UserPage.tsx";
 import UsersOverviewPage from "./UsersOverviewPage/index.tsx";
 import classes from './AdminDashboard.module.css';
-import DashboardHeader from "../dashboards/DashboardHeader.tsx";
+import DashboardHeader from "../DashboardHeader.tsx";
 
 
 export default function AdminDashboard()
