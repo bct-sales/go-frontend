@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import { getItemCountsPerCategory, getSoldItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
 import { RestStatus } from "@/rest/status";
 import { useEffect, useState } from "react";
-import ErrorPage from "../ErrorPage";
+import ErrorPage from "@/pages/ErrorPage";
 import RestErrorViewer from "@/components/RestErrorViewer";
 
 
