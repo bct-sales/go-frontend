@@ -22,7 +22,7 @@ export async function updateItem(itemId: number, payload: Payload ): Promise<Res
 
     try
     {
-        await axios.put<unknown>( url, payload );
+        await axios.put<unknown>( url.str(), payload );
 
         return success({});
     }

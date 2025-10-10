@@ -97,7 +97,7 @@ class RestPaths
 
     itemsInCategory(categoryId: number) { return `${this.root.str()}/items?category=${categoryId}`; }
 
-    item(itemId: number) { return `${this.root.str()}/items/${itemId}`; }
+    item(itemId: number) { return this.root.addUrlParts('items', itemId.toString()); }
 
     get itemCountsByCategory() { return `${this.root.str()}/categories?counts=visible`; }
 
