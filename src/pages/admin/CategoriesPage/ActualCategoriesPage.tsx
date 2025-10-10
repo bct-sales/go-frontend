@@ -2,6 +2,7 @@ import CategoryCountsTable, { ItemCount } from "@/components/CategoryCountsTable
 import { ItemCountByCategory } from "@/rest/category-counts";
 import { BarChart } from "@mantine/charts";
 import { Card, Group, SegmentedControl, Stack } from "@mantine/core";
+import { IconArticle, IconChartBar } from "@tabler/icons-react";
 import React from "react";
 
 
@@ -42,8 +43,8 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
     function renderViewModeSwitch(): React.ReactNode
     {
         const data = [
-            { label: "Chart", value: 'chart' },
-            { label: "Table", value: 'table' },
+            { label: <IconChartBar />, value: 'chart' },
+            { label: <IconArticle />, value: 'table' },
         ];
 
         return (
