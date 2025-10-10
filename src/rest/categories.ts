@@ -25,7 +25,7 @@ export async function getItemCategories(): Promise<RestResult<SuccessResponse>>
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);

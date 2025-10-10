@@ -74,6 +74,14 @@ class SoldItemsURL extends URLWrapper
     }
 }
 
+class CategoriesURL extends URLWrapper
+{
+    withItemCounts(selection: 'visible' | 'hidden' | 'sold')
+    {
+        return new CategoriesURL(this.url.addQuery('items', selection));
+    }
+}
+
 class RestPaths
 {
     private readonly root: ConcreteURL;
@@ -99,11 +107,7 @@ class RestPaths
 
     item(itemId: number) { return this.root.addUrlParts('items', itemId.toString()); }
 
-    get itemCountsByCategory() { return `${this.root.str()}/categories?counts=visible`; }
-
-    get soldItemCountsByCategory() { return `${this.root.str()}/categories?counts=sold`; }
-
-    get categories() { return `${this.root.str()}/categories`; }
+    get categories() { return new CategoriesURL(this.root.addUrlParts('categories')); }
 
     get sales() { return `${this.root.str()}/sales`; }
 
