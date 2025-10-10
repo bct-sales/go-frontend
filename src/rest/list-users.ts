@@ -30,7 +30,7 @@ export async function listUsers(): Promise<RestResult<User[]>>
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.toString());
         const data = SuccessResponse.parse(response.data);
 
         return success(data.users);

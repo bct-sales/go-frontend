@@ -39,7 +39,7 @@ export async function login( data: LoginParameters ): Promise<RestResult<Role>>
 
     try
     {
-        const response = await axios.post<unknown>( url, payload, { headers } );
+        const response = await axios.post<unknown>( url.toString(), payload, { headers } );
         const data = LoginSuccessResponse.parse(response.data);
 
         return success(data.role);

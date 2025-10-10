@@ -53,12 +53,12 @@ export default function UsersOverviewPage()
         const exportFormats = [
             {
                 caption: 'CSV',
-                url: paths.usersAsCsv,
+                url: paths.users.withFormat('csv'),
                 filename: 'users.csv',
             },
             {
                 caption: 'JSON',
-                url: paths.usersAsJson,
+                url: paths.users.withFormat('json'),
                 filename: 'users.json'
             },
         ];
