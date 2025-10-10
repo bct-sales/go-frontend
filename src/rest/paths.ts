@@ -127,8 +127,6 @@ class RestPaths
 
     get sales() { return new SalesURL(this.root.addUrlParts('sales')); }
 
-    recentSales(count: number) { return `${this.root.str()}/sales?order=antichronological&offset=0&limit=${count}`; }
-
     get soldItems() { return new SoldItemsURL(this.root.addUrlParts('sales', 'items')); }
 
     sale(saleId: number) { return `${this.root.str()}/sales/${saleId}`; }
