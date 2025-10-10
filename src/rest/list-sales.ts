@@ -50,11 +50,11 @@ export async function listSales(): Promise<RestResult<SuccessResponse>>
 
 export async function listRecentSales(count: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.recentSales(count);
+    const url = paths.sales.withRowRange(0, count).withOrder('antichronological');
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);

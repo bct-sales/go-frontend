@@ -64,6 +64,11 @@ class ItemsURL extends URLWrapper
     {
         return new ItemsURL(this.url.addQuery('offset', offset.toString()).addQuery('limit', limit.toString()));
     }
+
+    withCategory(categoryId: number): ItemsURL
+    {
+        return new ItemsURL(this.url.addQuery('category', categoryId.toString()));
+    }
 }
 
 class SoldItemsURL extends URLWrapper
@@ -79,6 +84,19 @@ class CategoriesURL extends URLWrapper
     withItemCounts(selection: 'visible' | 'hidden' | 'sold')
     {
         return new CategoriesURL(this.url.addQuery('items', selection));
+    }
+}
+
+export class SalesURL extends URLWrapper
+{
+    withRowRange(offset: number, limit: number): SalesURL
+    {
+        return new SalesURL(this.url.addQuery('offset', offset.toString()).addQuery('limit', limit.toString()));
+    }
+
+    withOrder(order: 'chronological' | 'antichronological'): SalesURL
+    {
+        return new SalesURL(this.url.addQuery('order', order));
     }
 }
 
@@ -103,17 +121,15 @@ class RestPaths
 
     get items() { return new ItemsURL(this.root.addUrlParts('items')); }
 
-    itemsInCategory(categoryId: number) { return `${this.root.str()}/items?category=${categoryId}`; }
-
     item(itemId: number) { return this.root.addUrlParts('items', itemId.toString()); }
 
     get categories() { return new CategoriesURL(this.root.addUrlParts('categories')); }
 
-    get sales() { return this.root.addUrlParts('sales') as URL; }
-
-    get soldItems() { return new SoldItemsURL(this.root.addUrlParts('sales', 'items')); }
+    get sales() { return new SalesURL(this.root.addUrlParts('sales')); }
 
     recentSales(count: number) { return `${this.root.str()}/sales?order=antichronological&offset=0&limit=${count}`; }
+
+    get soldItems() { return new SoldItemsURL(this.root.addUrlParts('sales', 'items')); }
 
     sale(saleId: number) { return `${this.root.str()}/sales/${saleId}`; }
 

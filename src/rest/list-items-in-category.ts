@@ -32,11 +32,11 @@ export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
 export async function listItemsInCategory(categoryId: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.itemsInCategory(categoryId);
+    const url = paths.items.withCategory(categoryId);
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);
