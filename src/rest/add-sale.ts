@@ -25,7 +25,7 @@ export async function addSale(payload: Payload ): Promise<RestResult<number>>
 
     try
     {
-        const response = await axios.post<unknown>( url, payload );
+        const response = await axios.post<unknown>( url.str(), payload );
         const data = SuccessResponse.parse(response.data);
 
         return success(data.saleId);

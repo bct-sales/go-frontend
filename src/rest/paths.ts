@@ -109,7 +109,7 @@ class RestPaths
 
     get categories() { return new CategoriesURL(this.root.addUrlParts('categories')); }
 
-    get sales() { return `${this.root.str()}/sales`; }
+    get sales() { return this.root.addUrlParts('sales') as URL; }
 
     get soldItems() { return new SoldItemsURL(this.root.addUrlParts('sales', 'items')); }
 
