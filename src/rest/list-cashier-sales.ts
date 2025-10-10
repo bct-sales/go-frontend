@@ -30,7 +30,7 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);
@@ -44,11 +44,11 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
 
 export async function listRecentCashierSales(cashierId: number, count: number, offset: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.recentCashierSales(cashierId, count, offset);
+    const url = paths.cashierSales(cashierId).withOrder('antichronological').withRowRange(count, offset);
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);

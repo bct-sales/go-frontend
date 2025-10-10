@@ -100,6 +100,19 @@ export class SalesURL extends URLWrapper
     }
 }
 
+export class CashierSales extends URLWrapper
+{
+    withRowRange(offset: number, limit: number): CashierSales
+    {
+        return new CashierSales(this.url.addQuery('offset', offset.toString()).addQuery('limit', limit.toString()));
+    }
+
+    withOrder(order: 'chronological' | 'antichronological'): SalesURL
+    {
+        return new SalesURL(this.url.addQuery('order', order));
+    }
+}
+
 class RestPaths
 {
     private readonly root: ConcreteURL;
@@ -115,13 +128,13 @@ class RestPaths
 
     get users() { return new UsersURL(this.root.addUrlParts('users')); }
 
-    user(userId: number): URL { return this.root.addUrlParts('users', userId.toString()); }
+    user(userId: number): URL { return this.root.addUrlParts('users', userId.toString()) as URL; }
 
     sellerItems(sellerId: number) { return this.root.addUrlParts('sellers', sellerId.toString(), 'items') as URL; }
 
     get items() { return new ItemsURL(this.root.addUrlParts('items')); }
 
-    item(itemId: number) { return this.root.addUrlParts('items', itemId.toString()); }
+    item(itemId: number) { return this.root.addUrlParts('items', itemId.toString()) as URL; }
 
     get categories() { return new CategoriesURL(this.root.addUrlParts('categories')); }
 
@@ -129,11 +142,9 @@ class RestPaths
 
     get soldItems() { return new SoldItemsURL(this.root.addUrlParts('sales', 'items')); }
 
-    sale(saleId: number) { return `${this.root.str()}/sales/${saleId}`; }
+    sale(saleId: number) { return this.root.addUrlParts('sales', saleId.toString()) as URL; }
 
-    cashierSales(cashierId: number) { return `${this.root.str()}/cashiers/${cashierId}/sales`; }
-
-    recentCashierSales(cashierId: number, count: number, offset: number) { return `${this.root.str()}/cashiers/${cashierId}/sales?order=antichronological&offset=${offset}&limit=${count}`; }
+    cashierSales(cashierId: number) { return new CashierSales(this.root.addUrlParts('cashiers', cashierId.toString(), 'sales')); }
 }
 
 export const paths = new RestPaths(ROOT_URL);

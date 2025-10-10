@@ -40,7 +40,7 @@ export async function getSaleInformation(itemId: number): Promise<RestResult<Suc
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);
