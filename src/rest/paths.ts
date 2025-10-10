@@ -69,6 +69,11 @@ class ItemsURL extends URLWrapper
     {
         return new ItemsURL(this.url.addQuery('category', categoryId.toString()));
     }
+
+    withDescriptionFilter(description: string): ItemsURL
+    {
+        return new ItemsURL(this.url.addQuery('description', description));
+    }
 }
 
 class SoldItemsURL extends URLWrapper

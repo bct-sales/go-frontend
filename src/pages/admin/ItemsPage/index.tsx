@@ -1,9 +1,9 @@
 import Loading from "@/components/Loading";
-import { Item, listItems, SuccessResponse } from "@/rest/list-items";
+import { Item, listItems, SuccessResponse, Options } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
 import { range } from "@/util";
-import { Center, Group, Pagination, Select, Stack, Table } from "@mantine/core";
+import { Center, Group, Input, Pagination, Select, Stack, Table } from "@mantine/core";
 import React, { useCallback, useEffect, useState } from "react";
 import ItemsTable from "./ItemsTable";
 import CaptionedBox from "@/components/CaptionedBox";
@@ -16,22 +16,41 @@ import ExportButton from "@/components/ExportButton";
 
 export default function ItemsPage() : React.ReactNode
 {
-    const itemsPerPage = 20;
     const [itemsStatus, setItemsStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
+    const itemsPerPage = 20;
     const [page, setPage] = useState(1);
-    const refresh = useCallback(async () => {
-        const response = await listItems(itemsPerPage * (page - 1), itemsPerPage);
+    const [descriptionFilter, setDescriptionFilter] = useState("");
+    const [debouncedDescriptionFilter, setDebouncedDescriptionFilter] = useState("");
 
-        if (response.success)
-        {
-            setItemsStatus({status: "success", value: response.value});
-        }
-        else
-        {
-            setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
-        }
-    }, [page]);
-    useEffect(() => { refresh(); }, [refresh]);
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedDescriptionFilter(descriptionFilter);
+        }, 1000);
+
+        return () => clearTimeout(handler);
+    }, [descriptionFilter]);
+
+    useEffect(() => {
+        void (async () => {
+            const options: Options = { rowRange: { start: itemsPerPage * (page - 1), count: itemsPerPage } };
+
+            if ( debouncedDescriptionFilter.length !== 0 )
+            {
+                options.descriptionFilter = debouncedDescriptionFilter;
+            }
+
+            const response = await listItems(options);
+
+            if (response.success)
+            {
+                setItemsStatus({status: "success", value: response.value});
+            }
+            else
+            {
+                setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
+            }
+        })();
+    }, [page, debouncedDescriptionFilter]);
 
     switch (itemsStatus.status)
     {
@@ -73,6 +92,7 @@ export default function ItemsPage() : React.ReactNode
             <>
                 <Stack>
                     {renderOverview()}
+                    {renderFilteringControls()}
                     <Group justify="space-between" align="center" mb="md">
                         {renderPaginationControls()}
                         <ExportButton formats={exportFormats} />
@@ -84,6 +104,38 @@ export default function ItemsPage() : React.ReactNode
             </>
         );
 
+
+        function renderFilteringControls(): React.ReactNode
+        {
+            return (
+                <Table>
+                    <Table.Tbody>
+                        <Table.Th>
+                            Description
+                        </Table.Th>
+                        <Table.Td>
+                            <Input value={descriptionFilter} onChange={e => onDescriptionFilterChanged(e.currentTarget.value)} />
+                        </Table.Td>
+                    </Table.Tbody>
+                </Table>
+            );
+        }
+
+        function onDescriptionFilterChanged(newDescriptionFilter: string)
+        {
+            setDescriptionFilter(newDescriptionFilter);
+            // setActiveDescriptionFilter(newDescriptionFilter);
+            // setDescriptionFilter(newDescriptionFilter);
+
+            // setTimeout(() => {
+            //     console.log(descriptionFilter, newDescriptionFilter, activeDescriptionFilter);
+
+            //     if ( descriptionFilter === newDescriptionFilter )
+            //     {
+            //         setActiveDescriptionFilter(newDescriptionFilter);
+            //     }
+            // }, 1000);
+        }
 
         function renderOverview(): React.ReactNode
         {

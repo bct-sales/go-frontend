@@ -4,6 +4,7 @@ import { convertExceptionToFailure, RestResult } from '@/rest/result';
 import { paths } from '@/rest/paths';
 import { DateTime } from '@/datetime';
 import { success } from '@/result';
+import { URL } from './paths';
 
 
 const Item = z.object({
@@ -29,10 +30,14 @@ const SuccessResponse = z.object({
 
 export type SuccessResponse = z.infer<typeof SuccessResponse>;
 
+export type Options = {
+    rowRange?: { start: number, count: number };
+    descriptionFilter?: string;
+};
 
-export async function listItems(start: number, count: number): Promise<RestResult<SuccessResponse>>
+export async function listItems(options: Options): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.items.withRowRange(start, count);
+    const url = buildUrl();
 
     try
     {
@@ -45,5 +50,23 @@ export async function listItems(start: number, count: number): Promise<RestResul
     {
         console.error(exception);
         return convertExceptionToFailure(exception);
+    }
+
+
+    function buildUrl(): URL
+    {
+        let url = paths.items;
+
+        if ( options.rowRange )
+        {
+            url = url.withRowRange(options.rowRange.start, options.rowRange.count);
+        }
+
+        if ( options.descriptionFilter )
+        {
+            url = url.withDescriptionFilter(options.descriptionFilter);
+        }
+
+        return url;
     }
 }
