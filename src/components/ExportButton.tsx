@@ -36,7 +36,7 @@ export default function ExportButton(props: Props): React.ReactNode
     function renderFormatMenuItem(format: ExportFormat): React.ReactNode
     {
         return (
-            <Menu.Item component={Link} to={format.url.toString()} target="_blank" download={format.filename}>
+            <Menu.Item component={Link} to={format.url.str()} target="_blank" download={format.filename}>
                 {format.caption}
             </Menu.Item>
         );

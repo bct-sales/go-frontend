@@ -9,7 +9,7 @@ export async function logout(): Promise<void>
 
     try
     {
-        await axios.post<unknown>(url.toString());
+        await axios.post<unknown>(url.str());
     }
     catch ( exception: unknown )
     {

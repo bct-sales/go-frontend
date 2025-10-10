@@ -59,12 +59,12 @@ export default function ItemsPage() : React.ReactNode
         const exportFormats = [
             {
                 caption: 'CSV',
-                url: paths.itemsAsCsv,
+                url: paths.items.withFormat('csv'),
                 filename: 'items.csv',
             },
             {
                 caption: 'JSON',
-                url: paths.itemsAsJson,
+                url: paths.items.withFormat('json'),
                 filename: 'items.json',
             },
         ];

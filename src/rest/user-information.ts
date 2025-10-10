@@ -80,7 +80,7 @@ export async function getUserInformation(userId: number): Promise<RestResult<Suc
 
     try
     {
-        const response = await axios.get<unknown>(url.toString());
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success(data);

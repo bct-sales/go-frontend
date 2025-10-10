@@ -20,7 +20,7 @@ export async function getSellerSummary(userId: number): Promise<RestResult<Selle
 
     try
     {
-        const response = await axios.get<unknown>(url.toString());
+        const response = await axios.get<unknown>(url.str());
         const data = SellerSummary.parse(response.data);
 
         return success(data);

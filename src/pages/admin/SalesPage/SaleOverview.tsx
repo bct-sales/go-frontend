@@ -20,12 +20,12 @@ export default function SaleOverview(props: Props): React.ReactNode
     const exportFormats = [
         {
             caption: 'CSV',
-            url: paths.soldItemsAsCsv,
+            url: paths.soldItems.withFormat('csv'),
             filename: 'sold-items.csv',
         },
         {
             caption: 'JSON',
-            url: paths.soldItemsAsJson,
+            url: paths.soldItems.withFormat('json'),
             filename: 'sold-items.json',
         },
     ]
