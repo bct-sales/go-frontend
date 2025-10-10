@@ -29,7 +29,7 @@ export async function addItem(sellerId: number, payload: Payload ): Promise<Rest
 
     try
     {
-        const response = await axios.post<unknown>( url, payload );
+        const response = await axios.post<unknown>( url.str(), payload );
         const data = SuccessResponse.parse(response.data);
 
         return success(data.itemId);

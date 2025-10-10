@@ -34,7 +34,7 @@ export async function listSellerItems(sellerId: number): Promise<RestResult<Succ
 
     try
     {
-        const response = await axios.get<unknown>(url);
+        const response = await axios.get<unknown>(url.str());
         const data = SuccessResponse.parse(response.data);
 
         return success({ items: data.items });

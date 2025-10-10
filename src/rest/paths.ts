@@ -117,7 +117,7 @@ class RestPaths
 
     user(userId: number): URL { return this.root.addUrlParts('users', userId.toString()); }
 
-    sellerItems(sellerId: number) { return `${this.root.str()}/sellers/${sellerId}/items`; }
+    sellerItems(sellerId: number) { return this.root.addUrlParts('sellers', sellerId.toString(), 'items') as URL; }
 
     get items() { return new ItemsURL(this.root.addUrlParts('items')); }
 
