@@ -83,7 +83,7 @@ class CategoriesURL extends URLWrapper
 {
     withItemCounts(selection: 'visible' | 'hidden' | 'sold')
     {
-        return new CategoriesURL(this.url.addQuery('items', selection));
+        return new CategoriesURL(this.url.addQuery('counts', selection));
     }
 }
 
