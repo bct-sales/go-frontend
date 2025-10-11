@@ -74,7 +74,7 @@ export default function ItemsPage() : React.ReactNode
     function renderPage(items: Item[], totalItemCount: number, totalItemValue: number): React.ReactNode
     {
         const lastPage = Math.ceil(totalItemCount / itemsPerPage);
-        const pageRange = range(1, lastPage).map(p => `${p}`);
+        const pageRange = range(1, lastPage + 1).map(p => `${p}`);
         const exportFormats = [
             {
                 caption: 'CSV',
