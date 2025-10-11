@@ -24,6 +24,7 @@ export default function ItemsPage() : React.ReactNode
 
     useEffect(() => {
         const handler = setTimeout(() => {
+            setPage(1);
             setDebouncedDescriptionFilter(descriptionFilter);
         }, 1000);
 
