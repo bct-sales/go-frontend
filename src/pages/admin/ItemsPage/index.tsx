@@ -114,27 +114,11 @@ export default function ItemsPage() : React.ReactNode
                             Description
                         </Table.Th>
                         <Table.Td>
-                            <Input value={descriptionFilter} onChange={e => onDescriptionFilterChanged(e.currentTarget.value)} />
+                            <Input value={descriptionFilter} onChange={e => setDescriptionFilter(e.currentTarget.value)} />
                         </Table.Td>
                     </Table.Tbody>
                 </Table>
             );
-        }
-
-        function onDescriptionFilterChanged(newDescriptionFilter: string)
-        {
-            setDescriptionFilter(newDescriptionFilter);
-            // setActiveDescriptionFilter(newDescriptionFilter);
-            // setDescriptionFilter(newDescriptionFilter);
-
-            // setTimeout(() => {
-            //     console.log(descriptionFilter, newDescriptionFilter, activeDescriptionFilter);
-
-            //     if ( descriptionFilter === newDescriptionFilter )
-            //     {
-            //         setActiveDescriptionFilter(newDescriptionFilter);
-            //     }
-            // }, 1000);
         }
 
         function renderOverview(): React.ReactNode
