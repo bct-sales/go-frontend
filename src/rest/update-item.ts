@@ -11,6 +11,7 @@ const Payload = z.object({
     categoryId: z.number().int().nonnegative().optional(),
     donation: z.boolean().optional(),
     charity: z.boolean().optional(),
+    large: z.boolean().optional(),
 }).strict();
 
 export type Payload = z.infer<typeof Payload>;

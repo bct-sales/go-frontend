@@ -16,6 +16,7 @@ const Item = z.object({
 	donation: z.boolean(),
 	charity: z.boolean(),
     frozen: z.boolean(),
+    large: z.boolean(),
     soldIn: z.array(z.number()),
 });
 
