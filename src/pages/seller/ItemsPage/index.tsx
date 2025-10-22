@@ -106,8 +106,8 @@ export default function ItemsPage(props: Props) : React.ReactNode
                 addedAtColumn,
                 categoryColumn,
                 priceInCentsColumn,
-                donationColumn,
                 largeColumn,
+                donationColumn,
             ];
         }
         else
@@ -119,8 +119,8 @@ export default function ItemsPage(props: Props) : React.ReactNode
                 addedAtColumn,
                 categoryColumn,
                 priceInCentsColumn,
-                donationColumn,
                 largeColumn,
+                donationColumn,
             ];
         }
     }
