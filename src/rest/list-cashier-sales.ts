@@ -44,7 +44,7 @@ export async function listCashierSales(cashierId: number): Promise<RestResult<Su
 
 export async function listRecentCashierSales(cashierId: number, count: number, offset: number): Promise<RestResult<SuccessResponse>>
 {
-    const url = paths.cashierSales(cashierId).withOrder('antichronological').withRowRange(count, offset);
+    const url = paths.cashierSales(cashierId).withOrder('antichronological').withRowRange(offset, count);
 
     try
     {
