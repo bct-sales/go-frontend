@@ -1,5 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/components/ItemsTable/ItemsTable";
 import { Button, Center, Stack } from "@mantine/core";
 
@@ -20,6 +20,7 @@ export default function SimpleItemSelectionSubpage(props: Props): React.ReactNod
         descriptionColumn,
         categoryColumn,
         priceInCentsColumn,
+        largeColumn,
         donationColumn,
     ];
 

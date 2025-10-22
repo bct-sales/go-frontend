@@ -1,6 +1,6 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
+import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
 import { Item } from "@/components/ItemsTable/ItemsTable";
 import NumberInput from "@/components/NumberInput";
 import { Button, Group, Stack, Text } from "@mantine/core";
@@ -28,6 +28,7 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactN
         descriptionColumn,
         categoryColumn,
         priceInCentsColumn,
+        largeColumn,
         donationColumn,
     ];
 
