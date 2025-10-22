@@ -111,9 +111,11 @@ export function copyColumn(onClick: (item: Item) => void): Column
         className: classes.itemCopy,
         viewer: (item: Item) => {
             return (
-                <Button onClick={() => onClick(item)} variant="subtle">
-                    <IconCopyPlus />
-                </Button>
+                <Tooltip label="Copy item" openDelay={500}>
+                    <Button onClick={() => onClick(item)} variant="subtle">
+                        <IconCopyPlus />
+                    </Button>
+                </Tooltip>
             );
         },
     };
