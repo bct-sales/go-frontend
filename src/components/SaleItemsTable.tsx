@@ -61,10 +61,10 @@ export default function ItemsTable(props: Props): React.ReactNode
                     <Price priceInCents={item.priceInCents} />
                 </Table.Td>
                 <Table.Td className={classes.alertColumn}>
-                    {renderRemoveButton(index)}
+                    {renderWarning(item)}
                 </Table.Td>
                 <Table.Td className={classes.alertColumn}>
-                    {renderWarning(item)}
+                    {renderRemoveButton(index)}
                 </Table.Td>
             </Table.Tr>
         );
