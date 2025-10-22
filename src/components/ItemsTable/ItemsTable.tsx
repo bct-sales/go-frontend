@@ -22,6 +22,7 @@ export interface Item
     donation: boolean;
     charity: boolean;
     frozen: boolean;
+    large: boolean;
 }
 
 export interface Column

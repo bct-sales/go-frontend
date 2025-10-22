@@ -12,6 +12,7 @@ import FrozenViewer from "@/components/FrozenViewer";
 import { Column, Item } from "./ItemsTable";
 import classes from './ItemsTable.module.css';
 import SmartSelection from "./SmartSelection";
+import LargeItemViewer from "../LargeItemViewer";
 
 
 export const itemIdColumn: Column = {
@@ -70,6 +71,12 @@ export const sellerColumn: Column = {
     header: 'Seller',
     className: classes.itemSeller,
     viewer: (item: Item) => <UserIdViewer userId={item.sellerId} />,
+};
+
+export const largeColumn: Column = {
+    header: 'Large',
+    className: classes.itemLarge,
+    viewer: (item: Item) => <LargeItemViewer value={item.large} />,
 };
 
 export function editColumn(onClick: (item: Item) => void): Column

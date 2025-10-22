@@ -16,6 +16,7 @@ const ItemInformation = z.object({
     charity: z.boolean(),
     donation: z.boolean(),
     frozen: z.boolean(),
+    large: z.boolean(),
     saleCount: z.number().nonnegative(),
 });
 

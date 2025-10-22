@@ -39,6 +39,10 @@
         text-align: center;
     }
 
+    & .itemLarge {
+        text-align: center;
+    }
+
     & .itemDonation {
         text-align: center;
     }
