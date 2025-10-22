@@ -1,17 +1,17 @@
+import CaptionedBox from "@/components/CaptionedBox";
+import ExportButton from "@/components/ExportButton";
 import Loading from "@/components/Loading";
-import { Item, listItems, SuccessResponse, Options } from "@/rest/list-items";
+import Price from "@/components/Price";
+import RestErrorViewer from "@/components/RestErrorViewer";
+import ErrorPage from "@/pages/ErrorPage";
+import { Item, listItems, Options, SuccessResponse } from "@/rest/list-items";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
 import { range } from "@/util";
 import { Center, Group, Input, Pagination, Select, Stack, Table } from "@mantine/core";
-import React, { useCallback, useEffect, useState } from "react";
-import ItemsTable from "./ItemsTable";
-import CaptionedBox from "@/components/CaptionedBox";
+import React, { useEffect, useState } from "react";
 import classes from './ItemsPage.module.css';
-import Price from "@/components/Price";
-import ErrorPage from "@/pages/ErrorPage";
-import RestErrorViewer from "@/components/RestErrorViewer";
-import ExportButton from "@/components/ExportButton";
+import ItemsTable from "./ItemsTable";
 
 
 export default function ItemsPage() : React.ReactNode
