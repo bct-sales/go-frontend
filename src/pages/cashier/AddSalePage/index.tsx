@@ -271,8 +271,7 @@ export default function AddSalePage(): React.ReactNode
 
     function removeItemWithIndex(index: number): void
     {
-        const updatedItems = saleItems.filter((_, i) => i !== index);
-        setSaleItems(updatedItems);
+        setSaleItems(saleItems => saleItems.filter((_, i) => i !== index));
     }
 
     function removeAllSaleItems(): void
