@@ -7,7 +7,7 @@ interface Props
     className?: string;
 }
 
-export default function LargeItemCheckboxIcon(props: Props): React.ReactNode
+export default function LargeItemIcon(props: Props): React.ReactNode
 {
     return (
         <IconArrowsMaximize className={props.className} />

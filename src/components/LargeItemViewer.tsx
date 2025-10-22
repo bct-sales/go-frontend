@@ -1,5 +1,5 @@
 import { Tooltip } from "@mantine/core";
-import LargeItemCheckboxIcon from "./LargeItemCheckboxIcon";
+import LargeItemIcon from "./LargeItemIcon";
 
 interface Props
 {
@@ -15,7 +15,7 @@ export default function FrozenViewer(props: Props): React.ReactNode
     {
         return (
             <Tooltip label="This is a large item." openDelay={500}>
-                <LargeItemCheckboxIcon />
+                <LargeItemIcon />
             </Tooltip>
         );
     }

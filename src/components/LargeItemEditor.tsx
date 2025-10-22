@@ -1,6 +1,6 @@
 import { Checkbox, Flex } from "@mantine/core";
 import HelpPopover from "./HelpPopover";
-import LargeItemCheckboxIcon from "./LargeItemCheckboxIcon";
+import LargeItemIcon from "./LargeItemIcon";
 
 
 interface Props
@@ -13,7 +13,7 @@ export default function DonationEditor(props: Props): React.ReactNode
 {
     return (
         <Flex justify="space-between">
-            <Checkbox icon={LargeItemCheckboxIcon} checked={props.isLarge} onChange={onChange} label="Large Item" size="lg" />
+            <Checkbox icon={LargeItemIcon} checked={props.isLarge} onChange={onChange} label="Large Item" size="lg" />
             <HelpPopover>
                 Indicates this is a large item.
             </HelpPopover>
