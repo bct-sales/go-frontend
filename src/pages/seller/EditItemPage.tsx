@@ -21,6 +21,7 @@ export default function EditItemPage() : React.ReactNode
         categoryId: null,
         charity: false,
         donation: false,
+        large: false,
     });
 
     useEffect(() => {
@@ -28,9 +29,9 @@ export default function EditItemPage() : React.ReactNode
             const item = await getItemInformation(itemId);
 
             if (item.success) {
-                const { description, priceInCents, categoryId, charity, donation } = item.value;
+                const { description, priceInCents, categoryId, charity, donation, large } = item.value;
                 setOriginalData({ status: 'success', value: item.value });
-                setItemData({ description, priceInCents, categoryId, charity, donation });
+                setItemData({ description, priceInCents, categoryId, charity, donation, large });
             } else {
                 setOriginalData({ status: 'error', tag: item.error.type, details: item.error.details });
             }
@@ -76,6 +77,7 @@ export default function EditItemPage() : React.ReactNode
                 categoryId: itemData.categoryId!,
                 charity: itemData.charity,
                 donation: itemData.donation,
+                large: itemData.large,
             };
 
             const response = await updateItem(itemId, payload);
