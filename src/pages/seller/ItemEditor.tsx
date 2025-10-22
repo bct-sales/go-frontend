@@ -3,6 +3,7 @@ import DonationEditor from "@/components/DonationEditor";
 import ItemCategoryEditor from "@/components/ItemCategoryEditor";
 import ItemDescriptionEditor from "@/components/ItemDescriptionEditor";
 import ItemPriceEditor from "@/components/ItemPriceEditor";
+import LargeItemEditor from "@/components/LargeItemEditor";
 
 
 interface Props
@@ -18,11 +19,12 @@ export interface ItemData
     categoryId: number | null;
     charity: boolean;
     donation: boolean;
+    large: boolean;
 }
 
 export default function ItemEditor(props: Props): React.ReactNode
 {
-    const { description, priceInCents, categoryId, donation } = props.itemData;
+    const { description, priceInCents, categoryId, donation, large } = props.itemData;
 
     return (
         <Flex direction="column" align="stretch" justify="center" gap='md'>
@@ -30,6 +32,7 @@ export default function ItemEditor(props: Props): React.ReactNode
             <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} quickButtons={[100, 200, 500, 1000]} />
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />
             <DonationEditor donation={donation} setDonation={setDonation} />
+            <LargeItemEditor isLarge={large} setIsLarge={setLarge} />
         </Flex>
     );
 
@@ -52,5 +55,10 @@ export default function ItemEditor(props: Props): React.ReactNode
     function setDonation(donation: boolean): void
     {
         props.setItemData({ ...props.itemData, donation });
+    }
+
+    function setLarge(large: boolean): void
+    {
+        props.setItemData({ ...props.itemData, large });
     }
 }

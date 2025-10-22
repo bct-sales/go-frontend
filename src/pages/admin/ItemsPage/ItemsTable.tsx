@@ -8,6 +8,7 @@ import { Flex } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import classes from './ItemsTable.module.css';
 import FrozenViewer from "@/components/FrozenViewer";
+import LargeItemViewer from "@/components/LargeItemViewer";
 
 export interface Item
 {
@@ -20,6 +21,7 @@ export interface Item
     donation: boolean;
     charity: boolean;
     frozen: boolean;
+    large: boolean;
 }
 
 interface Props
@@ -79,11 +81,17 @@ export default function ItemsPage(props: Props): React.ReactNode
                     cellsClassName: classes.donationColumn,
                 },
                 {
+                    accessor: 'large',
+                    title: '',
+                    render: (item: Item) => <LargeItemViewer value={item.large} />,
+                    cellsClassName: classes.largeColumn,
+                },
+                {
                     accessor: 'frozen',
-                    title: 'Frozen',
+                    title: '',
                     render: (item: Item) => <FrozenViewer value={item.frozen} />,
                     cellsClassName: classes.frozenColumn,
-                }
+                },
             ]}
         />
     );

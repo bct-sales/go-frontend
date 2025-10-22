@@ -13,8 +13,8 @@ interface Props
 
 export default function AddItemPage(props: Props) : React.ReactNode
 {
-    const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false});
-    const { description, priceInCents, categoryId, charity, donation } = itemData;
+    const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false, large: false});
+    const { description, priceInCents, categoryId, charity, donation, large } = itemData;
     const isValidData = checkValidity();
 
     return (
@@ -34,6 +34,7 @@ export default function AddItemPage(props: Props) : React.ReactNode
                 categoryId: categoryId!,
                 charity,
                 donation,
+                large,
             };
 
             const response = await addItem(props.sellerId, payload);
@@ -86,6 +87,7 @@ export default function AddItemPage(props: Props) : React.ReactNode
             categoryId: null,
             charity: false,
             donation: false,
+            large: false,
         });
     }
 }

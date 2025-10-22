@@ -28,15 +28,19 @@
 }
 
 .donationColumn {
-    width: 4em;
+    width: 3em;
 }
 
 .charityColumn {
-    width: 4em;
+    width: 3em;
 }
 
 .frozenColumn {
-    width: 4em;
+    width: 3em;
+}
+
+.largeColumn {
+    width: 3em;
 }
 
 .priceColumn {
