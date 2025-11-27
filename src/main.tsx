@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.css'
- import '@mantine/core/styles.css';
+import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import 'mantine-datatable/styles.css';
 import '@mantine/charts/styles.css';
