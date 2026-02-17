@@ -48,7 +48,7 @@ export default function UsersOverviewPage()
     }
 
 
-    function renderPage(users: User[]): React.ReactNode
+    function renderPage(users: User[]): React.ReactElement
     {
         const exportFormats = [
             {

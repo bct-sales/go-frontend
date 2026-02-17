@@ -4,7 +4,7 @@ import React from "react";
 
 interface Props
 {
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
 
 export default function UpdateProvider(props: Props)

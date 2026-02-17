@@ -7,7 +7,7 @@ interface Props
 }
 
 
-export default function DonationViewer(props: Props): React.ReactNode
+export default function DonationViewer(props: Props): React.ReactElement
 {
     const { value } = props;
 

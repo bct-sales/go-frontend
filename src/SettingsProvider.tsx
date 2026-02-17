@@ -3,7 +3,7 @@ import { createSettings, defaultSettings as defaultSettingsData, SettingsContext
 import { useHotkeys } from "@mantine/hooks";
 
 
-export function SettingsProvider({ children }: { children: React.ReactNode }): React.ReactElement
+export function SettingsProvider({ children }: { children: React.ReactElement }): React.ReactElement
 {
     const [settingsData, setSettingsData] = React.useState<SettingsData>(defaultSettingsData);
     const settings = createSettings(settingsData, setSettingsData);

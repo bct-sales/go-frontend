@@ -8,7 +8,7 @@ interface Props
     role: Role;
 }
 
-export default function AuthenticationViewer(props : Props) : React.ReactNode
+export default function AuthenticationViewer(props : Props) : React.ReactElement
 {
     return (
         <Stack gap="xs" className={classes.container}>

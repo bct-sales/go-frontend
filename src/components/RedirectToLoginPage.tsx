@@ -4,7 +4,7 @@ import Delayed from "./Delayed";
 import { Text } from "@mantine/core";
 
 
-export default function RedirectToLoginPage(): React.ReactNode
+export default function RedirectToLoginPage(): React.ReactElement
 {
     const navigate = useNavigate();
 

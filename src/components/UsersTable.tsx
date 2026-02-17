@@ -24,7 +24,7 @@ interface User
     itemCount: number;
 }
 
-export default function UsersTable(props: Props): React.ReactNode
+export default function UsersTable(props: Props): React.ReactElement
 {
     const { users } = props;
     const [ sortStatus, setSortStatus ] = useState<DataTableSortStatus<User>>({
@@ -96,7 +96,7 @@ export default function UsersTable(props: Props): React.ReactNode
     );
 
 
-    function renderLastActivity(lastActivity: User['lastActivity']): React.ReactNode
+    function renderLastActivity(lastActivity: User['lastActivity']): React.ReactElement
     {
         if (lastActivity === undefined)
         {

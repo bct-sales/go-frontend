@@ -7,10 +7,10 @@ import classes from './ErrorPage.module.css';
 
 interface Props
 {
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
 
-export default function ErrorPage(props: Props): React.ReactNode
+export default function ErrorPage(props: Props): React.ReactElement
 {
     const authentication = useAuthentication();
     const navigate = useNavigate();

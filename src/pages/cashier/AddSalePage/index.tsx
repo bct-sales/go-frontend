@@ -14,7 +14,7 @@ import classes from './AddSalePage.module.css';
 import ConsumablesViewer from "./ConsumablesViewer";
 
 
-export default function AddSalePage(): React.ReactNode
+export default function AddSalePage(): React.ReactElement
 {
     const [step, setStep] = useState(0);
     const [saleItems, setSaleItems] = useState<Item[]>([]);
@@ -102,7 +102,7 @@ export default function AddSalePage(): React.ReactNode
     );
 
 
-    function renderConsumables(): React.ReactNode
+    function renderConsumables(): React.ReactElement
     {
         return (
             <ConsumablesViewer onAddItem={onAddItemWithId} />
@@ -279,7 +279,7 @@ export default function AddSalePage(): React.ReactNode
         setSaleItems([]);
     }
 
-    function renderSaleItems(): React.ReactNode
+    function renderSaleItems(): React.ReactElement
     {
         if ( saleItems.length === 0 )
         {

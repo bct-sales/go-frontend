@@ -56,7 +56,7 @@ export default function UserSubpage()
     }
 
 
-    function renderPage(userInformation: SuccessResponse): React.ReactNode
+    function renderPage(userInformation: SuccessResponse): React.ReactElement
     {
         switch (userInformation.role)
         {
@@ -69,14 +69,14 @@ export default function UserSubpage()
         }
     }
 
-    function renderAdmin(userInformation: AdminUserInformation): React.ReactNode
+    function renderAdmin(userInformation: AdminUserInformation): React.ReactElement
     {
         return (
             <UserTable {...userInformation} />
         );
     }
 
-    function renderSeller(userInformation: SellerUserInformation): React.ReactNode
+    function renderSeller(userInformation: SellerUserInformation): React.ReactElement
     {
         const columns = [
             frozenColumn,
@@ -97,7 +97,7 @@ export default function UserSubpage()
         );
     }
 
-    function renderCashier(userInformation: CashierUserInformation): React.ReactNode
+    function renderCashier(userInformation: CashierUserInformation): React.ReactElement
     {
         return (
             <Stack>

@@ -7,7 +7,7 @@ interface Props
     layout: LabelLayoutData
 }
 
-export default function LabelLayoutViewer(props: Props): React.ReactNode
+export default function LabelLayoutViewer(props: Props): React.ReactElement
 {
     const { layout: labelLayout } = props;
     const layoutHelper = new LayoutHelper(labelLayout);
@@ -22,7 +22,7 @@ export default function LabelLayoutViewer(props: Props): React.ReactNode
     );
 
 
-    function renderLabels(): React.ReactNode
+    function renderLabels(): React.ReactElement
     {
         const rectangles = layoutHelper.labels;
 
@@ -37,7 +37,7 @@ export default function LabelLayoutViewer(props: Props): React.ReactNode
         );
     }
 
-    function renderLabel(label: Label): React.ReactNode
+    function renderLabel(label: Label): React.ReactElement
     {
         return (
             <>

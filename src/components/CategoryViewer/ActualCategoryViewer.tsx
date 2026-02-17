@@ -6,7 +6,7 @@ interface Props
     categoryId: number;
 }
 
-export default function ActualCategoryViewer(props: Props): React.ReactNode
+export default function ActualCategoryViewer(props: Props): React.ReactElement
 {
     const categoryTable = useCategoryContext();
 

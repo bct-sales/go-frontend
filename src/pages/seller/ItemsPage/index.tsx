@@ -18,7 +18,7 @@ interface Props
     sellerId: number;
 }
 
-export default function ItemsPage(props: Props) : React.ReactNode
+export default function ItemsPage(props: Props) : React.ReactElement
 {
     const [status, setStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
     const settings = useSettings();
@@ -55,7 +55,7 @@ export default function ItemsPage(props: Props) : React.ReactNode
     }
 
 
-    function renderPage(items: Item[]): React.ReactNode
+    function renderPage(items: Item[]): React.ReactElement
     {
         return (
             <Stack>

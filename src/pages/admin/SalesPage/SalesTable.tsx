@@ -32,7 +32,7 @@ export interface Item
 	donation: boolean;
 }
 
-export default function SalesTable(props: Props): React.ReactNode
+export default function SalesTable(props: Props): React.ReactElement
 {
     const { sales } = props;
 

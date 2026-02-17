@@ -13,7 +13,7 @@ interface Props
     sellerId: number;
 }
 
-export default function OverviewPage(props: Props): React.ReactNode
+export default function OverviewPage(props: Props): React.ReactElement
 {
     const navigate = useNavigate();
     const [status, setStatus] = useState<RestStatus<SellerSummary>>({ status: 'loading' });
@@ -47,7 +47,7 @@ export default function OverviewPage(props: Props): React.ReactNode
             return <div>Error: {status.details}</div>;
     }
 
-    function renderPage(sellerSummary: SellerSummary): React.ReactNode
+    function renderPage(sellerSummary: SellerSummary): React.ReactElement
     {
         const labelsToBePrinted = sellerSummary.itemCount - sellerSummary.frozenItemCount;
         const activePhase = determineActivePhase(sellerSummary);
@@ -128,7 +128,7 @@ export default function OverviewPage(props: Props): React.ReactNode
         );
 
 
-        function printLabelsMessage(): React.ReactNode
+        function printLabelsMessage(): React.ReactElement
         {
             if ( labelsToBePrinted === 0 )
             {

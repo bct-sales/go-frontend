@@ -11,7 +11,7 @@ interface Props
     quickButtons?: number[];
 }
 
-export default function ItemPriceEditor(props: Props): React.ReactNode
+export default function ItemPriceEditor(props: Props): React.ReactElement
 {
     const numberInputRef = useRef<HTMLInputElement>(null);
     const { priceInCents, setPriceInCents } = props;
@@ -42,7 +42,7 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
     );
 
 
-    function renderQuickButtons(): React.ReactNode
+    function renderQuickButtons(): React.ReactElement
     {
         if ( props.quickButtons && props.quickButtons.length > 0 )
         {
@@ -58,7 +58,7 @@ export default function ItemPriceEditor(props: Props): React.ReactNode
         }
     }
 
-    function renderQuickButton(priceInCents: number): React.ReactNode
+    function renderQuickButton(priceInCents: number): React.ReactElement
     {
         const euros = Math.floor(priceInCents / 100);
         const cents = priceInCents % 100;

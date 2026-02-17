@@ -21,7 +21,7 @@ interface Data
     totalItemValue: number;
 }
 
-export default function SalesPage() : React.ReactNode
+export default function SalesPage() : React.ReactElement
 {
     const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
     const updateNotifier = useUpdateNotifier();
@@ -51,7 +51,7 @@ export default function SalesPage() : React.ReactNode
     }
 
 
-    function renderPage(data: Data): React.ReactNode
+    function renderPage(data: Data): React.ReactElement
     {
         return (
             <>

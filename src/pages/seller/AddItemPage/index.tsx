@@ -11,7 +11,7 @@ interface Props
     sellerId: number;
 }
 
-export default function AddItemPage(props: Props) : React.ReactNode
+export default function AddItemPage(props: Props) : React.ReactElement
 {
     const [itemData, setItemData] = useState<ItemData>({description: '', priceInCents: 50, categoryId: null, charity: false, donation: false, large: false});
     const { description, priceInCents, categoryId, charity, donation, large } = itemData;

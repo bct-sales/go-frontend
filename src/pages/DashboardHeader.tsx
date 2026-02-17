@@ -14,7 +14,7 @@ interface Props
     onToggleMenu?: () => void;
 }
 
-export default function DashboardHeader(props: Props): React.ReactNode
+export default function DashboardHeader(props: Props): React.ReactElement
 {
     return (
         <Flex direction="row" align="center" justify="space-between" gap="md" p="xl" style={{height: '100%'}}>

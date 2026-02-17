@@ -15,7 +15,7 @@ interface Props
     goToNextStep: () => void;
 }
 
-export default function AdvancedItemSelectionSubpage(props: Props): React.ReactNode
+export default function AdvancedItemSelectionSubpage(props: Props): React.ReactElement
 {
     const [ activeItemIndex, setActiveItemIndex ] = useState<number | null>(null);
     const [ quickAmount, setQuickAmount ] = useState<number>(2);

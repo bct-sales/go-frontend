@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import ActualCategoriesPage from "./ActualCategoriesPage";
 
 
-export default function CategoriesPage() : React.ReactNode
+export default function CategoriesPage() : React.ReactElement
 {
     const [itemCountsStatus, setItemCountsStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });
     const [soldItemCountsStatus, setSoldItemCountsStatus] = useState<RestStatus<ItemCountByCategory[]>>({ status: 'loading' });

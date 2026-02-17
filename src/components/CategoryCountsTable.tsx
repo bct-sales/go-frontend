@@ -15,7 +15,7 @@ export interface ItemCount
     soldCount: number;
 }
 
-export default function CategoryCountsTable(props: Props): React.ReactNode
+export default function CategoryCountsTable(props: Props): React.ReactElement
 {
     const categoryCounts = props.itemCountsByCategory;
     const total = categoryCounts.reduce((acc, curr) => acc + curr.count, 0);

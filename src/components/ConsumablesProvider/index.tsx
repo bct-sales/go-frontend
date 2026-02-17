@@ -5,10 +5,10 @@ import ActualConsumablesProvider from "./ActualConsumablesProvider";
 
 interface Props
 {
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
 
-export default function ConsumablesProvider(props: Props): React.ReactNode
+export default function ConsumablesProvider(props: Props): React.ReactElement
 {
     return (
         <CategoryProvider>

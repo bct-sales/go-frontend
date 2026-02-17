@@ -9,7 +9,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 
-export default function EditItemPage() : React.ReactNode
+export default function EditItemPage() : React.ReactElement
 {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -58,7 +58,7 @@ export default function EditItemPage() : React.ReactNode
     }
 
 
-    function renderPage(): React.ReactNode
+    function renderPage(): React.ReactElement
     {
         return (
             <Flex direction="column" align="stretch" justify="center" gap='md'>

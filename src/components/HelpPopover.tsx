@@ -6,7 +6,7 @@ interface Props
     children: React.ReactNode;
 }
 
-export default function HelpPopover(props: Props): React.ReactNode
+export default function HelpPopover(props: Props): React.ReactElement
 {
     return (
         <Popover position="bottom" shadow="md" width={250}>

@@ -12,7 +12,7 @@ interface Props
     cashierId: number;
 }
 
-export default function SalesPage(props: Props): React.ReactNode
+export default function SalesPage(props: Props): React.ReactElement
 {
     const salesPerPage = 10;
     const [status, setStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
@@ -51,7 +51,7 @@ export default function SalesPage(props: Props): React.ReactNode
     }
 
 
-    function renderPage(totalSaleCount: number, antiChronologicalSales: Sale[]): React.ReactNode
+    function renderPage(totalSaleCount: number, antiChronologicalSales: Sale[]): React.ReactElement
     {
         if (antiChronologicalSales.length === 0)
         {
@@ -87,7 +87,7 @@ export default function SalesPage(props: Props): React.ReactNode
             );
 
 
-            function renderSale(sale: Sale): React.ReactNode
+            function renderSale(sale: Sale): React.ReactElement
             {
                 return (
                     <Table.Tr key={sale.saleId}>

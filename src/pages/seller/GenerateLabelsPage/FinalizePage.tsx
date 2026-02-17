@@ -7,7 +7,7 @@ interface Props
     disabled: boolean;
 }
 
-export default function FinalizePage(props: Props): React.ReactNode
+export default function FinalizePage(props: Props): React.ReactElement
 {
     return (
         <Stack>

@@ -8,7 +8,7 @@ interface Props
 }
 
 
-export default function ItemDescriptionEditor(props: Props): React.ReactNode
+export default function ItemDescriptionEditor(props: Props): React.ReactElement
 {
     const { description, setDescription } = props;
 

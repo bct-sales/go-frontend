@@ -9,7 +9,7 @@ interface Props
     setCategoryId: (categoryId: number) => void;
 }
 
-export default function ItemCategoryEditor(props: Props): React.ReactNode
+export default function ItemCategoryEditor(props: Props): React.ReactElement
 {
     const categories = useCategories();
 
@@ -30,7 +30,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
     }
 
 
-    function renderComponent(categoryTable: CategoryTable): React.ReactNode
+    function renderComponent(categoryTable: CategoryTable): React.ReactElement
     {
         const itemCategories = categoryTable.categoryIds.map( ( categoryId ) =>
             {
@@ -53,7 +53,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactNode
         );
 
 
-        function renderError(): React.ReactNode | undefined
+        function renderError(): React.ReactNode
         {
             if ( props.categoryId === null )
             {

@@ -19,7 +19,7 @@ export interface SaleItem
     alreadySold: boolean;
 }
 
-export default function ItemsTable(props: Props): React.ReactNode
+export default function ItemsTable(props: Props): React.ReactElement
 {
     const { items } = props;
 
@@ -47,7 +47,7 @@ export default function ItemsTable(props: Props): React.ReactNode
     );
 
 
-    function renderItem(item: SaleItem, index: number): React.ReactNode
+    function renderItem(item: SaleItem, index: number): React.ReactElement
     {
         return (
             <Table.Tr key={item.itemId} className={rowClassNameFor(item)}>
@@ -96,7 +96,7 @@ export default function ItemsTable(props: Props): React.ReactNode
         return null;
     }
 
-    function renderRemoveButton(index: number): React.ReactNode
+    function renderRemoveButton(index: number): React.ReactElement
     {
         return (
             <Stack align="center" justify="center">

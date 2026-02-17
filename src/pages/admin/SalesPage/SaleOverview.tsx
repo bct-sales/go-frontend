@@ -15,7 +15,7 @@ interface Props
     totalSoldItemCount: number;
 }
 
-export default function SaleOverview(props: Props): React.ReactNode
+export default function SaleOverview(props: Props): React.ReactElement
 {
     const exportFormats = [
         {

@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export default function LogoutPage() : React.ReactNode
+export default function LogoutPage() : React.ReactElement
 {
     const authentication = useAuthentication();
     const navigate = useNavigate();

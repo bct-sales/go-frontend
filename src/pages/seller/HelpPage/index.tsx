@@ -7,10 +7,10 @@ interface FrequentlyAskedQuestion
 {
     value: string;
     question: string;
-    answer: React.ReactNode;
+    answer: React.ReactElement;
 }
 
-export default function HelpPage() : React.ReactNode
+export default function HelpPage() : React.ReactElement
 {
     return (
         <Stack>

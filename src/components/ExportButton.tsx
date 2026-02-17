@@ -17,7 +17,7 @@ interface Props
     formats: ExportFormat[];
 }
 
-export default function ExportButton(props: Props): React.ReactNode
+export default function ExportButton(props: Props): React.ReactElement
 {
     return (
         <Menu>
@@ -33,7 +33,7 @@ export default function ExportButton(props: Props): React.ReactNode
     );
 
 
-    function renderFormatMenuItem(format: ExportFormat): React.ReactNode
+    function renderFormatMenuItem(format: ExportFormat): React.ReactElement
     {
         return (
             <Menu.Item component={Link} to={format.url.str()} target="_blank" download={format.filename}>

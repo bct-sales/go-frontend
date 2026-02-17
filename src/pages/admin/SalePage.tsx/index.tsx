@@ -10,7 +10,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import RestErrorViewer from "@/components/RestErrorViewer";
 
 
-export default function SalePage()
+export default function SalePage(): React.ReactElement
 {
     const { saleId: saleIdString } = useParams<{ saleId: string }>();
     const [saleStatus, setSaleStatus] = useState<RestStatus<SuccessResponse>>({ status: 'loading' });
@@ -64,7 +64,7 @@ export default function SalePage()
     }
 
 
-    function renderPage(saleInformation: SuccessResponse): React.ReactNode
+    function renderPage(saleInformation: SuccessResponse): React.ReactElement
     {
         return (
             <>

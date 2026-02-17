@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
-export default function AddItemButton(): React.ReactNode
+export default function AddItemButton(): React.ReactElement
 {
     const navigate = useNavigate();
 

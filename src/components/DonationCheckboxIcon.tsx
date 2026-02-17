@@ -7,7 +7,7 @@ interface Props
     className?: string;
 }
 
-export default function DonationCheckboxIcon(props: Props): React.ReactNode
+export default function DonationCheckboxIcon(props: Props): React.ReactElement
 {
     return (
         <IconGift className={props.className} />

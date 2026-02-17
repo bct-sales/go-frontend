@@ -7,7 +7,7 @@ interface Props
 }
 
 
-export default function LargeItemViewer(props: Props): React.ReactNode
+export default function LargeItemViewer(props: Props): React.ReactElement
 {
     const { value } = props;
 

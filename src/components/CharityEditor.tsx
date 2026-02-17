@@ -9,7 +9,7 @@ interface Props
     setCharity: (charity: boolean) => void;
 }
 
-export default function CharityEditor(props: Props): React.ReactNode
+export default function CharityEditor(props: Props): React.ReactElement
 {
     return (
         <Flex justify="space-between">

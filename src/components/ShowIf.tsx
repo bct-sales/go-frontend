@@ -4,7 +4,7 @@ import React from "react";
 interface Props
 {
     show: boolean;
-    children?: React.ReactNode;
+    children?: React.ReactElement;
 }
 
 export default function ShowIf(props: Props): React.ReactNode

@@ -62,14 +62,14 @@ export default function LoginPage()
     );
 
 
-    function renderLoginInput(): React.ReactNode
+    function renderLoginInput(): React.ReactElement
     {
         return (
             <TextInput label="Your ID" placeholder="Number" {...form.getInputProps('userId')} p='sm' />
         );
     }
 
-    function renderPasswordInput(): React.ReactNode
+    function renderPasswordInput(): React.ReactElement
     {
         return (
             <PasswordInput label="Password" placeholder="Password" {...form.getInputProps('password')} p='sm' />

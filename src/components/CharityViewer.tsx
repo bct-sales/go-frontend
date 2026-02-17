@@ -7,7 +7,7 @@ interface Props
 }
 
 
-export default function CharityViewer(props: Props): React.ReactNode
+export default function CharityViewer(props: Props): React.ReactElement
 {
     const { value } = props;
 

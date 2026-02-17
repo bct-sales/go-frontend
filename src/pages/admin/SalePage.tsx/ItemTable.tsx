@@ -12,7 +12,7 @@ interface Props
     items: Item[];
 }
 
-export default function ItemTable(props: Props): React.ReactNode
+export default function ItemTable(props: Props): React.ReactElement
 {
     const { items } = props;
 

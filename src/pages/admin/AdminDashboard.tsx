@@ -63,7 +63,7 @@ export default function AdminDashboard()
     );
 
 
-    function renderNavbarLink(label: string, to: string, Icon: React.ReactNode): React.ReactNode
+    function renderNavbarLink(label: string, to: string, Icon: React.ReactElement): React.ReactElement
     {
         const isActive = to === location.pathname;
 

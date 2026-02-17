@@ -11,7 +11,7 @@ interface Props
     lastActivity?: DateTime;
 }
 
-export default function UserTable(props: Props): React.ReactNode
+export default function UserTable(props: Props): React.ReactElement
 {
     return (
         <Table variant="vertical">
@@ -37,7 +37,7 @@ export default function UserTable(props: Props): React.ReactNode
     );
 
 
-    function renderLastActivity(lastActivity?: DateTime): React.ReactNode
+    function renderLastActivity(lastActivity?: DateTime): React.ReactElement
     {
         if (lastActivity === undefined)
         {

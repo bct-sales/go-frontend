@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 interface Props
 {
     delayInMilliseconds: number;
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
 
-export default function Delayed(props: Props): React.ReactNode
+export default function Delayed(props: Props): React.ReactElement
 {
     const [show, setShow] = useState(false);
 

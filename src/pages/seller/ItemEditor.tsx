@@ -22,7 +22,7 @@ export interface ItemData
     large: boolean;
 }
 
-export default function ItemEditor(props: Props): React.ReactNode
+export default function ItemEditor(props: Props): React.ReactElement
 {
     const { description, priceInCents, categoryId, donation, large } = props.itemData;
 

@@ -5,7 +5,7 @@ interface Props
     saleId: number;
 }
 
-export default function SaleIdViewer(props: Props) : React.ReactNode
+export default function SaleIdViewer(props: Props) : React.ReactElement
 {
     return (
         <NavLink to={determineSaleUrl(props.saleId)}>{props.saleId}</NavLink>

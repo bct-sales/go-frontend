@@ -13,7 +13,7 @@ interface Props
     onClickDownwards?: (ctrl: boolean) => void;
 }
 
-export default function SmartSelection(props: Props): React.ReactNode
+export default function SmartSelection(props: Props): React.ReactElement
 {
     return (
         <Stack align="center" gap='0'>
@@ -26,7 +26,7 @@ export default function SmartSelection(props: Props): React.ReactNode
     );
 
 
-    function renderSelectBefore(): React.ReactNode
+    function renderSelectBefore(): React.ReactElement
     {
         return (
             <Collapse in={props.showRangeSelectors}>
@@ -40,7 +40,7 @@ export default function SmartSelection(props: Props): React.ReactNode
     }
 
 
-    function renderSelectAfter(): React.ReactNode
+    function renderSelectAfter(): React.ReactElement
     {
         return (
             <Collapse in={props.showRangeSelectors}>

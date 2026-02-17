@@ -7,7 +7,7 @@ interface Props
     categoryId: number;
 }
 
-export default function CategoryViewer(props: Props): React.ReactNode
+export default function CategoryViewer(props: Props): React.ReactElement
 {
     return (
         <CategoryProvider>

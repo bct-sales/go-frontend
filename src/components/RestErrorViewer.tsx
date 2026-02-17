@@ -13,7 +13,7 @@ interface Props
     extraContext?: { [key: string]: string };
 }
 
-export default function RestErrorViewer(props: Props): React.ReactNode
+export default function RestErrorViewer(props: Props): React.ReactElement
 {
     const auth = useAuthentication();
 
@@ -65,7 +65,7 @@ export default function RestErrorViewer(props: Props): React.ReactNode
         }
     }
 
-    function renderExtraContext(): React.ReactNode
+    function renderExtraContext(): React.ReactElement
     {
         if ( props.extraContext )
         {
@@ -81,7 +81,7 @@ export default function RestErrorViewer(props: Props): React.ReactNode
         }
     }
 
-    function renderContextRow(key: string, value: string): React.ReactNode
+    function renderContextRow(key: string, value: string): React.ReactElement
     {
         return (
             <Table.Tr>

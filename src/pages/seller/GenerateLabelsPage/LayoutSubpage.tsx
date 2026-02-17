@@ -12,7 +12,7 @@ interface Props
     goToNextStep?: () => void;
 }
 
-export default function ItemSelectionSubpage(props: Props): React.ReactNode
+export default function ItemSelectionSubpage(props: Props): React.ReactElement
 {
     const { layout, setLayout } = props;
 

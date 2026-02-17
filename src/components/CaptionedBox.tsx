@@ -7,11 +7,11 @@ import classes from './CaptionedBox.module.css';
 interface Props
 {
     caption: string;
-    children: React.ReactNode;
+    children: React.ReactElement;
     collapsable?: boolean;
 }
 
-export default function CaptionedBox(props: Props): React.ReactNode
+export default function CaptionedBox(props: Props): React.ReactElement
 {
     const [collapsed, setCollapsed] = useState(false);
     const isCollapsed = collapsed || !props.collapsable;

@@ -7,7 +7,7 @@ interface Props
 }
 
 
-export default function FrozenViewer(props: Props): React.ReactNode
+export default function FrozenViewer(props: Props): React.ReactElement
 {
     const { value } = props;
 

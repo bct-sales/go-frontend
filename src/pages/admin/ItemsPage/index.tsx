@@ -14,7 +14,7 @@ import classes from './ItemsPage.module.css';
 import ItemsTable from "./ItemsTable";
 
 
-export default function ItemsPage() : React.ReactNode
+export default function ItemsPage() : React.ReactElement
 {
     const [itemsStatus, setItemsStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
     const itemsPerPage = 20;
@@ -72,7 +72,7 @@ export default function ItemsPage() : React.ReactNode
     }
 
 
-    function renderPage(items: Item[], totalItemCount: number, totalItemValue: number): React.ReactNode
+    function renderPage(items: Item[], totalItemCount: number, totalItemValue: number): React.ReactElement
     {
         const lastPage = Math.ceil(totalItemCount / itemsPerPage);
         const pageRange = range(1, lastPage + 1).map(p => `${p}`);
@@ -106,7 +106,7 @@ export default function ItemsPage() : React.ReactNode
         );
 
 
-        function renderFilteringControls(): React.ReactNode
+        function renderFilteringControls(): React.ReactElement
         {
             return (
                 <Table>
@@ -122,7 +122,7 @@ export default function ItemsPage() : React.ReactNode
             );
         }
 
-        function renderOverview(): React.ReactNode
+        function renderOverview(): React.ReactElement
         {
             return (
                 <Center m='xl'>
@@ -146,7 +146,7 @@ export default function ItemsPage() : React.ReactNode
             );
         }
 
-        function renderPaginationControls(): React.ReactNode
+        function renderPaginationControls(): React.ReactElement
         {
             const needsMoreThanOnePage = totalItemCount > itemsPerPage;
 

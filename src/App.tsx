@@ -10,7 +10,7 @@ import WebsocketProvider from './components/WebsocketProvider';
 import RedirectToLoginPage from './components/RedirectToLoginPage';
 
 
-export default function App() : React.ReactNode
+export default function App() : React.ReactElement
 {
     const router = createBrowserRouter([
         {

@@ -8,7 +8,7 @@ interface Props
     onChange?: (insets: Spacing) => void;
 }
 
-export default function InsetsEditor(props: Props): React.ReactNode
+export default function InsetsEditor(props: Props): React.ReactElement
 {
     return (
         <div style={{ display: 'inline-grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5em' }}>

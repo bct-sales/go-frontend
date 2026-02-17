@@ -6,10 +6,10 @@ import React from "react";
 
 interface Props
 {
-    children: React.ReactNode
+    children: React.ReactElement
 }
 
-export default function CategoryProvider(props: Props): React.ReactNode
+export default function CategoryProvider(props: Props): React.ReactElement
 {
     const categoryTableStatus = useCategories();
 

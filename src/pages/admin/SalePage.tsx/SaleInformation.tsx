@@ -10,7 +10,7 @@ interface Props
     sale: Sale
 }
 
-export default function SaleInformation(props: Props): React.ReactNode
+export default function SaleInformation(props: Props): React.ReactElement
 {
     const { sale } = props;
     const total = sale.items.reduce((sum, item) => sum + item.priceInCents, 0);

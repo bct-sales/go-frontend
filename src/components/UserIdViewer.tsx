@@ -5,7 +5,7 @@ interface Props
     userId: number;
 }
 
-export default function UserIdViewer(props: Props) : React.ReactNode
+export default function UserIdViewer(props: Props) : React.ReactElement
 {
     return (
         <NavLink to={determineUserUrl(props.userId)}>{props.userId}</NavLink>

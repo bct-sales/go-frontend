@@ -8,7 +8,7 @@ interface Props
     onAddItem: (itemId: number) => void;
 }
 
-export default function ConsumablesViewer(props: Props): React.ReactNode
+export default function ConsumablesViewer(props: Props): React.ReactElement
 {
     return (
         <ConsumablesProvider>

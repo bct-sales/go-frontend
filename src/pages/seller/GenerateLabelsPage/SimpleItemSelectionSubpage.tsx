@@ -11,7 +11,7 @@ interface Props
     goToNextStep: () => void;
 }
 
-export default function SimpleItemSelectionSubpage(props: Props): React.ReactNode
+export default function SimpleItemSelectionSubpage(props: Props): React.ReactElement
 {
     const { items } = props;
     const columns = [

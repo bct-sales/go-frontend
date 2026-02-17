@@ -29,7 +29,7 @@ interface Props
     items: Item[];
 }
 
-export default function ItemsPage(props: Props): React.ReactNode
+export default function ItemsPage(props: Props): React.ReactElement
 {
     return (
         <DataTable

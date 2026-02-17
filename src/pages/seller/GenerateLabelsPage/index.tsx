@@ -17,7 +17,7 @@ interface Props
     sellerId: number;
 }
 
-export default function GenerateLabelsPage(props: Props): React.ReactNode
+export default function GenerateLabelsPage(props: Props): React.ReactElement
 {
     const defaultLabelLayout: LabelLayoutData = {
         paperWidth: 210,
@@ -87,7 +87,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
     }
 
 
-    function renderPage(items: Item[]): React.ReactNode
+    function renderPage(items: Item[]): React.ReactElement
     {
         return (
             <Stack align="center" justify="flex-start" gap="lg">
@@ -101,7 +101,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactNode
         );
 
 
-        function renderActiveStep(): React.ReactNode
+        function renderActiveStep(): React.ReactElement
         {
             switch ( activeStep )
             {

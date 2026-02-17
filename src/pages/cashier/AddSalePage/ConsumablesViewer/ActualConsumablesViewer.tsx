@@ -10,7 +10,7 @@ interface Props
     onAddItem: (itemId: number) => void;
 }
 
-export default function ActualConsumablesViewer(props: Props): React.ReactNode
+export default function ActualConsumablesViewer(props: Props): React.ReactElement
 {
     const consumables = useConsumables();
 
@@ -28,7 +28,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactNode
         return consumables.map(renderRow);
     }
 
-    function renderRow(consumable: Consumable): React.ReactNode
+    function renderRow(consumable: Consumable): React.ReactElement
     {
         return (
             <Table.Tr>
@@ -42,7 +42,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactNode
         );
     }
 
-    function renderQuantityButtons(consumable: Consumable): React.ReactNode
+    function renderQuantityButtons(consumable: Consumable): React.ReactElement
     {
         const quantities = range(1, 6);
 
@@ -53,7 +53,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactNode
         );
     }
 
-    function renderQuantityButton(consumable: Consumable, quantity: number): React.ReactNode
+    function renderQuantityButton(consumable: Consumable, quantity: number): React.ReactElement
     {
         return (
             <Button size='sm' onClick={() => onQuantityClicked(consumable, quantity)} key={quantity}>

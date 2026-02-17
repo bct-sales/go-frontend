@@ -9,7 +9,7 @@ interface Props
     setDonation: (donation: boolean) => void;
 }
 
-export default function DonationEditor(props: Props): React.ReactNode
+export default function DonationEditor(props: Props): React.ReactElement
 {
     return (
         <Flex justify="space-between">

@@ -12,7 +12,7 @@ interface Props
     soldItemCounts: ItemCountByCategory[];
 }
 
-export default function ActualCategoriesPage(props: Props) : React.ReactNode
+export default function ActualCategoriesPage(props: Props) : React.ReactElement
 {
     const [viewMode, setViewMode] = React.useState<'table' | 'chart'>('chart');
     const combinedItemCounts = combineItemCounts(props.itemCounts, props.soldItemCounts);
@@ -29,7 +29,7 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
     );
 
 
-    function renderView(): React.ReactNode
+    function renderView(): React.ReactElement
     {
         switch ( viewMode )
         {
@@ -40,7 +40,7 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
         }
     }
 
-    function renderViewModeSwitch(): React.ReactNode
+    function renderViewModeSwitch(): React.ReactElement
     {
         const data = [
             { label: <IconChartBar />, value: 'chart' },
@@ -69,14 +69,14 @@ export default function ActualCategoriesPage(props: Props) : React.ReactNode
         }
     }
 
-    function renderTable(itemCounts: ItemCount[]): React.ReactNode
+    function renderTable(itemCounts: ItemCount[]): React.ReactElement
     {
         return (
             <CategoryCountsTable itemCountsByCategory={itemCounts} />
         );
     }
 
-    function renderBarChart(itemCounts: ItemCount[]): React.ReactNode
+    function renderBarChart(itemCounts: ItemCount[]): React.ReactElement
     {
         const categoryKey = 'category';
         const soldItemsKey = '#Sold Items';

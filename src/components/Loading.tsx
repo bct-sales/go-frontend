@@ -10,7 +10,7 @@ interface Props
 
 const DEFAULT_DELAY_IN_MILLISECONDS = 100;
 
-export default function Loading(props: Props): React.ReactNode
+export default function Loading(props: Props): React.ReactElement
 {
     const delayInMilliseconds = props.delayInMilliseconds || DEFAULT_DELAY_IN_MILLISECONDS;
 
@@ -24,7 +24,7 @@ export default function Loading(props: Props): React.ReactNode
     );
 
 
-    function renderMessage(): React.ReactNode
+    function renderMessage(): React.ReactElement
     {
         if ( props.message )
         {

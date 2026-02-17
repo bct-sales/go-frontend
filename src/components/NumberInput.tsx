@@ -6,7 +6,7 @@ interface Props extends Omit<NumberInputProps, 'onChange'>
     onChange: (value: number) => void;
 }
 
-export default function NumberInput(props: Props): React.ReactNode
+export default function NumberInput(props: Props): React.ReactElement
 {
     const updatedProps = {
         ...props,

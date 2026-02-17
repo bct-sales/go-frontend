@@ -11,7 +11,7 @@ import { IconExclamationCircle } from "@tabler/icons-react";
 
 interface Props
 {
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
 
 type ExtendedRestStatus =
@@ -19,7 +19,7 @@ type ExtendedRestStatus =
     | { status: 'no-consumable-category' };
 
 
-export default function ActualConsumablesProvider(props: Props): React.ReactNode
+export default function ActualConsumablesProvider(props: Props): React.ReactElement
 {
     const categoryTable = useCategoryContext();
     const [consumablesStatus, setConsumablesStatus] = React.useState<ExtendedRestStatus>({ status: 'loading' });

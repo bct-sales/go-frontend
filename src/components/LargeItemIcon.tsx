@@ -7,7 +7,7 @@ interface Props
     className?: string;
 }
 
-export default function LargeItemIcon(props: Props): React.ReactNode
+export default function LargeItemIcon(props: Props): React.ReactElement
 {
     return (
         <IconArrowsMaximize className={props.className} />

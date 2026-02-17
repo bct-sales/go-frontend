@@ -9,7 +9,7 @@ interface Props
     totalPrice: number;
 }
 
-export default function SellerSummaryViewer(props: Props) : React.ReactNode
+export default function SellerSummaryViewer(props: Props) : React.ReactElement
 {
     return (
         <Table variant="vertical">

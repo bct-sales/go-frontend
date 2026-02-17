@@ -6,11 +6,11 @@ interface Props
 {
     caption: string;
     url: string;
-    children: React.ReactNode;
+    children: React.ReactElement;
     onlyShowWhenActive?: boolean;
 }
 
-export default function NavigationButton(props: Props): React.ReactNode
+export default function NavigationButton(props: Props): React.ReactElement
 {
     const navigate = useNavigate();
     const isActive = props.url === location.pathname;

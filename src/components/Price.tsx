@@ -5,7 +5,7 @@ interface Props
 }
 
 
-export default function Price(props: Props): React.ReactNode
+export default function Price(props: Props): React.ReactElement
 {
     const { priceInCents } = props;
 
