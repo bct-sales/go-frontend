@@ -1,6 +1,6 @@
 import { ErrorTag } from "./result";
 
 export type RestStatus<T> =
-    | { status: 'loading' }
-    | { status: 'error'; tag: ErrorTag; details: string }
-    | { status: 'success'; value: T };
+    | { readonly status: 'loading' }
+    | { readonly status: 'error'; readonly tag: ErrorTag; readonly details: string }
+    | { readonly status: 'success'; readonly value: T };
