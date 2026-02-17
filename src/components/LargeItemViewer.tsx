@@ -7,7 +7,7 @@ interface Props
 }
 
 
-export default function FrozenViewer(props: Props): React.ReactNode
+export default function LargeItemViewer(props: Props): React.ReactNode
 {
     const { value } = props;
 
