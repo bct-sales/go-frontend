@@ -6,6 +6,7 @@ import 'mantine-datatable/styles.css';
 import '@mantine/charts/styles.css';
 import ReactDOM from 'react-dom/client'
 import App from './App';
+import TechnicalIssues from './TechnicalIssues';
 
 
 const root = document.getElementById('root');
@@ -17,15 +18,21 @@ if ( root )
     {
         ReactDOM.createRoot(root).render(
             <React.StrictMode>
-                <App />
+                {renderApp()}
             </React.StrictMode>,
         );
     }
     else
     {
         ReactDOM.createRoot(root).render(
-            <App />
+            renderApp()
         );
+    }
+
+
+    function renderApp(): React.ReactElement
+    {
+        return <TechnicalIssues />
     }
 }
 else
