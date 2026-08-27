@@ -14,7 +14,7 @@ interface Props
 
 export default function ActualCategoriesPage(props: Props) : React.ReactElement
 {
-    const [viewMode, setViewMode] = React.useState<'table' | 'chart'>('chart');
+    const [viewMode, setViewMode] = React.useState<'table' | 'chart'>('table');
     const combinedItemCounts = combineItemCounts(props.itemCounts, props.soldItemCounts);
 
     return (
@@ -43,8 +43,8 @@ export default function ActualCategoriesPage(props: Props) : React.ReactElement
     function renderViewModeSwitch(): React.ReactElement
     {
         const data = [
-            { label: <IconChartBar />, value: 'chart' },
             { label: <IconArticle />, value: 'table' },
+            { label: <IconChartBar />, value: 'chart' },
         ];
 
         return (
