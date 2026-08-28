@@ -50,55 +50,57 @@ export default function AddSalePage(): React.ReactElement
     const totalPriceInCents = saleItems.reduce((total, item) => total + item.priceInCents, 0);
 
     return (
-        <Stepper active={step}>
-            <Stepper.Step label="Step 1" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
-                <Stack>
-                    <CaptionedBox caption="Add Item">
-                        <Stack align="center">
-                            <Group >
-                                <TextInput value={itemIdString} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
-                                <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
-                                    <ActionIcon onClick={onAddItem} disabled={!canAddItem}>
-                                        <IconPlus />
-                                    </ActionIcon>
-                                </Tooltip>
-                            </Group>
-                            {settings.showConsumables ? renderConsumables() : <></>}
-                        </Stack>
-                    </CaptionedBox>
-                    <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
-                        <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
-                            Finalize Sale
-                        </Button>
-                    </Tooltip>
-                    <CaptionedBox caption="Sale Items">
-                        {renderSaleItems()}
-                    </CaptionedBox>
-                </Stack>
-            </Stepper.Step>
-            <Stepper.Step label="Step 2" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
-                <Stack>
-                    <CaptionedBox caption="Amount Due">
-                        <Stack align="center">
-                            <Stack align="center" gap='0' m='xl'>
-                                <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
-                                <Center>Item count: {saleItems.length}</Center>
+        <Center>
+            <Stepper active={step}>
+                <Stepper.Step label="Step 1" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
+                    <Stack>
+                        <CaptionedBox caption="Add Item">
+                            <Stack align="center">
+                                <Group >
+                                    <TextInput value={itemIdString} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
+                                    <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
+                                        <ActionIcon onClick={onAddItem} disabled={!canAddItem}>
+                                            <IconPlus />
+                                        </ActionIcon>
+                                    </Tooltip>
+                                </Group>
+                                {settings.showConsumables ? renderConsumables() : <></>}
                             </Stack>
-                            <Group justify="space-between" w="100%">
-                                <Button leftSection={<IconBackspace />} onClick={() => setStep(0)} variant="outline">
-                                    Back to Items
-                                </Button>
-                                <Tooltip label="Press this button after receiving payment">
-                                    <Button leftSection={<IconCheck />} color="green" onClick={onPaymentReceived}>
-                                        Payment Received
+                        </CaptionedBox>
+                        <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
+                            <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                                Finalize Sale
+                            </Button>
+                        </Tooltip>
+                        <CaptionedBox caption="Sale Items">
+                            {renderSaleItems()}
+                        </CaptionedBox>
+                    </Stack>
+                </Stepper.Step>
+                <Stepper.Step label="Step 2" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
+                    <Stack>
+                        <CaptionedBox caption="Amount Due">
+                            <Stack align="center">
+                                <Stack align="center" gap='0' m='xl'>
+                                    <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
+                                    <Center>Item count: {saleItems.length}</Center>
+                                </Stack>
+                                <Group justify="space-between" w="100%">
+                                    <Button leftSection={<IconBackspace />} onClick={() => setStep(0)} variant="outline">
+                                        Back to Items
                                     </Button>
-                                </Tooltip>
-                            </Group>
-                        </Stack>
-                    </CaptionedBox>
-                </Stack>
-            </Stepper.Step>
-        </Stepper>
+                                    <Tooltip label="Press this button after receiving payment">
+                                        <Button leftSection={<IconCheck />} color="green" onClick={onPaymentReceived}>
+                                            Payment Received
+                                        </Button>
+                                    </Tooltip>
+                                </Group>
+                            </Stack>
+                        </CaptionedBox>
+                    </Stack>
+                </Stepper.Step>
+            </Stepper>
+        </Center>
     );
 
 

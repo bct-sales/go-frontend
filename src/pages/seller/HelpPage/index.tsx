@@ -1,4 +1,4 @@
-import { Accordion, Anchor, List, Stack, Text, Title } from "@mantine/core";
+import { Accordion, Anchor, Stack, Text, Title } from "@mantine/core";
 import React from "react";
 import classes from './HelpPage.module.css';
 
@@ -13,9 +13,9 @@ interface FrequentlyAskedQuestion
 export default function HelpPage() : React.ReactElement
 {
     return (
-        <Stack>
+        <Stack align="stretch" w='100%'>
             <Title m='xl'>Frequently Asked Questions</Title>
-            <Accordion variant="separated">
+            <Accordion variant="separated" w='100%'>
                 {questions().map(renderQuestion)}
             </Accordion>
         </Stack>

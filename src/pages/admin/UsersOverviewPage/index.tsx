@@ -6,7 +6,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import { listUsers, User } from "@/rest/list-users";
 import { paths } from "@/rest/paths";
 import { RestStatus } from "@/rest/status";
-import { Group, Stack } from "@mantine/core";
+import { Center, Group, Stack } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 
@@ -65,12 +65,14 @@ export default function UsersOverviewPage()
 
         return (
             <>
-                <Stack>
-                    <Group justify="flex-end">
-                        <ExportButton formats={exportFormats} />
-                    </Group>
-                    <UsersTable users={users} />
-                </Stack>
+                <Center>
+                    <Stack>
+                        <Group justify="flex-end">
+                            <ExportButton formats={exportFormats} />
+                        </Group>
+                        <UsersTable users={users} />
+                    </Stack>
+                </Center>
             </>
         );
     }

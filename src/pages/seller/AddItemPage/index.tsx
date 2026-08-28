@@ -1,7 +1,7 @@
 import ItemEditor, { ItemData } from "@/pages/seller/ItemEditor";
 import { addItem, Payload } from "@/rest/add-item";
 import { validateDescription, validatePrice } from "@/validation";
-import { Button, Flex } from "@mantine/core";
+import { Button, Center, Flex } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 
@@ -18,10 +18,12 @@ export default function AddItemPage(props: Props) : React.ReactElement
     const isValidData = checkValidity();
 
     return (
-        <Flex direction="column" align="stretch" justify="center" gap='md'>
-            <ItemEditor itemData={itemData} setItemData={setItemData} />
-            <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
-        </Flex>
+        <Center>
+            <Flex direction="column" align="stretch" justify="center" gap='md' maw='500px'>
+                <ItemEditor itemData={itemData} setItemData={setItemData} />
+                <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
+            </Flex>
+        </Center>
     );
 
 

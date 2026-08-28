@@ -1,6 +1,6 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import Price from "@/components/Price";
-import { Group, Stack, Table } from "@mantine/core";
+import { Center, Flex, Group, Stack, Table } from "@mantine/core";
 import classes from './SaleOverview.module.css';
 import ExportButton from "@/components/ExportButton";
 import { paths } from "@/rest/paths";
@@ -32,39 +32,41 @@ export default function SaleOverview(props: Props): React.ReactElement
 
     return (
         <CaptionedBox caption="Sales Overview">
-            <Stack>
-                <Group justify="flex-end">
-                    <ExportButton formats={exportFormats} />
-                </Group>
-                <Table>
-                    <Table.Tbody>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Item Count</Table.Th>
-                            <Table.Td className={classes.value}>{props.itemCount}</Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Total Item Value</Table.Th>
-                            <Table.Td className={classes.value}><Price priceInCents={props.totalItemValue} /></Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Sale Count</Table.Th>
-                            <Table.Td className={classes.value}>{props.saleCount}</Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Total Sale Value</Table.Th>
-                            <Table.Td className={classes.value}><Price priceInCents={props.totalSaleValue} /></Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Sold Item Count (Distinct)</Table.Th>
-                            <Table.Td className={classes.value}>{props.distinctSoldItemCount}</Table.Td>
-                        </Table.Tr>
-                        <Table.Tr>
-                            <Table.Th className={classes.key}>Sold Item Count (Total)</Table.Th>
-                            <Table.Td className={classes.value}>{props.totalSoldItemCount}</Table.Td>
-                        </Table.Tr>
-                    </Table.Tbody>
-                </Table>
-            </Stack>
+            <Flex direction='column' align='center' justify='flex-start'>
+                <Stack miw='300px' w='50%'>
+                    <Group justify="flex-end">
+                        <ExportButton formats={exportFormats} />
+                    </Group>
+                    <Table>
+                        <Table.Tbody>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Item Count</Table.Th>
+                                <Table.Td className={classes.value}>{props.itemCount}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Total Item Value</Table.Th>
+                                <Table.Td className={classes.value}><Price priceInCents={props.totalItemValue} /></Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Sale Count</Table.Th>
+                                <Table.Td className={classes.value}>{props.saleCount}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Total Sale Value</Table.Th>
+                                <Table.Td className={classes.value}><Price priceInCents={props.totalSaleValue} /></Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Sold Item Count (Distinct)</Table.Th>
+                                <Table.Td className={classes.value}>{props.distinctSoldItemCount}</Table.Td>
+                            </Table.Tr>
+                            <Table.Tr>
+                                <Table.Th className={classes.key}>Sold Item Count (Total)</Table.Th>
+                                <Table.Td className={classes.value}>{props.totalSoldItemCount}</Table.Td>
+                            </Table.Tr>
+                        </Table.Tbody>
+                    </Table>
+                </Stack>
+            </Flex>
         </CaptionedBox>
     );
 }
