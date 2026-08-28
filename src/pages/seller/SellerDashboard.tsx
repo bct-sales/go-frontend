@@ -13,6 +13,7 @@ import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import HelpPage from "./HelpPage";
 import DashboardHeader from "@/pages/DashboardHeader";
 import { useDisclosure } from "@mantine/hooks";
+import classes from './SellerDashboard.module.css';
 
 
 export default function SellerDashboard()
@@ -62,7 +63,7 @@ export default function SellerDashboard()
                         </NavigationButton>
                     </Flex>
                 </AppShell.Navbar>
-                <AppShell.Main>
+                <AppShell.Main className={classes.main}>
                     <Routes>
                         <Route path="/" element={<OverviewPage sellerId={authentication.username} />} />
                         <Route path="/items" element={<ItemsPage sellerId={authentication.username} />} />
