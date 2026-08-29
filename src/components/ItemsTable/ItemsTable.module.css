@@ -3,6 +3,12 @@
     border-collapse: collapse;
 }
 
+.itemHeader {
+    &.itemPrice {
+        text-align: right;
+    }
+}
+
 .itemRow {
     &:nth-child(odd) {
         background-color: #333;
@@ -33,6 +39,7 @@
 
     & .itemId {
         text-align: left;
+        width: 1%;
     }
 
     & .itemCharity {
@@ -41,10 +48,12 @@
 
     & .itemLarge {
         text-align: center;
+        width: 1%;
     }
 
     & .itemDonation {
         text-align: center;
+        width: 1%;
     }
 
     & .itemCategory {
@@ -65,5 +74,6 @@
 
     & .itemDelete {
         text-align: center;
+        width: 1%;
     }
 }
