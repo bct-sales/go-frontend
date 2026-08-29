@@ -56,7 +56,7 @@ export default function AddSalePage(): React.ReactElement
                     <Stack>
                         <CaptionedBox caption="Add Item">
                             <Stack align="center">
-                                <Group >
+                                <Group>
                                     <TextInput value={itemIdString} ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} classNames={{input: classes.itemIdInput}} />
                                     <Tooltip label="Adds item to the sale (shortcut: Enter while in textbox)">
                                         <ActionIcon onClick={onAddItem} disabled={!canAddItem}>
