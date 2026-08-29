@@ -3,22 +3,24 @@ import ItemsTable from "@/components/ItemsTable";
 import { ActionIcon, Center, Group, Stack, TextInput, Tooltip } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
-import { categoryColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, sellerColumn } from "@/components/ItemsTable/columns";
-import { getItemInformation, Item } from "@/rest/item-data";
+import { categoryColumn, deleteColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, sellerColumn } from "@/components/ItemsTable/columns";
+import { getItemInformation, Item as RestItem } from "@/rest/item-data";
 import { notifications } from "@mantine/notifications";
+import { Item } from "@/components/ItemsTable/ItemsTable";
 
 
 export default function QueryItemsPage() : React.ReactElement
 {
     const itemInputRef = useRef<HTMLInputElement>(null);
     const [itemIdString, setItemIdString] = useState<string>("");
-    const [items, setItems] = useState<Item[]>([]);
+    const [items, setItems] = useState<RestItem[]>([]);
 
     useEffect(() => {
             itemInputRef.current?.focus();
         }, []);
 
     const columns = [
+        deleteColumn(onDeleteItem),
         itemIdColumn,
         descriptionColumn,
         sellerColumn,
@@ -82,16 +84,28 @@ export default function QueryItemsPage() : React.ReactElement
                 color: 'red',
             })
 
-            return
+            return;
         }
 
         const itemId = parseInt(itemIdString, 10);
+
+        if ( items.some(item => item.itemId === itemId) )
+        {
+            notifications.show({
+                title: 'Invalid input',
+                message: 'Item already in list',
+                color: 'red',
+            });
+            setItemIdString("");
+
+            return;
+        }
 
         (async () => {
             const response = await getItemInformation(itemId);
             if ( response.success )
             {
-                setItems([...items, response.value]);
+                setItems([response.value, ...items]);
                 setItemIdString("");
             }
             else
@@ -103,5 +117,12 @@ export default function QueryItemsPage() : React.ReactElement
                 });
             }
         })()
+    }
+
+    function onDeleteItem(itemToBeDeleted: Item): void
+    {
+        const updatedItems = items.filter(item => item.itemId !== itemToBeDeleted.itemId);
+
+        setItems(updatedItems);
     }
 }

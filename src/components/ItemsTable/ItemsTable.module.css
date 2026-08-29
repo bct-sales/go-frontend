@@ -62,4 +62,8 @@
     & .itemCopy {
         text-align: center;
     }
+
+    & .itemDelete {
+        text-align: center;
+    }
 }

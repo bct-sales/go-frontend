@@ -7,7 +7,7 @@ import Price from "@/components/Price";
 import UserIdViewer from "@/components/UserIdViewer";
 import { range } from "@/util";
 import { Button, Checkbox, Group, Tooltip } from "@mantine/core";
-import { IconCopyPlus, IconEdit } from "@tabler/icons-react";
+import { IconCopyPlus, IconEdit, IconTrashX } from "@tabler/icons-react";
 import FrozenViewer from "@/components/FrozenViewer";
 import { Column, Item } from "./ItemsTable";
 import classes from './ItemsTable.module.css';
@@ -78,6 +78,23 @@ export const largeColumn: Column = {
     className: classes.itemLarge,
     viewer: (item: Item) => <LargeItemViewer value={item.large} />,
 };
+
+export function deleteColumn(onClick: (item: Item) => void) : Column
+{
+    return {
+        header: '',
+        className: classes.itemDelete,
+        viewer: (item: Item) => {
+            return (
+                <Tooltip label="Edit item" openDelay={500}>
+                    <Button onClick={() => onClick(item)} variant="subtle">
+                        <IconTrashX />
+                    </Button>
+                </Tooltip>
+            );
+        },
+    };
+}
 
 export function editColumn(onClick: (item: Item) => void): Column
 {
