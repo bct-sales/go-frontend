@@ -3,7 +3,7 @@ import RedirectToLoginPage from "@/components/RedirectToLoginPage";
 import UpdateProvider from "@/components/UpdateProvider";
 import { ActionIcon, AppShell, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconUsersGroup } from "@tabler/icons-react";
+import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconShirtSport, IconUsersGroup } from "@tabler/icons-react";
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CategoriesPage from "./CategoriesPage";
@@ -14,6 +14,7 @@ import UserSubpage from "./UserPage";
 import UsersOverviewPage from "./UsersOverviewPage";
 import classes from './AdminDashboard.module.css';
 import DashboardHeader from "@/pages/DashboardHeader";
+import QueryItemsPage from "./QueryItemsPage/index.tsx";
 
 
 export default function AdminDashboard()
@@ -43,6 +44,7 @@ export default function AdminDashboard()
                             {renderNavbarLink("Categories", "/admin", <IconChartBar />)}
                             {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
                             {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
+                            {renderNavbarLink("Query Items", "/admin/query-items", <IconShirtSport />)}
                             {renderNavbarLink("Sales", "/admin/sales", <IconCashRegister />)}
                             {renderNavbarLink("Logout", "/logout", <IconLogout />)}
                         </Flex>
@@ -53,6 +55,7 @@ export default function AdminDashboard()
                             <Route path="/users/:userId" element={<UserSubpage />} />
                             <Route path="/users" element={<UsersOverviewPage />} />
                             <Route path="/items" element={<ItemsPage />} />
+                            <Route path="/query-items" element={<QueryItemsPage />} />
                             <Route path="/sales" element={<SalesPage />} />
                             <Route path="/sales/:saleId" element={<SalePage />} />
                         </Routes>
