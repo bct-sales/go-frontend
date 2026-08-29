@@ -42,16 +42,16 @@ export default tseslint.config(
       // ==========================================
       // YOUR CUSTOM FORMATTING RULES (ESLint-only)
       // ==========================================
-      '@stylistic/indent': ['error', 2],                     // Indent size (or 'tab')
+      '@stylistic/indent': ['error', 4],                     // Indent size (or 'tab')
       '@stylistic/quotes': ['error', 'single'],               // Single vs double quotes
       '@stylistic/semi': ['error', 'always'],                 // Require or forbid semicolons ('always' | 'never')
       '@stylistic/comma-dangle': ['error', 'always-multiline'], // Trailing commas
-      '@stylistic/max-len': ['error', { code: 100 }],         // Max line length
+      '@stylistic/max-len': ['error', { code: 160 }],         // Max line length
 
       // JSX / React Formatting Rules
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],   // JSX attribute quotes
       '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-      '@stylistic/jsx-indent-props': ['error', 2],
+      '@stylistic/jsx-indent-props': ['error', 4],
       '@stylistic/jsx-self-closing-comp': 'error',
     },
   }
