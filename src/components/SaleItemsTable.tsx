@@ -19,7 +19,7 @@ export interface SaleItem
     alreadySold: boolean;
 }
 
-export default function ItemsTable(props: Props): React.ReactElement
+export default function SaleItemsTable(props: Props): React.ReactElement
 {
     const { items } = props;
 
