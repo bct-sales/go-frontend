@@ -17,7 +17,7 @@ import LargeItemViewer from "../LargeItemViewer";
 
 export const itemIdColumn: Column = {
     header: 'Id',
-    className: 'item-id',
+    className: classes.itemId,
     viewer: (item: Item) => item.itemId,
 };
 
