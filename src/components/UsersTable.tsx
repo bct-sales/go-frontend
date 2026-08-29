@@ -3,7 +3,6 @@ import { Stack } from "@mantine/core";
 import sortBy from 'lodash/sortBy';
 import { DataTable, DataTableSortStatus } from "mantine-datatable";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import DateTimeViewer from "./DateTimeViewer";
 import UserIdViewer from "./UserIdViewer";
 import classes from './UsersTable.module.css';

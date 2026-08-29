@@ -1,6 +1,6 @@
 import CaptionedBox from "@/components/CaptionedBox";
 import Price from "@/components/Price";
-import { Center, Flex, Group, Stack, Table } from "@mantine/core";
+import { Flex, Group, Stack, Table } from "@mantine/core";
 import classes from './SaleOverview.module.css';
 import ExportButton from "@/components/ExportButton";
 import { paths } from "@/rest/paths";
