@@ -1,16 +1,16 @@
-import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, largeColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
-import { Column } from "@/components/ItemsTable/ItemsTable";
-import Loading from "@/components/Loading";
-import { addItem } from "@/rest/add-item";
-import { Item, listSellerItems } from "@/rest/list-seller-items";
-import { RestStatus } from "@/rest/status";
-import { useSettings } from "@/settings";
-import { Flex, ScrollArea, Stack } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AddItemButton from "./AddItemButton";
+import ItemsTable from '@/components/ItemsTable';
+import { addedAtColumn, categoryColumn, copyColumn, descriptionColumn, donationColumn, editColumn, itemIdColumn, largeColumn, priceInCentsColumn } from '@/components/ItemsTable/columns';
+import { Column } from '@/components/ItemsTable/ItemsTable';
+import Loading from '@/components/Loading';
+import { addItem } from '@/rest/add-item';
+import { Item, listSellerItems } from '@/rest/list-seller-items';
+import { RestStatus } from '@/rest/status';
+import { useSettings } from '@/settings';
+import { Flex, ScrollArea, Stack } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AddItemButton from './AddItemButton';
 
 
 interface Props
@@ -59,7 +59,7 @@ export default function ItemsPage(props: Props) : React.ReactElement
     {
         return (
             <Stack>
-                <Flex direction='row' justify='flex-end'>
+                <Flex direction="row" justify="flex-end">
                     <AddItemButton />
                 </Flex>
                 <ScrollArea style={{ height: 'calc(80vh)' }} scrollbars="y">

@@ -1,10 +1,10 @@
-import DateTimeViewer from "@/components/DateTimeViewer";
-import Loading from "@/components/Loading";
-import Price from "@/components/Price";
-import { listRecentCashierSales, Sale, SuccessResponse } from "@/rest/list-cashier-sales";
-import { RestStatus } from "@/rest/status";
-import { Center, Pagination, Stack, Table } from "@mantine/core";
-import { useCallback, useEffect, useState } from "react";
+import DateTimeViewer from '@/components/DateTimeViewer';
+import Loading from '@/components/Loading';
+import Price from '@/components/Price';
+import { listRecentCashierSales, Sale, SuccessResponse } from '@/rest/list-cashier-sales';
+import { RestStatus } from '@/rest/status';
+import { Center, Pagination, Stack, Table } from '@mantine/core';
+import { useCallback, useEffect, useState } from 'react';
 
 
 interface Props
@@ -15,18 +15,18 @@ interface Props
 export default function SalesPage(props: Props): React.ReactElement
 {
     const salesPerPage = 10;
-    const [status, setStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
+    const [status, setStatus] = useState<RestStatus<SuccessResponse>>({status: 'loading'});
     const [oneIndexedPage, setOneIndexedPage] = useState<number>(1);
     const refresh = useCallback(async () => {
         const response = await listRecentCashierSales(props.cashierId, salesPerPage, (oneIndexedPage - 1) * salesPerPage);
 
         if (response.success)
         {
-            setStatus({status: "success", value: response.value});
+            setStatus({status: 'success', value: response.value});
         }
         else
         {
-            setStatus({status: "error", tag: response.error.type, details: response.error.details});
+            setStatus({status: 'error', tag: response.error.type, details: response.error.details});
         }
     }, [props.cashierId, oneIndexedPage]);
 
@@ -34,15 +34,15 @@ export default function SalesPage(props: Props): React.ReactElement
 
     switch (status.status)
     {
-        case "success":
+        case 'success':
             return renderPage(status.value.saleCount, status.value.sales);
 
-        case "loading":
+        case 'loading':
             return (
                 <Loading message="Loading items..." />
             );
 
-        case "error":
+        case 'error':
             return (
                 <div className="alert alert-danger" role="alert">
                     <strong>Error:</strong> {status.tag}: {status.details}
@@ -67,7 +67,7 @@ export default function SalesPage(props: Props): React.ReactElement
 
             return (
                 <Stack>
-                    <Center mb='xl'>
+                    <Center mb="xl">
                         <Pagination total={lastPage} value={oneIndexedPage} onChange={setOneIndexedPage} />
                     </Center>
                     <Table>

@@ -1,9 +1,9 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import Price from "@/components/Price";
-import { Flex, Group, Stack, Table } from "@mantine/core";
+import CaptionedBox from '@/components/CaptionedBox';
+import Price from '@/components/Price';
+import { Flex, Group, Stack, Table } from '@mantine/core';
 import classes from './SaleOverview.module.css';
-import ExportButton from "@/components/ExportButton";
-import { paths } from "@/rest/paths";
+import ExportButton from '@/components/ExportButton';
+import { paths } from '@/rest/paths';
 
 interface Props
 {
@@ -28,12 +28,12 @@ export default function SaleOverview(props: Props): React.ReactElement
             url: paths.soldItems.withFormat('json'),
             filename: 'sold-items.json',
         },
-    ]
+    ];
 
     return (
         <CaptionedBox caption="Sales Overview">
-            <Flex direction='column' align='center' justify='flex-start'>
-                <Stack miw='300px' w='50%'>
+            <Flex direction="column" align="center" justify="flex-start">
+                <Stack miw="300px" w="50%">
                     <Group justify="flex-end">
                         <ExportButton formats={exportFormats} />
                     </Group>

@@ -1,4 +1,4 @@
-import { NumberInputProps, NumberInput as OriginalNumberInput } from "@mantine/core";
+import { NumberInputProps, NumberInput as OriginalNumberInput } from '@mantine/core';
 
 
 interface Props extends Omit<NumberInputProps, 'onChange'>
@@ -19,8 +19,8 @@ export default function NumberInput(props: Props): React.ReactElement
             }
 
             props.onChange(value);
-        }
-    }
+        },
+    };
 
     return (
         <OriginalNumberInput {...updatedProps} />

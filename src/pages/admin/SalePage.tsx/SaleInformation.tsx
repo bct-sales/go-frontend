@@ -1,8 +1,8 @@
-import DateTimeViewer from "@/components/DateTimeViewer";
-import Price from "@/components/Price";
-import UserIdViewer from "@/components/UserIdViewer";
-import { Sale } from "@/rest/sale-information";
-import { Table } from "@mantine/core";
+import DateTimeViewer from '@/components/DateTimeViewer';
+import Price from '@/components/Price';
+import UserIdViewer from '@/components/UserIdViewer';
+import { Sale } from '@/rest/sale-information';
+import { Table } from '@mantine/core';
 import classes from './SaleInformation.module.css';
 
 interface Props

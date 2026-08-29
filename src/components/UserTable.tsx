@@ -1,6 +1,6 @@
-import { Table } from "@mantine/core";
-import DateTimeViewer from "./DateTimeViewer";
-import { DateTime } from "@/datetime";
+import { Table } from '@mantine/core';
+import DateTimeViewer from './DateTimeViewer';
+import { DateTime } from '@/datetime';
 
 interface Props
 {

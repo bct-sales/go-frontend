@@ -8,7 +8,7 @@ import { convertExceptionToFailure, RestResult } from './result';
 const Category = z.object({
     categoryId: z.number().int().nonnegative(),
     categoryName: z.string().nonempty(),
-})
+});
 
 export type Category = z.infer<typeof Category>;
 

@@ -1,18 +1,18 @@
-import { useAuthentication } from "@/authentication";
-import NavigationButton from "@/components/NavigationButton";
-import AddItemPage from "@/pages/seller/AddItemPage";
-import EditItemPage from "@/pages/seller/EditItemPage";
-import GenerateLabelsPage from "@/pages/seller/GenerateLabelsPage";
-import ItemsPage from "@/pages/seller/ItemsPage";
-import OverviewPage from "@/pages/seller/OverviewPage";
-import SettingsPage from "@/pages/seller/SettingsPage";
-import { AppShell, Flex } from "@mantine/core";
-import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from "@tabler/icons-react";
-import { Route, Routes } from "react-router-dom";
-import RedirectToLoginPage from "@/components/RedirectToLoginPage";
-import HelpPage from "./HelpPage";
-import DashboardHeader from "@/pages/DashboardHeader";
-import { useDisclosure } from "@mantine/hooks";
+import { useAuthentication } from '@/authentication';
+import NavigationButton from '@/components/NavigationButton';
+import AddItemPage from '@/pages/seller/AddItemPage';
+import EditItemPage from '@/pages/seller/EditItemPage';
+import GenerateLabelsPage from '@/pages/seller/GenerateLabelsPage';
+import ItemsPage from '@/pages/seller/ItemsPage';
+import OverviewPage from '@/pages/seller/OverviewPage';
+import SettingsPage from '@/pages/seller/SettingsPage';
+import { AppShell, Flex } from '@mantine/core';
+import { IconChartBar, IconEdit, IconHelp, IconList, IconLogout, IconPlus, IconSettings, IconTag } from '@tabler/icons-react';
+import { Route, Routes } from 'react-router-dom';
+import RedirectToLoginPage from '@/components/RedirectToLoginPage';
+import HelpPage from './HelpPage';
+import DashboardHeader from '@/pages/DashboardHeader';
+import { useDisclosure } from '@mantine/hooks';
 import classes from './SellerDashboard.module.css';
 
 

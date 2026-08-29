@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 interface Props
 {
@@ -9,7 +9,7 @@ export default function UserIdViewer(props: Props) : React.ReactElement
 {
     return (
         <NavLink to={determineUserUrl(props.userId)}>{props.userId}</NavLink>
-    )
+    );
 
 
     function determineUserUrl(userId: number): string

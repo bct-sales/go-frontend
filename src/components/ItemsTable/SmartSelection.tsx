@@ -1,5 +1,5 @@
-import { ActionIcon, Checkbox, Collapse, Group, Stack, Tooltip } from "@mantine/core";
-import { IconArrowBarDown, IconArrowBarUp } from "@tabler/icons-react";
+import { ActionIcon, Checkbox, Collapse, Group, Stack, Tooltip } from '@mantine/core';
+import { IconArrowBarDown, IconArrowBarUp } from '@tabler/icons-react';
 
 
 interface Props
@@ -16,7 +16,7 @@ interface Props
 export default function SmartSelection(props: Props): React.ReactElement
 {
     return (
-        <Stack align="center" gap='0'>
+        <Stack align="center" gap="0">
             {renderSelectBefore()}
             <Group>
                 <Checkbox checked={props.isSelected} onChange={e => props.onClickCheckbox(e.currentTarget.checked)} />

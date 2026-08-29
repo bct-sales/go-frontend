@@ -1,26 +1,26 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import ExportButton from "@/components/ExportButton";
-import Loading from "@/components/Loading";
-import Price from "@/components/Price";
-import RestErrorViewer from "@/components/RestErrorViewer";
-import ErrorPage from "@/pages/ErrorPage";
-import { Item, listItems, Options, SuccessResponse } from "@/rest/list-items";
-import { paths } from "@/rest/paths";
-import { RestStatus } from "@/rest/status";
-import { range } from "@/util";
-import { Center, Group, Input, Pagination, Select, Stack, Table } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import CaptionedBox from '@/components/CaptionedBox';
+import ExportButton from '@/components/ExportButton';
+import Loading from '@/components/Loading';
+import Price from '@/components/Price';
+import RestErrorViewer from '@/components/RestErrorViewer';
+import ErrorPage from '@/pages/ErrorPage';
+import { Item, listItems, Options, SuccessResponse } from '@/rest/list-items';
+import { paths } from '@/rest/paths';
+import { RestStatus } from '@/rest/status';
+import { range } from '@/util';
+import { Center, Group, Input, Pagination, Select, Stack, Table } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
 import classes from './ItemsPage.module.css';
-import ItemsTable from "./ItemsTable";
+import ItemsTable from './ItemsTable';
 
 
 export default function ItemsPage() : React.ReactElement
 {
-    const [itemsStatus, setItemsStatus] = useState<RestStatus<SuccessResponse>>({status: "loading"});
+    const [itemsStatus, setItemsStatus] = useState<RestStatus<SuccessResponse>>({status: 'loading'});
     const itemsPerPage = 20;
     const [page, setPage] = useState(1);
-    const [descriptionFilter, setDescriptionFilter] = useState("");
-    const [debouncedDescriptionFilter, setDebouncedDescriptionFilter] = useState("");
+    const [descriptionFilter, setDescriptionFilter] = useState('');
+    const [debouncedDescriptionFilter, setDebouncedDescriptionFilter] = useState('');
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -44,26 +44,26 @@ export default function ItemsPage() : React.ReactElement
 
             if (response.success)
             {
-                setItemsStatus({status: "success", value: response.value});
+                setItemsStatus({status: 'success', value: response.value});
             }
             else
             {
-                setItemsStatus({status: "error", tag: response.error.type, details: response.error.details});
+                setItemsStatus({status: 'error', tag: response.error.type, details: response.error.details});
             }
         })();
     }, [page, debouncedDescriptionFilter]);
 
     switch (itemsStatus.status)
     {
-        case "success":
+        case 'success':
             return renderPage(itemsStatus.value.items, itemsStatus.value.totalItemCount, itemsStatus.value.totalItemValue);
 
-        case "loading":
+        case 'loading':
             return (
                 <Loading message="Loading items..." />
             );
 
-        case "error":
+        case 'error':
             return (
                 <ErrorPage>
                     <RestErrorViewer tag={itemsStatus.tag} details={itemsStatus.details} operation="listItems()" />
@@ -125,7 +125,7 @@ export default function ItemsPage() : React.ReactElement
         function renderOverview(): React.ReactElement
         {
             return (
-                <Center m='xl'>
+                <Center m="xl">
                     <Group>
                         <CaptionedBox caption="Overview">
                             <Table>
@@ -160,7 +160,7 @@ export default function ItemsPage() : React.ReactElement
                 return (
                     <Group>
                         <Pagination value={page} onChange={setPage} total={lastPage} boundaries={1} />
-                        <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w='5em' />
+                        <Select searchable value={`${page}`} onChange={s => setPage(parseInt(s || '0'))} data={pageRange} w="5em" />
                     </Group>
                 );
             }

@@ -1,10 +1,10 @@
-import Loading from "@/components/Loading";
-import RestErrorViewer from "@/components/RestErrorViewer";
-import ErrorPage from "@/pages/ErrorPage";
-import { getItemCountsPerCategory, getSoldItemCountsPerCategory, ItemCountByCategory } from "@/rest/category-counts";
-import { RestStatus } from "@/rest/status";
-import React, { useEffect, useState } from "react";
-import ActualCategoriesPage from "./ActualCategoriesPage";
+import Loading from '@/components/Loading';
+import RestErrorViewer from '@/components/RestErrorViewer';
+import ErrorPage from '@/pages/ErrorPage';
+import { getItemCountsPerCategory, getSoldItemCountsPerCategory, ItemCountByCategory } from '@/rest/category-counts';
+import { RestStatus } from '@/rest/status';
+import React, { useEffect, useState } from 'react';
+import ActualCategoriesPage from './ActualCategoriesPage';
 
 
 export default function CategoriesPage() : React.ReactElement
@@ -46,7 +46,7 @@ export default function CategoriesPage() : React.ReactElement
     {
         return (
             <ErrorPage>
-                <RestErrorViewer tag={itemCountsStatus.tag} details={itemCountsStatus.details} operation='getItemCountsPerCategory()' />
+                <RestErrorViewer tag={itemCountsStatus.tag} details={itemCountsStatus.details} operation="getItemCountsPerCategory()" />
             </ErrorPage>
         );
     }
@@ -54,7 +54,7 @@ export default function CategoriesPage() : React.ReactElement
     {
         return (
             <ErrorPage>
-                <RestErrorViewer tag={soldItemCountsStatus.tag} details={soldItemCountsStatus.details} operation='getSoldItemCountsPerCategory()' />
+                <RestErrorViewer tag={soldItemCountsStatus.tag} details={soldItemCountsStatus.details} operation="getSoldItemCountsPerCategory()" />
             </ErrorPage>
         );
     }

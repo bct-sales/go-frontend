@@ -1,5 +1,5 @@
-import { Label, LabelLayoutData, LayoutHelper } from "@/label-layout";
-import React from "react";
+import { Label, LabelLayoutData, LayoutHelper } from '@/label-layout';
+import React from 'react';
 
 interface Props
 {

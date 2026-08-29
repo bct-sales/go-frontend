@@ -1,6 +1,6 @@
-import { Checkbox, Flex } from "@mantine/core";
-import HelpPopover from "./HelpPopover";
-import LargeItemIcon from "./LargeItemIcon";
+import { Checkbox, Flex } from '@mantine/core';
+import HelpPopover from './HelpPopover';
+import LargeItemIcon from './LargeItemIcon';
 
 
 interface Props

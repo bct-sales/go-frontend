@@ -8,10 +8,10 @@ import { success } from '@/result';
 
 const Sale = z.object({
     saleId: z.number().nonnegative(),
-	cashierId: z.number().nonnegative(),
-	transactionTime: DateTime,
-	itemCount: z.number().nonnegative(),
-	totalPriceInCents: z.number().nonnegative(),
+    cashierId: z.number().nonnegative(),
+    transactionTime: DateTime,
+    itemCount: z.number().nonnegative(),
+    totalPriceInCents: z.number().nonnegative(),
 });
 
 export type Sale = z.infer<typeof Sale>;

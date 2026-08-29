@@ -1,6 +1,6 @@
-import { DateTime } from "@/datetime";
-import { Table } from "@mantine/core";
-import React from "react";
+import { DateTime } from '@/datetime';
+import { Table } from '@mantine/core';
+import React from 'react';
 import classes from './ItemsTable.module.css';
 
 interface Props
@@ -61,9 +61,9 @@ export default function ItemsTable(props: Props): React.ReactElement
             <Table.Tr key={item.itemId} className={classes.itemRow}>
                 {columns.map((column, index) => (
                     <Table.Td key={index}
-                              className={`${classes.itemData} ${column.className}`}
-                              onClick={() => props.onItemClicked?.(item, itemIndex)}
-                              onDoubleClick={() => notifyItemActivation(item, itemIndex)}>
+                        className={`${classes.itemData} ${column.className}`}
+                        onClick={() => props.onItemClicked?.(item, itemIndex)}
+                        onDoubleClick={() => notifyItemActivation(item, itemIndex)}>
                         {column.viewer(item, itemIndex)}
                     </Table.Td>
                 ))}

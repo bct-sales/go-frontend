@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { viteSingleFile } from "vite-plugin-singlefile"
+import { viteSingleFile } from 'vite-plugin-singlefile';
 
 
 interface Definitions
@@ -23,8 +23,8 @@ export default defineConfig(({ command } ) => {
         ],
         resolve: {
             alias: {
-              // /esm/icons/index.mjs only exports the icons statically, so no separate chunks are created
-              '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
+                // /esm/icons/index.mjs only exports the icons statically, so no separate chunks are created
+                '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
             },
         },
         define: buildSpecificationDefinitions(),
@@ -40,10 +40,10 @@ export default defineConfig(({ command } ) => {
                 server: {
                     proxy: {
                         '/api/v1': {
-                            target: 'http://localhost:8000'
-                        }
-                    }
-                }
+                            target: 'http://localhost:8000',
+                        },
+                    },
+                },
             };
         }
         else
@@ -58,4 +58,4 @@ export default defineConfig(({ command } ) => {
             ROOT_URL: JSON.stringify('/api/v1'),
         };
     }
-})
+});

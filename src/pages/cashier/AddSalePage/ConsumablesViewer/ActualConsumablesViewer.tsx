@@ -1,8 +1,8 @@
-import { Consumable, useConsumables } from "@/consumables";
-import { Button, Group, Table } from "@mantine/core";
-import React from "react";
-import classes from './ConsumablesViewer.module.css'
-import { range } from "@/util";
+import { Consumable, useConsumables } from '@/consumables';
+import { Button, Group, Table } from '@mantine/core';
+import React from 'react';
+import classes from './ConsumablesViewer.module.css';
+import { range } from '@/util';
 
 
 interface Props
@@ -47,7 +47,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactElemen
         const quantities = range(1, 6);
 
         return (
-            <Group justify='flex-end'>
+            <Group justify="flex-end">
                 {quantities.map(q => renderQuantityButton(consumable, q))}
             </Group>
         );
@@ -56,7 +56,7 @@ export default function ActualConsumablesViewer(props: Props): React.ReactElemen
     function renderQuantityButton(consumable: Consumable, quantity: number): React.ReactElement
     {
         return (
-            <Button size='sm' onClick={() => onQuantityClicked(consumable, quantity)} key={quantity}>
+            <Button size="sm" onClick={() => onQuantityClicked(consumable, quantity)} key={quantity}>
                 {quantity}
             </Button>
         );

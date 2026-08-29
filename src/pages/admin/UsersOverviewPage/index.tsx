@@ -1,18 +1,18 @@
-import ExportButton from "@/components/ExportButton";
-import Loading from "@/components/Loading";
-import RestErrorViewer from "@/components/RestErrorViewer";
-import UsersTable from "@/components/UsersTable";
-import ErrorPage from "@/pages/ErrorPage";
-import { listUsers, User } from "@/rest/list-users";
-import { paths } from "@/rest/paths";
-import { RestStatus } from "@/rest/status";
-import { Center, Group, Stack } from "@mantine/core";
-import { useEffect, useState } from "react";
+import ExportButton from '@/components/ExportButton';
+import Loading from '@/components/Loading';
+import RestErrorViewer from '@/components/RestErrorViewer';
+import UsersTable from '@/components/UsersTable';
+import ErrorPage from '@/pages/ErrorPage';
+import { listUsers, User } from '@/rest/list-users';
+import { paths } from '@/rest/paths';
+import { RestStatus } from '@/rest/status';
+import { Center, Group, Stack } from '@mantine/core';
+import { useEffect, useState } from 'react';
 
 
 export default function UsersOverviewPage()
 {
-    const [status, setStatus] = useState<RestStatus<User[]>>({ status: "loading" });
+    const [status, setStatus] = useState<RestStatus<User[]>>({ status: 'loading' });
 
     useEffect(() => {
         void (async () => {
@@ -20,29 +20,29 @@ export default function UsersOverviewPage()
 
             if (response.success)
             {
-                setStatus({ status: "success", value: response.value });
+                setStatus({ status: 'success', value: response.value });
             }
             else
             {
-                setStatus({ status: "error", tag: response.error.type, details: response.error.details });
+                setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
             }
         })();
     }, []);
 
     switch (status.status)
     {
-        case "success":
+        case 'success':
             return renderPage(status.value);
 
-        case "loading":
+        case 'loading':
             return (
                 <Loading message="Loading users..." />
             );
 
-        case "error":
+        case 'error':
             return (
                 <ErrorPage>
-                    <RestErrorViewer tag={status.tag} details={status.details} operation='listUsers()' />
+                    <RestErrorViewer tag={status.tag} details={status.details} operation="listUsers()" />
                 </ErrorPage>
             );
     }
@@ -59,7 +59,7 @@ export default function UsersOverviewPage()
             {
                 caption: 'JSON',
                 url: paths.users.withFormat('json'),
-                filename: 'users.json'
+                filename: 'users.json',
             },
         ];
 

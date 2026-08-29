@@ -1,14 +1,14 @@
-import { useAuthentication } from "@/authentication";
-import NavigationButton from "@/components/NavigationButton";
-import RedirectToLoginPage from "@/components/RedirectToLoginPage";
-import AddSalePage from "@/pages/cashier/AddSalePage";
-import SalesPage from "@/pages/cashier/SalesPage";
-import { AppShell, Flex } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconCashRegister, IconList, IconLogout, IconSettings } from "@tabler/icons-react";
-import { Route, Routes } from "react-router-dom";
-import SettingsPage from "./SettingsPage";
-import DashboardHeader from "@/pages/DashboardHeader.tsx";
+import { useAuthentication } from '@/authentication';
+import NavigationButton from '@/components/NavigationButton';
+import RedirectToLoginPage from '@/components/RedirectToLoginPage';
+import AddSalePage from '@/pages/cashier/AddSalePage';
+import SalesPage from '@/pages/cashier/SalesPage';
+import { AppShell, Flex } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconCashRegister, IconList, IconLogout, IconSettings } from '@tabler/icons-react';
+import { Route, Routes } from 'react-router-dom';
+import SettingsPage from './SettingsPage';
+import DashboardHeader from '@/pages/DashboardHeader.tsx';
 
 
 export default function CashierDashboard()

@@ -1,10 +1,10 @@
-import { DateTime } from "@/datetime";
-import { Stack } from "@mantine/core";
+import { DateTime } from '@/datetime';
+import { Stack } from '@mantine/core';
 import sortBy from 'lodash/sortBy';
-import { DataTable, DataTableSortStatus } from "mantine-datatable";
-import { useEffect, useState } from "react";
-import DateTimeViewer from "./DateTimeViewer";
-import UserIdViewer from "./UserIdViewer";
+import { DataTable, DataTableSortStatus } from 'mantine-datatable';
+import { useEffect, useState } from 'react';
+import DateTimeViewer from './DateTimeViewer';
+import UserIdViewer from './UserIdViewer';
 import classes from './UsersTable.module.css';
 
 

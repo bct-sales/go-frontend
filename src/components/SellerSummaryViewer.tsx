@@ -1,5 +1,5 @@
-import Price from "@/components/Price";
-import { Table } from "@mantine/core";
+import Price from '@/components/Price';
+import { Table } from '@mantine/core';
 import classes from './SellerSummaryViewer.module.css';
 
 interface Props

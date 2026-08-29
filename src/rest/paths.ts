@@ -25,11 +25,11 @@ class ConcreteURL implements URL
 
             if ( entries.length !== 0 )
             {
-                return "?" + Object.entries(this.queryParameters).map(([key, value]) => `${key}=${value}`).join("&");
+                return '?' + Object.entries(this.queryParameters).map(([key, value]) => `${key}=${value}`).join('&');
             }
             else
             {
-                return "";
+                return '';
             }
         };
 

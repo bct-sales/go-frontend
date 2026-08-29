@@ -18,7 +18,7 @@ const LoginSuccessResponse = z.object({
     role: z.union([
         z.literal('seller'),
         z.literal('admin'),
-        z.literal('cashier')
+        z.literal('cashier'),
     ]),
 }).strict();
 
@@ -30,10 +30,10 @@ export async function login( data: LoginParameters ): Promise<RestResult<Role>>
     const payload = {
         grant_type: 'password',
         username: `${data.userId}`,
-        password: data.password
+        password: data.password,
     };
     const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
     };
     const url = paths.login;
 

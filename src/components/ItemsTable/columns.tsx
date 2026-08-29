@@ -1,18 +1,18 @@
-import CategoryViewer from "@/components/CategoryViewer";
-import CharityViewer from "@/components/CharityViewer";
-import DateTimeViewer from "@/components/DateTimeViewer";
-import DonationViewer from "@/components/DonationViewer";
-import NumberInput from "@/components/NumberInput";
-import Price from "@/components/Price";
-import UserIdViewer from "@/components/UserIdViewer";
-import { range } from "@/util";
-import { Button, Checkbox, Group, Tooltip } from "@mantine/core";
-import { IconCopyPlus, IconEdit, IconTrashX } from "@tabler/icons-react";
-import FrozenViewer from "@/components/FrozenViewer";
-import { Column, Item } from "./ItemsTable";
+import CategoryViewer from '@/components/CategoryViewer';
+import CharityViewer from '@/components/CharityViewer';
+import DateTimeViewer from '@/components/DateTimeViewer';
+import DonationViewer from '@/components/DonationViewer';
+import NumberInput from '@/components/NumberInput';
+import Price from '@/components/Price';
+import UserIdViewer from '@/components/UserIdViewer';
+import { range } from '@/util';
+import { Button, Checkbox, Group, Tooltip } from '@mantine/core';
+import { IconCopyPlus, IconEdit, IconTrashX } from '@tabler/icons-react';
+import FrozenViewer from '@/components/FrozenViewer';
+import { Column, Item } from './ItemsTable';
 import classes from './ItemsTable.module.css';
-import SmartSelection from "./SmartSelection";
-import LargeItemViewer from "../LargeItemViewer";
+import SmartSelection from './SmartSelection';
+import LargeItemViewer from '../LargeItemViewer';
 
 
 export const itemIdColumn: Column = {
@@ -28,7 +28,7 @@ export const descriptionColumn: Column = {
 };
 
 export const addedAtColumn: Column = {
-    header: "Added At",
+    header: 'Added At',
     className: classes.itemAddedAt,
     viewer: (item: Item) => <DateTimeViewer dateTime={item.addedAt} />,
 };
@@ -105,7 +105,7 @@ export function editColumn(onClick: (item: Item) => void): Column
             if (item.frozen) {
                 return (
                     <FrozenViewer value={item.frozen} />
-                )
+                );
             }
             else
             {
@@ -152,12 +152,12 @@ export function selectionColumn(isSelected: (item: Item) => boolean, onChangeSel
 }
 
 export type SmartSelectionColumnArguments =
-{
-    isSelected: (itemIndex: number) => boolean;
-    onChangeSelected: (itemIndex: number, selected: boolean) => void;
-    itemCount: number;
-    activeItemIndex: number | null;
-}
+    {
+        isSelected: (itemIndex: number) => boolean;
+        onChangeSelected: (itemIndex: number, selected: boolean) => void;
+        itemCount: number;
+        activeItemIndex: number | null;
+    };
 
 export function smartSelectionColumn(args: SmartSelectionColumnArguments): Column
 {
@@ -201,7 +201,7 @@ export function countColumn(count: (item: Item) => number, setCount: (item: Item
                 <NumberInput
                     value={count(item)}
                     onChange={n => setCount(item, n)}
-                    w='5em'
+                    w="5em"
                     min={0}
                     step={1} />
             );

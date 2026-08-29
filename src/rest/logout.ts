@@ -15,6 +15,6 @@ export async function logout(): Promise<void>
     {
         const error = identifyErrorInException(exception);
 
-        console.error("Failed to logout: ", error);
+        console.error('Failed to logout: ', error);
     }
 }

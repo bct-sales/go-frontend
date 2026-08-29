@@ -1,8 +1,8 @@
-import { ActionIcon, Stack, Table, Tooltip } from "@mantine/core";
-import React from "react";
+import { ActionIcon, Stack, Table, Tooltip } from '@mantine/core';
+import React from 'react';
 import classes from './SaleItemsTable.module.css';
-import Price from "./Price";
-import { IconAlertTriangle, IconTrash } from "@tabler/icons-react";
+import Price from './Price';
+import { IconAlertTriangle, IconTrash } from '@tabler/icons-react';
 
 
 interface Props

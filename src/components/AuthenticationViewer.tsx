@@ -1,5 +1,5 @@
-import { Role } from "@/role";
-import { Stack, Text } from "@mantine/core";
+import { Role } from '@/role';
+import { Stack, Text } from '@mantine/core';
 import classes from './AuthenticationViewer.module.css';
 
 interface Props

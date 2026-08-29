@@ -1,6 +1,6 @@
-import React from "react";
-import ActualConsumablesViewer from "./ActualConsumablesViewer";
-import ConsumablesProvider from "@/components/ConsumablesProvider";
+import React from 'react';
+import ActualConsumablesViewer from './ActualConsumablesViewer';
+import ConsumablesProvider from '@/components/ConsumablesProvider';
 
 
 interface Props

@@ -1,4 +1,4 @@
-import { useSettings } from "@/settings";
+import { useSettings } from '@/settings';
 
 interface Props
 {

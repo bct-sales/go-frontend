@@ -1,23 +1,23 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import ItemsTable from "@/components/ItemsTable";
-import { ActionIcon, Center, Group, Stack, TextInput, Tooltip } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
-import React, { useEffect, useRef, useState } from "react";
-import { categoryColumn, deleteColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, sellerColumn } from "@/components/ItemsTable/columns";
-import { getItemInformation, Item as RestItem } from "@/rest/item-data";
-import { notifications } from "@mantine/notifications";
-import { Item } from "@/components/ItemsTable/ItemsTable";
+import CaptionedBox from '@/components/CaptionedBox';
+import ItemsTable from '@/components/ItemsTable';
+import { ActionIcon, Center, Group, Stack, TextInput, Tooltip } from '@mantine/core';
+import { IconPlus } from '@tabler/icons-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { categoryColumn, deleteColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, sellerColumn } from '@/components/ItemsTable/columns';
+import { getItemInformation, Item as RestItem } from '@/rest/item-data';
+import { notifications } from '@mantine/notifications';
+import { Item } from '@/components/ItemsTable/ItemsTable';
 
 
 export default function QueryItemsPage() : React.ReactElement
 {
     const itemInputRef = useRef<HTMLInputElement>(null);
-    const [itemIdString, setItemIdString] = useState<string>("");
+    const [itemIdString, setItemIdString] = useState<string>('');
     const [items, setItems] = useState<RestItem[]>([]);
 
     useEffect(() => {
-            itemInputRef.current?.focus();
-        }, []);
+        itemInputRef.current?.focus();
+    }, []);
 
     const columns = [
         deleteColumn(onDeleteItem),
@@ -53,7 +53,7 @@ export default function QueryItemsPage() : React.ReactElement
 
     function onUpdateItemId(value: string): void
     {
-        if ( value.toLocaleLowerCase().endsWith("x") )
+        if ( value.toLocaleLowerCase().endsWith('x') )
         {
             setItemIdString(value.slice(0, -1));
             onAddItem();
@@ -82,7 +82,7 @@ export default function QueryItemsPage() : React.ReactElement
                 title: 'Invalid input',
                 message: 'Invalid item id',
                 color: 'red',
-            })
+            });
 
             return;
         }
@@ -96,7 +96,7 @@ export default function QueryItemsPage() : React.ReactElement
                 message: 'Item already in list',
                 color: 'red',
             });
-            setItemIdString("");
+            setItemIdString('');
 
             return;
         }
@@ -106,7 +106,7 @@ export default function QueryItemsPage() : React.ReactElement
             if ( response.success )
             {
                 setItems([response.value, ...items]);
-                setItemIdString("");
+                setItemIdString('');
             }
             else
             {
@@ -116,7 +116,7 @@ export default function QueryItemsPage() : React.ReactElement
                     color: 'red',
                 });
             }
-        })()
+        })();
     }
 
     function onDeleteItem(itemToBeDeleted: Item): void

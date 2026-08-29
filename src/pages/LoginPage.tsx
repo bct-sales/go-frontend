@@ -1,11 +1,11 @@
 import { useAuthentication } from '@/authentication';
 import Delayed from '@/components/Delayed';
 import * as rest from '@/rest/login';
-import { Box, Button, Center, PasswordInput, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { Box, Button, Center, PasswordInput, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface FormFields
@@ -21,20 +21,20 @@ export default function LoginPage()
     const form = useForm<FormFields>({
         initialValues: {
             userId: '',
-            password: ''
+            password: '',
         },
         validate: {
-            userId: login => isValidLogin(login) ? null : "Enter a series of digits",
-            password: password => (isValidPassword(password) ? null : "Enter a password"),
-        }
+            userId: login => isValidLogin(login) ? null : 'Enter a series of digits',
+            password: password => (isValidPassword(password) ? null : 'Enter a password'),
+        },
     });
 
     if ( authentication.status === 'authenticated' )
     {
         return (
             <Delayed delayInMilliseconds={500}>
-                <Center mih='50vh'>
-                    <Box maw={500} mx="auto" w='40%'>
+                <Center mih="50vh">
+                    <Box maw={500} mx="auto" w="40%">
                         <h1>Bug!</h1>
                     </Box>
                 </Center>
@@ -44,11 +44,11 @@ export default function LoginPage()
 
     return (
         <>
-            <Center mih='50vh'>
-                <Box maw={500} mx="auto" w='40%'>
+            <Center mih="50vh">
+                <Box maw={500} mx="auto" w="40%">
                     <form onSubmit={form.onSubmit(onSubmit)}>
                         <Center>
-                            <Box miw='20em'>
+                            <Box miw="20em">
                                 {renderLoginInput()}
                                 {renderPasswordInput()}
                             </Box>
@@ -65,14 +65,14 @@ export default function LoginPage()
     function renderLoginInput(): React.ReactElement
     {
         return (
-            <TextInput label="Your ID" placeholder="Number" {...form.getInputProps('userId')} p='sm' />
+            <TextInput label="Your ID" placeholder="Number" {...form.getInputProps('userId')} p="sm" />
         );
     }
 
     function renderPasswordInput(): React.ReactElement
     {
         return (
-            <PasswordInput label="Password" placeholder="Password" {...form.getInputProps('password')} p='sm' />
+            <PasswordInput label="Password" placeholder="Password" {...form.getInputProps('password')} p="sm" />
         );
     }
 
@@ -97,11 +97,11 @@ export default function LoginPage()
 
             if ( result.success )
             {
-                const role = result.value
+                const role = result.value;
 
                 if ( authentication.status === 'authenticated' )
                 {
-                    console.error("Bug! User is already authenticated!");
+                    console.error('Bug! User is already authenticated!');
                     return;
                 }
 
@@ -124,13 +124,13 @@ export default function LoginPage()
             {
                 switch ( result.error.type )
                 {
-                    case "invalid_id":
+                    case 'invalid_id':
                         notifications.show({title: 'Invalid ID', message: 'Invalid ID', color: 'red'});
                         return;
-                    case "no_such_user":
+                    case 'no_such_user':
                         notifications.show({title: 'Unknown user', message: 'User does not exist', color: 'red'});
                         return;
-                    case "wrong_password":
+                    case 'wrong_password':
                         notifications.show({title: 'Invalid password', message: 'Wrong password', color: 'red'});
                         return;
                     default:

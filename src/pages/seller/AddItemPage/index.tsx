@@ -1,9 +1,9 @@
-import ItemEditor, { ItemData } from "@/pages/seller/ItemEditor";
-import { addItem, Payload } from "@/rest/add-item";
-import { validateDescription, validatePrice } from "@/validation";
-import { Button, Center, Flex } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { useState } from "react";
+import ItemEditor, { ItemData } from '@/pages/seller/ItemEditor';
+import { addItem, Payload } from '@/rest/add-item';
+import { validateDescription, validatePrice } from '@/validation';
+import { Button, Center, Flex } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useState } from 'react';
 
 
 interface Props
@@ -19,9 +19,9 @@ export default function AddItemPage(props: Props) : React.ReactElement
 
     return (
         <Center>
-            <Flex direction="column" align="stretch" justify="center" gap='md' maw='500px'>
+            <Flex direction="column" align="stretch" justify="center" gap="md" maw="500px">
                 <ItemEditor itemData={itemData} setItemData={setItemData} />
-                <Button mt='xl' onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
+                <Button mt="xl" onClick={onAddItem} disabled={!isValidData}>Add Item</Button>
             </Flex>
         </Center>
     );
@@ -44,7 +44,7 @@ export default function AddItemPage(props: Props) : React.ReactElement
             if ( response.success )
             {
                 notifications.show({
-                    message: `Item successfully added!`,
+                    message: 'Item successfully added!',
                     color: 'green',
                 });
 

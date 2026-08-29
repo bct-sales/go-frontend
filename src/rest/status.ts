@@ -1,4 +1,4 @@
-import { ErrorTag } from "./result";
+import { ErrorTag } from './result';
 
 export type RestStatus<T> =
     | { readonly status: 'loading' }

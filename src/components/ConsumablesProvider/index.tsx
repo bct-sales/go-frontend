@@ -1,6 +1,6 @@
-import React from "react";
-import CategoryProvider from "@/components/CategoryProvider";
-import ActualConsumablesProvider from "./ActualConsumablesProvider";
+import React from 'react';
+import CategoryProvider from '@/components/CategoryProvider';
+import ActualConsumablesProvider from './ActualConsumablesProvider';
 
 
 interface Props

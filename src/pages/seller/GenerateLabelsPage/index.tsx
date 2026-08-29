@@ -1,15 +1,15 @@
-import { Item } from "@/components/ItemsTable/ItemsTable";
-import Loading from "@/components/Loading";
-import { LabelLayoutData } from "@/label-layout";
-import { generateLabels } from "@/rest/generate-labels";
-import { listSellerItems } from "@/rest/list-seller-items";
-import { RestStatus } from "@/rest/status";
-import { Stack, Stepper } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { useEffect, useState } from "react";
-import FinalizePage from "./FinalizePage";
-import ItemSelectionSubpage from "./ItemSelectionSubpage";
-import LayoutSubpage from "./LayoutSubpage";
+import { Item } from '@/components/ItemsTable/ItemsTable';
+import Loading from '@/components/Loading';
+import { LabelLayoutData } from '@/label-layout';
+import { generateLabels } from '@/rest/generate-labels';
+import { listSellerItems } from '@/rest/list-seller-items';
+import { RestStatus } from '@/rest/status';
+import { Stack, Stepper } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
+import FinalizePage from './FinalizePage';
+import ItemSelectionSubpage from './ItemSelectionSubpage';
+import LayoutSubpage from './LayoutSubpage';
 
 
 interface Props
@@ -26,7 +26,7 @@ export default function GenerateLabelsPage(props: Props): React.ReactElement
             top: 5,
             bottom: 5,
             left: 5,
-            right: 5
+            right: 5,
         },
         columns: 2,
         rows: 8,
@@ -34,15 +34,15 @@ export default function GenerateLabelsPage(props: Props): React.ReactElement
             top: 2,
             bottom: 2,
             left: 2,
-            right: 2
+            right: 2,
         },
         labelPadding: {
             top: 2,
             bottom: 2,
             left: 2,
-            right: 2
+            right: 2,
         },
-        fontSize: 5
+        fontSize: 5,
     };
 
     const [itemsStatus, setItemsStatus] = useState<RestStatus<Item[]>>({ status: 'loading' });
@@ -51,26 +51,26 @@ export default function GenerateLabelsPage(props: Props): React.ReactElement
     const [itemCountTable, setItemCountTable] = useState<{ [id: string]: number }>({});
 
     useEffect(() => {
-            void (async () => {
-                const response = await listSellerItems(props.sellerId);
+        void (async () => {
+            const response = await listSellerItems(props.sellerId);
 
-                if (response.success)
-                {
-                    setItemsStatus({ status: 'success', value: response.value.items });
+            if (response.success)
+            {
+                setItemsStatus({ status: 'success', value: response.value.items });
 
-                    const table: { [id: string]: number } = {};
-                    for (const item of response.value.items)
-                    {
-                        table[item.itemId] = 2;
-                    }
-                    setItemCountTable(table);
-                }
-                else
+                const table: { [id: string]: number } = {};
+                for (const item of response.value.items)
                 {
-                    setItemsStatus({ status: 'error', tag: response.error.type, details: response.error.details });
+                    table[item.itemId] = 2;
                 }
-            })();
-        }, [props.sellerId]);
+                setItemCountTable(table);
+            }
+            else
+            {
+                setItemsStatus({ status: 'error', tag: response.error.type, details: response.error.details });
+            }
+        })();
+    }, [props.sellerId]);
 
     switch (itemsStatus.status)
     {
@@ -145,9 +145,9 @@ export default function GenerateLabelsPage(props: Props): React.ReactElement
                 if ( !blob.success )
                 {
                     notifications.show({
-                        title: "Error",
+                        title: 'Error',
                         message: `Failed to generate labels: ${blob.error.details} (${blob.error.type})`,
-                        color: "red",
+                        color: 'red',
                     });
                     return;
                 }

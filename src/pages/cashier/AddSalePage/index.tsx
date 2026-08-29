@@ -1,24 +1,24 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import Price from "@/components/Price";
-import SaleItemsTable, { SaleItem } from "@/components/SaleItemsTable";
-import { addSale } from "@/rest/add-sale";
-import { getItemInformation, Item, SuccessResponse } from "@/rest/item-data";
-import { useSettings } from "@/settings";
-import { ActiveSoundEmitter, MuteSoundEmitter } from "@/sound";
-import { ActionIcon, Button, Center, Flex, Group, Stack, Stepper, TextInput, Tooltip } from "@mantine/core";
-import { useHotkeys } from "@mantine/hooks";
-import { notifications } from "@mantine/notifications";
-import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from "@tabler/icons-react";
-import React, { useEffect, useRef, useState } from "react";
+import CaptionedBox from '@/components/CaptionedBox';
+import Price from '@/components/Price';
+import SaleItemsTable, { SaleItem } from '@/components/SaleItemsTable';
+import { addSale } from '@/rest/add-sale';
+import { getItemInformation, Item, SuccessResponse } from '@/rest/item-data';
+import { useSettings } from '@/settings';
+import { ActiveSoundEmitter, MuteSoundEmitter } from '@/sound';
+import { ActionIcon, Button, Center, Flex, Group, Stack, Stepper, TextInput, Tooltip } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
+import { IconBackspace, IconCheck, IconCurrencyEuro, IconPlus, IconShoppingBag } from '@tabler/icons-react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './AddSalePage.module.css';
-import ConsumablesViewer from "./ConsumablesViewer";
+import ConsumablesViewer from './ConsumablesViewer';
 
 
 export default function AddSalePage(): React.ReactElement
 {
     const [step, setStep] = useState(0);
     const [saleItems, setSaleItems] = useState<Item[]>([]);
-    const [itemIdString, setItemIdString] = useState<string>("");
+    const [itemIdString, setItemIdString] = useState<string>('');
     const itemInputRef = useRef<HTMLInputElement>(null);
     const settings = useSettings();
     const soundEmitter = useRef(new MuteSoundEmitter());
@@ -38,9 +38,9 @@ export default function AddSalePage(): React.ReactElement
                 {
                     onPaymentReceived();
                 }
-            }
+            },
         ],
-    ])
+    ]);
     useEffect(() => {
         itemInputRef.current?.focus();
     }, [step]);
@@ -52,7 +52,7 @@ export default function AddSalePage(): React.ReactElement
     return (
         <Center>
             <Stepper active={step}>
-                <Stepper.Step label="Step 1" description="Add items to the sale" icon={<IconShoppingBag />} p='xl'>
+                <Stepper.Step label="Step 1" description="Add items to the sale" icon={<IconShoppingBag />} p="xl">
                     <Stack>
                         <CaptionedBox caption="Add Item">
                             <Stack align="center">
@@ -68,7 +68,7 @@ export default function AddSalePage(): React.ReactElement
                             </Stack>
                         </CaptionedBox>
                         <Tooltip label="Press this button after all items have been added (shortcut: Ctrl+Enter while in textbox)">
-                            <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb='xl'>
+                            <Button onClick={onFinalizeSale} disabled={!canFinalizeSale} mb="xl">
                                 Finalize Sale
                             </Button>
                         </Tooltip>
@@ -77,11 +77,11 @@ export default function AddSalePage(): React.ReactElement
                         </CaptionedBox>
                     </Stack>
                 </Stepper.Step>
-                <Stepper.Step label="Step 2" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p='xl'>
+                <Stepper.Step label="Step 2" description="Finalize the sale" icon={<IconCurrencyEuro />} allowStepSelect={canFinalizeSale} p="xl">
                     <Stack>
                         <CaptionedBox caption="Amount Due">
                             <Stack align="center">
-                                <Stack align="center" gap='0' m='xl'>
+                                <Stack align="center" gap="0" m="xl">
                                     <Price priceInCents={totalPriceInCents} className={classes.totalPrice} />
                                     <Center>Item count: {saleItems.length}</Center>
                                 </Stack>
@@ -123,7 +123,7 @@ export default function AddSalePage(): React.ReactElement
 
     function onUpdateItemId(value: string): void
     {
-        if ( value.toLocaleLowerCase().endsWith("x") )
+        if ( value.toLocaleLowerCase().endsWith('x') )
         {
             setItemIdString(value.slice(0, -1));
             onAddItem();
@@ -152,7 +152,7 @@ export default function AddSalePage(): React.ReactElement
             {
                 // This should never happen, button should be disabled if itemId is not a valid number
                 notifications.show({
-                    message: `Invalid item ID`,
+                    message: 'Invalid item ID',
                     color: 'red',
                 });
                 soundEmitter.current.error();
@@ -195,7 +195,7 @@ export default function AddSalePage(): React.ReactElement
     function onTriedAddingSameItemTwice()
     {
         notifications.show({
-            message: `Item already in sale`,
+            message: 'Item already in sale',
             color: 'red',
         });
 
@@ -209,7 +209,7 @@ export default function AddSalePage(): React.ReactElement
     function onTriedAddingUnknownItem()
     {
         notifications.show({
-            message: `Unknown item`,
+            message: 'Unknown item',
             color: 'red',
         });
         soundEmitter.current.error();
@@ -267,7 +267,7 @@ export default function AddSalePage(): React.ReactElement
 
     function resetItemInput(): void
     {
-        setItemIdString("");
+        setItemIdString('');
         itemInputRef.current?.focus();
     }
 
@@ -314,7 +314,7 @@ export default function AddSalePage(): React.ReactElement
         if ( result.success )
         {
             notifications.show({
-                message: `Sale completed successfully`,
+                message: 'Sale completed successfully',
                 color: 'green',
             });
 
@@ -328,7 +328,7 @@ export default function AddSalePage(): React.ReactElement
             if ( result.error.type === 'wrong_role' )
             {
                 notifications.show({
-                    message: `Failed to complete sale: you are not logged in as cashier`,
+                    message: 'Failed to complete sale: you are not logged in as cashier',
                     color: 'red',
                 });
             }

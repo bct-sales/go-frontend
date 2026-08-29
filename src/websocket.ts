@@ -8,8 +8,8 @@ interface WebsocketFacade
 
 const dummyWebsocketFacade: WebsocketFacade = {
     register: () => {
-        throw new Error("WebsocketFacade not initialized");
-    }
+        throw new Error('WebsocketFacade not initialized');
+    },
 };
 
 export const WebsocketContext = React.createContext<WebsocketFacade>(dummyWebsocketFacade);
@@ -26,9 +26,9 @@ export interface UpdateNotifier
 
 const dummyUpdateNotifier: UpdateNotifier = {
     register: () => {
-        throw new Error("UpdateNotifier not initialized");
-    }
-}
+        throw new Error('UpdateNotifier not initialized');
+    },
+};
 
 export const UpdateNotificationContext = React.createContext<UpdateNotifier>(dummyUpdateNotifier);
 

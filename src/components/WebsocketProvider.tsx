@@ -1,5 +1,5 @@
-import { WebsocketContext } from "@/websocket";
-import { ReactNode, useRef } from "react";
+import { WebsocketContext } from '@/websocket';
+import { ReactNode, useRef } from 'react';
 
 interface Props
 {
@@ -68,7 +68,7 @@ export default function WebsocketProvider(props: Props): ReactNode
         console.debug(`No observers left; scheduling websocket close in ${delay}ms`);
 
         setTimeout(() => {
-            console.debug("Delay passed; if there still no observers, I will close the websocket");
+            console.debug('Delay passed; if there still no observers, I will close the websocket');
             if (websocketReference.current !== null && observers.current.length === 0) {
                 closeWebsocket();
                 websocketReference.current = null;
@@ -82,8 +82,8 @@ export default function WebsocketProvider(props: Props): ReactNode
 
         if ( websocket !== null )
         {
-            console.debug("Closing websocket");
-            websocket.send("bye");
+            console.debug('Closing websocket');
+            websocket.send('bye');
             websocket.close();
             websocketReference.current = null;
         }

@@ -1,10 +1,10 @@
-import CategoryViewer from "@/components/CategoryViewer";
-import CharityViewer from "@/components/CharityViewer";
-import DateTimeViewer from "@/components/DateTimeViewer";
-import DonationViewer from "@/components/DonationViewer";
-import Price from "@/components/Price";
-import { Item } from "@/rest/sale-information";
-import { DataTable } from "mantine-datatable";
+import CategoryViewer from '@/components/CategoryViewer';
+import CharityViewer from '@/components/CharityViewer';
+import DateTimeViewer from '@/components/DateTimeViewer';
+import DonationViewer from '@/components/DonationViewer';
+import Price from '@/components/Price';
+import { Item } from '@/rest/sale-information';
+import { DataTable } from 'mantine-datatable';
 
 
 interface Props
@@ -23,35 +23,35 @@ export default function ItemTable(props: Props): React.ReactElement
             columns={[
                 {
                     accessor: 'itemId',
-                    title: "Id",
+                    title: 'Id',
                 },
                 {
                     accessor: 'description',
-                    title: "Description",
+                    title: 'Description',
                 },
                 {
                     accessor: 'categoryId',
-                    title: "Category",
+                    title: 'Category',
                     render: item => <CategoryViewer categoryId={item.categoryId} />,
                 },
                 {
                     accessor: 'priceInCents',
-                    title: "Price",
+                    title: 'Price',
                     render: item => <Price priceInCents={item.priceInCents} />,
                 },
                 {
                     accessor: 'charity',
-                    title: "Charity",
+                    title: 'Charity',
                     render: item => <CharityViewer value={item.charity} />,
                 },
                 {
                     accessor: 'donation',
-                    title: "Donation",
+                    title: 'Donation',
                     render: item => <DonationViewer value={item.charity} />,
                 },
                 {
                     accessor: 'addedAt',
-                    title: "Added At",
+                    title: 'Added At',
                     render: item => <DateTimeViewer dateTime={item.addedAt} />,
                 },
             ]}

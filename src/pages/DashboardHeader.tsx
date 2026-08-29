@@ -1,7 +1,7 @@
-import AuthenticationViewer from "@/components/AuthenticationViewer";
-import { Role } from "@/role";
-import { Burger, Flex, Text } from "@mantine/core";
-import React from "react";
+import AuthenticationViewer from '@/components/AuthenticationViewer';
+import { Role } from '@/role';
+import { Burger, Flex, Text } from '@mantine/core';
+import React from 'react';
 import classes from './DashboardHeader.module.css';
 
 

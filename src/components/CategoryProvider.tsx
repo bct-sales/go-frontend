@@ -1,7 +1,7 @@
-import { CategoryContext, useCategories } from "@/categories";
-import { Alert } from "@mantine/core";
-import { IconExclamationCircle } from "@tabler/icons-react";
-import React from "react";
+import { CategoryContext, useCategories } from '@/categories';
+import { Alert } from '@mantine/core';
+import { IconExclamationCircle } from '@tabler/icons-react';
+import React from 'react';
 
 
 interface Props
@@ -17,7 +17,7 @@ export default function CategoryProvider(props: Props): React.ReactElement
     {
         case 'error':
             return (
-                <Alert color='red' icon={<IconExclamationCircle />}>
+                <Alert color="red" icon={<IconExclamationCircle />}>
                     Error loading categories: {categoryTableStatus.details}
                 </Alert>
             );

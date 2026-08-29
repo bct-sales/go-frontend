@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { Category, getItemCategories } from "./rest/categories";
-import { RestStatus } from "./rest/status";
-import { failure, success } from "./result";
-import { RestResult } from "./rest/result";
-import React from "react";
+import { useQuery } from '@tanstack/react-query';
+import { Category, getItemCategories } from './rest/categories';
+import { RestStatus } from './rest/status';
+import { failure, success } from './result';
+import { RestResult } from './rest/result';
+import React from 'react';
 
 
 export interface CategoryTable
@@ -78,7 +78,7 @@ function buildCategoryTable(categories: Category[]): CategoryTable
         }
         else
         {
-            throw new Error("No such category: " + id);
+            throw new Error('No such category: ' + id);
         }
     }
 

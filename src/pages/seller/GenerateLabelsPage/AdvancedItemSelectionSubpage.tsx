@@ -1,10 +1,10 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, smartSelectionColumn } from "@/components/ItemsTable/columns";
-import { Item } from "@/components/ItemsTable/ItemsTable";
-import NumberInput from "@/components/NumberInput";
-import { Button, Group, Stack, Text } from "@mantine/core";
-import { useState } from "react";
+import CaptionedBox from '@/components/CaptionedBox';
+import ItemsTable from '@/components/ItemsTable';
+import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, smartSelectionColumn } from '@/components/ItemsTable/columns';
+import { Item } from '@/components/ItemsTable/ItemsTable';
+import NumberInput from '@/components/NumberInput';
+import { Button, Group, Stack, Text } from '@mantine/core';
+import { useState } from 'react';
 
 
 interface Props
@@ -37,7 +37,7 @@ export default function AdvancedItemSelectionSubpage(props: Props): React.ReactE
             <CaptionedBox caption="Advanced functionality">
                 <Group>
                     <Text>Set selected items to </Text>
-                    <NumberInput min={0} step={1} value={quickAmount} onChange={setQuickAmount} w='5em' />
+                    <NumberInput min={0} step={1} value={quickAmount} onChange={setQuickAmount} w="5em" />
                     <Button onClick={updateAllSelectedItems}>Update</Button>
                 </Group>
             </CaptionedBox>

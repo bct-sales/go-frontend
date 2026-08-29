@@ -1,12 +1,12 @@
-import { useCategoryContext } from "@/categories";
-import { Consumable, ConsumablesContext } from "@/consumables";
-import { listItemsInCategory } from "@/rest/list-items-in-category";
-import { RestStatus } from "@/rest/status";
-import { notifications } from "@mantine/notifications";
-import React from "react";
-import Loading from "@/components/Loading";
-import { Alert, Tooltip } from "@mantine/core";
-import { IconExclamationCircle } from "@tabler/icons-react";
+import { useCategoryContext } from '@/categories';
+import { Consumable, ConsumablesContext } from '@/consumables';
+import { listItemsInCategory } from '@/rest/list-items-in-category';
+import { RestStatus } from '@/rest/status';
+import { notifications } from '@mantine/notifications';
+import React from 'react';
+import Loading from '@/components/Loading';
+import { Alert, Tooltip } from '@mantine/core';
+import { IconExclamationCircle } from '@tabler/icons-react';
 
 
 interface Props
@@ -30,7 +30,7 @@ export default function ActualConsumablesProvider(props: Props): React.ReactElem
 
             if ( !consumableCategoryId )
             {
-                setConsumablesStatus({status: 'no-consumable-category'})
+                setConsumablesStatus({status: 'no-consumable-category'});
                 return;
             }
 
@@ -98,18 +98,18 @@ export default function ActualConsumablesProvider(props: Props): React.ReactElem
     switch ( consumablesStatus.status )
     {
         case 'error':
-            console.error(`Error while fetching items from server: ${consumablesStatus}`)
+            console.error(`Error while fetching items from server: ${consumablesStatus}`);
             return (
-                <Alert color='red' icon={<IconExclamationCircle />}>
+                <Alert color="red" icon={<IconExclamationCircle />}>
                     An error occurred while fetching items from the server.
                 </Alert>
             );
 
         case 'no-consumable-category':
-            console.error(`In order for consumables detection to work, an item category named "Consumable" must exist.\nCategories that were found:\n${categoryTable.categoryNames().join("\n")}`);
+            console.error(`In order for consumables detection to work, an item category named "Consumable" must exist.\nCategories that were found:\n${categoryTable.categoryNames().join('\n')}`);
             return (
-                <Tooltip label={`In order for consumables detection to work, an item category named "Consumable" must exist.`}>
-                    <Alert color='red' icon={<IconExclamationCircle />}>
+                <Tooltip label={'In order for consumables detection to work, an item category named "Consumable" must exist.'}>
+                    <Alert color="red" icon={<IconExclamationCircle />}>
                         No consumables category found
                     </Alert>
                 </Tooltip>

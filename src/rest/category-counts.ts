@@ -9,7 +9,7 @@ const ItemCountByCategory = z.object({
     categoryId: z.number().int().nonnegative(),
     categoryName: z.string().nonempty(),
     count: z.number().int().nonnegative(),
-})
+});
 
 export type ItemCountByCategory = z.infer<typeof ItemCountByCategory>;
 

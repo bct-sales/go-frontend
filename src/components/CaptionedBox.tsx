@@ -18,7 +18,7 @@ export default function CaptionedBox(props: Props): React.ReactElement
 
     return (
         <Stack className={classes.container} gap={0}>
-            <Group className={classes.captionContainer} onClick={() => setCollapsed(!collapsed)} justify='stretch' style={{position: 'relative'}}>
+            <Group className={classes.captionContainer} onClick={() => setCollapsed(!collapsed)} justify="stretch" style={{position: 'relative'}}>
                 {renderCollapseIcon()}
                 <Text className={classes.caption}>{props.caption}</Text>
             </Group>

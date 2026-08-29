@@ -1,5 +1,5 @@
-import { Group, Stack, Text, TextInput } from "@mantine/core";
-import HelpPopover from "./HelpPopover";
+import { Group, Stack, Text, TextInput } from '@mantine/core';
+import HelpPopover from './HelpPopover';
 
 interface Props
 {
@@ -13,7 +13,7 @@ export default function ItemDescriptionEditor(props: Props): React.ReactElement
     const { description, setDescription } = props;
 
     return (
-        <Stack gap='xs'>
+        <Stack gap="xs">
             <Group justify="space-between" align="center">
                 <Text>Description</Text>
                 <HelpPopover>

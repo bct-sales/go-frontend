@@ -1,5 +1,5 @@
-import { Tooltip } from "@mantine/core";
-import LargeItemIcon from "./LargeItemIcon";
+import { Tooltip } from '@mantine/core';
+import LargeItemIcon from './LargeItemIcon';
 
 interface Props
 {

@@ -1,12 +1,12 @@
-import { z } from "zod";
-import { range } from "./util";
+import { z } from 'zod';
+import { range } from './util';
 
 
 const Spacing = z.object({
     top: z.number().min(0),
     bottom: z.number().min(0),
     left: z.number().min(0),
-    right: z.number().min(0)
+    right: z.number().min(0),
 });
 
 export type Spacing = z.infer<typeof Spacing>;
@@ -20,7 +20,7 @@ const LabelLayoutData = z.object({
     rows: z.number().min(1),
     labelMargins: Spacing,
     labelPadding: Spacing,
-    fontSize: z.number().min(0)
+    fontSize: z.number().min(0),
 });
 
 export type LabelLayoutData = z.infer<typeof LabelLayoutData>;
@@ -99,6 +99,6 @@ function deflateRectangle(rectangle: Rectangle, spacing: Spacing): Rectangle
         x: rectangle.x + spacing.left,
         y: rectangle.y + spacing.top,
         width: rectangle.width - spacing.left - spacing.right,
-        height: rectangle.height - spacing.top - spacing.bottom
+        height: rectangle.height - spacing.top - spacing.bottom,
     };
 }

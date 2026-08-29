@@ -12,7 +12,7 @@ interface Payload
 
 export async function generateLabels(payload: Payload): Promise<RestResult<Blob>>
 {
-    const url = `/api/v1/labels`;
+    const url = '/api/v1/labels';
 
     try
     {

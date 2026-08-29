@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Delayed from "./Delayed";
-import { Text } from "@mantine/core";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Delayed from './Delayed';
+import { Text } from '@mantine/core';
 
 
 export default function RedirectToLoginPage(): React.ReactElement

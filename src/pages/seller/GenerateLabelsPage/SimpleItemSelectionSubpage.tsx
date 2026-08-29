@@ -1,7 +1,7 @@
-import ItemsTable from "@/components/ItemsTable";
-import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
-import { Item } from "@/components/ItemsTable/ItemsTable";
-import { Button, Center, Stack } from "@mantine/core";
+import ItemsTable from '@/components/ItemsTable';
+import { categoryColumn, countColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn } from '@/components/ItemsTable/columns';
+import { Item } from '@/components/ItemsTable/ItemsTable';
+import { Button, Center, Stack } from '@mantine/core';
 
 interface Props
 {
@@ -28,7 +28,7 @@ export default function SimpleItemSelectionSubpage(props: Props): React.ReactEle
         <Stack>
             <ItemsTable items={items} columns={columns} />
             <Center>
-                <Button onClick={props.goToNextStep} w='50%'>Next Step</Button>
+                <Button onClick={props.goToNextStep} w="50%">Next Step</Button>
             </Center>
         </Stack>
     );

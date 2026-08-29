@@ -1,11 +1,11 @@
-import ItemEditor, { ItemData } from "@/pages/seller/ItemEditor";
-import { getItemInformation, Item } from "@/rest/item-data";
-import { RestStatus } from "@/rest/status";
-import { updateItem } from "@/rest/update-item";
-import { Button, Flex } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import ItemEditor, { ItemData } from '@/pages/seller/ItemEditor';
+import { getItemInformation, Item } from '@/rest/item-data';
+import { RestStatus } from '@/rest/status';
+import { updateItem } from '@/rest/update-item';
+import { Button, Flex } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 
 
@@ -44,14 +44,14 @@ export default function EditItemPage() : React.ReactElement
 
         case 'loading':
             return (
-                <Flex direction="column" align="center" justify="center" gap='md'>
+                <Flex direction="column" align="center" justify="center" gap="md">
                     <div>Loading item...</div>
                 </Flex>
             );
 
         case 'error':
             return (
-                <Flex direction="column" align="center" justify="center" gap='md'>
+                <Flex direction="column" align="center" justify="center" gap="md">
                     <div>Error: {originalData.details}</div>
                 </Flex>
             );
@@ -61,9 +61,9 @@ export default function EditItemPage() : React.ReactElement
     function renderPage(): React.ReactElement
     {
         return (
-            <Flex direction="column" align="stretch" justify="center" gap='md'>
+            <Flex direction="column" align="stretch" justify="center" gap="md">
                 <ItemEditor itemData={itemData} setItemData={setItemData} />
-                <Button mt='xl' onClick={onUpdateItem} disabled={!isValidData()}>Update Item</Button>
+                <Button mt="xl" onClick={onUpdateItem} disabled={!isValidData()}>Update Item</Button>
             </Flex>
         );
     }
@@ -84,11 +84,11 @@ export default function EditItemPage() : React.ReactElement
 
             if (response.success) {
                 notifications.show({
-                    message: `Item successfully updated!`,
+                    message: 'Item successfully updated!',
                     color: 'green',
                 });
 
-                navigate(`/seller/items`);
+                navigate('/seller/items');
             } else {
                 notifications.show({
                     title: 'Failed to update item',

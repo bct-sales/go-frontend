@@ -1,4 +1,4 @@
-import { IconArrowsMaximize } from "@tabler/icons-react";
+import { IconArrowsMaximize } from '@tabler/icons-react';
 
 
 interface Props

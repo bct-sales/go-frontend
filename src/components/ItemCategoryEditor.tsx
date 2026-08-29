@@ -1,6 +1,6 @@
-import { CategoryTable, useCategories } from "@/categories";
-import { Group, Select, Stack, Text } from "@mantine/core";
-import Loading from "./Loading";
+import { CategoryTable, useCategories } from '@/categories';
+import { Group, Select, Stack, Text } from '@mantine/core';
+import Loading from './Loading';
 
 
 interface Props
@@ -15,17 +15,17 @@ export default function ItemCategoryEditor(props: Props): React.ReactElement
 
     switch ( categories.status )
     {
-        case "loading":
+        case 'loading':
             return (
                 <Loading message="Loading categories..." />
             );
 
-        case "error":
+        case 'error':
             return (
                 <div>Error loading categories</div>
             );
 
-        case "success":
+        case 'success':
             return renderComponent( categories.value );
     }
 
@@ -33,18 +33,18 @@ export default function ItemCategoryEditor(props: Props): React.ReactElement
     function renderComponent(categoryTable: CategoryTable): React.ReactElement
     {
         const itemCategories = categoryTable.categoryIds.map( ( categoryId ) =>
-            {
-                return {
-                    value: `${categoryId}`,
-                    label: categoryTable.categoryName(categoryId),
-                };
-            }
+        {
+            return {
+                value: `${categoryId}`,
+                label: categoryTable.categoryName(categoryId),
+            };
+        },
         ).filter( ({label}) => label !== 'Consumable' );
 
         const categoryString = props.categoryId?.toString() ?? null;
 
         return (
-            <Stack gap='xs' align="stretch" mt='sm'>
+            <Stack gap="xs" align="stretch" mt="sm">
                 <Group justify="flex-start" align="center">
                     <Text>Category</Text>
                 </Group>
@@ -57,11 +57,11 @@ export default function ItemCategoryEditor(props: Props): React.ReactElement
         {
             if ( props.categoryId === null )
             {
-                return "Category is required";
+                return 'Category is required';
             }
             else if ( !categoryTable.categoryIds.includes(props.categoryId) )
             {
-                return "Category not found";
+                return 'Category not found';
             }
             else
             {
@@ -73,7 +73,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactElement
         {
             if ( value === null )
             {
-                console.error("ItemCategoryEditor: onChange: value is null");
+                console.error('ItemCategoryEditor: onChange: value is null');
                 return;
             }
 
@@ -81,7 +81,7 @@ export default function ItemCategoryEditor(props: Props): React.ReactElement
 
             if ( isNaN(categoryId) )
             {
-                console.error("ItemCategoryEditor: onChange: categoryId is NaN");
+                console.error('ItemCategoryEditor: onChange: categoryId is NaN');
                 return;
             }
 

@@ -1,11 +1,11 @@
-import Loading from "@/components/Loading";
-import SellerSummaryViewer from "@/components/SellerSummaryViewer";
-import { getSellerSummary, SellerSummary } from "@/rest/seller-summary";
-import { RestStatus } from "@/rest/status";
-import { Button, Card, Stack, Stepper, Text } from "@mantine/core";
-import { IconTag, IconList, IconPlus } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Loading from '@/components/Loading';
+import SellerSummaryViewer from '@/components/SellerSummaryViewer';
+import { getSellerSummary, SellerSummary } from '@/rest/seller-summary';
+import { RestStatus } from '@/rest/status';
+import { Button, Card, Stack, Stepper, Text } from '@mantine/core';
+import { IconTag, IconList, IconPlus } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface Props
@@ -53,10 +53,10 @@ export default function OverviewPage(props: Props): React.ReactElement
         const activePhase = determineActivePhase(sellerSummary);
 
         return (
-            <Stack align='center' justify='flex-start'>
+            <Stack align="center" justify="flex-start">
                 <Card withBorder p="lg" radius="md">
-                    <Card.Section withBorder pb='sm' pt='xs'>
-                        <Text fw='bold'>Overview</Text>
+                    <Card.Section withBorder pb="sm" pt="xs">
+                        <Text fw="bold">Overview</Text>
                     </Card.Section>
                     <Card.Section>
                         <SellerSummaryViewer
@@ -65,34 +65,34 @@ export default function OverviewPage(props: Props): React.ReactElement
                             totalPrice={sellerSummary.totalPrice} />
                     </Card.Section>
                 </Card>
-                <Stepper active={activePhase} m='xl'>
+                <Stepper active={activePhase} m="xl">
                     <Stepper.Step label="Step 1" description="Add items">
-                        <Card w="50%" m="auto" mt='lg' withBorder radius="md">
-                            <Card.Section p='md'>
+                        <Card w="50%" m="auto" mt="lg" withBorder radius="md">
+                            <Card.Section p="md">
                                 You have not yet added any items to your seller account.
                                 Please add items to your seller account before proceeding.
                             </Card.Section>
-                            <Card.Section p='md'>
-                                <Button variant="outline" color="blue" onClick={() => { navigate('/seller/add-item') }}>
+                            <Card.Section p="md">
+                                <Button variant="outline" color="blue" onClick={() => { navigate('/seller/add-item'); }}>
                                     Add Items
                                 </Button>
                             </Card.Section>
                         </Card>
                     </Stepper.Step>
                     <Stepper.Step label="Step 2" description="Print labels">
-                        <Card w="50%" m="auto" mt='lg' withBorder radius="md">
-                            <Card.Section p='md'>
+                        <Card w="50%" m="auto" mt="lg" withBorder radius="md">
+                            <Card.Section p="md">
                                 {printLabelsMessage()}
                             </Card.Section>
-                            <Card.Section p='md'>
+                            <Card.Section p="md">
                                 <Stack>
-                                    <Button leftSection={<IconList />} onClick={() => { navigate('/seller/items') }}>
+                                    <Button leftSection={<IconList />} onClick={() => { navigate('/seller/items'); }}>
                                         Item Overview
                                     </Button>
-                                    <Button leftSection={<IconPlus />} onClick={() => { navigate('/seller/add-item') }}>
+                                    <Button leftSection={<IconPlus />} onClick={() => { navigate('/seller/add-item'); }}>
                                         Add More Items
                                     </Button>
-                                    <Button leftSection={<IconTag />} onClick={() => { navigate('/seller/labels') }}>
+                                    <Button leftSection={<IconTag />} onClick={() => { navigate('/seller/labels'); }}>
                                         Generate Labels
                                     </Button>
                                 </Stack>
@@ -100,23 +100,23 @@ export default function OverviewPage(props: Props): React.ReactElement
                         </Card>
                     </Stepper.Step>
                     <Stepper.Step label="Step 3" description="Bring items to allocator">
-                        <Card w="50%" m="auto" mt='lg' withBorder radius="md">
-                            <Card.Section p='md'>
+                        <Card w="50%" m="auto" mt="lg" withBorder radius="md">
+                            <Card.Section p="md">
                                 <Text>
                                     You have added items to your seller account, and generated labels for them.
                                     You can now bring the items to the allocator.
                                     You can of course still add more items if you wish.
                                 </Text>
                             </Card.Section>
-                            <Card.Section p='md'>
+                            <Card.Section p="md">
                                 <Stack>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/items') }}>
+                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/items'); }}>
                                         Item Overview
                                     </Button>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/add-item') }}>
+                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/add-item'); }}>
                                         Add More Items
                                     </Button>
-                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/labels') }}>
+                                    <Button variant="outline" color="blue" onClick={() => { navigate('/seller/labels'); }}>
                                         Generate Labels
                                     </Button>
                                 </Stack>

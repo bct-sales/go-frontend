@@ -1,8 +1,8 @@
-import { Button, Menu } from "@mantine/core";
-import { IconDownload } from "@tabler/icons-react";
-import React from "react";
-import { Link } from "react-router-dom";
-import { URL } from "@/rest/paths";
+import { Button, Menu } from '@mantine/core';
+import { IconDownload } from '@tabler/icons-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { URL } from '@/rest/paths';
 
 
 interface ExportFormat

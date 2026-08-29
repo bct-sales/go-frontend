@@ -1,5 +1,5 @@
-import { useSettings } from "@/settings";
-import { Stack, Switch } from "@mantine/core";
+import { useSettings } from '@/settings';
+import { Stack, Switch } from '@mantine/core';
 
 
 export default function SettingsPage()

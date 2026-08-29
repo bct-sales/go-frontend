@@ -1,9 +1,9 @@
-import CategoryCountsTable, { ItemCount } from "@/components/CategoryCountsTable";
-import { ItemCountByCategory } from "@/rest/category-counts";
-import { BarChart } from "@mantine/charts";
-import { Card, Group, SegmentedControl, Stack } from "@mantine/core";
-import { IconArticle, IconChartBar } from "@tabler/icons-react";
-import React from "react";
+import CategoryCountsTable, { ItemCount } from '@/components/CategoryCountsTable';
+import { ItemCountByCategory } from '@/rest/category-counts';
+import { BarChart } from '@mantine/charts';
+import { Card, Group, SegmentedControl, Stack } from '@mantine/core';
+import { IconArticle, IconChartBar } from '@tabler/icons-react';
+import React from 'react';
 
 
 interface Props
@@ -22,7 +22,7 @@ export default function ActualCategoriesPage(props: Props) : React.ReactElement
             <Group justify="flex-end">
                 {renderViewModeSwitch()}
             </Group>
-            <Group w='1200px' justify='center'>
+            <Group w="1200px" justify="center">
                 {renderView()}
             </Group>
         </Stack>
@@ -95,8 +95,8 @@ export default function ActualCategoriesPage(props: Props) : React.ReactElement
         ];
 
         return (
-            <Card padding='md'>
-                <BarChart h={800} w='800' dataKey={categoryKey} data={barChartData} series={series} type='stacked' orientation="vertical" xAxisProps={{type: 'number'}} yAxisProps={{type: 'category', width: 120}} />
+            <Card padding="md">
+                <BarChart h={800} w="800" dataKey={categoryKey} data={barChartData} series={series} type="stacked" orientation="vertical" xAxisProps={{type: 'number'}} yAxisProps={{type: 'category', width: 120}} />
             </Card>
         );
     }
@@ -118,7 +118,7 @@ function combineItemCounts(itemCounts: ItemCountByCategory[], soldItemCounts: It
     {
         if ( categoryNameTable.get(soldItemCount.categoryId) !== soldItemCount.categoryName )
         {
-            console.error("Inconsistency detected in item count vs sold item count");
+            console.error('Inconsistency detected in item count vs sold item count');
         }
 
         soldItemCountsTable.set(soldItemCount.categoryId, soldItemCount.count);
@@ -126,7 +126,7 @@ function combineItemCounts(itemCounts: ItemCountByCategory[], soldItemCounts: It
 
     const categoryIds = [...itemCountsTable.keys()];
     return categoryIds.map(categoryId => {
-        const categoryName = categoryNameTable.get(categoryId) ?? "<error>";
+        const categoryName = categoryNameTable.get(categoryId) ?? '<error>';
         const count = itemCountsTable.get(categoryId) ?? -1;
         const soldCount = soldItemCountsTable.get(categoryId) ?? -1;
 

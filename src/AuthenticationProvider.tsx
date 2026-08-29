@@ -1,5 +1,5 @@
-import React from "react";
-import { AuthenticationContext, AuthenticationData, createAuthenticationStatusFromAuthenticationData } from "./authentication";
+import React from 'react';
+import { AuthenticationContext, AuthenticationData, createAuthenticationStatusFromAuthenticationData } from './authentication';
 
 
 export function AuthenticationProvider({ children }: { children: React.ReactElement }): React.ReactElement

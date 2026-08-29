@@ -1,7 +1,7 @@
-import { useAuthentication } from "@/authentication";
-import { ErrorTag } from "@/rest/result";
-import { Table } from "@mantine/core";
-import React from "react";
+import { useAuthentication } from '@/authentication';
+import { ErrorTag } from '@/rest/result';
+import { Table } from '@mantine/core';
+import React from 'react';
 import classes from './RestErrorViewer.module.css';
 
 
@@ -73,7 +73,7 @@ export default function RestErrorViewer(props: Props): React.ReactElement
                 <>
                     {Object.entries(props.extraContext).map(xs => renderContextRow(...xs))}
                 </>
-            )
+            );
         }
         else
         {

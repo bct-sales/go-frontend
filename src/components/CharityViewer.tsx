@@ -1,5 +1,5 @@
-import { Tooltip } from "@mantine/core";
-import { IconHeartFilled } from "@tabler/icons-react";
+import { Tooltip } from '@mantine/core';
+import { IconHeartFilled } from '@tabler/icons-react';
 
 interface Props
 {

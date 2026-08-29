@@ -1,13 +1,13 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import Loading from "@/components/Loading";
-import { listRecentSales } from "@/rest/list-sales";
-import { RestStatus } from "@/rest/status";
-import { useUpdateNotifications as useUpdateNotifier } from "@/websocket";
-import React, { useEffect, useState } from "react";
-import SaleOverview from "./SaleOverview";
-import SalesTable, { Sale } from "./SalesTable";
-import ErrorPage from "@/pages/ErrorPage";
-import RestErrorViewer from "@/components/RestErrorViewer";
+import CaptionedBox from '@/components/CaptionedBox';
+import Loading from '@/components/Loading';
+import { listRecentSales } from '@/rest/list-sales';
+import { RestStatus } from '@/rest/status';
+import { useUpdateNotifications as useUpdateNotifier } from '@/websocket';
+import React, { useEffect, useState } from 'react';
+import SaleOverview from './SaleOverview';
+import SalesTable, { Sale } from './SalesTable';
+import ErrorPage from '@/pages/ErrorPage';
+import RestErrorViewer from '@/components/RestErrorViewer';
 
 
 interface Data
@@ -23,26 +23,26 @@ interface Data
 
 export default function SalesPage() : React.ReactElement
 {
-    const [status, setStatus] = useState<RestStatus<Data>>({status: "loading"});
+    const [status, setStatus] = useState<RestStatus<Data>>({status: 'loading'});
     const updateNotifier = useUpdateNotifier();
     useEffect(() => {
         refreshData();
     }, []);
     useEffect(() => {
         return updateNotifier.register(refreshData);
-    }, [updateNotifier])
+    }, [updateNotifier]);
 
     switch (status.status)
     {
-        case "success":
+        case 'success':
             return renderPage(status.value);
 
-        case "loading":
+        case 'loading':
             return (
                 <Loading message="Loading items..." />
             );
 
-        case "error":
+        case 'error':
             return (
                 <ErrorPage>
                     <RestErrorViewer tag={status.tag} details={status.details} operation="listRecentSales()" />
@@ -76,11 +76,11 @@ export default function SalesPage() : React.ReactElement
 
         if (response.success)
         {
-            setStatus({status: "success", value: response.value});
+            setStatus({status: 'success', value: response.value});
         }
         else
         {
-            setStatus({status: "error", tag: response.error.type, details: response.error.details});
+            setStatus({status: 'error', tag: response.error.type, details: response.error.details});
         }
     }
 }

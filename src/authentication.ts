@@ -1,30 +1,30 @@
-import React from "react";
-import { Role } from "./role";
+import React from 'react';
+import { Role } from './role';
 
 
 export type AuthenticationData = { username: number, role: Role } | null;
 
 export type Authenticated =
-{
-    status: 'authenticated';
-    logout: () => void;
-    username: number;
-    role: Role;
-}
+    {
+        status: 'authenticated';
+        logout: () => void;
+        username: number;
+        role: Role;
+    };
 
 export type Unauthenticated =
-{
-    status: 'unauthenticated';
-    login: (username: number, role: Role) => void;
-}
+    {
+        status: 'unauthenticated';
+        login: (username: number, role: Role) => void;
+    };
 
 export type AuthenticationStatus = Authenticated | Unauthenticated;
 
 
 export const dummyAuthentication: AuthenticationStatus = {
     status: 'unauthenticated',
-    login: () => { throw new Error("Bug: this should never be reached"); }
-}
+    login: () => { throw new Error('Bug: this should never be reached'); },
+};
 
 export const AuthenticationContext = React.createContext<AuthenticationStatus>(dummyAuthentication);
 

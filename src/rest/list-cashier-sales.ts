@@ -7,7 +7,7 @@ import { success } from '@/result';
 
 
 const Sale = z.object({
-	saleId: z.number().nonnegative(),
+    saleId: z.number().nonnegative(),
     transactionTime: DateTime,
     itemCount: z.number().nonnegative(),
     totalPriceInCents: z.number().nonnegative(),
@@ -19,7 +19,7 @@ export type Sale = z.infer<typeof Sale>;
 const SuccessResponse = z.object({
     sales: z.array(Sale),
     saleCount: z.number().nonnegative(),
-})
+});
 
 export type SuccessResponse = z.infer<typeof SuccessResponse>;
 

@@ -7,14 +7,14 @@ import { success } from '@/result';
 
 
 const Item = z.object({
-	itemId: z.number(),
-	addedAt: DateTime,
-	description: z.string(),
-	priceInCents: z.number(),
-	categoryId: z.number(),
-	sellerId: z.number(),
-	donation: z.boolean(),
-	charity: z.boolean(),
+    itemId: z.number(),
+    addedAt: DateTime,
+    description: z.string(),
+    priceInCents: z.number(),
+    categoryId: z.number(),
+    sellerId: z.number(),
+    donation: z.boolean(),
+    charity: z.boolean(),
     frozen: z.boolean(),
     large: z.boolean(),
 });
@@ -24,7 +24,7 @@ export type Item = z.infer<typeof Item>;
 
 const SuccessResponse = z.object({
     items: z.array(Item),
-})
+});
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
 

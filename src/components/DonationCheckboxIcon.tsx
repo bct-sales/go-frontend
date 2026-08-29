@@ -1,4 +1,4 @@
-import { IconGift } from "@tabler/icons-react";
+import { IconGift } from '@tabler/icons-react';
 
 
 interface Props

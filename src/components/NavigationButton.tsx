@@ -1,5 +1,5 @@
-import { ActionIcon } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
+import { ActionIcon } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
 
 interface Props

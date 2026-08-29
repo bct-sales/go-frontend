@@ -1,10 +1,10 @@
-import DateTimeViewer from "@/components/DateTimeViewer";
-import Price from "@/components/Price";
-import SaleIdViewer from "@/components/SaleIdViewer";
-import UserIdViewer from "@/components/UserIdViewer";
-import { DateTime } from "@/datetime";
-import { DataTable } from "mantine-datatable";
-import React from "react";
+import DateTimeViewer from '@/components/DateTimeViewer';
+import Price from '@/components/Price';
+import SaleIdViewer from '@/components/SaleIdViewer';
+import UserIdViewer from '@/components/UserIdViewer';
+import { DateTime } from '@/datetime';
+import { DataTable } from 'mantine-datatable';
+import React from 'react';
 
 interface Props
 {
@@ -23,13 +23,13 @@ export interface Sale
 
 export interface Item
 {
-	itemId: number;
-	sellerId: number;
-	description: string;
-	priceInCents: number;
-	categoryId: number;
-	charity: boolean;
-	donation: boolean;
+    itemId: number;
+    sellerId: number;
+    description: string;
+    priceInCents: number;
+    categoryId: number;
+    charity: boolean;
+    donation: boolean;
 }
 
 export default function SalesTable(props: Props): React.ReactElement
@@ -43,27 +43,27 @@ export default function SalesTable(props: Props): React.ReactElement
             idAccessor="saleId"
             columns={[
                 {
-                    accessor: "saleId",
-                    title: "Sale ID",
+                    accessor: 'saleId',
+                    title: 'Sale ID',
                     render: (sale) => <SaleIdViewer saleId={sale.saleId} />,
                 },
                 {
-                    accessor: "cashierId",
-                    title: "Cashier ID",
+                    accessor: 'cashierId',
+                    title: 'Cashier ID',
                     render: (sale) => <UserIdViewer userId={sale.cashierId} />,
                 },
                 {
-                    accessor: "transactionTime",
-                    title: "Transaction Time",
+                    accessor: 'transactionTime',
+                    title: 'Transaction Time',
                     render: (sale) => <DateTimeViewer dateTime={sale.transactionTime} />,
                 },
                 {
-                    accessor: "itemCount",
-                    title: "Item Count",
+                    accessor: 'itemCount',
+                    title: 'Item Count',
                 },
                 {
-                    accessor: "totalPriceInCents",
-                    title: "Total Price",
+                    accessor: 'totalPriceInCents',
+                    title: 'Total Price',
                     render: (sale) => <Price priceInCents={sale.totalPriceInCents} />,
                 },
             ]}

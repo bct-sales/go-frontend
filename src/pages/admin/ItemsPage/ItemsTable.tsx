@@ -1,14 +1,14 @@
-import CategoryViewer from "@/components/CategoryViewer";
-import DateTimeViewer from "@/components/DateTimeViewer";
-import DonationViewer from "@/components/DonationViewer";
-import Price from "@/components/Price";
-import UserIdViewer from "@/components/UserIdViewer";
-import { DateTime } from "@/datetime";
-import { Flex } from "@mantine/core";
-import { DataTable } from "mantine-datatable";
+import CategoryViewer from '@/components/CategoryViewer';
+import DateTimeViewer from '@/components/DateTimeViewer';
+import DonationViewer from '@/components/DonationViewer';
+import Price from '@/components/Price';
+import UserIdViewer from '@/components/UserIdViewer';
+import { DateTime } from '@/datetime';
+import { Flex } from '@mantine/core';
+import { DataTable } from 'mantine-datatable';
 import classes from './ItemsTable.module.css';
-import FrozenViewer from "@/components/FrozenViewer";
-import LargeItemViewer from "@/components/LargeItemViewer";
+import FrozenViewer from '@/components/FrozenViewer';
+import LargeItemViewer from '@/components/LargeItemViewer';
 
 export interface Item
 {
@@ -65,7 +65,7 @@ export default function ItemsPage(props: Props): React.ReactElement
                 {
                     accessor: 'priceInCents',
                     title: 'Price',
-                    render: (item: Item) => <Flex justify='flex-end'><Price priceInCents={item.priceInCents} /></Flex>,
+                    render: (item: Item) => <Flex justify="flex-end"><Price priceInCents={item.priceInCents} /></Flex>,
                     cellsClassName: classes.priceColumn,
                 },
                 {

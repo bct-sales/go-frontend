@@ -20,7 +20,7 @@ export type User = z.infer<typeof User>;
 
 const SuccessResponse = z.object({
     users: z.array(User),
-})
+});
 
 type SuccessResponse = z.infer<typeof SuccessResponse>;
 

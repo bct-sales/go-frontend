@@ -1,5 +1,5 @@
-import CategoryProvider from "@/components/CategoryProvider";
-import ActualCategoryViewer from "./ActualCategoryViewer";
+import CategoryProvider from '@/components/CategoryProvider';
+import ActualCategoryViewer from './ActualCategoryViewer';
 
 
 interface Props

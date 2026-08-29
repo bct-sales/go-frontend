@@ -37,7 +37,7 @@ const BasicUserInformation = z.object({
     password: z.string(),
     createdAt: DateTime,
     lastActivity: z.optional(DateTime),
-})
+});
 
 type BasicUserInformation = z.infer<typeof BasicUserInformation>;
 
@@ -45,14 +45,14 @@ type BasicUserInformation = z.infer<typeof BasicUserInformation>;
 const SellerUserInformation = BasicUserInformation.extend({
     role: z.literal('seller'),
     items: z.array(ItemInformation),
-})
+});
 
 export type SellerUserInformation = z.infer<typeof SellerUserInformation>;
 
 
 const AdminUserInformation = BasicUserInformation.extend({
     role: z.literal('admin'),
-})
+});
 
 export type AdminUserInformation = z.infer<typeof AdminUserInformation>;
 
@@ -60,12 +60,12 @@ export type AdminUserInformation = z.infer<typeof AdminUserInformation>;
 const CashierUserInformation = BasicUserInformation.extend({
     role: z.literal('cashier'),
     sales: z.array(SaleInformation),
-})
+});
 
 export type CashierUserInformation = z.infer<typeof CashierUserInformation>;
 
 
-const UserInformation = z.discriminatedUnion('role', [SellerUserInformation, AdminUserInformation, CashierUserInformation])
+const UserInformation = z.discriminatedUnion('role', [SellerUserInformation, AdminUserInformation, CashierUserInformation]);
 
 export type UserInformation = z.infer<typeof UserInformation>;
 

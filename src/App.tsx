@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import * as pages from '@/pages';
 import { MantineProvider } from '@mantine/core';
@@ -15,7 +15,7 @@ export default function App() : React.ReactElement
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <RedirectToLoginPage />
+            element: <RedirectToLoginPage />,
         },
         {
             path: '/login',

@@ -1,9 +1,9 @@
-import { Flex } from "@mantine/core";
-import DonationEditor from "@/components/DonationEditor";
-import ItemCategoryEditor from "@/components/ItemCategoryEditor";
-import ItemDescriptionEditor from "@/components/ItemDescriptionEditor";
-import ItemPriceEditor from "@/components/ItemPriceEditor";
-import LargeItemEditor from "@/components/LargeItemEditor";
+import { Flex } from '@mantine/core';
+import DonationEditor from '@/components/DonationEditor';
+import ItemCategoryEditor from '@/components/ItemCategoryEditor';
+import ItemDescriptionEditor from '@/components/ItemDescriptionEditor';
+import ItemPriceEditor from '@/components/ItemPriceEditor';
+import LargeItemEditor from '@/components/LargeItemEditor';
 
 
 interface Props
@@ -27,7 +27,7 @@ export default function ItemEditor(props: Props): React.ReactElement
     const { description, priceInCents, categoryId, donation, large } = props.itemData;
 
     return (
-        <Flex direction="column" align="stretch" justify="center" gap='md'>
+        <Flex direction="column" align="stretch" justify="center" gap="md">
             <ItemDescriptionEditor description={description} setDescription={setDescription} />
             <ItemPriceEditor priceInCents={priceInCents} setPriceInCents={setPriceInCents} quickButtons={[100, 200, 500, 1000]} />
             <ItemCategoryEditor categoryId={categoryId} setCategoryId={setCategoryId} />

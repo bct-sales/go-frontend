@@ -1,13 +1,13 @@
-import CaptionedBox from "@/components/CaptionedBox";
-import Loading from "@/components/Loading";
-import { getSaleInformation, SuccessResponse } from "@/rest/sale-information";
-import { RestStatus } from "@/rest/status";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ItemTable from "./ItemTable";
-import SaleInformation from "./SaleInformation";
-import ErrorPage from "@/pages/ErrorPage";
-import RestErrorViewer from "@/components/RestErrorViewer";
+import CaptionedBox from '@/components/CaptionedBox';
+import Loading from '@/components/Loading';
+import { getSaleInformation, SuccessResponse } from '@/rest/sale-information';
+import { RestStatus } from '@/rest/status';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ItemTable from './ItemTable';
+import SaleInformation from './SaleInformation';
+import ErrorPage from '@/pages/ErrorPage';
+import RestErrorViewer from '@/components/RestErrorViewer';
 
 
 export default function SalePage(): React.ReactElement

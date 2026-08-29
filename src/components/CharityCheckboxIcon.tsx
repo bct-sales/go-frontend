@@ -1,4 +1,4 @@
-import { IconHeart } from "@tabler/icons-react";
+import { IconHeart } from '@tabler/icons-react';
 
 
 interface Props

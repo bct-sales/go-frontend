@@ -1,14 +1,14 @@
-import ItemsTable from "@/components/ItemsTable";
-import { addedAtColumn, categoryColumn, descriptionColumn, donationColumn, frozenColumn, itemIdColumn, largeColumn, priceInCentsColumn } from "@/components/ItemsTable/columns";
-import Loading from "@/components/Loading";
-import UserTable from "@/components/UserTable";
-import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from "@/rest/user-information";
-import { RestStatus } from "@/rest/status";
-import { Stack } from "@mantine/core";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ErrorPage from "@/pages/ErrorPage";
-import RestErrorViewer from "@/components/RestErrorViewer";
+import ItemsTable from '@/components/ItemsTable';
+import { addedAtColumn, categoryColumn, descriptionColumn, donationColumn, frozenColumn, itemIdColumn, largeColumn, priceInCentsColumn } from '@/components/ItemsTable/columns';
+import Loading from '@/components/Loading';
+import UserTable from '@/components/UserTable';
+import { AdminUserInformation, CashierUserInformation, getUserInformation, SellerUserInformation, SuccessResponse } from '@/rest/user-information';
+import { RestStatus } from '@/rest/status';
+import { Stack } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ErrorPage from '@/pages/ErrorPage';
+import RestErrorViewer from '@/components/RestErrorViewer';
 
 
 export default function UserSubpage()
@@ -17,25 +17,25 @@ export default function UserSubpage()
     const [status, setStatus] = useState<RestStatus<SuccessResponse>>({ status: 'loading' });
 
     useEffect(() => {
-            void (async () => {
-                if ( !userId || !/^\d+$/.test(userId) )
-                {
-                    setStatus({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
-                    return;
-                }
+        void (async () => {
+            if ( !userId || !/^\d+$/.test(userId) )
+            {
+                setStatus({ status: 'error', tag: 'invalid_user_id', details: 'Invalid user ID' });
+                return;
+            }
 
-                const response = await getUserInformation(parseInt(userId));
+            const response = await getUserInformation(parseInt(userId));
 
-                if (response.success)
-                {
-                    setStatus({ status: 'success', value: response.value });
-                }
-                else
-                {
-                    setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
-                }
-            })();
-        }, [userId]);
+            if (response.success)
+            {
+                setStatus({ status: 'success', value: response.value });
+            }
+            else
+            {
+                setStatus({ status: 'error', tag: response.error.type, details: response.error.details });
+            }
+        })();
+    }, [userId]);
 
     switch (status.status)
     {

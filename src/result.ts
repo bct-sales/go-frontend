@@ -24,6 +24,6 @@ export function is_success<T, E>(result: Result<T, E>): result is Success<T> {
 
 export function assert_success<T, E>(result: Result<T, E>): asserts result is Success<T> {
     if ( !is_success(result) ) {
-        throw new Error("failure");
+        throw new Error('failure');
     }
 }

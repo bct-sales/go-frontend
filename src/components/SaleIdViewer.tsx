@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 interface Props
 {
@@ -9,7 +9,7 @@ export default function SaleIdViewer(props: Props) : React.ReactElement
 {
     return (
         <NavLink to={determineSaleUrl(props.saleId)}>{props.saleId}</NavLink>
-    )
+    );
 
 
     function determineSaleUrl(saleId: number): string

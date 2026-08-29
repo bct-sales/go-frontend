@@ -1,7 +1,7 @@
-import { Text, Button, Flex, Group, NumberInput, Stack } from "@mantine/core";
-import { NumberFormatValues } from "react-number-format";
-import HelpPopover from "./HelpPopover";
-import { useRef } from "react";
+import { Text, Button, Flex, Group, NumberInput, Stack } from '@mantine/core';
+import { NumberFormatValues } from 'react-number-format';
+import HelpPopover from './HelpPopover';
+import { useRef } from 'react';
 
 
 interface Props
@@ -17,7 +17,7 @@ export default function ItemPriceEditor(props: Props): React.ReactElement
     const { priceInCents, setPriceInCents } = props;
 
     return (
-        <Stack gap='xs'>
+        <Stack gap="xs">
             <Group justify="space-between" align="center">
                 <Text>Price</Text>
                 <HelpPopover>
@@ -31,7 +31,7 @@ export default function ItemPriceEditor(props: Props): React.ReactElement
                 value={priceInCents / 100}
                 step={0.50}
                 min={0.50}
-                prefix='€'
+                prefix="€"
                 decimalScale={2}
                 fixedDecimalScale={true}
                 decimalSeparator="."

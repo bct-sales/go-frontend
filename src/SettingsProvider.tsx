@@ -1,6 +1,6 @@
-import React from "react";
-import { createSettings, defaultSettings as defaultSettingsData, SettingsContext, SettingsData } from "./settings";
-import { useHotkeys } from "@mantine/hooks";
+import React from 'react';
+import { createSettings, defaultSettings as defaultSettingsData, SettingsContext, SettingsData } from './settings';
+import { useHotkeys } from '@mantine/hooks';
 
 
 export function SettingsProvider({ children }: { children: React.ReactElement }): React.ReactElement
@@ -9,7 +9,7 @@ export function SettingsProvider({ children }: { children: React.ReactElement })
     const settings = createSettings(settingsData, setSettingsData);
 
     useHotkeys([
-        ["ctrl+alt+a", settings.toggleAdvancedMode],
+        ['ctrl+alt+a', settings.toggleAdvancedMode],
     ]);
 
     return (

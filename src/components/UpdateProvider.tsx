@@ -1,5 +1,5 @@
-import { UpdateNotificationContext, UpdateNotifier, useWebsocket } from "@/websocket";
-import React from "react";
+import { UpdateNotificationContext, UpdateNotifier, useWebsocket } from '@/websocket';
+import React from 'react';
 
 
 interface Props

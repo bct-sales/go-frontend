@@ -1,7 +1,7 @@
-import { useAuthentication } from "@/authentication";
-import { Alert, Button, Stack } from "@mantine/core";
-import { IconAlertTriangle } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
+import { useAuthentication } from '@/authentication';
+import { Alert, Button, Stack } from '@mantine/core';
+import { IconAlertTriangle } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 import classes from './ErrorPage.module.css';
 
 
@@ -18,7 +18,7 @@ export default function ErrorPage(props: Props): React.ReactElement
 
     return (
         <Stack align="center" justify="center">
-            <Alert icon={alertIcon} color='red' title="An error occurred" w='50%' className={classes.alert}>
+            <Alert icon={alertIcon} color="red" title="An error occurred" w="50%" className={classes.alert}>
                 Please contact the site administrator and provide them with the information shown below.
             </Alert>
             {props.children}
@@ -36,6 +36,6 @@ export default function ErrorPage(props: Props): React.ReactElement
             authentication.logout();
         }
 
-        navigate("/login", { replace: true });
+        navigate('/login', { replace: true });
     }
 }

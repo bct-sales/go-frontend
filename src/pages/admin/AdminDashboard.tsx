@@ -1,20 +1,20 @@
-import { useAuthentication } from "@/authentication";
-import RedirectToLoginPage from "@/components/RedirectToLoginPage";
-import UpdateProvider from "@/components/UpdateProvider";
-import { ActionIcon, AppShell, Flex } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconShirtSport, IconUsersGroup } from "@tabler/icons-react";
-import React from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import CategoriesPage from "./CategoriesPage";
-import ItemsPage from "./ItemsPage";
-import SalePage from "./SalePage.tsx";
-import SalesPage from "./SalesPage";
-import UserSubpage from "./UserPage";
-import UsersOverviewPage from "./UsersOverviewPage";
+import { useAuthentication } from '@/authentication';
+import RedirectToLoginPage from '@/components/RedirectToLoginPage';
+import UpdateProvider from '@/components/UpdateProvider';
+import { ActionIcon, AppShell, Flex } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconShirtSport, IconUsersGroup } from '@tabler/icons-react';
+import React from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import CategoriesPage from './CategoriesPage';
+import ItemsPage from './ItemsPage';
+import SalePage from './SalePage.tsx';
+import SalesPage from './SalesPage';
+import UserSubpage from './UserPage';
+import UsersOverviewPage from './UsersOverviewPage';
 import classes from './AdminDashboard.module.css';
-import DashboardHeader from "@/pages/DashboardHeader";
-import QueryItemsPage from "./QueryItemsPage/index.tsx";
+import DashboardHeader from '@/pages/DashboardHeader';
+import QueryItemsPage from './QueryItemsPage/index.tsx';
 
 
 export default function AdminDashboard()
@@ -41,12 +41,12 @@ export default function AdminDashboard()
                     </AppShell.Header>
                     <AppShell.Navbar>
                         <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>
-                            {renderNavbarLink("Categories", "/admin", <IconChartBar />)}
-                            {renderNavbarLink("Users", "/admin/users", <IconUsersGroup />)}
-                            {renderNavbarLink("Items", "/admin/items", <IconShirt />)}
-                            {renderNavbarLink("Query Items", "/admin/query-items", <IconShirtSport />)}
-                            {renderNavbarLink("Sales", "/admin/sales", <IconCashRegister />)}
-                            {renderNavbarLink("Logout", "/logout", <IconLogout />)}
+                            {renderNavbarLink('Categories', '/admin', <IconChartBar />)}
+                            {renderNavbarLink('Users', '/admin/users', <IconUsersGroup />)}
+                            {renderNavbarLink('Items', '/admin/items', <IconShirt />)}
+                            {renderNavbarLink('Query Items', '/admin/query-items', <IconShirtSport />)}
+                            {renderNavbarLink('Sales', '/admin/sales', <IconCashRegister />)}
+                            {renderNavbarLink('Logout', '/logout', <IconLogout />)}
                         </Flex>
                     </AppShell.Navbar>
                     <AppShell.Main className={classes.main}>

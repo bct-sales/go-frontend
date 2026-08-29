@@ -1,10 +1,10 @@
-import React from 'react'
-import './index.css'
+import React from 'react';
+import './index.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import 'mantine-datatable/styles.css';
 import '@mantine/charts/styles.css';
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import App from './App';
 
 
@@ -24,17 +24,17 @@ if ( root )
     else
     {
         ReactDOM.createRoot(root).render(
-            renderApp()
+            renderApp(),
         );
     }
 
 
     function renderApp(): React.ReactElement
     {
-        return <App />
+        return <App />;
     }
 }
 else
 {
-    console.error(`Fatal bug: could not find element with id="root"`);
+    console.error('Fatal bug: could not find element with id="root"');
 }

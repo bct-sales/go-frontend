@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export class Consumable
 {
@@ -45,7 +45,7 @@ export class Consumable
 
         if ( todo > 0 )
         {
-            throw new Error("Failed to translate quantity to items");
+            throw new Error('Failed to translate quantity to items');
         }
 
         return itemIds;
