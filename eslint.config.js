@@ -3,22 +3,21 @@ import tseslint from 'typescript-eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default tseslint.config(
-  // Ignore build and configuration outputs
-  { ignores: ['dist', 'build', 'node_modules', '.eslintrc.js'] },
+  { ignores: ['dist', 'build', 'node_modules'] },
 
-  // Base JS and TypeScript configurations
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // React & React Hooks settings
   {
     files: ['**/*.{ts,tsx}'],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@stylistic': stylistic,
     },
     languageOptions: {
       parserOptions: {
@@ -33,54 +32,27 @@ export default tseslint.config(
       },
     },
     rules: {
-      // React Hooks rules
       ...reactHooks.configs.recommended.rules,
 
-      // Fast Refresh rule for Vite/modern bundlers
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-
-      // React / TS adjustments (React 17+ JSX transform support)
+      // React / TS adjustments
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-react': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
 
-      // Custom TypeScript tweaks
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-      ],
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      // ==========================================
+      // YOUR CUSTOM FORMATTING RULES (ESLint-only)
+      // ==========================================
+      '@stylistic/indent': ['error', 2],                     // Indent size (or 'tab')
+      '@stylistic/quotes': ['error', 'single'],               // Single vs double quotes
+      '@stylistic/semi': ['error', 'always'],                 // Require or forbid semicolons ('always' | 'never')
+      '@stylistic/comma-dangle': ['error', 'always-multiline'], // Trailing commas
+      '@stylistic/max-len': ['error', { code: 100 }],         // Max line length
+
+      // JSX / React Formatting Rules
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],   // JSX attribute quotes
+      '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+      '@stylistic/jsx-indent-props': ['error', 2],
+      '@stylistic/jsx-self-closing-comp': 'error',
     },
   }
 );
-
-// import js from '@eslint/js'
-// import globals from 'globals'
-// import reactHooks from 'eslint-plugin-react-hooks'
-// import reactRefresh from 'eslint-plugin-react-refresh'
-// import tseslint from 'typescript-eslint'
-
-// export default tseslint.config(
-//   { ignores: ['dist'] },
-//   {
-//     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-//     files: ['**/*.{ts,tsx}'],
-//     languageOptions: {
-//       ecmaVersion: 2020,
-//       globals: globals.browser,
-//     },
-//     plugins: {
-//       'react-hooks': reactHooks,
-//       'react-refresh': reactRefresh,
-//     },
-//     rules: {
-//       ...reactHooks.configs.recommended.rules,
-//       'react-refresh/only-export-components': [
-//         'warn',
-//         { allowConstantExport: true },
-//       ],
-//     },
-//   },
-// )
