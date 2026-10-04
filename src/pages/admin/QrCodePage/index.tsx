@@ -5,6 +5,7 @@ import QRCode from "react-qr-code";
 
 export default function QrCodePage() : React.ReactElement
 {
+    // Gotten from https://www.sycreader.com/wp-content/uploads/2022/02/2022020803064788.pdf
     return (
         <Stack>
             <Title m="xl">Useful QR Codes</Title>
