@@ -3,7 +3,7 @@ import RedirectToLoginPage from '@/components/RedirectToLoginPage';
 import UpdateProvider from '@/components/UpdateProvider';
 import { ActionIcon, AppShell, Flex } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconCashRegister, IconChartBar, IconLogout, IconShirt, IconShirtSport, IconUsersGroup } from '@tabler/icons-react';
+import { IconCashRegister, IconChartBar, IconLogout, IconQrcode, IconShirt, IconShirtSport, IconUsersGroup } from '@tabler/icons-react';
 import React from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import CategoriesPage from './CategoriesPage';
@@ -15,6 +15,7 @@ import UsersOverviewPage from './UsersOverviewPage';
 import classes from './AdminDashboard.module.css';
 import DashboardHeader from '@/pages/DashboardHeader';
 import QueryItemsPage from './QueryItemsPage/index.tsx';
+import QrCodePage from './QrCodePage/index.tsx';
 
 
 export default function AdminDashboard()
@@ -46,6 +47,7 @@ export default function AdminDashboard()
                             {renderNavbarLink('Items', '/admin/items', <IconShirt />)}
                             {renderNavbarLink('Query Items', '/admin/query-items', <IconShirtSport />)}
                             {renderNavbarLink('Sales', '/admin/sales', <IconCashRegister />)}
+                            {renderNavbarLink('Sales', '/admin/qr-codes', <IconQrcode />)}
                             {renderNavbarLink('Logout', '/logout', <IconLogout />)}
                         </Flex>
                     </AppShell.Navbar>
@@ -58,6 +60,7 @@ export default function AdminDashboard()
                             <Route path="/query-items" element={<QueryItemsPage />} />
                             <Route path="/sales" element={<SalesPage />} />
                             <Route path="/sales/:saleId" element={<SalePage />} />
+                            <Route path="/qr-codes" element={<QrCodePage />} />
                         </Routes>
                     </AppShell.Main>
                 </AppShell>
