@@ -52,7 +52,7 @@ export default function AdminDashboard()
                             {renderNavbarLink('Items', '/admin/items', <IconShirt />)}
                             {renderNavbarLink('Query Items', '/admin/query-items', <IconShirtSport />)}
                             {renderNavbarLink('Sales', '/admin/sales', <IconCashRegister />)}
-                            {renderNavbarLink('Sales', '/admin/qr-codes', <IconQrcode />)}
+                            {renderNavbarLink('QR Codes', '/admin/qr-codes', <IconQrcode />)}
                             {renderNavbarLink('Logout', '/logout', <IconLogout />)}
                         </Flex>
                     </AppShell.Navbar>
