@@ -1,7 +1,6 @@
 import CaptionedBox from '@/components/CaptionedBox';
 import ItemsTable from '@/components/ItemsTable';
-import
-{
+import {
     categoryColumn,
     deleteColumn,
     descriptionColumn,
@@ -12,10 +11,11 @@ import
     sellerColumn,
 } from '@/components/ItemsTable/columns';
 import { Item } from '@/components/ItemsTable/ItemsTable';
+import { convertToCsv } from '@/csv';
 import { getItemInformation, Item as RestItem } from '@/rest/item-data';
-import { ActionIcon, Center, Group, Stack, TextInput, Tooltip } from '@mantine/core';
+import { ActionIcon, Button, Center, Group, Stack, TextInput, Tooltip } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconPlus } from '@tabler/icons-react';
+import { IconClipboard, IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 
@@ -41,7 +41,10 @@ export default function QueryItemsPage() : React.ReactElement
     ];
 
     return (
-        <Stack align="center">
+        <Stack align="center" pos="relative">
+            <ActionIcon pos="absolute" top="0" right="0" onClick={onCopyToClipboard} size="xl" title="Copy to clipboard">
+                <IconClipboard size={32} />
+            </ActionIcon>
             <Center>
                 <CaptionedBox caption="Add Item">
                     <Stack align="center">
@@ -64,6 +67,26 @@ export default function QueryItemsPage() : React.ReactElement
         </Stack>
     );
 
+
+    function onCopyToClipboard(): void
+    {
+        const data = formatItemsAsCsv();
+
+        navigator.clipboard.writeText(data);
+    }
+
+    function formatItemsAsCsv(): string
+    {
+        const convertedItems: Array<Record<'id' | 'description' | 'seller', string>> = items.map(item => {
+            return {
+                id: item.itemId.toString(),
+                description: item.description,
+                seller: item.sellerId.toString(),
+            };
+        });
+
+        return convertToCsv(['id', 'description', 'seller'], convertedItems).join('\n');
+    }
 
     function onUpdateItemId(value: string): void
     {
