@@ -29,7 +29,10 @@ export const dummyAuthentication: AuthenticationStatus = {
 export const AuthenticationContext = React.createContext<AuthenticationStatus>(dummyAuthentication);
 
 
-export function createAuthenticationStatusFromAuthenticationData(authenticationData: AuthenticationData, setAuthenticationData: (data: AuthenticationData) => void): AuthenticationStatus
+export function createAuthenticationStatusFromAuthenticationData(
+    authenticationData: AuthenticationData,
+    setAuthenticationData: (data: AuthenticationData) => void,
+): AuthenticationStatus
 {
     if (authenticationData !== null)
     {

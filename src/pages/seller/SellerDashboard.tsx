@@ -33,7 +33,12 @@ export default function SellerDashboard()
         <>
             <AppShell navbar={{width: 100, breakpoint: 'sm', collapsed: {desktop: !navbarVisible, mobile: !navbarVisible}}} header={{height: 100}}>
                 <AppShell.Header>
-                    <DashboardHeader title="Seller Dashboard" userId={authentication.username} role={authentication.role} onToggleMenu={toggleNavbarVisibility} navbarVisible={navbarVisible} />
+                    <DashboardHeader
+                        title="Seller Dashboard"
+                        userId={authentication.username}
+                        role={authentication.role}
+                        onToggleMenu={toggleNavbarVisibility}
+                        navbarVisible={navbarVisible} />
                 </AppShell.Header>
                 <AppShell.Navbar>
                     <Flex direction="column" align="center" justify="flex-start" gap="md" m="lg" style={{height: '100%'}}>

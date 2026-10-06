@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import QRCode from 'react-qr-code';
 import classes from './QrCodePage.module.css';
 
-type CodeId = 'wired-factory-reset' | 'wired-quiet' | 'wired-no-terminator'
+type CodeId = 'wired-factory-reset' | 'wired-quiet' | 'wired-no-terminator';
 
 export default function QrCodePage() : React.ReactElement
 {

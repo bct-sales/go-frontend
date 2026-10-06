@@ -1,12 +1,22 @@
 import CaptionedBox from '@/components/CaptionedBox';
 import ItemsTable from '@/components/ItemsTable';
+import
+{
+    categoryColumn,
+    deleteColumn,
+    descriptionColumn,
+    donationColumn,
+    itemIdColumn,
+    largeColumn,
+    priceInCentsColumn,
+    sellerColumn,
+} from '@/components/ItemsTable/columns';
+import { Item } from '@/components/ItemsTable/ItemsTable';
+import { getItemInformation, Item as RestItem } from '@/rest/item-data';
 import { ActionIcon, Center, Group, Stack, TextInput, Tooltip } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useRef, useState } from 'react';
-import { categoryColumn, deleteColumn, descriptionColumn, donationColumn, itemIdColumn, largeColumn, priceInCentsColumn, sellerColumn } from '@/components/ItemsTable/columns';
-import { getItemInformation, Item as RestItem } from '@/rest/item-data';
-import { notifications } from '@mantine/notifications';
-import { Item } from '@/components/ItemsTable/ItemsTable';
 
 
 export default function QueryItemsPage() : React.ReactElement
@@ -36,7 +46,11 @@ export default function QueryItemsPage() : React.ReactElement
                 <CaptionedBox caption="Add Item">
                     <Stack align="center">
                         <Group>
-                            <TextInput ref={itemInputRef} onChange={e => onUpdateItemId(e.currentTarget.value)} onKeyDown={onKeyDownInItemIdInput} value={itemIdString} />
+                            <TextInput
+                                ref={itemInputRef}
+                                onChange={e => onUpdateItemId(e.currentTarget.value)}
+                                onKeyDown={onKeyDownInItemIdInput}
+                                value={itemIdString} />
                             <Tooltip label="Adds item to the list">
                                 <ActionIcon  onClick={onAddItem}>
                                     <IconPlus />
